@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Jonatas Baptista, Real Estate Coach</title>
+<meta name="description" content="Get in touch with Jonatas Baptista, Real Estate Coach in Lisbon, Portugal, to discuss coaching, a business performance audit, or a growth strategy session.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#F7F5F2',
+          bg2: '#EFEAE3',
+          heading: '#1F2937',
+          body: '#4B5563',
+          btn: '#2F4858',
+          accent: '#B08D57',
+          footer: '#2F4858',
+        },
+        fontFamily: {
+          display: ['"Playfair Display"', 'Georgia', 'serif'],
+          sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<!-- Embedded Custom Styles (animations, hovers, components) -->
+<style>
+/* =====================================================
+   Jonatas Baptista — Real Estate Coach
+   Custom Stylesheet (Tailwind CDN handles utility classes;
+   this file handles animation, micro-interactions and
+   the few components Tailwind utilities can't express)
+   ===================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+body.page-loaded {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------
+   1. SCROLL REVEAL — Fade Up (the ONLY entrance animation)
+   Elements start hidden via .reveal, JS adds .reveal-visible
+   when they enter the viewport (Intersection Observer).
+   Kept light: short distance, quick, no overshoot.
+--------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    opacity: 1;
+    transition: none;
+  }
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------------------------------------------------
+   2. NAVBAR
+--------------------------------------------------- */
+#navbar.scrolled {
+  background-color: #F7F5F2;
+  box-shadow: 0 1px 0 rgba(31, 41, 55, 0.06);
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background-color: #B08D57;
+  transition: width 0.28s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active-link::after {
+  width: 100%;
+}
+
+/* Mobile drawer */
+.mobile-drawer {
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+#menuOverlay {
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+
+#menuOverlay.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Hamburger -> X */
+#menuToggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+#menuToggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+#menuToggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ---------------------------------------------------
+   3. BUTTONS — soft, smooth, no bounce
+--------------------------------------------------- */
+.btn-hover {
+  transition: background-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
+}
+.btn-hover:hover {
+  background-color: #25394A;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(47, 72, 88, 0.18);
+}
+
+.btn-hover-outline {
+  transition: background-color 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
+}
+.btn-hover-outline:hover {
+  background-color: rgba(176, 141, 87, 0.08);
+  border-color: #B08D57;
+  transform: translateY(-2px);
+}
+
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ---------------------------------------------------
+   4. PORTRAIT — gentle image zoom on hover
+--------------------------------------------------- */
+.portrait-frame {
+  background-color: #EFEAE3;
+}
+
+.img-zoom {
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portrait-frame:hover .img-zoom {
+  transform: scale(1.045);
+}
+
+.portrait-fallback {
+  background: linear-gradient(160deg, #EFEAE3 0%, #F7F5F2 100%);
+}
+
+/* ---------------------------------------------------
+   5. SERVICE CARDS ("What I Help With")
+--------------------------------------------------- */
+.service-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(31, 41, 55, 0.07);
+  border-radius: 2px;
+  padding: 2rem 1.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(31, 41, 55, 0.07);
+  border-color: rgba(176, 141, 87, 0.4);
+}
+
+.icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #EFEAE3;
+  color: #B08D57;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.service-card:hover .icon-wrap {
+  background-color: #B08D57;
+  color: #F7F5F2;
+}
+
+/* ---------------------------------------------------
+   6. TIMELINE
+--------------------------------------------------- */
+.timeline-dot {
+  position: absolute;
+  left: -41px;
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #F7F5F2;
+  border: 2px solid #B08D57;
+}
+
+@media (min-width: 768px) {
+  .timeline-dot {
+    left: -45px;
+  }
+}
+
+/* ---------------------------------------------------
+   7. FOOTER LINKS
+--------------------------------------------------- */
+.footer-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.footer-link:hover {
+  color: #B08D57;
+}
+
+/* Footer top accent strip — a quiet signature line, not a hard border */
+.footer-accent {
+  height: 2px;
+  background: linear-gradient(90deg, rgba(176,141,87,0) 0%, rgba(176,141,87,0.9) 50%, rgba(176,141,87,0) 100%);
+}
+
+/* Footer contact icon chips (smaller, on a dark background) */
+.footer-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(247, 245, 242, 0.08);
+  color: #B08D57;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.28s ease, transform 0.28s ease;
+  flex-shrink: 0;
+}
+
+.footer-icon:hover {
+  background-color: rgba(176, 141, 87, 0.9);
+  color: #2F4858;
+  transform: translateY(-2px);
+}
+
+/* Back to top */
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 245, 242, 0.25);
+  color: #F7F5F2;
+  transition: border-color 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
+}
+
+.back-to-top:hover {
+  border-color: #B08D57;
+  background-color: rgba(176, 141, 87, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------
+   8. DECORATIVE ILLUSTRATIONS (lightweight inline SVG
+      placeholders used until real photography is added)
+--------------------------------------------------- */
+.illustration {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.illustration .line-soft {
+  stroke: #B08D57;
+  opacity: 0.55;
+}
+
+/* ---------------------------------------------------
+   9. ACCESSIBILITY — visible keyboard focus
+--------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #B08D57;
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------
+   10. FORM ELEMENTS (used on contact.html, defined here
+      so all pages share one stylesheet)
+--------------------------------------------------- */
+.form-input {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(31, 41, 55, 0.15);
+  border-radius: 2px;
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  color: #1F2937;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #B08D57;
+  box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.12);
+}
+
+.form-input.input-error {
+  border-color: #B0473F;
+}
+
+.field-error {
+  color: #B0473F;
+  font-size: 0.76rem;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.field-error.show {
+  display: block;
+}
+
+/* MOBILE RESPONSIVE - ENHANCED */
+@media (max-width: 768px) {
+  /* Better mobile form layout */
+  .grid.lg\\:grid-cols-\\[0\\.8fr_1\\.2fr\\] {
+    gap: 1.5rem !important;
+  }
+  
+  /* Mobile-friendly headings */
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Better mobile inputs */
+  .form-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Mobile contact info */
+  .icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Tablet responsive */
+@media (min-width: 768px) and (max-width: 1024px) {
+  h1 {
+    font-size: 2rem !important;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Better mobile button sizing */
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+</style>
+<noscript><style>body { opacity: 1 !important; }</style></noscript>
+</head>
+
+<body class="bg-bg text-body font-sans antialiased">
+<a id="top" class="sr-only">Top of page</a>
+
+<!-- ============================= -->
+<!-- NAVBAR -->
+<!-- ============================= -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-bg/0">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex flex-col leading-tight group">
+        <span class="font-display text-xl md:text-2xl text-heading tracking-wide">Jonatas Baptista</span>
+        <span class="text-[10px] md:text-[11px] uppercase tracking-[2px] text-accent font-medium mt-0.5">Real Estate Coach</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-10">
+        <a href="index.html" class="nav-link text-sm font-medium text-heading">Home</a>
+        <a href="about.html" class="nav-link text-sm font-medium text-heading">About</a>
+        <a href="service.html" class="nav-link text-sm font-medium text-heading">Services</a>
+        <a href="contact.html" class="nav-link text-sm font-medium text-heading">Contact</a>
+      </nav>
+
+      <!-- CTA + Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="contact.html" class="hidden lg:inline-flex items-center px-6 py-2.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover">
+          Schedule a Consultation
+        </a>
+
+        <!-- Mobile Hamburger -->
+        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] touch-target">
+          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobileMenu" class="lg:hidden fixed top-0 right-0 h-screen w-[78%] max-w-sm bg-bg2 z-50 mobile-drawer shadow-2xl">
+    <div class="flex flex-col h-full px-8 pt-8 pb-10">
+      <div class="flex justify-end">
+        <button id="menuClose" aria-label="Close menu" class="w-10 h-10 flex items-center justify-center text-heading text-2xl touch-target">&times;</button>
+      </div>
+      <nav class="flex flex-col gap-8 mt-12">
+        <a href="index.html" class="font-display text-2xl text-heading">Home</a>
+        <a href="about.html" class="font-display text-2xl text-heading">About</a>
+        <a href="service.html" class="font-display text-2xl text-heading">Services</a>
+        <a href="contact.html" class="font-display text-2xl text-heading">Contact</a>
+      </nav>
+      <a href="contact.html" class="mt-auto w-full text-center px-6 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide">
+        Schedule a Consultation
+      </a>
+    </div>
+  </div>
+  <div id="menuOverlay" class="fixed inset-0 bg-heading/40 z-40 hidden"></div>
+</header>
+
+<main>
+<!-- ============================= -->
+<!-- CONTACT — Compact Hero + Info + Form (single screen friendly) -->
+<!-- ============================= -->
+<section class="pt-28 pb-12 md:pt-32 md:pb-16">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <!-- Compact intro -->
+    <div class="reveal text-center max-w-2xl mx-auto mb-10 md:mb-12">
+      <p class="text-[11px] md:text-xs uppercase tracking-[2.5px] text-accent font-semibold mb-3">
+        Contact
+      </p>
+      <h1 class="font-display text-[1.9rem] leading-[1.18] md:text-4xl lg:text-[2.6rem] text-heading">
+        Let's Talk About Your Business
+      </h1>
+      <p class="mt-4 text-sm md:text-base text-body leading-relaxed">
+        If you're a real estate agent looking to improve results and build a stronger business,
+        I'd like to hear where you are today — and where you want to be.
+      </p>
+    </div>
+
+    <!-- Info + Form -->
+    <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-6 lg:gap-8 items-start">
+
+      <!-- Contact Information -->
+      <div class="reveal bg-bg2 rounded-sm p-6 md:p-7">
+        <h2 class="font-display text-xl text-heading">Contact Information</h2>
+        <p class="mt-2 text-sm text-body leading-relaxed">
+          Reach out by email or LinkedIn, or use the form — every enquiry is answered personally.
+        </p>
+
+        <ul class="mt-6 space-y-4">
+          <li class="flex items-start gap-3">
+            <div class="icon-wrap shrink-0 w-10 h-10"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg></div>
+            <div>
+              <p class="text-[11px] uppercase tracking-[1.5px] text-heading/50 mb-0.5">Email</p>
+              <a href="mailto:jonatas.baptista1@gmail.com" class="text-sm md:text-base text-heading hover:text-accent transition-colors duration-300 break-all">jonatas.baptista1@gmail.com</a>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="icon-wrap shrink-0 w-10 h-10"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7.5v.01M11 17v-4.5a2 2 0 014 0V17M11 12.5V17"/></svg></div>
+            <div>
+              <p class="text-[11px] uppercase tracking-[1.5px] text-heading/50 mb-0.5">LinkedIn</p>
+              <a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" class="text-sm md:text-base text-heading hover:text-accent transition-colors duration-300">linkedin.com/in/jonatasbaptista-42992113</a>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="icon-wrap shrink-0 w-10 h-10"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-7.2 7-12a7 7 0 10-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+            <div>
+              <p class="text-[11px] uppercase tracking-[1.5px] text-heading/50 mb-0.5">Location</p>
+              <p class="text-sm md:text-base text-heading">Lisbon, Portugal</p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="mt-6 pt-5 border-t border-heading/10 font-display italic text-heading/70 text-sm leading-relaxed">
+          "More income. More consistency. More control over your business."
+        </p>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="reveal">
+        <form id="contactForm" novalidate class="bg-bg border border-heading/10 rounded-sm p-6 md:p-7">
+          <div class="flex items-baseline justify-between mb-5">
+            <h2 class="font-display text-xl text-heading">Send A Message</h2>
+            <span class="text-xs text-body">* required</span>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label for="fullName" class="block text-sm font-medium text-heading mb-1.5">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Your full name" autocomplete="name">
+              <p id="fullNameError" class="field-error">Please enter your full name.</p>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-heading mb-1.5">Email *</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="you@email.com" autocomplete="email">
+              <p id="emailError" class="field-error">Please enter a valid email address.</p>
+            </div>
+
+            <div>
+              <label for="phone" class="block text-sm font-medium text-heading mb-1.5">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+351 000 000 000" autocomplete="tel">
+              <p id="phoneError" class="field-error">Please enter a valid phone number.</p>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="country" class="block text-sm font-medium text-heading mb-1.5">Country *</label>
+              <input type="text" id="country" name="country" class="form-input" placeholder="e.g. Portugal" autocomplete="country-name">
+              <p id="countryError" class="field-error">Please let us know your country.</p>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="message" class="block text-sm font-medium text-heading mb-1.5">Message *</label>
+              <textarea id="message" name="message" rows="3" class="form-input" placeholder="Tell me a little about your business and what you'd like to improve..."></textarea>
+              <p id="messageError" class="field-error">Please add a short message (at least 10 characters).</p>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full sm:w-auto inline-flex justify-center items-center px-7 py-3 mt-6 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover touch-target">
+            Send Message
+          </button>
+
+          <div id="formSuccess" class="hidden mt-5 px-4 py-3 rounded-sm bg-accent/10 border border-accent/30 text-sm text-heading">
+            Thank you — your message has been received. Jonatas will get back to you personally
+            as soon as possible.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================= -->
+<!-- FOOTER -->
+<!-- ============================= -->
+<footer class="bg-footer text-bg/80">
+  <div class="footer-accent"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12 md:py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 text-center sm:text-left">
+
+      <div class="sm:col-span-2">
+        <span class="font-display text-xl text-bg">Jonatas Baptista</span>
+        <p class="text-xs uppercase tracking-[2px] text-accent font-medium mt-1">Real Estate Coach</p>
+        <p class="mt-4 text-sm leading-relaxed text-bg/70 max-w-sm mx-auto sm:mx-0">
+          Helping real estate agents in Lisbon and beyond build stronger, more consistent
+          businesses — without the hustle.
+        </p>
+        <div class="flex items-center justify-center sm:justify-start gap-3 mt-6">
+          <a href="mailto:jonatas.baptista1@gmail.com" aria-label="Email Jonatas Baptista" class="footer-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" aria-label="Jonatas Baptista on LinkedIn" class="footer-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm6.5 0h3.8v1.7h.05c.53-1 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.16 1.45-2.16 2.96V21h-4V9z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold text-bg tracking-wide uppercase mb-5">Navigate</h4>
+        <ul class="space-y-3 text-sm text-bg/70">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About</a></li>
+          <li><a href="services.html" class="footer-link">Services</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold text-bg tracking-wide uppercase mb-5">Get In Touch</h4>
+        <ul class="space-y-3 text-sm text-bg/70">
+          <li><a href="mailto:jonatas.baptista1@gmail.com" class="footer-link break-all">jonatas.baptista1@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn Profile</a></li>
+          <li class="text-bg/60">Lisbon, Portugal</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="mt-10 md:mt-14 pt-7 border-t border-bg/15 flex flex-col sm:flex-row justify-between items-center gap-5 text-xs text-bg/50">
+      <p class="text-center sm:text-left">&copy; <span id="year"></span> Jonatas Baptista. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <p>Lisbon, Portugal</p>
+        <a href="#top" id="backToTop" aria-label="Back to top" class="back-to-top">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================
+   Jonatas Baptista — Real Estate Coach
+   Vanilla JavaScript — shared across all pages
+   ===================================================== */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* -------------------------------------------------
+     0. PAGE FADE-IN (light, one-time, on load)
+  ------------------------------------------------- */
+  requestAnimationFrame(function () {
+    document.body.classList.add('page-loaded');
+  });
+
+  /* -------------------------------------------------
+     1. STICKY NAVBAR BACKGROUND ON SCROLL
+  ------------------------------------------------- */
+  var navbar = document.getElementById('navbar');
+
+  function handleNavbarScroll() {
+    if (!navbar) return;
+    if (window.scrollY > 40) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+  handleNavbarScroll();
+  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+
+  /* -------------------------------------------------
+     2. MOBILE MENU (drawer + hamburger + overlay)
+  ------------------------------------------------- */
+  var menuToggle = document.getElementById('menuToggle');
+  var menuClose = document.getElementById('menuClose');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var menuOverlay = document.getElementById('menuOverlay');
+
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    menuOverlay.classList.remove('hidden');
+    menuOverlay.classList.add('show');
+    menuToggle.classList.add('active');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    menuOverlay.classList.remove('show');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(function () {
+      menuOverlay.classList.add('hidden');
+    }, 320);
+  }
+
+  if (menuToggle && mobileMenu && menuOverlay && menuClose) {
+    menuToggle.addEventListener('click', function () {
+      var isOpen = mobileMenu.classList.contains('open');
+      isOpen ? closeMenu() : openMenu();
+    });
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // Close menu when a link inside it is clicked
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+  }
+
+  /* -------------------------------------------------
+     3. SCROLL REVEAL — Fade Up On Scroll
+     Uses IntersectionObserver; falls back gracefully
+     if unsupported (elements simply stay visible).
+  ------------------------------------------------- */
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window && revealEls.length) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry, index) {
+        if (entry.isIntersecting) {
+          // small stagger for elements revealed in the same batch
+          var delay = (index % 6) * 90;
+          setTimeout(function () {
+            entry.target.classList.add('reveal-visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    revealEls.forEach(function (el) {
+      el.classList.add('reveal-visible');
+    });
+  }
+
+  /* -------------------------------------------------
+     4. ACTIVE NAV LINK (based on current page)
+  ------------------------------------------------- */
+  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(function (link) {
+    var linkPage = link.getAttribute('href');
+    if (linkPage === currentPage) {
+      link.classList.add('active-link');
+    } else {
+      link.classList.remove('active-link');
+    }
+  });
+
+  /* -------------------------------------------------
+     5. FOOTER — AUTO YEAR
+  ------------------------------------------------- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  /* -------------------------------------------------
+     5b. BACK TO TOP
+  ------------------------------------------------- */
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    backToTop.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* -------------------------------------------------
+     6. CONTACT FORM VALIDATION (only present on contact.html)
+  ------------------------------------------------- */
+  var contactForm = document.getElementById('contactForm');
+
+  if (contactForm) {
+    var fields = {
+      fullName: { el: document.getElementById('fullName'), error: document.getElementById('fullNameError') },
+      email: { el: document.getElementById('email'), error: document.getElementById('emailError') },
+      phone: { el: document.getElementById('phone'), error: document.getElementById('phoneError') },
+      country: { el: document.getElementById('country'), error: document.getElementById('countryError') },
+      message: { el: document.getElementById('message'), error: document.getElementById('messageError') }
+    };
+
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var phonePattern = /^[0-9+\s()-]{7,20}$/;
+
+    function setError(field, message) {
+      if (!field.el) return;
+      field.el.classList.add('input-error');
+      if (field.error) {
+        field.error.textContent = message;
+        field.error.classList.add('show');
+      }
+    }
+
+    function clearError(field) {
+      if (!field.el) return;
+      field.el.classList.remove('input-error');
+      if (field.error) {
+        field.error.classList.remove('show');
+      }
+    }
+
+    function validateField(name) {
+      var field = fields[name];
+      if (!field || !field.el) return true;
+      var value = field.el.value.trim();
+
+      switch (name) {
+        case 'fullName':
+          if (value.length < 2) {
+            setError(field, 'Please enter your full name.');
+            return false;
+          }
+          break;
+        case 'email':
+          if (!emailPattern.test(value)) {
+            setError(field, 'Please enter a valid email address.');
+            return false;
+          }
+          break;
+        case 'phone':
+          if (value.length > 0 && !phonePattern.test(value)) {
+            setError(field, 'Please enter a valid phone number.');
+            return false;
+          }
+          break;
+        case 'country':
+          if (value.length < 2) {
+            setError(field, 'Please let us know your country.');
+            return false;
+          }
+          break;
+        case 'message':
+          if (value.length < 10) {
+            setError(field, 'Please add a short message (at least 10 characters).');
+            return false;
+          }
+          break;
+      }
+      clearError(field);
+      return true;
+    }
+
+    // Validate on blur for a calm, non-intrusive experience
+    Object.keys(fields).forEach(function (name) {
+      var field = fields[name];
+      if (field.el) {
+        field.el.addEventListener('blur', function () {
+          validateField(name);
+        });
+        field.el.addEventListener('input', function () {
+          if (field.el.classList.contains('input-error')) {
+            validateField(name);
+          }
+        });
+      }
+    });
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var isValid = true;
+      ['fullName', 'email', 'phone', 'country', 'message'].forEach(function (name) {
+        if (!validateField(name)) {
+          isValid = false;
+        }
+      });
+
+      var successMessage = document.getElementById('formSuccess');
+
+      if (isValid) {
+        // No backend wired up — this is where a fetch() call to your
+        // form handler / email service would go in production.
+        contactForm.reset();
+        if (successMessage) {
+          successMessage.classList.remove('hidden');
+          successMessage.classList.add('reveal', 'reveal-visible');
+          successMessage.setAttribute('tabindex', '-1');
+          successMessage.focus();
+        }
+      } else {
+        var firstError = contactForm.querySelector('.input-error');
+        if (firstError) {
+          firstError.focus();
+        }
+      }
+    });
+  }
+
+});
+
+</script>
+</body>
+</html>
