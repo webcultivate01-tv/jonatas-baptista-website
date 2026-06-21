@@ -5,26 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Services | Jonatas Baptista, Real Estate Coach</title>
 <meta name="description" content="Performance Coaching, Business Performance Audits and Growth Strategy Sessions for real estate agents, led by Jonatas Baptista, a Real Estate Coach with 20 years of industry experience.">
-
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Tailwind CSS (CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          bg: '#F7F5F2',
-          bg2: '#EFEAE3',
-          heading: '#1F2937',
-          body: '#4B5563',
-          btn: '#2F4858',
-          accent: '#B08D57',
-          footer: '#2F4858',
+          bg: '#F7F5F2', bg2: '#EFEAE3', heading: '#1F2937', body: '#4B5563',
+          btn: '#2F4858', accent: '#B08D57', footer: '#2F4858',
         },
         fontFamily: {
           display: ['"Playfair Display"', 'Georgia', 'serif'],
@@ -34,435 +25,407 @@
     },
   };
 </script>
-
-<!-- Embedded Custom Styles (animations, hovers, components) -->
 <style>
-/* =====================================================
-   Jonatas Baptista — Real Estate Coach
-   Custom Stylesheet (Tailwind CDN handles utility classes;
-   this file handles animation, micro-interactions and
-   the few components Tailwind utilities can't express)
-   ===================================================== */
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; opacity: 0; transition: opacity 0.5s ease; }
+body.page-loaded { opacity: 1; }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-body.page-loaded {
-  opacity: 1;
-}
-
-/* ---------------------------------------------------
-   1. SCROLL REVEAL — Fade Up (the ONLY entrance animation)
-   Elements start hidden via .reveal, JS adds .reveal-visible
-   when they enter the viewport (Intersection Observer).
-   Kept light: short distance, quick, no overshoot.
---------------------------------------------------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  body {
-    opacity: 1;
-    transition: none;
-  }
-  .reveal {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
-  html {
-    scroll-behavior: auto;
-  }
+  body { opacity: 1; transition: none; }
+  .reveal,.slide-in-left,.slide-in-right,.fade-up,.scale-in { transition: none !important; opacity: 1 !important; transform: none !important; }
+  html { scroll-behavior: auto; }
 }
 
-/* ---------------------------------------------------
-   2. NAVBAR
---------------------------------------------------- */
-#navbar.scrolled {
-  background-color: #F7F5F2;
-  box-shadow: 0 1px 0 rgba(31, 41, 55, 0.06);
-}
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); will-change: opacity,transform; }
+.reveal-visible { opacity: 1 !important; transform: translateY(0) !important; }
+.slide-in-left { opacity: 0; transform: translateX(-55px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.slide-in-left.reveal-visible { opacity: 1 !important; transform: translateX(0) !important; }
+.slide-in-right { opacity: 0; transform: translateX(55px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.slide-in-right.reveal-visible { opacity: 1 !important; transform: translateX(0) !important; }
+.fade-up { opacity: 0; transform: translateY(45px); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+.fade-up.reveal-visible { opacity: 1 !important; transform: translateY(0) !important; }
+.scale-in { opacity: 0; transform: scale(0.9); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+.scale-in.reveal-visible { opacity: 1 !important; transform: scale(1) !important; }
+.delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
 
-.nav-link {
+/* NAVBAR */
+#navbar { transition: all 0.35s ease; }
+#navbar.scrolled { background-color: rgba(247,245,242,0.97); box-shadow: 0 1px 0 rgba(31,41,55,0.08); backdrop-filter: blur(10px); }
+.nav-link { position: relative; padding-bottom: 4px; }
+.nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0%; height: 1.5px; background-color: #B08D57; transition: width 0.28s ease; }
+.nav-link:hover::after, .nav-link.active-link::after { width: 100%; }
+.mobile-drawer { transform: translateX(100%); transition: transform 0.32s cubic-bezier(0.22,1,0.36,1); }
+.mobile-drawer.open { transform: translateX(0); }
+#menuOverlay { opacity: 0; transition: opacity 0.32s ease; }
+#menuOverlay.show { display: block; opacity: 1; }
+#menuToggle.active .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+#menuToggle.active .hamburger-line:nth-child(2) { opacity: 0; }
+#menuToggle.active .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* =============================================
+   HERO — IMPROVED
+============================================= */
+.hero-section {
   position: relative;
-  padding-bottom: 4px;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 1px;
-  background-color: #B08D57;
-  transition: width 0.28s ease;
-}
-
-.nav-link:hover::after,
-.nav-link.active-link::after {
-  width: 100%;
-}
-
-/* Mobile drawer */
-.mobile-drawer {
-  transform: translateX(100%);
-  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.mobile-drawer.open {
-  transform: translateX(0);
-}
-
-#menuOverlay {
-  opacity: 0;
-  transition: opacity 0.32s ease;
-}
-
-#menuOverlay.show {
-  display: block;
-  opacity: 1;
-}
-
-/* Hamburger -> X */
-#menuToggle.active .hamburger-line:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
-}
-#menuToggle.active .hamburger-line:nth-child(2) {
-  opacity: 0;
-}
-#menuToggle.active .hamburger-line:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
-}
-
-/* ---------------------------------------------------
-   3. BUTTONS — soft, smooth, no bounce
---------------------------------------------------- */
-.btn-hover {
-  transition: background-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
-}
-.btn-hover:hover {
-  background-color: #25394A;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(47, 72, 88, 0.18);
-}
-
-.btn-hover-outline {
-  transition: background-color 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
-}
-.btn-hover-outline:hover {
-  background-color: rgba(176, 141, 87, 0.08);
-  border-color: #B08D57;
-  transform: translateY(-2px);
-}
-
-.touch-target {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-/* ---------------------------------------------------
-   4. PORTRAIT — gentle image zoom on hover
---------------------------------------------------- */
-.portrait-frame {
-  background-color: #EFEAE3;
-}
-
-.img-zoom {
-  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.portrait-frame:hover .img-zoom {
-  transform: scale(1.045);
-}
-
-.portrait-fallback {
-  background: linear-gradient(160deg, #EFEAE3 0%, #F7F5F2 100%);
-}
-
-/* ---------------------------------------------------
-   5. SERVICE CARDS ("What I Help With")
---------------------------------------------------- */
-.service-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(31, 41, 55, 0.07);
-  border-radius: 2px;
-  padding: 2rem 1.75rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(31, 41, 55, 0.07);
-  border-color: rgba(176, 141, 87, 0.4);
-}
-
-.icon-wrap {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-color: #EFEAE3;
-  color: #B08D57;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
+  overflow: hidden;
 }
-
-.service-card:hover .icon-wrap {
-  background-color: #B08D57;
-  color: #F7F5F2;
-}
-
-/* ---------------------------------------------------
-   6. TIMELINE
---------------------------------------------------- */
-.timeline-dot {
+.hero-bg {
   position: absolute;
-  left: -41px;
-  top: 4px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background-color: #F7F5F2;
-  border: 2px solid #B08D57;
+  inset: 0;
+  z-index: 0;
 }
-
-@media (min-width: 768px) {
-  .timeline-dot {
-    left: -45px;
-  }
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.38);
+  transform: scale(1.04);
+  transition: transform 8s ease-out;
 }
+.hero-bg img.loaded { transform: scale(1); }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15,25,35,0.72) 0%, rgba(47,72,88,0.55) 55%, rgba(176,141,87,0.15) 100%);
+}
+.hero-content { position: relative; z-index: 10; }
 
-/* ---------------------------------------------------
-   7. FOOTER LINKS
---------------------------------------------------- */
-.footer-link {
+/* Hero badge */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(176,141,87,0.15);
+  border: 1px solid rgba(176,141,87,0.45);
+  border-radius: 50px;
+  padding: 6px 18px;
+  font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;
+  color: #d4aa6e; font-weight: 600; margin-bottom: 24px;
+  backdrop-filter: blur(4px);
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #B08D57; animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { opacity:1;transform:scale(1); } 50% { opacity:0.5;transform:scale(0.7); } }
+
+/* Hero stat cards */
+.hero-stat-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(176,141,87,0.28);
+  border-radius: 14px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: background 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+.hero-stat-card:hover { background: rgba(176,141,87,0.14); transform: translateY(-4px); border-color: rgba(176,141,87,0.5); }
+.hero-stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #d4aa6e; line-height: 1; }
+.hero-stat-label { font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(247,245,242,0.58); margin-top: 5px; }
+
+/* Jump links */
+.jump-link {
+  padding: 0.55rem 1.4rem; border-radius: 50px;
+  border: 1px solid rgba(247,245,242,0.28);
+  font-size: 0.78rem; color: rgba(247,245,242,0.82);
+  text-decoration: none; transition: all 0.28s ease;
+  backdrop-filter: blur(4px); white-space: nowrap;
+}
+.jump-link:hover { border-color: #B08D57; color: #d4aa6e; background: rgba(176,141,87,0.12); }
+
+/* Scroll indicator */
+.scroll-indicator { position: absolute; bottom: 1.8rem; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 6px; color: rgba(247,245,242,0.4); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; animation: bounce-down 2.5s ease-in-out infinite; }
+@keyframes bounce-down { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+@media (max-height: 700px) { .scroll-indicator { display: none; } }
+
+/* =============================================
+   BUTTONS
+============================================= */
+.btn-primary { transition: background-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease; }
+.btn-primary:hover { background-color: #25394A; transform: translateY(-2px); box-shadow: 0 10px 22px rgba(47,72,88,0.2); }
+.touch-target { min-height: 44px; min-width: 44px; }
+
+/* =============================================
+   SERVICE BLOCKS — REDESIGNED
+============================================= */
+.service-section { scroll-margin-top: 5rem; }
+
+.svc-img-frame {
+  border-radius: 20px;
+  overflow: hidden;
   position: relative;
+  box-shadow: 0 24px 60px rgba(31,41,55,0.14), 0 0 0 1px rgba(176,141,87,0.1);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.svc-img-frame:hover { box-shadow: 0 32px 70px rgba(31,41,55,0.18); transform: translateY(-4px); }
+.svc-img-main {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.svc-img-frame:hover .svc-img-main { transform: scale(1.04); }
+
+/* Number badge on image */
+.svc-num-badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: rgba(15,25,35,0.85);
+  backdrop-filter: blur(8px);
+  color: #d4aa6e;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700;
+  padding: 0.45rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid rgba(176,141,87,0.25);
+  line-height: 1;
+}
+
+/* Small secondary image */
+.svc-img-secondary-wrap {
+  position: absolute;
+  bottom: -20px; right: -16px;
+  width: 160px; height: 110px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(31,41,55,0.2);
+  border: 3px solid #F7F5F2;
+}
+.svc-img-secondary-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+/* What you gain cards */
+.gain-card {
+  background: #fff;
+  border: 1px solid rgba(31,41,55,0.07);
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.gain-card:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(31,41,55,0.09); border-color: rgba(176,141,87,0.3); }
+.gain-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #B08D57, #d4aa6e); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.gain-card:hover::before { transform: scaleX(1); }
+.gain-icon { width: 44px; height: 44px; border-radius: 10px; background: #EFEAE3; color: #B08D57; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: background 0.3s ease, color 0.3s ease; }
+.gain-card:hover .gain-icon { background: #B08D57; color: #fff; }
+
+/* How it works steps */
+.how-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(31,41,55,0.07);
+  transition: background 0.2s ease;
+}
+.how-step:last-child { border-bottom: none; }
+.step-bubble {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #2F4858, #3d5f76);
+  color: #d4aa6e;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(47,72,88,0.2);
+}
+
+/* Expected outcomes box */
+.outcomes-box {
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(176,141,87,0.2);
+}
+.outcome-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(31,41,55,0.06);
+}
+.outcome-item:last-child { border-bottom: none; }
+.outcome-check { width: 22px; height: 22px; border-radius: 50%; background: rgba(176,141,87,0.12); color: #B08D57; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 700; margin-top: 1px; }
+
+/* ICON WRAP */
+.icon-wrap { width: 48px; height: 48px; border-radius: 50%; background: #EFEAE3; color: #B08D57; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; flex-shrink: 0; }
+
+/* =============================================
+   DIVIDER BANNER
+============================================= */
+.divider-banner {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  height: 260px;
+}
+@media (min-width: 768px) { .divider-banner { height: 300px; } }
+.divider-banner img { width: 100%; height: 100%; object-fit: cover; }
+
+/* =============================================
+   COMPARISON TABLE SECTION
+============================================= */
+.compare-card {
+  background: #fff;
+  border: 1px solid rgba(31,41,55,0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.compare-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(31,41,55,0.1); }
+.compare-card.featured {
+  border-color: rgba(176,141,87,0.4);
+  box-shadow: 0 8px 30px rgba(176,141,87,0.12);
+}
+.compare-card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(31,41,55,0.07);
+}
+.compare-card-body { padding: 1.5rem; }
+.compare-feature {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(31,41,55,0.05);
+  font-size: 0.875rem; color: #4B5563;
+}
+.compare-feature:last-child { border-bottom: none; }
+.cf-check { color: #B08D57; font-weight: 700; flex-shrink: 0; }
+
+/* =============================================
+   FAQ SECTION
+============================================= */
+.faq-item {
+  background: #fff;
+  border: 1px solid rgba(31,41,55,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.faq-item.open { border-color: rgba(176,141,87,0.35); }
+.faq-trigger {
+  width: 100%; text-align: left;
+  padding: 1.2rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; background: none; border: none;
+  font-family: inherit; font-size: 0.95rem; font-weight: 600; color: #1F2937;
   transition: color 0.25s ease;
 }
+.faq-trigger:hover { color: #B08D57; }
+.faq-icon { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(31,41,55,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
+.faq-item.open .faq-icon { background: #B08D57; border-color: #B08D57; color: #fff; transform: rotate(45deg); }
+.faq-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1); }
+.faq-body-inner { padding: 0 1.5rem 1.3rem; font-size: 0.9rem; color: #4B5563; line-height: 1.7; }
 
-.footer-link:hover {
-  color: #B08D57;
+/* =============================================
+   CTA SECTION
+============================================= */
+.cta-section {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0;
 }
+.cta-bg { position: absolute; inset: 0; z-index: 0; }
+.cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(8,18,28,0.6) 0%, rgba(47,72,88,0.52) 60%, rgba(176,141,87,0.18) 100%); }
 
-/* Footer top accent strip — a quiet signature line, not a hard border */
-.footer-accent {
-  height: 2px;
-  background: linear-gradient(90deg, rgba(176,141,87,0) 0%, rgba(176,141,87,0.9) 50%, rgba(176,141,87,0) 100%);
-}
+/* =============================================
+   FOOTER
+============================================= */
+.footer-link { transition: color 0.25s ease; }
+.footer-link:hover { color: #B08D57; }
+.footer-accent { height: 2px; background: linear-gradient(90deg,rgba(176,141,87,0) 0%,rgba(176,141,87,0.9) 50%,rgba(176,141,87,0) 100%); }
+.footer-icon { width: 40px; height: 40px; border-radius: 50%; background-color: rgba(247,245,242,0.08); color: #B08D57; display: flex; align-items: center; justify-content: center; transition: all 0.28s ease; flex-shrink: 0; }
+.footer-icon:hover { background-color: rgba(176,141,87,0.9); color: #2F4858; transform: translateY(-2px); }
+.back-to-top { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(247,245,242,0.25); color: #F7F5F2; transition: all 0.28s ease; }
+.back-to-top:hover { border-color: #B08D57; background-color: rgba(176,141,87,0.12); transform: translateY(-2px); }
+.newsletter-input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px 0 0 4px; padding: 0.65rem 1rem; color: #F7F5F2; font-size: 0.875rem; outline: none; width: 100%; transition: border-color 0.25s; }
+.newsletter-input::placeholder { color: rgba(247,245,242,0.4); }
+.newsletter-input:focus { border-color: #B08D57; }
+.newsletter-btn { background: #B08D57; color: #fff; border: none; padding: 0.65rem 1.2rem; border-radius: 0 4px 4px 0; font-size: 0.875rem; cursor: pointer; white-space: nowrap; transition: background 0.25s; }
+.newsletter-btn:hover { background: #9a7a47; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #B08D57; outline-offset: 3px; }
 
-/* Footer contact icon chips (smaller, on a dark background) */
-.footer-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: rgba(247, 245, 242, 0.08);
-  color: #B08D57;
+/* Multi-image stacked column */
+.svc-img-stack {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.28s ease, transform 0.28s ease;
-  flex-shrink: 0;
-}
-
-.footer-icon:hover {
-  background-color: rgba(176, 141, 87, 0.9);
-  color: #2F4858;
-  transform: translateY(-2px);
-}
-
-/* Back to top */
-.back-to-top {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid rgba(247, 245, 242, 0.25);
-  color: #F7F5F2;
-  transition: border-color 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
-}
-
-.back-to-top:hover {
-  border-color: #B08D57;
-  background-color: rgba(176, 141, 87, 0.12);
-  transform: translateY(-2px);
-}
-
-/* ---------------------------------------------------
-   8. DECORATIVE ILLUSTRATIONS (lightweight inline SVG
-      placeholders used until real photography is added)
---------------------------------------------------- */
-.illustration {
-  width: 100%;
+  flex-direction: column;
+  gap: 16px;
   height: 100%;
+}
+.svc-img-stack-item {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+  min-height: 160px;
+  box-shadow: 0 8px 24px rgba(31,41,55,0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.svc-img-stack-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(31,41,55,0.16); }
+.svc-img-stack-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
   display: block;
+  transition: transform 0.8s cubic-bezier(0.22,1,0.36,1);
 }
-
-.illustration .line-soft {
-  stroke: #B08D57;
-  opacity: 0.55;
-}
-
-/* ---------------------------------------------------
-   9. ACCESSIBILITY — visible keyboard focus
---------------------------------------------------- */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid #B08D57;
-  outline-offset: 3px;
-}
-
-/* ---------------------------------------------------
-   10. FORM ELEMENTS (used on contact.html, defined here
-      so all pages share one stylesheet)
---------------------------------------------------- */
-.form-input {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(31, 41, 55, 0.15);
-  border-radius: 2px;
+.svc-img-stack-item:hover img { transform: scale(1.05); }
+.svc-img-stack-item .svc-num-badge { position: absolute; top: 12px; left: 12px; }
+.svc-img-stack-item .img-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
   padding: 0.7rem 1rem;
-  font-size: 0.95rem;
-  color: #1F2937;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  width: 100%;
+  background: linear-gradient(to top, rgba(15,25,35,0.65), transparent);
+  color: rgba(247,245,242,0.85);
+  font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
 }
-
-.form-input:focus {
-  outline: none;
-  border-color: #B08D57;
-  box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.12);
+/* =============================================
+   MOBILE RESPONSIVE EXTRAS
+============================================= */
+@media (max-width: 1024px) {
+  .svc-img-secondary-wrap { display: none; }
+  .svc-img-main { height: 260px; }
+  .svc-img-stack { flex-direction: row; flex-wrap: wrap; }
+  .svc-img-stack-item { flex: 1 1 calc(50% - 8px); min-height: 180px; }
 }
-
-.form-input.input-error {
-  border-color: #B0473F;
-}
-
-.field-error {
-  color: #B0473F;
-  font-size: 0.76rem;
-  margin-top: 0.3rem;
-  display: none;
-}
-
-.field-error.show {
-  display: block;
-}
-
-/* MOBILE RESPONSIVE - ENHANCED */
 @media (max-width: 768px) {
-  /* Better mobile spacing */
-  h1, h2 {
-    font-size: 1.75rem !important;
-    line-height: 1.2 !important;
-  }
-  
-  /* Service sections mobile layout */
-  .grid.lg\\:grid-cols-\\[0\\.9fr_1\\.1fr\\] {
-    gap: 2rem !important;
-  }
-  
-  /* Mobile-friendly buttons */
-  .btn-hover {
-    width: 100%;
-    text-align: center;
-    padding: 0.875rem 1.5rem;
-  }
+  .svc-img-main { height: 220px; }
+  .hero-stat-num { font-size: 1.6rem; }
+  .divider-banner { height: 200px; }
+  .gain-card { padding: 1.2rem; }
+  .svc-img-stack-item { flex: 1 1 100%; min-height: 200px; max-height: 220px; }
 }
-
-/* Tablet responsive */
-@media (min-width: 768px) and (max-width: 1024px) {
-  h1 {
-    font-size: 2.2rem !important;
-  }
-}
-
-/* Small mobile */
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.6rem !important;
-  }
-  
-  /* Jump links mobile-friendly */
-  .flex.flex-wrap a {
-    font-size: 0.813rem;
-    padding: 0.5rem 1rem;
-  }
+  .jump-link { font-size: 0.72rem; padding: 0.45rem 1rem; }
+  .svc-img-main { height: 200px; }
 }
-
-/* Landscape mobile */
-@media (max-height: 600px) and (orientation: landscape) {
-  section { padding-top: 2rem !important; padding-bottom: 2rem !important; }
-}
-
 </style>
-<noscript><style>body { opacity: 1 !important; }</style></noscript>
+<noscript><style>body{opacity:1!important;}.reveal,.slide-in-left,.slide-in-right,.fade-up,.scale-in{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 
 <body class="bg-bg text-body font-sans antialiased">
 <a id="top" class="sr-only">Top of page</a>
 
 <!-- ============================= -->
-<!-- NAVBAR -->
+<!-- NAVBAR (contact.html style)  -->
 <!-- ============================= -->
-<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-bg/0">
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="flex items-center justify-between h-20">
-
-      <!-- Logo -->
       <a href="index.html" class="flex flex-col leading-tight group">
-        <span class="font-display text-xl md:text-2xl text-heading tracking-wide">Jonatas Baptista</span>
-        <span class="text-[10px] md:text-[11px] uppercase tracking-[2px] text-accent font-medium mt-0.5">Real Estate Coach</span>
+        <span class="font-display text-xl md:text-2xl text-white tracking-wide" style="text-shadow:0 1px 4px rgba(0,0,0,0.35);">Jonatas Baptista</span>
+        <span class="text-[10px] md:text-[11px] uppercase tracking-[2px] text-[#d4aa6e] font-medium mt-0.5">Real Estate Coach</span>
       </a>
-
-      <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center gap-10">
-        <a href="index.html" class="nav-link text-sm font-medium text-heading">Home</a>
-        <a href="about.html" class="nav-link text-sm font-medium text-heading">About</a>
-        <a href="service.html" class="nav-link text-sm font-medium text-heading">Services</a>
-        <a href="contact.html" class="nav-link text-sm font-medium text-heading">Contact</a>
+        <a href="index.html" class="nav-link text-sm font-medium text-white/90 hover:text-white">Home</a>
+        <a href="about.html" class="nav-link text-sm font-medium text-white/90 hover:text-white">About</a>
+        <a href="service.html" class="nav-link text-sm font-medium text-white/90 hover:text-white">Services</a>
+        <a href="contact.html" class="nav-link text-sm font-medium text-white/90 hover:text-white">Contact</a>
       </nav>
-
-      <!-- CTA + Mobile Toggle -->
       <div class="flex items-center gap-4">
-        <a href="contact.html" class="hidden lg:inline-flex items-center px-6 py-2.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover">
-          Schedule a Consultation
-        </a>
-
-        <!-- Mobile Hamburger -->
+        <a href="contact.html" class="hidden lg:inline-flex items-center px-6 py-2.5 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-primary touch-target">Schedule a Consultation</a>
         <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] touch-target">
-          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
-          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
-          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-[1.5px] bg-white transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-[1.5px] bg-white transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-[1.5px] bg-white transition-all duration-300"></span>
         </button>
       </div>
     </div>
   </div>
-
-  <!-- Mobile Menu Drawer -->
   <div id="mobileMenu" class="lg:hidden fixed top-0 right-0 h-screen w-[78%] max-w-sm bg-bg2 z-50 mobile-drawer shadow-2xl">
     <div class="flex flex-col h-full px-8 pt-8 pb-10">
       <div class="flex justify-end">
@@ -474,103 +437,560 @@ select:focus-visible {
         <a href="service.html" class="font-display text-2xl text-heading">Services</a>
         <a href="contact.html" class="font-display text-2xl text-heading">Contact</a>
       </nav>
-      <a href="contact.html" class="mt-auto w-full text-center px-6 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide">
-        Schedule a Consultation
-      </a>
+      <a href="contact.html" class="mt-auto w-full text-center px-6 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide">Schedule a Consultation</a>
     </div>
   </div>
   <div id="menuOverlay" class="fixed inset-0 bg-heading/40 z-40 hidden"></div>
 </header>
 
 <main>
-<!-- ============================= -->
-<!-- SERVICES — HERO -->
-<!-- ============================= -->
-<section class="pt-32 pb-10 md:pt-40 md:pb-14">
-  <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center">
-    <p class="reveal text-[11px] md:text-xs uppercase tracking-[2.5px] text-accent font-semibold mb-5">
-      Services
-    </p>
-    <h1 class="reveal font-display text-[2.1rem] leading-[1.18] md:text-5xl lg:text-[3rem] text-heading">
-      Three Ways To Work Together
-    </h1>
-    <p class="reveal mt-6 text-base md:text-lg text-body leading-relaxed max-w-2xl mx-auto">
-      Whichever stage your business is at, the goal stays the same: identify and remove performance
-      leaks, and build the systems that create more predictable results — without relying on
-      constant hustle.
-    </p>
 
-    <!-- Jump links -->
-    <div class="reveal mt-10 flex flex-wrap justify-center gap-3">
-      <a href="#performance-coaching" class="px-5 py-2.5 rounded-full border border-heading/15 text-sm text-heading hover:border-accent hover:text-accent transition-colors duration-300">Performance Coaching</a>
-      <a href="#business-audit" class="px-5 py-2.5 rounded-full border border-heading/15 text-sm text-heading hover:border-accent hover:text-accent transition-colors duration-300">Business Performance Audit</a>
-      <a href="#growth-strategy" class="px-5 py-2.5 rounded-full border border-heading/15 text-sm text-heading hover:border-accent hover:text-accent transition-colors duration-300">Growth Strategy Sessions</a>
+<!-- ============================= -->
+<!-- HERO                         -->
+<!-- ============================= -->
+<section class="hero-section">
+  <div class="hero-bg">
+    <img id="heroBg"
+      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=88"
+      alt="" aria-hidden="true">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content w-full max-w-4xl mx-auto px-6 lg:px-10 py-36 md:py-44 text-center">
+    <div class="mx-auto">
+      <div class="reveal inline-flex hero-badge">
+        <span class="hero-badge-dot"></span>
+        Real Estate Coaching &middot; Lisbon, Portugal
+      </div>
+      <h1 class="reveal delay-1 font-display text-[2.5rem] leading-[1.1] md:text-5xl lg:text-[3.8rem] lg:leading-[1.06] text-white">
+        Three Ways To Work<br>
+        <span style="color:#d4aa6e;">Together</span>
+      </h1>
+      <p class="reveal delay-2 mt-6 text-base md:text-xl leading-relaxed max-w-2xl mx-auto" style="color:rgba(247,245,242,0.82);">
+        Whichever stage your business is at, the goal is the same: identify where performance is leaking,
+        build systems that create predictable results &mdash; and stop relying on hustle alone.
+      </p>
+
+      <!-- Stats strip -->
+      <div class="reveal delay-3 mt-10 flex flex-wrap justify-center gap-4">
+        <div class="hero-stat-card px-6 py-4 min-w-[120px]">
+          <div class="hero-stat-num" data-count="20" data-suffix="+">0+</div>
+          <div class="hero-stat-label">Years Experience</div>
+        </div>
+        <div class="hero-stat-card px-6 py-4 min-w-[120px]">
+          <div class="hero-stat-num" data-count="3">0</div>
+          <div class="hero-stat-label">Service Options</div>
+        </div>
+        <div class="hero-stat-card px-6 py-4 min-w-[120px]">
+          <div class="hero-stat-num" style="font-size:1.5rem;">1:1</div>
+          <div class="hero-stat-label">Coaching Format</div>
+        </div>
+      </div>
+
+      <!-- Jump links -->
+      <div class="reveal delay-4 mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#performance-coaching" class="jump-link">Performance Coaching</a>
+        <a href="#business-audit" class="jump-link">Business Audit</a>
+        <a href="#growth-strategy" class="jump-link">Growth Strategy</a>
+      </div>
     </div>
+  </div>
 
-    <!-- Decorative skyline accent — ties visual language to the portrait illustrations on Home/About -->
-    <svg class="reveal illustration mx-auto mt-12 max-w-md" viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
-      <g class="line-soft" fill="none" stroke-width="1.2">
-        <path d="M10 55 L10 30 L35 30 L35 40 L60 40 L60 18 L90 18 L90 55"/>
-        <path d="M180 55 L180 22 L210 22 L210 35 L240 35 L240 55"/>
-        <path d="M310 55 L310 35 L335 35 L335 45 L365 45 L365 28 L390 28 L390 55"/>
-        <line x1="0" y1="55" x2="400" y2="55"/>
-      </g>
-    </svg>
+  <div class="scroll-indicator">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
   </div>
 </section>
 
 <!-- ============================= -->
 <!-- SERVICE 1 — PERFORMANCE COACHING -->
 <!-- ============================= -->
-<section id="performance-coaching" class="bg-bg2 py-14 md:py-16 scroll-mt-24">
+<section id="performance-coaching" class="service-section py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6 lg:px-10">
-    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16">
 
-      <div class="reveal">
-        <span class="font-display text-5xl text-accent/40">01</span>
-        <h2 class="font-display text-3xl md:text-[2.2rem] text-heading leading-tight mt-4">
-          Performance Coaching
-        </h2>
-        <p class="mt-5 text-base md:text-lg text-body leading-relaxed">
-          Ongoing, one-to-one coaching for agents who want sustained improvement in lead generation,
-          client conversion, follow-up and pipeline performance — built on consistent, structured
-          support rather than one-off advice.
-        </p>
-        <a href="contact.html" class="reveal inline-flex justify-center items-center px-7 py-3 mt-8 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover touch-target">
-          Start Performance Coaching
-        </a>
+    <!-- Section label -->
+    <div class="reveal mb-14 flex items-center gap-4">
+      <span class="text-[11px] uppercase tracking-[2.5px] text-accent font-semibold">Service 01</span>
+      <span class="flex-1 h-px bg-accent/25"></span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+      <!-- LEFT: Image stack -->
+      <div class="slide-in-left">
+        <div class="svc-img-stack" style="min-height:520px;">
+          <div class="svc-img-stack-item" style="flex:1.4;">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=500&fit=crop&q=88" alt="One-to-one coaching session" loading="lazy">
+            <span class="svc-num-badge">01</span>
+            <div class="img-label">Performance Coaching</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:1;">
+            <img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=800&h=400&fit=crop&q=85" alt="Coaching results and growth" loading="lazy">
+            <div class="img-label">Real Results</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:0.9;">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=360&fit=crop&q=85" alt="Agent productivity" loading="lazy">
+            <div class="img-label">Productivity</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:0.8;">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=320&fit=crop&q=85" alt="Client communication" loading="lazy">
+            <div class="img-label">Communication</div>
+          </div>
+        </div>
       </div>
 
+      <!-- RIGHT: Content -->
       <div class="space-y-10">
-        <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Benefits</h3>
-          <ul class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>More consistent monthly income, instead of unpredictable peaks and gaps</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Fewer promising opportunities lost to weak or inconsistent follow-up</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Clearer daily and weekly priorities, instead of reacting to whatever feels urgent</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Sharper communication with clients at every stage of the journey</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Decisions guided by what's actually happening in your business, not guesswork</li>
-          </ul>
-        </div>
 
         <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Process</h3>
-          <ol class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="font-display text-accent">1.</span>An initial conversation to understand your business, goals and current results</li>
-            <li class="flex gap-3"><span class="font-display text-accent">2.</span>Identifying exactly where performance leaks are occurring across lead generation, conversion, follow-up and pipeline</li>
-            <li class="flex gap-3"><span class="font-display text-accent">3.</span>Building a tailored action plan around your specific business, not a generic script</li>
-            <li class="flex gap-3"><span class="font-display text-accent">4.</span>Ongoing coaching sessions to implement, track and adjust as your results change</li>
-          </ol>
+          <h2 class="font-display text-3xl md:text-4xl text-heading leading-tight mb-4">Performance Coaching</h2>
+          <p class="text-base md:text-lg text-body leading-relaxed">Ongoing one-to-one coaching focused on improving real results across the eight areas that determine agent performance — with a structured approach tailored specifically to your business.</p>
         </div>
 
+        <!-- What You Gain — cards grid -->
         <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Expected Outcomes</h3>
-          <ul class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>More predictable monthly results</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Stronger handling of buyer hesitation and negotiation dynamics</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A pipeline that reflects reality, organised and easy to act on</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Increased confidence in day-to-day decision-making</li>
-          </ul>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <h3 class="text-sm font-semibold text-heading uppercase tracking-[2px]">What You Gain</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Clear Picture</p>
+              <p class="text-xs text-body leading-relaxed">A clear view of exactly what is limiting your current results</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2 4 4 8-8 4 4"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Structured Approach</p>
+              <p class="text-xs text-body leading-relaxed">A repeatable system for lead generation, follow-up and conversion</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-12.3 7.4L4 20l1.2-4.5A8.4 8.4 0 1121 11.5z"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Stronger Communication</p>
+              <p class="text-xs text-body leading-relaxed">Better handling of client conversations and negotiations</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Accountability</p>
+              <p class="text-xs text-body leading-relaxed">Regular check-ins to keep you building, not just intending</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="reveal delay-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+            <h3 class="text-sm font-semibold text-heading uppercase tracking-[2px]">How It Works</h3>
+          </div>
+          <div class="bg-white border border-heading/7 rounded-2xl overflow-hidden">
+            <div class="how-step px-5">
+              <div class="step-bubble">1</div>
+              <p class="text-sm text-body leading-relaxed pt-1">An initial conversation to understand your business, goals and current results</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">2</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Identifying performance leaks across all eight key areas</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">3</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Building a tailored action plan around your specific business situation</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">4</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Ongoing sessions to implement, track and adjust as results change</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expected Outcomes -->
+        <div class="reveal delay-2">
+          <div class="outcomes-box bg-bg2">
+            <p class="text-xs font-semibold text-accent uppercase tracking-[2px] mb-4">Expected Outcomes</p>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">More predictable monthly results</p>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">Stronger handling of buyer hesitation and negotiation</p>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">A pipeline that reflects reality — organised and easy to act on</p>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">Increased confidence in day-to-day decision-making</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal delay-3">
+          <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-primary touch-target">
+            Start Performance Coaching
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER BANNER 1 -->
+<div class="max-w-7xl mx-auto px-6 lg:px-10 py-6">
+  <div class="reveal divider-banner">
+    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&h=500&fit=crop&q=85" alt="Lisbon real estate cityscape" loading="lazy">
+    <div class="absolute inset-0 flex items-center px-8 md:px-14" style="background:linear-gradient(90deg,rgba(15,25,35,0.72) 0%,rgba(15,25,35,0.15) 100%);">
+      <div class="max-w-xl">
+        <p class="font-display italic text-xl md:text-2xl text-white leading-snug">
+          "Performance rarely comes from working harder. It comes from improving where it matters most."
+        </p>
+        <p class="mt-3 text-xs text-accent uppercase tracking-widest font-medium">— Jonatas Baptista</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= -->
+<!-- SERVICE 2 — BUSINESS AUDIT  -->
+<!-- ============================= -->
+<section id="business-audit" class="service-section bg-bg2 py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <!-- Section label -->
+    <div class="reveal mb-14 flex items-center gap-4">
+      <span class="text-[11px] uppercase tracking-[2.5px] text-accent font-semibold">Service 02</span>
+      <span class="flex-1 h-px bg-accent/25"></span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+      <!-- LEFT: Content -->
+      <div class="space-y-10 lg:order-2">
+
+        <div class="reveal">
+          <h2 class="font-display text-3xl md:text-4xl text-heading leading-tight mb-4">Business Performance Audit</h2>
+          <p class="text-base md:text-lg text-body leading-relaxed">A focused, outside review of your real estate business to identify exactly where income and opportunities are being lost — across every key area — with clear, prioritised recommendations.</p>
+        </div>
+
+        <!-- What You Gain -->
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <h3 class="text-sm font-semibold text-heading uppercase tracking-[2px]">What You Gain</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Real Clarity</p>
+              <p class="text-xs text-body leading-relaxed">Know exactly what's happening in your business right now</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Specific Findings</p>
+              <p class="text-xs text-body leading-relaxed">A clear list of exactly where performance is leaking</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V11M11 19V5M18 19v-7"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Priorities Ranked</p>
+              <p class="text-xs text-body leading-relaxed">What to address first for the greatest immediate impact</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">20 Years Perspective</p>
+              <p class="text-xs text-body leading-relaxed">An outside view shaped by 20 years across real estate and leadership</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audit Process -->
+        <div class="reveal delay-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+            <h3 class="text-sm font-semibold text-heading uppercase tracking-[2px]">The Audit Process</h3>
+          </div>
+          <div class="bg-white border border-heading/7 rounded-2xl overflow-hidden">
+            <div class="how-step px-5">
+              <div class="step-bubble">1</div>
+              <p class="text-sm text-body leading-relaxed pt-1">You share how your business currently runs — lead sources, conversion steps, follow-up, pipeline</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">2</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Your business is reviewed against patterns that separate high performers from those who stay stuck</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">3</div>
+              <p class="text-sm text-body leading-relaxed pt-1">You receive a clear, plain-language breakdown of where income and opportunities are leaking</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">4</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Findings are discussed together, with next steps outlined clearly</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="reveal delay-2">
+          <div class="outcomes-box bg-white border border-heading/7">
+            <p class="text-xs font-semibold text-accent uppercase tracking-[2px] mb-4">Expected Outcomes</p>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">A precise understanding of where your business is underperforming</p>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">A solid foundation for self-directed improvement or ongoing coaching</p>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">More confidence deciding where to invest your time and effort next</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal delay-3">
+          <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-primary touch-target">
+            Request a Business Audit
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Image stack -->
+      <div class="slide-in-left lg:order-1">
+        <div class="svc-img-stack" style="min-height:520px;">
+          <div class="svc-img-stack-item" style="flex:1.4;">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop&q=88" alt="Business performance audit" loading="lazy">
+            <span class="svc-num-badge">02</span>
+            <div class="img-label">Business Performance Audit</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:1;">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop&q=85" alt="Data analysis and pipeline" loading="lazy">
+            <div class="img-label">Pipeline Analysis</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:0.9;">
+            <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=800&h=360&fit=crop&q=85" alt="Performance review" loading="lazy">
+            <div class="img-label">Clear Findings</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:0.8;">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6d97b432?w=800&h=320&fit=crop&q=85" alt="Business results" loading="lazy">
+            <div class="img-label">Business Results</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER BANNER 2 -->
+<div class="max-w-7xl mx-auto px-6 lg:px-10 py-6">
+  <div class="reveal divider-banner">
+    <img src="https://images.unsplash.com/photo-1582407947304-fd86f28f6587?w=1600&h=500&fit=crop&q=85" alt="Real estate agent success" loading="lazy">
+    <div class="absolute inset-0 flex items-center justify-end px-8 md:px-14" style="background:linear-gradient(270deg,rgba(15,25,35,0.72) 0%,rgba(15,25,35,0.1) 100%);">
+      <div class="text-right max-w-xl">
+        <p class="font-display italic text-xl md:text-2xl text-white leading-snug">
+          "The agents who improve fastest are those who stop guessing and start measuring."
+        </p>
+        <p class="mt-3 text-xs text-accent uppercase tracking-widest font-medium">— Jonatas Baptista</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= -->
+<!-- SERVICE 3 — GROWTH STRATEGY -->
+<!-- ============================= -->
+<section id="growth-strategy" class="service-section py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <!-- Section label -->
+    <div class="reveal mb-14 flex items-center gap-4">
+      <span class="text-[11px] uppercase tracking-[2.5px] text-accent font-semibold">Service 03</span>
+      <span class="flex-1 h-px bg-accent/25"></span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+      <!-- LEFT: Image stack -->
+      <div class="slide-in-left">
+        <div class="svc-img-stack" style="min-height:520px;">
+          <div class="svc-img-stack-item" style="flex:1.4;">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop&q=88" alt="Growth strategy planning" loading="lazy">
+            <span class="svc-num-badge">03</span>
+            <div class="img-label">Growth Strategy Sessions</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:1;">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop&q=85" alt="Lisbon real estate market" loading="lazy">
+            <div class="img-label">Lisbon Market</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:0.9;">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=360&fit=crop&q=85" alt="Luxury property strategy" loading="lazy">
+            <div class="img-label">Premium Properties</div>
+          </div>
+          <div class="svc-img-stack-item" style="flex:0.8;">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=320&fit=crop&q=85" alt="Growth and expansion" loading="lazy">
+            <div class="img-label">Growth</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Content -->
+      <div class="space-y-10">
+
+        <div class="reveal">
+          <h2 class="font-display text-3xl md:text-4xl text-heading leading-tight mb-4">Growth Strategy Sessions</h2>
+          <p class="text-base md:text-lg text-body leading-relaxed">Focused strategic sessions designed to help you plan the next phase of your real estate business — with a clear direction, better decision-making and actionable priorities you can begin implementing immediately.</p>
+        </div>
+
+        <!-- What You Gain -->
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <h3 class="text-sm font-semibold text-heading uppercase tracking-[2px]">What You Gain</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">90-Day Clarity</p>
+              <p class="text-xs text-body leading-relaxed">Clear priorities for your most important business areas</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-10 9 10"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Business Vision</p>
+              <p class="text-xs text-body leading-relaxed">A clearer understanding of the business you are building</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Smarter Decisions</p>
+              <p class="text-xs text-body leading-relaxed">Better decisions on where to invest time, effort and attention</p>
+            </div>
+            <div class="gain-card">
+              <div class="gain-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V11M11 19V5M18 19v-7"/></svg></div>
+              <p class="font-semibold text-heading text-sm mb-1">Forward Momentum</p>
+              <p class="text-xs text-body leading-relaxed">A sense of direction and momentum — not just activity</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Session Structure -->
+        <div class="reveal delay-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <h3 class="text-sm font-semibold text-heading uppercase tracking-[2px]">Session Structure</h3>
+          </div>
+          <div class="bg-white border border-heading/7 rounded-2xl overflow-hidden">
+            <div class="how-step px-5">
+              <div class="step-bubble">1</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Review of where your business stands today and where you want it to go</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">2</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Identifying the key levers that will drive growth in your specific situation</p>
+            </div>
+            <div class="how-step px-5">
+              <div class="step-bubble">3</div>
+              <p class="text-sm text-body leading-relaxed pt-1">Building a prioritised plan you can begin acting on immediately</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="reveal delay-2">
+          <div class="outcomes-box bg-bg2">
+            <p class="text-xs font-semibold text-accent uppercase tracking-[2px] mb-4">Expected Outcomes</p>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">A concrete plan for the next phase of your business</p>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">Sharper thinking about what to do — and what to stop doing</p>
+            </div>
+            <div class="outcome-item">
+              <div class="outcome-check">✓</div>
+              <p class="text-sm text-body">Renewed clarity and focus going into the next period</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal delay-3">
+          <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-primary touch-target">
+            Book a Strategy Session
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= -->
+<!-- COMPARE SERVICES             -->
+<!-- ============================= -->
+<section class="bg-bg2 py-20 md:py-24">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+    <div class="text-center mb-12">
+      <p class="reveal text-[11px] uppercase tracking-[2.5px] text-accent font-semibold mb-3">Which Is Right For You?</p>
+      <h2 class="reveal font-display text-3xl md:text-4xl text-heading">Compare the Services</h2>
+      <p class="reveal mt-4 text-base text-body max-w-xl mx-auto">Every service is different in scope and commitment. Here's a quick comparison to help you decide where to start.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Card 1 -->
+      <div class="reveal compare-card">
+        <div class="compare-card-header">
+          <p class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-2">Service 01</p>
+          <h3 class="font-display text-xl text-heading">Performance Coaching</h3>
+          <p class="text-xs text-body mt-2">Best for agents who want ongoing, structured improvement</p>
+        </div>
+        <div class="compare-card-body">
+          <div class="compare-feature"><span class="cf-check">✓</span> Ongoing 1:1 sessions</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Full 8-area business review</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Tailored action plan</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Regular accountability</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Ongoing tracking & adjustment</div>
+        </div>
+        <div class="px-6 pb-6">
+          <a href="contact.html" class="block text-center px-6 py-3 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-primary">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Card 2 — Featured -->
+      <div class="reveal delay-1 compare-card featured">
+        <div class="compare-card-header bg-btn">
+          <p class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-2">Service 02</p>
+          <h3 class="font-display text-xl text-white">Business Audit</h3>
+          <p class="text-xs text-white/65 mt-2">Best for agents who want clarity before committing to coaching</p>
+        </div>
+        <div class="compare-card-body">
+          <div class="compare-feature"><span class="cf-check">✓</span> Deep business diagnosis</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Performance leak identification</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Prioritised recommendations</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> 20 years outside perspective</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Clear next-step roadmap</div>
+        </div>
+        <div class="px-6 pb-6">
+          <a href="contact.html" class="block text-center px-6 py-3 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-primary">Request Audit</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="reveal delay-2 compare-card">
+        <div class="compare-card-header">
+          <p class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-2">Service 03</p>
+          <h3 class="font-display text-xl text-heading">Growth Strategy</h3>
+          <p class="text-xs text-body mt-2">Best for agents ready to plan their next phase of growth</p>
+        </div>
+        <div class="compare-card-body">
+          <div class="compare-feature"><span class="cf-check">✓</span> Focused strategy sessions</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> 90-day priority planning</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Key growth lever identification</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Actionable priorities</div>
+          <div class="compare-feature"><span class="cf-check">✓</span> Immediate implementation plan</div>
+        </div>
+        <div class="px-6 pb-6">
+          <a href="contact.html" class="block text-center px-6 py-3 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-primary">Book Session</a>
         </div>
       </div>
 
@@ -578,194 +998,90 @@ select:focus-visible {
   </div>
 </section>
 
-<!-- ============================= -->
-<!-- SERVICE 2 — BUSINESS PERFORMANCE AUDIT -->
-<!-- ============================= -->
-<section id="business-audit" class="py-14 md:py-16 scroll-mt-24">
-  <div class="max-w-6xl mx-auto px-6 lg:px-10">
-    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16">
 
-      <div class="reveal">
-        <span class="font-display text-5xl text-accent/40">02</span>
-        <h2 class="font-display text-3xl md:text-[2.2rem] text-heading leading-tight mt-4">
-          Business Performance Audit
-        </h2>
-        <p class="mt-5 text-base md:text-lg text-body leading-relaxed">
-          A focused, outside review of your real estate business across the areas that matter most —
-          lead generation, client conversion, follow-up effectiveness, pipeline management and
-          communication — to identify exactly where income and opportunities are being lost.
-        </p>
-        <a href="contact.html" class="reveal inline-flex justify-center items-center px-7 py-3 mt-8 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover touch-target">
-          Request A Business Audit
-        </a>
-      </div>
-
-      <div class="space-y-10">
-        <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Benefits</h3>
-          <ul class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Clarity on what's actually happening in your business right now, not assumptions</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A clear, specific list of where performance is leaking</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A prioritised view of what to address first for the greatest impact</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>An outside perspective shaped by 20 years across real estate and leadership</li>
-          </ul>
-        </div>
-
-        <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Process</h3>
-          <ol class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="font-display text-accent">1.</span>You share how your business currently runs — lead sources, conversion steps, follow-up habits, pipeline tracking</li>
-            <li class="flex gap-3"><span class="font-display text-accent">2.</span>Your business is reviewed against the patterns that separate consistently high-performing agents from those who stay stuck</li>
-            <li class="flex gap-3"><span class="font-display text-accent">3.</span>You receive a clear, plain-language breakdown of where opportunities and income are leaking</li>
-            <li class="flex gap-3"><span class="font-display text-accent">4.</span>Findings are discussed together, with next steps outlined</li>
-          </ol>
-        </div>
-
-        <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Expected Outcomes</h3>
-          <ul class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A precise understanding of where your business is underperforming</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A solid foundation for self-directed improvement or ongoing coaching</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>More confidence deciding where to invest your time and effort next</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1800&h=700&fit=crop&q=88&auto=format" alt="" aria-hidden="true" style="object-position:center 40%;">
+    <div class="cta-overlay"></div>
   </div>
-</section>
-
-<!-- ============================= -->
-<!-- SERVICE 3 — GROWTH STRATEGY SESSIONS -->
-<!-- ============================= -->
-<section id="growth-strategy" class="bg-bg2 py-14 md:py-16 scroll-mt-24">
-  <div class="max-w-6xl mx-auto px-6 lg:px-10">
-    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16">
-
-      <div class="reveal">
-        <span class="font-display text-5xl text-accent/40">03</span>
-        <h2 class="font-display text-3xl md:text-[2.2rem] text-heading leading-tight mt-4">
-          Growth Strategy Sessions
-        </h2>
-        <p class="mt-5 text-base md:text-lg text-body leading-relaxed">
-          Strategic sessions for agents who already have a working business and want to grow it
-          deliberately — stronger systems, sharper communication, and more predictable scaling,
-          rather than chasing every new trend.
-        </p>
-        <a href="contact.html" class="reveal inline-flex justify-center items-center px-7 py-3 mt-8 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover touch-target">
-          Book A Growth Strategy Session
-        </a>
-      </div>
-
-      <div class="space-y-10">
-        <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Benefits</h3>
-          <ul class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A growth plan grounded in your current numbers, not generic targets</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Stronger systems that scale without constantly being rebuilt</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Sharper communication and storytelling, drawn from six years directing television</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A longer-term view of your business, instead of reacting deal to deal</li>
-          </ul>
-        </div>
-
-        <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Process</h3>
-          <ol class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="font-display text-accent">1.</span>Reviewing your current performance and growth goals together</li>
-            <li class="flex gap-3"><span class="font-display text-accent">2.</span>Mapping where systemic limits, not effort limits, are holding growth back</li>
-            <li class="flex gap-3"><span class="font-display text-accent">3.</span>Building a structured plan across lead generation, communication and business growth</li>
-            <li class="flex gap-3"><span class="font-display text-accent">4.</span>Scheduling periodic check-ins to track progress and adjust strategy as needed</li>
-          </ol>
-        </div>
-
-        <div class="reveal">
-          <h3 class="text-xs uppercase tracking-[2px] text-accent font-semibold mb-4">Expected Outcomes</h3>
-          <ul class="space-y-3 text-sm md:text-base text-body">
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>A documented growth strategy specific to your business</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Stronger, more repeatable systems behind your day-to-day work</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Increased capacity without proportionally increasing hours worked</li>
-            <li class="flex gap-3"><span class="text-accent mt-1">&#9679;</span>Greater control over the direction your business is heading</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================= -->
-<!-- CLOSING CTA -->
-<!-- ============================= -->
-<section class="py-16 md:py-20">
-  <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center">
-    <p class="reveal text-[11px] md:text-xs uppercase tracking-[2.5px] text-accent font-semibold mb-4">
-      Not Sure Which One Fits?
-    </p>
-    <h2 class="reveal font-display text-3xl md:text-4xl text-heading leading-tight">
-      Let's Talk About Where Your Business Is Today
+  <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-10 text-center">
+    <p class="reveal text-[11px] uppercase tracking-[2.5px] text-[#d4aa6e] font-semibold mb-5">Ready To Start?</p>
+    <h2 class="reveal font-display text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+      Not Sure Which Service<br class="hidden md:block"> Is Right For You?
     </h2>
-    <p class="reveal mt-6 text-base md:text-lg text-body leading-relaxed max-w-xl mx-auto">
-      If you're a real estate agent looking to improve results and build a stronger business,
-      let's have a conversation first — no commitment required.
+    <p class="reveal mt-6 text-base md:text-lg leading-relaxed max-w-xl mx-auto" style="color:rgba(247,245,242,0.82);">
+      Start with a conversation. Together we'll work out what your business needs most right now — and the clearest path forward.
     </p>
-    <a href="contact.html" class="reveal inline-flex justify-center items-center px-8 py-3.5 mt-10 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover touch-target">
-      Schedule a Consultation
-    </a>
+    <div class="reveal mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="contact.html" class="inline-flex justify-center items-center px-8 py-3.5 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-primary touch-target">
+        Get In Touch
+      </a>
+      <a href="#performance-coaching" class="inline-flex justify-center items-center px-8 py-3.5 rounded-sm text-sm font-medium tracking-wide touch-target border border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+        Explore Services
+      </a>
+    </div>
   </div>
 </section>
 
 </main>
 
-<!-- ============================= -->
 <!-- FOOTER -->
-<!-- ============================= -->
 <footer class="bg-footer text-bg/80">
   <div class="footer-accent"></div>
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12 md:py-16">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 text-center sm:text-left">
-
-      <div class="sm:col-span-2">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-14 pb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+      <div class="sm:col-span-2 lg:col-span-1">
         <span class="font-display text-xl text-bg">Jonatas Baptista</span>
-        <p class="text-xs uppercase tracking-[2px] text-accent font-medium mt-1">Real Estate Coach</p>
-        <p class="mt-4 text-sm leading-relaxed text-bg/70 max-w-sm mx-auto sm:mx-0">
-          Helping real estate agents in Lisbon and beyond build stronger, more consistent
-          businesses — without the hustle.
-        </p>
-        <div class="flex items-center justify-center sm:justify-start gap-3 mt-6">
-          <a href="mailto:jonatas.baptista1@gmail.com" aria-label="Email Jonatas Baptista" class="footer-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" aria-label="Jonatas Baptista on LinkedIn" class="footer-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm6.5 0h3.8v1.7h.05c.53-1 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.16 1.45-2.16 2.96V21h-4V9z"/></svg>
-          </a>
+        <p class="text-[10px] uppercase tracking-[2px] text-accent font-medium mt-1">Real Estate Coach &bull; Lisbon, Portugal</p>
+        <p class="mt-4 text-sm leading-relaxed text-bg/65 max-w-xs">After 20 years in real estate, Jonatas now helps agents build stronger, more consistent businesses — through better systems, not more hustle.</p>
+        <div class="flex items-center gap-3 mt-6">
+          <a href="mailto:jonatas.baptista1@gmail.com" aria-label="Email" class="footer-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm6.5 0h3.8v1.7h.05c.53-1 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.16 1.45-2.16 2.96V21h-4V9z"/></svg></a>
+          <a href="https://wa.me/351000000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.933 1.395 5.61L.057 23.25l5.763-1.31A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.8a9.8 9.8 0 01-4.937-1.326l-.354-.21-3.664.834.872-3.546-.231-.365A9.8 9.8 0 012.2 12C2.2 6.587 6.587 2.2 12 2.2S21.8 6.587 21.8 12 17.413 21.8 12 21.8z"/></svg></a>
         </div>
       </div>
-
       <div>
-        <h4 class="text-sm font-semibold text-bg tracking-wide uppercase mb-5">Navigate</h4>
-        <ul class="space-y-3 text-sm text-bg/70">
-          <li><a href="index.html" class="footer-link">Home</a></li>
-          <li><a href="about.html" class="footer-link">About</a></li>
-          <li><a href="services.html" class="footer-link">Services</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        <h4 class="text-sm font-semibold text-bg tracking-widest uppercase mb-5">Navigate</h4>
+        <ul class="space-y-3 text-sm text-bg/65">
+          <li><a href="index.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Home</a></li>
+          <li><a href="about.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> About Jonatas</a></li>
+          <li><a href="service.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Services</a></li>
+          <li><a href="contact.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Contact</a></li>
+          <li><a href="contact.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Schedule a Session</a></li>
         </ul>
       </div>
-
       <div>
-        <h4 class="text-sm font-semibold text-bg tracking-wide uppercase mb-5">Get In Touch</h4>
-        <ul class="space-y-3 text-sm text-bg/70">
-          <li><a href="mailto:jonatas.baptista1@gmail.com" class="footer-link break-all">jonatas.baptista1@gmail.com</a></li>
-          <li><a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn Profile</a></li>
-          <li class="text-bg/60">Lisbon, Portugal</li>
+        <h4 class="text-sm font-semibold text-bg tracking-widests uppercase mb-5">Services</h4>
+        <ul class="space-y-3 text-sm text-bg/65">
+          <li><a href="#performance-coaching" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Performance Coaching</a></li>
+          <li><a href="#business-audit" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Business Audit</a></li>
+          <li><a href="#growth-strategy" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Growth Strategy</a></li>
+          <li class="flex items-center gap-2"><span class="text-accent text-xs">›</span> Lead Generation</li>
+          <li class="flex items-center gap-2"><span class="text-accent text-xs">›</span> Pipeline Management</li>
         </ul>
       </div>
-
+      <div>
+        <h4 class="text-sm font-semibold text-bg tracking-widests uppercase mb-5">Get In Touch</h4>
+        <ul class="space-y-4 text-sm text-bg/65">
+          <li class="flex items-start gap-3"><span class="text-accent mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg></span><a href="mailto:jonatas.baptista1@gmail.com" class="footer-link break-all">jonatas.baptista1@gmail.com</a></li>
+          <li class="flex items-start gap-3"><span class="text-accent mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>Lisbon, Portugal</span></li>
+          <li class="flex items-start gap-3"><span class="text-accent mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span>Mon – Fri, 9am – 6pm WET</span></li>
+        </ul>
+        <div class="mt-6">
+          <p class="text-xs text-bg/50 mb-3 uppercase tracking-widest">Stay Connected</p>
+          <div class="flex">
+            <input type="email" placeholder="Your email" class="newsletter-input" aria-label="Subscribe email">
+            <button class="newsletter-btn" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="mt-10 md:mt-14 pt-7 border-t border-bg/15 flex flex-col sm:flex-row justify-between items-center gap-5 text-xs text-bg/50">
-      <p class="text-center sm:text-left">&copy; <span id="year"></span> Jonatas Baptista. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <p>Lisbon, Portugal</p>
+    <div class="mt-12 pt-7 border-t border-bg/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-bg/40">
+      <p>&copy; <span id="year"></span> Jonatas Baptista. All rights reserved. &bull; Lisbon, Portugal</p>
+      <div class="flex items-center gap-5">
+        <span>Real Estate Coaching</span>
         <a href="#top" id="backToTop" aria-label="Back to top" class="back-to-top">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
         </a>
@@ -775,273 +1091,128 @@ select:focus-visible {
 </footer>
 
 <script>
-/* =====================================================
-   Jonatas Baptista — Real Estate Coach
-   Vanilla JavaScript — shared across all pages
-   ===================================================== */
-
 document.addEventListener('DOMContentLoaded', function () {
+  requestAnimationFrame(function () { document.body.classList.add('page-loaded'); });
 
-  /* -------------------------------------------------
-     0. PAGE FADE-IN (light, one-time, on load)
-  ------------------------------------------------- */
-  requestAnimationFrame(function () {
-    document.body.classList.add('page-loaded');
-  });
-
-  /* -------------------------------------------------
-     1. STICKY NAVBAR BACKGROUND ON SCROLL
-  ------------------------------------------------- */
+  // NAVBAR scroll
   var navbar = document.getElementById('navbar');
-
+  var navLinks = navbar.querySelectorAll('.nav-link');
+  var logoName = navbar.querySelector('.font-display');
+  var hamburgerLines = navbar.querySelectorAll('.hamburger-line');
   function handleNavbarScroll() {
     if (!navbar) return;
-    if (window.scrollY > 40) {
+    if (window.scrollY > 80) {
       navbar.classList.add('scrolled');
+      navLinks.forEach(function(l){ l.style.color = '#1F2937'; });
+      hamburgerLines.forEach(function(l){ l.style.background = '#1F2937'; });
+      if (logoName) logoName.style.color = '#1F2937';
     } else {
       navbar.classList.remove('scrolled');
+      navLinks.forEach(function(l){ l.style.color = 'rgba(255,255,255,0.9)'; });
+      hamburgerLines.forEach(function(l){ l.style.background = '#fff'; });
+      if (logoName) logoName.style.color = '#fff';
     }
   }
   handleNavbarScroll();
   window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 
-  /* -------------------------------------------------
-     2. MOBILE MENU (drawer + hamburger + overlay)
-  ------------------------------------------------- */
+  // Hero image ken burns
+  var heroBg = document.getElementById('heroBg');
+  if (heroBg) { heroBg.onload = function(){ this.classList.add('loaded'); }; if (heroBg.complete) heroBg.classList.add('loaded'); }
+
+  // MOBILE MENU
   var menuToggle = document.getElementById('menuToggle');
   var menuClose = document.getElementById('menuClose');
   var mobileMenu = document.getElementById('mobileMenu');
   var menuOverlay = document.getElementById('menuOverlay');
-
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    menuOverlay.classList.remove('hidden');
-    menuOverlay.classList.add('show');
-    menuToggle.classList.add('active');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    menuOverlay.classList.remove('show');
-    menuToggle.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    setTimeout(function () {
-      menuOverlay.classList.add('hidden');
-    }, 320);
-  }
-
+  function openMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.remove('hidden'); menuOverlay.classList.add('show'); menuToggle.classList.add('active'); menuToggle.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('show'); menuToggle.classList.remove('active'); menuToggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; setTimeout(function(){ menuOverlay.classList.add('hidden'); }, 320); }
   if (menuToggle && mobileMenu && menuOverlay && menuClose) {
-    menuToggle.addEventListener('click', function () {
-      var isOpen = mobileMenu.classList.contains('open');
-      isOpen ? closeMenu() : openMenu();
-    });
+    menuToggle.addEventListener('click', function(){ mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); });
     menuClose.addEventListener('click', closeMenu);
     menuOverlay.addEventListener('click', closeMenu);
-
-    // Close menu when a link inside it is clicked
-    mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeMenu);
-    });
-
-    // Close on escape key
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-        closeMenu();
-      }
-    });
+    mobileMenu.querySelectorAll('a').forEach(function(l){ l.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function(e){ if (e.key==='Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
   }
 
-  /* -------------------------------------------------
-     3. SCROLL REVEAL — Fade Up On Scroll
-     Uses IntersectionObserver; falls back gracefully
-     if unsupported (elements simply stay visible).
-  ------------------------------------------------- */
-  var revealEls = document.querySelectorAll('.reveal');
-
+  // SCROLL REVEAL
+  var revealEls = document.querySelectorAll('.reveal, .slide-in-left, .slide-in-right, .fade-up, .scale-in');
   if ('IntersectionObserver' in window && revealEls.length) {
-    var revealObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (entry, index) {
+    var revealObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry, idx) {
         if (entry.isIntersecting) {
-          // small stagger for elements revealed in the same batch
-          var delay = (index % 6) * 90;
-          setTimeout(function () {
-            entry.target.classList.add('reveal-visible');
-          }, delay);
+          setTimeout(function(){ entry.target.classList.add('reveal-visible'); }, (idx % 4) * 90);
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    revealEls.forEach(function (el) {
-      revealObserver.observe(el);
-    });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ revealObserver.observe(el); });
   } else {
-    revealEls.forEach(function (el) {
-      el.classList.add('reveal-visible');
-    });
+    revealEls.forEach(function(el){ el.classList.add('reveal-visible'); });
   }
 
-  /* -------------------------------------------------
-     4. ACTIVE NAV LINK (based on current page)
-  ------------------------------------------------- */
-  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(function (link) {
-    var linkPage = link.getAttribute('href');
-    if (linkPage === currentPage) {
-      link.classList.add('active-link');
-    } else {
-      link.classList.remove('active-link');
+  // ANIMATED COUNTER
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var duration = 1600; var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
     }
-  });
-
-  /* -------------------------------------------------
-     5. FOOTER — AUTO YEAR
-  ------------------------------------------------- */
-  var yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
+    requestAnimationFrame(step);
   }
-
-  /* -------------------------------------------------
-     5b. BACK TO TOP
-  ------------------------------------------------- */
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  /* -------------------------------------------------
-     6. CONTACT FORM VALIDATION (only present on contact.html)
-  ------------------------------------------------- */
-  var contactForm = document.getElementById('contactForm');
-
-  if (contactForm) {
-    var fields = {
-      fullName: { el: document.getElementById('fullName'), error: document.getElementById('fullNameError') },
-      email: { el: document.getElementById('email'), error: document.getElementById('emailError') },
-      phone: { el: document.getElementById('phone'), error: document.getElementById('phoneError') },
-      country: { el: document.getElementById('country'), error: document.getElementById('countryError') },
-      message: { el: document.getElementById('message'), error: document.getElementById('messageError') }
-    };
-
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    var phonePattern = /^[0-9+\s()-]{7,20}$/;
-
-    function setError(field, message) {
-      if (!field.el) return;
-      field.el.classList.add('input-error');
-      if (field.error) {
-        field.error.textContent = message;
-        field.error.classList.add('show');
-      }
-    }
-
-    function clearError(field) {
-      if (!field.el) return;
-      field.el.classList.remove('input-error');
-      if (field.error) {
-        field.error.classList.remove('show');
-      }
-    }
-
-    function validateField(name) {
-      var field = fields[name];
-      if (!field || !field.el) return true;
-      var value = field.el.value.trim();
-
-      switch (name) {
-        case 'fullName':
-          if (value.length < 2) {
-            setError(field, 'Please enter your full name.');
-            return false;
-          }
-          break;
-        case 'email':
-          if (!emailPattern.test(value)) {
-            setError(field, 'Please enter a valid email address.');
-            return false;
-          }
-          break;
-        case 'phone':
-          if (value.length > 0 && !phonePattern.test(value)) {
-            setError(field, 'Please enter a valid phone number.');
-            return false;
-          }
-          break;
-        case 'country':
-          if (value.length < 2) {
-            setError(field, 'Please let us know your country.');
-            return false;
-          }
-          break;
-        case 'message':
-          if (value.length < 10) {
-            setError(field, 'Please add a short message (at least 10 characters).');
-            return false;
-          }
-          break;
-      }
-      clearError(field);
-      return true;
-    }
-
-    // Validate on blur for a calm, non-intrusive experience
-    Object.keys(fields).forEach(function (name) {
-      var field = fields[name];
-      if (field.el) {
-        field.el.addEventListener('blur', function () {
-          validateField(name);
-        });
-        field.el.addEventListener('input', function () {
-          if (field.el.classList.contains('input-error')) {
-            validateField(name);
-          }
-        });
-      }
-    });
-
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      var isValid = true;
-      ['fullName', 'email', 'phone', 'country', 'message'].forEach(function (name) {
-        if (!validateField(name)) {
-          isValid = false;
+  var counters = document.querySelectorAll('[data-count]');
+  var counted = false;
+  if (counters.length) {
+    var co = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !counted) {
+          counted = true;
+          counters.forEach(function(el){ animateCounter(el); });
+          co.disconnect();
         }
       });
-
-      var successMessage = document.getElementById('formSuccess');
-
-      if (isValid) {
-        // No backend wired up — this is where a fetch() call to your
-        // form handler / email service would go in production.
-        contactForm.reset();
-        if (successMessage) {
-          successMessage.classList.remove('hidden');
-          successMessage.classList.add('reveal', 'reveal-visible');
-          successMessage.setAttribute('tabindex', '-1');
-          successMessage.focus();
-        }
-      } else {
-        var firstError = contactForm.querySelector('.input-error');
-        if (firstError) {
-          firstError.focus();
-        }
-      }
-    });
+    }, { threshold: 0.5 });
+    co.observe(counters[0]);
   }
 
-});
+  // ACTIVE NAV LINK
+  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(function(link){
+    link.classList[link.getAttribute('href') === currentPage ? 'add' : 'remove']('active-link');
+  });
 
+  // FAQ ACCORDION
+  document.querySelectorAll('.faq-trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      var item = this.closest('.faq-item');
+      var body = item.querySelector('.faq-body');
+      var isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-body').style.maxHeight = '0';
+        i.querySelector('.faq-trigger').setAttribute('aria-expanded','false');
+      });
+      // Open clicked if was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        this.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // FOOTER YEAR & BACK TO TOP
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) backToTop.addEventListener('click', function(e){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
+});
 </script>
 </body>
 </html>
