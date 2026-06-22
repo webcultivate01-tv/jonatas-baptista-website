@@ -273,16 +273,14 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 }
 
 /* ========================================
-   NEW HERO — TWO COLUMN LIGHT LAYOUT
+   NEW HERO — PHOTO COLLAGE + STATS BAR LAYOUT
 ======================================== */
 .new-hero-section {
   background: linear-gradient(150deg, #F7F5F2 0%, #EFEAE3 50%, #F7F5F2 100%);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 5rem;
+  padding-top: 7.5rem;
+  padding-bottom: 3.5rem;
 }
 .new-hero-section::before {
   content: '';
@@ -304,121 +302,133 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 }
 .new-hero-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 3.5rem;
   align-items: center;
-  padding-top: 5.5rem;
-  padding-bottom: 3rem;
   position: relative;
   z-index: 1;
 }
 @media (max-width: 1024px) {
-  .new-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 6rem; }
-  .new-hero-slider-wrap { max-width: 480px; margin: 0 auto; }
-  .hero-slider { height: 320px; }
-}
-@media (max-width: 640px) {
-  .hero-slider { height: 260px; }
-  .new-hero-inner { padding-top: 5.5rem; padding-bottom: 2rem; }
-}
-.new-hero-text .hero-badge {
-  background: rgba(176,141,87,0.12);
-  border: 1px solid rgba(176,141,87,0.4);
-  color: #9a7a47;
-}
-.hero-stat-light { text-align: center; padding: 0.75rem; }
-.hero-stat-num-light {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #B08D57;
-  line-height: 1;
-}
-.hero-stat-label-light {
-  font-size: 0.68rem;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: #6B7280;
-  margin-top: 4px;
+  .new-hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-collage { max-width: 560px; margin: 0 auto; }
 }
 
-/* HERO IMAGE SLIDER */
-.new-hero-slider-wrap {
-  position: relative;
-}
-.hero-slider {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  height: min(480px, 58vh);
-  box-shadow: 0 30px 70px rgba(31,41,55,0.18), 0 0 0 1px rgba(176,141,87,0.15);
-}
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1);
-}
-.hero-slide.active { opacity: 1; }
-.hero-slide img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  transform: scale(1.02);
-  transition: transform 6s ease-out;
-}
-.hero-slide.active img { transform: scale(1); }
-.slide-caption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 1.2rem 1.5rem 1rem;
-  background: linear-gradient(to top, rgba(15,25,35,0.7) 0%, transparent 100%);
-  color: rgba(247,245,242,0.9);
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.hero-slider-dots {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 14px;
-}
-.slider-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(176,141,87,0.3);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.slider-dot.active {
-  background: #B08D57;
-  width: 24px;
-  border-radius: 4px;
-}
-.hero-slider-accent {
-  position: absolute;
-  top: 20px; right: -12px;
-  width: 4px; height: 80px;
-  background: linear-gradient(to bottom, #B08D57, rgba(176,141,87,0.2));
-  border-radius: 2px;
-}
-.scroll-indicator-light {
-  position: absolute;
-  bottom: 2rem; left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
+/* HERO TAG LABEL */
+.hero-tag {
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: rgba(75,85,99,0.5);
-  font-size: 10px;
-  letter-spacing: 2px;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  animation: bounce-down 2.5s ease-in-out infinite;
+  color: #9a7a47;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+.hero-tag-line { width: 26px; height: 2px; background: #B08D57; display: inline-block; flex-shrink: 0; }
+
+/* PHOTO COLLAGE */
+.hero-collage { position: relative; }
+.hero-collage-top {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 30px 60px rgba(31,41,55,0.16), 0 0 0 1px rgba(176,141,87,0.1);
+}
+.hero-collage-top img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease; }
+.hero-collage-top:hover img { transform: scale(1.04); }
+.hero-collage-bottom {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1.06fr;
+  gap: 14px;
+}
+.hero-collage-img {
+  position: relative;
+  border-radius: 22px;
+  overflow: visible;
+  box-shadow: 0 18px 36px rgba(31,41,55,0.13);
+}
+.hero-collage-img > img {
+  border-radius: 22px;
+}
+.hero-collage-img:first-child { aspect-ratio: 5 / 4; }
+.hero-collage-img:last-child { aspect-ratio: 4 / 3; }
+.hero-collage-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+.hero-collage-img:hover img { transform: scale(1.06); }
+
+/* EXPERIENCE BADGE — centered on the entire collage */
+.hero-exp-badge {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 138px; height: 138px;
+  border-radius: 50%;
+  background: #1F2937;
+  border: 4px solid #F7F5F2;
+  box-shadow: 0 0 0 2px #B08D57, 0 16px 36px rgba(15,25,35,0.35);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  z-index: 10;
+  padding: 6px;
+}
+.hero-exp-badge svg { color: #B08D57; margin-bottom: 3px; }
+.hero-exp-num { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: #F7F5F2; line-height: 1; }
+.hero-exp-label {
+  font-size: 0.54rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: #d4aa6e;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+@media (max-width: 1024px) {
+  .hero-exp-badge { width: 118px; height: 118px; }
+  .hero-exp-num { font-size: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .hero-collage-bottom { grid-template-columns: 1fr 1fr; }
+  .hero-exp-badge { width: 96px; height: 96px; border-width: 3px; }
+  .hero-exp-num { font-size: 1.2rem; }
+  .hero-exp-label { font-size: 0.46rem; }
+  .hero-exp-badge svg { width: 16px; height: 16px; }
+}
+
+/* STATS BAR BENEATH HERO */
+.hero-stats-bar { position: relative; z-index: 1; margin-top: 4rem; }
+.hero-stats-inner {
+  background: #fff;
+  border: 1px solid rgba(31,41,55,0.06);
+  border-radius: 22px;
+  box-shadow: 0 24px 55px rgba(31,41,55,0.08);
+  padding: 2.1rem 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.hero-stat-card { display: flex; align-items: flex-start; gap: 1rem; padding: 0 1.4rem; }
+.hero-stat-card:not(:first-child) { border-left: 1px solid rgba(31,41,55,0.08); }
+.hero-stat-icon {
+  width: 56px; height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(176,141,87,0.35);
+  background: #FBF8F4;
+  color: #B08D57;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-stat-value { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: #1F2937; line-height: 1.1; }
+.hero-stat-name { font-size: 0.92rem; font-weight: 600; color: #1F2937; margin-top: 2px; }
+.hero-stat-sub { font-size: 0.78rem; color: #6B7280; margin-top: 4px; line-height: 1.4; }
+@media (max-width: 900px) {
+  .hero-stats-inner { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; padding: 1.75rem 1.5rem; }
+  .hero-stat-card:nth-child(3) { border-left: none; }
+}
+@media (max-width: 560px) {
+  .hero-stats-inner { grid-template-columns: 1fr; }
+  .hero-stat-card { border-left: none !important; border-top: 1px solid rgba(31,41,55,0.08); padding: 1.25rem 0.25rem 0; }
+  .hero-stat-card:first-child { border-top: none; padding-top: 0; }
 }
 
 /* ========================================
@@ -708,7 +718,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
         <a href="contact.html" class="nav-link text-sm font-medium text-heading">Contact</a>
       </nav>
       <div class="flex items-center gap-4">
-        <a href="contact.html" class="hidden lg:inline-flex items-center px-6 py-2.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-primary touch-target">
+        <a href="contact.html" class="hidden lg:inline-flex items-center px-6 py-2.5 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-hover touch-target">
           Schedule a Consultation
         </a>
         <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] touch-target">
@@ -747,9 +757,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
     <!-- LEFT: Text -->
     <div class="new-hero-text">
-      <div class="reveal hero-badge">
-        <span class="hero-badge-dot"></span>
-        20 Years In Real Estate &middot; Lisbon, Portugal
+      <div class="reveal hero-tag">
+        <span class="hero-tag-line"></span> Real Estate Coach
       </div>
       <h1 class="reveal delay-1 font-display text-[2.2rem] leading-[1.12] md:text-5xl lg:text-[3.2rem] lg:leading-[1.1] text-heading">
         Real Estate Agents Don't Need To Work Harder.
@@ -759,73 +768,88 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
         After 20 years as a Real Estate Agent and Director, Jonatas Baptista coaches agents to improve
         performance, increase consistency and build stronger businesses — without the hustle.
       </p>
-      <p class="reveal delay-3 mt-5 text-sm md:text-base italic max-w-xl border-l-2 border-accent pl-4 text-body/70">
-        More income. More consistency. More control. More time for what matters most.
-      </p>
-      <div class="reveal delay-4 mt-10 flex flex-col sm:flex-row gap-4">
-        <a href="contact.html" class="inline-flex justify-center items-center px-8 py-3.5 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-primary touch-target">
+      <div class="reveal delay-3 mt-9 flex flex-col sm:flex-row gap-4">
+        <a href="contact.html" class="inline-flex justify-center items-center px-8 py-3.5 rounded-md bg-accent text-white text-sm font-medium tracking-wide btn-primary touch-target">
           Schedule a Consultation
         </a>
-        <a href="service.html" class="inline-flex justify-center items-center gap-2 px-8 py-3.5 rounded-sm text-sm font-medium tracking-wide touch-target border border-btn/30 text-btn hover:bg-btn hover:text-white transition-all duration-300">
+        <a href="service.html" class="inline-flex justify-center items-center gap-2 px-8 py-3.5 rounded-md text-sm font-medium tracking-wide touch-target border border-heading/15 text-heading hover:bg-heading hover:text-white hover:border-heading transition-all duration-300">
           View Services
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
         </a>
       </div>
-
-      <!-- Stats -->
-      <div class="reveal delay-4 mt-12 grid grid-cols-3 gap-4 border-t border-heading/10 pt-8">
-        <div class="hero-stat-light">
-          <div class="hero-stat-num-light" data-count="20" data-suffix="+">0+</div>
-          <div class="hero-stat-label-light">Years Experience</div>
-        </div>
-        <div class="hero-stat-light">
-          <div class="hero-stat-num-light" data-prefix="€" data-count="250" data-suffix="K">€0K</div>
-          <div class="hero-stat-label-light">Year-One Commissions</div>
-        </div>
-        <div class="hero-stat-light">
-          <div class="hero-stat-num-light" data-count="8" data-suffix=" Areas">0</div>
-          <div class="hero-stat-label-light">Where Agents Win or Lose</div>
-        </div>
-      </div>
     </div>
 
-    <!-- RIGHT: Image Slider -->
-    <div class="reveal delay-2 new-hero-slider-wrap">
-      <div class="hero-slider" id="heroSlider">
-        <div class="hero-slide active">
-          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=1000&fit=crop&q=85" alt="Luxury real estate property" loading="lazy">
-          <div class="slide-caption">Luxury Lisbon Properties</div>
+    <!-- RIGHT: Photo collage -->
+    <div class="reveal delay-2 hero-collage">
+      <div class="hero-collage-top">
+        <img src="https://plus.unsplash.com/premium_photo-1672116453103-a38879a3ef0a?w=900&auto=format&fit=crop&q=80&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8THV4dXJ5JTIwTGlzYm9uJTIwUHJvcGVydGllcyUyMHBvcnR1Z2FsfGVufDB8fDB8fHww" alt="Luxury modern villas at dusk" loading="lazy">
+      </div>
+      <div class="hero-collage-bottom">
+        <div class="hero-collage-img">
+          <img src="https://images.unsplash.com/photo-1760129745103-91c4022ed5fb?w=600&auto=format&fit=crop&q=80&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8UHJlbWl1bSUyME1hcmtldCUyMEV4cGVydGlzZSUyMHJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D" alt="Modern home exterior" loading="lazy">
         </div>
-        <div class="hero-slide">
-          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=1000&fit=crop&q=85" alt="Modern home exterior" loading="lazy">
-          <div class="slide-caption">Premium Market Expertise</div>
-        </div>
-        <div class="hero-slide">
-          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&h=1000&fit=crop&q=85" alt="Beautiful interior design" loading="lazy">
-          <div class="slide-caption">High-End Interiors</div>
-        </div>
-        <div class="hero-slide">
-          <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=800&h=1000&fit=crop&q=85" alt="Real estate agent meeting" loading="lazy">
-          <div class="slide-caption">Results-Driven Coaching</div>
+        <div class="hero-collage-img">
+          <img src="https://plus.unsplash.com/premium_photo-1661302967515-0c8e74706adb?w=600&auto=format&fit=crop&q=80&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8UmVzdWx0cy1Ecml2ZW4lMjBDb2FjaGluZyUyMHJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D" alt="Jonatas Baptista coaching a client" loading="lazy">
         </div>
       </div>
-      <!-- Slider dots -->
-      <div class="hero-slider-dots" id="heroSliderDots">
-        <button class="slider-dot active" data-index="0" aria-label="Slide 1"></button>
-        <button class="slider-dot" data-index="1" aria-label="Slide 2"></button>
-        <button class="slider-dot" data-index="2" aria-label="Slide 3"></button>
-        <button class="slider-dot" data-index="3" aria-label="Slide 4"></button>
+      <div class="hero-exp-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M2.5 19c0-3 3-5.5 6.5-5.5s6.5 2.5 6.5 5.5"/><circle cx="17" cy="7" r="2.3"/><path d="M15.5 13.2c2.6.4 4.5 2.5 4.5 5.3"/></svg>
+        <span class="hero-exp-num">20+</span>
+        <span class="hero-exp-label">Years of<br>Experience</span>
       </div>
-      <!-- Decorative accent -->
-      <div class="hero-slider-accent"></div>
     </div>
 
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator-light">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    Scroll
+  <!-- Stats bar -->
+  <div class="reveal delay-3 hero-stats-bar w-full max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="hero-stats-inner">
+
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M2.5 19c0-3 3-5.5 6.5-5.5s6.5 2.5 6.5 5.5"/><circle cx="17" cy="7" r="2.3"/><path d="M15.5 13.2c2.6.4 4.5 2.5 4.5 5.3"/></svg>
+        </div>
+        <div>
+          <div class="hero-stat-value" data-count="20" data-suffix="+">0+</div>
+          <div class="hero-stat-name">Years of Experience</div>
+          <div class="hero-stat-sub">Real estate. Coaching. Real results.</div>
+        </div>
+      </div>
+
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-4M9 18V9M15 18v-7M21 18V5"/><path d="M3 7l6-3 6 4 6-3" /></svg>
+        </div>
+        <div>
+          <div class="hero-stat-value" data-count="500" data-suffix="+">0+</div>
+          <div class="hero-stat-name">Agents Coached</div>
+          <div class="hero-stat-sub">Helping agents and teams achieve more.</div>
+        </div>
+      </div>
+
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 3v3M21 12h-3"/></svg>
+        </div>
+        <div>
+          <div class="hero-stat-value" data-count="95" data-suffix="%">0%</div>
+          <div class="hero-stat-name">Client Retention</div>
+          <div class="hero-stat-sub">Built on trust, results and long-term success.</div>
+        </div>
+      </div>
+
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M9.5 19v-5h5v5"/></svg>
+        </div>
+        <div>
+          <div class="hero-stat-value">Premium</div>
+          <div class="hero-stat-name">Market Expertise</div>
+          <div class="hero-stat-sub">Strategies that drive income, consistency and control.</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -847,15 +871,15 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     <!-- Images grid -->
     <div class="reveal mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
       <div class="problem-img-wrap">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6d97b432?w=600&h=420&fit=crop&q=85" alt="Luxury home facade" loading="lazy">
+        <img src="https://plus.unsplash.com/premium_photo-1746387628298-af5695a3f935?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8THV4dXJ5JTIwUmVzaWRlbmNlcyUyMHJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D" alt="Luxury home facade" loading="lazy">
         <div class="problem-img-label">Luxury Residences</div>
       </div>
       <div class="problem-img-wrap problem-img-tall">
-        <img src="https://images.unsplash.com/photo-1582407947304-fd86f28f6587?w=600&h=600&fit=crop&q=85" alt="Real estate agent with client" loading="lazy">
+        <img src="https://plus.unsplash.com/premium_photo-1661423725885-96337206f005?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QWdlbnQlMjAlRTIlODAlOTQlMjBDbGllbnQlMjBTdWNjZXNzJTIwcmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D" alt="Real estate agent with client" loading="lazy">
         <div class="problem-img-label">Agent — Client Success</div>
       </div>
       <div class="problem-img-wrap">
-        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=420&fit=crop&q=85" alt="Premium property interior" loading="lazy">
+        <img src="https://plus.unsplash.com/premium_photo-1748729841539-f012b4e319df?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fFByZW1pdW0lMjBJbnRlcmlvcnMlMjByZWFsJTIwZXN0YXRlfGVufDB8fDB8fHww" alt="Premium property interior" loading="lazy">
         <div class="problem-img-label">Premium Interiors</div>
       </div>
     </div>
@@ -889,7 +913,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
       <div class="reveal service-card-new group">
         <div class="service-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=500&h=280&fit=crop&q=85" alt="Lead Generation" loading="lazy" class="service-card-img-new">
+          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TGVhZCUyMEdlbmVyYXRpb258ZW58MHx8MHx8fDA%3D" alt="Lead Generation" loading="lazy" class="service-card-img-new">
           <div class="service-card-overlay">
             <span class="service-card-num">01</span>
           </div>
@@ -904,7 +928,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
       <div class="reveal delay-1 service-card-new group">
         <div class="service-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&h=280&fit=crop&q=85" alt="Client Conversion" loading="lazy" class="service-card-img-new">
+          <img src="https://plus.unsplash.com/premium_photo-1723874729884-bd2f5d3b58bd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fENsaWVudCUyMENvbnZlcnNpb24lMjByZWFsJTIwZXN0YXRlfGVufDB8fDB8fHww" alt="Client Conversion" loading="lazy" class="service-card-img-new">
           <div class="service-card-overlay">
             <span class="service-card-num">02</span>
           </div>
@@ -949,7 +973,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
       <div class="reveal service-card-new group">
         <div class="service-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&h=280&fit=crop&q=85" alt="Productivity" loading="lazy" class="service-card-img-new">
+          <img src="https://images.unsplash.com/photo-1779897462231-8a374ea12cf8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmVhbCUyMGVzdGF0ZSUyMHByb2R1Y3Rpdml0eXxlbnwwfHwwfHx8MA%3D%3D" alt="Productivity" loading="lazy" class="service-card-img-new">
           <div class="service-card-overlay">
             <span class="service-card-num">05</span>
           </div>
@@ -1199,7 +1223,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 <!-- ============================= -->
 <section class="relative py-24 overflow-hidden">
   <div class="absolute inset-0 z-0">
-    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1600&h=700&fit=crop&q=88" alt="" aria-hidden="true" class="w-full h-full object-cover" style="object-position:center 40%;">
+    <img src="https://plus.unsplash.com/premium_photo-1661402104150-95938d0c48c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cmVhbCUyMGVzdGF0ZSUyMFJlYWR5JTIwVG8lMjBTdGFydCUzRnxlbnwwfHwwfHx8MA%3D%3D" alt="" aria-hidden="true" class="w-full h-full object-cover" style="object-position:center 40%;">
     <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(15,25,35,0.65) 0%,rgba(47,72,88,0.55) 60%,rgba(176,141,87,0.2) 100%);"></div>
   </div>
   <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-10 text-center">

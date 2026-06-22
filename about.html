@@ -379,40 +379,57 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="hero-orb hero-orb-2"></div>
 
   <div class="about-hero-content w-full max-w-7xl mx-auto px-6 lg:px-10 py-36">
-    <div class="max-w-3xl">
-      <div class="reveal hero-badge">
-        <span class="hero-badge-dot"></span>
-        Real Estate Coach &middot; Lisbon, Portugal
-      </div>
-      <span class="reveal hero-kicker-line mb-4"></span>
-      <h1 class="reveal delay-1 font-display text-[2.4rem] leading-[1.1] md:text-5xl lg:text-[3.6rem] lg:leading-[1.08] text-white">
-        Twenty Years In Real Estate.<br>
-        <span style="color:#d4aa6e;">One Question That Never Stopped Mattering.</span>
-      </h1>
-      <p class="reveal delay-2 mt-7 text-base md:text-lg leading-relaxed max-w-2xl" style="color:rgba(247,245,242,0.78);">
-        Why do some agents consistently reach €10,000+ months, while others — in the same market,
-        under the same conditions — stay stuck? That question has shaped Jonatas Baptista's
-        entire career, from consultant to director to coach.
-      </p>
-      <div class="reveal delay-3 mt-10 flex flex-col sm:flex-row gap-4">
-        <a href="contact.html" class="inline-flex justify-center items-center px-8 py-3.5 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-hover touch-target">Schedule a Consultation</a>
-        <a href="service.html" class="inline-flex justify-center items-center gap-2 px-8 py-3.5 rounded-sm btn-outline text-sm font-medium tracking-wide touch-target" style="border:1px solid rgba(247,245,242,0.35);color:#F7F5F2;">View Services <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
-      </div>
-      <!-- Stats -->
-      <div class="reveal delay-4 mt-14 grid grid-cols-3 gap-4 border-t border-white/15 pt-8 max-w-xl">
-        <div>
-          <div class="hero-stat-num">20+</div>
-          <div class="hero-stat-label">Years Experience</div>
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- LEFT: Text -->
+      <div>
+        <div class="reveal hero-badge">
+          <span class="hero-badge-dot"></span>
+          Real Estate Coach &middot; Lisbon, Portugal
         </div>
-        <div>
-          <div class="hero-stat-num">&euro;250K</div>
-          <div class="hero-stat-label">Year-One Commissions</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">3</div>
-          <div class="hero-stat-label">Agencies Led</div>
+        <h1 class="reveal delay-1 font-display text-[2.4rem] leading-[1.1] md:text-5xl lg:text-[3.6rem] lg:leading-[1.08] text-white">
+          Twenty Years In Real Estate.<br>
+          <span style="color:#d4aa6e;">One Question That Never Stopped Mattering.</span>
+        </h1>
+        <p class="reveal delay-2 mt-7 text-base md:text-lg leading-relaxed max-w-xl" style="color:rgba(247,245,242,0.78);">
+          Why do some agents consistently reach €10,000+ months, while others — in the same market,
+          under the same conditions — stay stuck? That question has shaped Jonatas Baptista's
+          entire career, from consultant to director to coach.
+        </p>
+        <div class="reveal delay-3 mt-10 flex flex-col sm:flex-row gap-4">
+          <a href="contact.html" class="inline-flex justify-center items-center px-8 py-3.5 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-hover touch-target">Schedule a Consultation</a>
+          <a href="service.html" class="inline-flex justify-center items-center gap-2 px-8 py-3.5 rounded-sm btn-outline text-sm font-medium tracking-wide touch-target" style="border:1px solid rgba(247,245,242,0.35);color:#F7F5F2;">View Services <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
         </div>
       </div>
+
+      <!-- RIGHT: Portrait -->
+      <div class="reveal slide-in-right hidden lg:block">
+        <div class="relative max-w-sm mx-auto">
+          <div class="absolute -inset-3 border border-accent/30 rounded-2xl"></div>
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="aspect-ratio:3/4;">
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=800&fit=crop&q=88&auto=format"
+              alt="Jonatas Baptista, Real Estate Coach"
+              class="w-full h-full object-cover"
+              style="object-position:center top;"
+            >
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,25,35,0.4) 0%,transparent 50%);"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl px-4 py-3 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <div>
+              <p class="font-display text-sm font-bold text-heading leading-tight">20+ Years</p>
+              <p class="text-xs text-body">Real Estate Expert</p>
+            </div>
+          </div>
+          <!-- Top accent -->
+          <div class="absolute -top-3 -right-3 bg-accent text-white text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-lg">Lisbon</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -427,12 +444,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
       <div class="gallery-img h-52 md:h-72 reveal">
-        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&h=450&fit=crop&q=80" alt="Luxury real estate" loading="lazy">
+        <img src="https://plus.unsplash.com/premium_photo-1689609950112-d66095626efb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8UmVhbCUyMEVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D" alt="Luxury real estate" loading="lazy">
         <div class="overlay"></div>
         <span class="label">Real Estate</span>
       </div>
       <div class="gallery-img h-52 md:h-72 reveal delay-1">
-        <img src="https://images.unsplash.com/photo-1582407947304-fd86f28f6587?w=500&h=450&fit=crop&q=80" alt="Coaching session" loading="lazy">
+        <img src="https://media.istockphoto.com/id/1137360522/photo/audience-of-nice-chic-classy-elegant-stylish-sharks-listening-to-report-strategy-top.webp?a=1&b=1&s=612x612&w=0&k=20&c=nwj9XQ3m66U63Ggy30rUmK9xq_dPR48UAdFMCDC8Kqw=" alt="Coaching session" loading="lazy">
         <div class="overlay"></div>
         <span class="label">Coaching</span>
       </div>
@@ -471,7 +488,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
       <div class="reveal slide-in-left">
         <div class="story-img-wrap h-72 md:h-80 shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&h=500&fit=crop&q=85&auto=format" alt="Starting a real estate career in Lisbon 2004" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1501927023255-9063be98970c?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Starting a real estate career in Lisbon 2004" loading="lazy">
         </div>
       </div>
       <div class="reveal slide-in-right">
@@ -490,7 +507,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
       <div class="reveal slide-in-left lg:order-2">
         <div class="story-img-wrap h-72 md:h-80 shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=700&h=500&fit=crop&q=85&auto=format" alt="Real estate management and leadership" loading="lazy">
+          <img src="https://media.istockphoto.com/id/2149849641/photo/business-concept-multinational-professionals-business-people-discussing-daily-topics-by-table.webp?a=1&b=1&s=612x612&w=0&k=20&c=9B8yM7Dq5hYYTiKRycx0ghPSjrmFy6h5ubPqo8REcOI=" alt="Real estate management and leadership" loading="lazy">
         </div>
       </div>
       <div class="reveal slide-in-right lg:order-1">
@@ -508,7 +525,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
       <div class="reveal slide-in-left">
         <div class="story-img-wrap h-72 md:h-80 shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?w=700&h=500&fit=crop&q=85&auto=format" alt="Television direction and storytelling" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1646640726844-0b25cff160e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fFRlbGV2aXNpb24lMjBkaXJlY3Rpb24lMjBhbmQlMjBzdG9yeXRlbGxpbmclMjByZWFsJTIwZXN0YXRlfGVufDB8fDB8fHww" alt="Television direction and storytelling" loading="lazy">
         </div>
       </div>
       <div class="reveal slide-in-right">
@@ -602,7 +619,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
     <!-- Philosophy image -->
     <div class="reveal mt-14 rounded-2xl overflow-hidden shadow-2xl h-64 md:h-80 relative">
-      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&h=500&fit=crop&q=85&auto=format" alt="Real estate coaching philosophy" class="w-full h-full object-cover" loading="lazy">
+      <img src="https://plus.unsplash.com/premium_photo-1661422110869-fbff8063e1df?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8UmVhbCUyMGVzdGF0ZSUyMGNvYWNoaW5nJTIwcGhpbG9zb3BoeXxlbnwwfHwwfHx8MA%3D%3D" alt="Real estate coaching philosophy" class="w-full h-full object-cover" loading="lazy">
       <div class="absolute inset-0 bg-gradient-to-r from-heading/80 to-heading/20 flex items-center">
         <div class="px-8 md:px-14 max-w-2xl">
           <p class="font-display italic text-xl md:text-2xl text-white leading-snug">
@@ -641,7 +658,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
       </div>
       <div class="reveal scale-in">
         <div class="story-img-wrap h-80 md:h-96 shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=700&h=600&fit=crop&q=85&auto=format" alt="Real estate agents working on strategy" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1714976327006-c787524d47f1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fFJlYWwlMjBlc3RhdGUlMjBhZ2VudHMlMjB3b3JraW5nJTIwb24lMjBzdHJhdGVneXxlbnwwfHwwfHx8MA%3D%3D" alt="Real estate agents working on strategy" loading="lazy">
         </div>
         <p class="mt-6 font-display italic text-xl text-heading leading-snug text-center px-4">
           "Success is rarely determined by a single tactic. The highest-performing agents tend to operate
@@ -671,7 +688,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
       <div class="reveal scale-in group bg-white rounded-2xl overflow-hidden border border-accent/10 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-400">
         <div class="overflow-hidden h-44">
-          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&h=350&fit=crop&q=85" alt="Real estate" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          <img src="https://images.unsplash.com/photo-1707189856063-0ed4380a3dcb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fDIwJTIweWVhcnMlMjBpbiUyMFJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D" alt="Real estate" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
         </div>
         <div class="p-5">
           <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-3 transition-all duration-300 group-hover:bg-accent group-hover:text-white">
@@ -684,7 +701,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
       <div class="reveal scale-in delay-1 group bg-white rounded-2xl overflow-hidden border border-accent/10 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-400">
         <div class="overflow-hidden h-44">
-          <img src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?w=500&h=350&fit=crop&q=85" alt="Communication" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q29tbXVuaWNhdGlvbiUyMiUyMGNsYXNzfGVufDB8fDB8fHww" alt="Communication" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
         </div>
         <div class="p-5">
           <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-3 transition-all duration-300 group-hover:bg-accent group-hover:text-white">
@@ -697,7 +714,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
       <div class="reveal scale-in delay-2 group bg-white rounded-2xl overflow-hidden border border-accent/10 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-400">
         <div class="overflow-hidden h-44">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500&h=350&fit=crop&q=85" alt="Income recovery" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          <img src="https://images.unsplash.com/photo-1709080381729-965c62ab0471?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SW5jb21lJTIwcmVjb3ZlcnklMjByZWFsJTIwZXN0YXRlfGVufDB8fDB8fHww" alt="Income recovery" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
         </div>
         <div class="p-5">
           <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-3 transition-all duration-300 group-hover:bg-accent group-hover:text-white">
@@ -710,7 +727,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
       <div class="reveal scale-in delay-3 group bg-white rounded-2xl overflow-hidden border border-accent/10 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-400">
         <div class="overflow-hidden h-44">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=350&fit=crop&q=85" alt="Performance systems" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          <img src="https://media.istockphoto.com/id/2252783556/photo/businessman-holds-a-green-umbrella-over-a-bank-or-government-building-protection-of.webp?a=1&b=1&s=612x612&w=0&k=20&c=EqTI5EfKHUj8WY2e_8Ln8kupp7jjspQUXI6n7wfkktE=" alt="Performance systems" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
         </div>
         <div class="p-5">
           <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-3 transition-all duration-300 group-hover:bg-accent group-hover:text-white">
@@ -813,13 +830,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   </div>
 </section>
 
-<!-- ============================= -->
 <!-- QUOTE / CTA -->
-<!-- ============================= -->
-<section class="bg-btn py-16 md:py-24 relative overflow-hidden">
+<section class="py-16 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #B08D57 0%, #9a7a47 35%, #7a5f35 65%, #B08D57 100%);">
   <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-0 left-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    <div class="absolute top-0 right-0 w-80 h-80 bg-white/8 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-black/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
   </div>
   <div class="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
     <svg class="reveal mx-auto mb-6 text-accent" width="32" height="24" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0L14.4 4C9.6 5.2 7.2 8 7.2 12H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.2 30.4 0L32 4C27.2 5.2 24.8 8 24.8 12H32V24H17.6Z"/></svg>
