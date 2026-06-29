@@ -1,0 +1,157 @@
+/* ═══════════════════════════════════════════════════════
+   JONATAS BAPTISTA — REAL ESTATE COACH
+   Brand Colors: Red #C62828 | Blue #1565C0 | Navy #0D1B2A
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+
+/* ── GLOBAL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.reveal-delay-1.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-2 {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.reveal-delay-2.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-3 {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.reveal-delay-3.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-4 {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+.reveal-delay-4.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card lift effect */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(13, 27, 42, 0.15);
+}
+
+/* Loading state */
+body {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+/* Hero background styling */
+.hero-bg {
+  background: linear-gradient(135deg, #0D1B2A 0%, #1565C0 100%);
+}
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #C62828 0%, #1565C0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sweep divider */
+.sweep-divider {
+  height: 3px;
+  background: linear-gradient(90deg, #C62828 0%, #1565C0 100%);
+  border-radius: 2px;
+}
+
+/* Timeline line */
+.timeline-line {
+  position: relative;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #C62828 0%, #1565C0 100%);
+}
+
+/* Quote mark */
+.quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 900;
+}
+
+/* Contact grid layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Form styling */
+.contact-form-wrap {
+  background: white;
+  border: 1px solid #E9ECEF;
+  border-radius: 20px;
+  padding: 2.5rem;
+}

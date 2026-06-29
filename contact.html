@@ -1,1447 +1,1680 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Jonatas Baptista, Real Estate Coach</title>
-<meta name="description" content="Get in touch with Jonatas Baptista, Real Estate Coach in Lisbon, Portugal, to discuss coaching, a business performance audit, or a growth strategy session.">
-
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Tailwind CSS (CDN) -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          bg: '#F7F5F2',
-          bg2: '#EFEAE3',
-          heading: '#1F2937',
-          body: '#4B5563',
-          btn: '#2F4858',
-          accent: '#B08D57',
-          footer: '#2F4858',
-        },
-        fontFamily: {
-          display: ['"Playfair Display"', 'Georgia', 'serif'],
-          sans: ['"Inter"', 'system-ui', 'sans-serif'],
-        },
-      },
-    },
-  };
-</script>
-
-<!-- Embedded Custom Styles (animations, hovers, components) -->
-<style>
-/* =====================================================
-   Jonatas Baptista — Real Estate Coach
-   Custom Stylesheet (Tailwind CDN handles utility classes;
-   this file handles animation, micro-interactions and
-   the few components Tailwind utilities can't express)
-   ===================================================== */
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-body.page-loaded {
-  opacity: 1;
-}
-
-/* ---------------------------------------------------
-   1. SCROLL REVEAL — Fade Up (the ONLY entrance animation)
-   Elements start hidden via .reveal, JS adds .reveal-visible
-   when they enter the viewport (Intersection Observer).
-   Kept light: short distance, quick, no overshoot.
---------------------------------------------------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  body {
-    opacity: 1;
-    transition: none;
-  }
-  .reveal {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-/* ---------------------------------------------------
-   2. NAVBAR
---------------------------------------------------- */
-#navbar.scrolled {
-  background-color: #F7F5F2;
-  box-shadow: 0 1px 0 rgba(31, 41, 55, 0.06);
-}
-
-.nav-link {
-  position: relative;
-  padding-bottom: 4px;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 1px;
-  background-color: #B08D57;
-  transition: width 0.28s ease;
-}
-
-.nav-link:hover::after,
-.nav-link.active-link::after {
-  width: 100%;
-}
-
-/* Mobile drawer */
-.mobile-drawer {
-  transform: translateX(100%);
-  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.mobile-drawer.open {
-  transform: translateX(0);
-}
-
-#menuOverlay {
-  opacity: 0;
-  transition: opacity 0.32s ease;
-}
-
-#menuOverlay.show {
-  display: block;
-  opacity: 1;
-}
-
-/* Hamburger -> X */
-#menuToggle.active .hamburger-line:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
-}
-#menuToggle.active .hamburger-line:nth-child(2) {
-  opacity: 0;
-}
-#menuToggle.active .hamburger-line:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
-}
-
-/* ---------------------------------------------------
-   3. BUTTONS — soft, smooth, no bounce
---------------------------------------------------- */
-.btn-hover {
-  transition: background-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
-}
-.btn-hover:hover {
-  background-color: #25394A;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(47, 72, 88, 0.18);
-}
-
-.btn-hover-outline {
-  transition: background-color 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
-}
-.btn-hover-outline:hover {
-  background-color: rgba(176, 141, 87, 0.08);
-  border-color: #B08D57;
-  transform: translateY(-2px);
-}
-
-.touch-target {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-/* ---------------------------------------------------
-   4. PORTRAIT — gentle image zoom on hover
---------------------------------------------------- */
-.portrait-frame {
-  background-color: #EFEAE3;
-}
-
-.img-zoom {
-  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.portrait-frame:hover .img-zoom {
-  transform: scale(1.045);
-}
-
-.portrait-fallback {
-  background: linear-gradient(160deg, #EFEAE3 0%, #F7F5F2 100%);
-}
-
-/* ---------------------------------------------------
-   5. SERVICE CARDS ("What I Help With")
---------------------------------------------------- */
-.service-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(31, 41, 55, 0.07);
-  border-radius: 2px;
-  padding: 2rem 1.75rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(31, 41, 55, 0.07);
-  border-color: rgba(176, 141, 87, 0.4);
-}
-
-.icon-wrap {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-color: #EFEAE3;
-  color: #B08D57;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
-}
-
-.service-card:hover .icon-wrap {
-  background-color: #B08D57;
-  color: #F7F5F2;
-}
-
-/* ---------------------------------------------------
-   6. TIMELINE
---------------------------------------------------- */
-.timeline-dot {
-  position: absolute;
-  left: -41px;
-  top: 4px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background-color: #F7F5F2;
-  border: 2px solid #B08D57;
-}
-
-@media (min-width: 768px) {
-  .timeline-dot {
-    left: -45px;
-  }
-}
-
-/* ---------------------------------------------------
-   7. FOOTER LINKS
---------------------------------------------------- */
-.footer-link {
-  position: relative;
-  transition: color 0.25s ease;
-}
-
-.footer-link:hover {
-  color: #B08D57;
-}
-
-/* Footer top accent strip — a quiet signature line, not a hard border */
-.footer-accent {
-  height: 2px;
-  background: linear-gradient(90deg, rgba(176,141,87,0) 0%, rgba(176,141,87,0.9) 50%, rgba(176,141,87,0) 100%);
-}
-
-/* Footer contact icon chips (smaller, on a dark background) */
-.footer-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: rgba(247, 245, 242, 0.08);
-  color: #B08D57;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.28s ease, transform 0.28s ease;
-  flex-shrink: 0;
-}
-
-.footer-icon:hover {
-  background-color: rgba(176, 141, 87, 0.9);
-  color: #2F4858;
-  transform: translateY(-2px);
-}
-
-/* Back to top */
-.back-to-top {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid rgba(247, 245, 242, 0.25);
-  color: #F7F5F2;
-  transition: border-color 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
-}
-
-.back-to-top:hover {
-  border-color: #B08D57;
-  background-color: rgba(176, 141, 87, 0.12);
-  transform: translateY(-2px);
-}
-
-/* ---------------------------------------------------
-   8. DECORATIVE ILLUSTRATIONS (lightweight inline SVG
-      placeholders used until real photography is added)
---------------------------------------------------- */
-.illustration {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.illustration .line-soft {
-  stroke: #B08D57;
-  opacity: 0.55;
-}
-
-/* ---------------------------------------------------
-   9. ACCESSIBILITY — visible keyboard focus
---------------------------------------------------- */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid #B08D57;
-  outline-offset: 3px;
-}
-
-/* ---------------------------------------------------
-   10. FORM ELEMENTS (used on contact.html, defined here
-      so all pages share one stylesheet)
---------------------------------------------------- */
-.form-input {
-  background: linear-gradient(to bottom, #FFFFFF, #FFFEF9);
-  border: 2px solid rgba(176, 141, 87, 0.2);
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
-  font-size: 0.9375rem;
-  color: #1F2937;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 100%;
-  font-family: inherit;
-  line-height: 1.5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
-.form-input:hover:not(:focus):not(:disabled) {
-  border-color: rgba(176, 141, 87, 0.45);
-  background: linear-gradient(to bottom, #FFFBF7, #FFFEF9);
-  box-shadow: 0 4px 8px rgba(176, 141, 87, 0.1);
-  transform: translateY(-1px);
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #B08D57;
-  box-shadow: 0 0 0 5px rgba(176, 141, 87, 0.15), 0 8px 16px rgba(176, 141, 87, 0.18);
-  background: linear-gradient(to bottom, #FFFBF5, #FFFEF9);
-  transform: translateY(-2px) scale(1.01);
-}
-
-.form-input.input-error {
-  border-color: #DC2626;
-  background: linear-gradient(to bottom, #FEF2F2, #FFFBF9);
-  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
-  animation: shake 0.4s ease-in-out;
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-8px); }
-  75% { transform: translateX(8px); }
-}
-
-/* Textarea specific */
-textarea.form-input {
-  resize: vertical;
-  min-height: 90px;
-  line-height: 1.6;
-  padding-top: 0.75rem;
-}
-
-/* Placeholder styling */
-.form-input::placeholder {
-  color: #9CA3AF;
-  opacity: 0.75;
-  font-size: 0.875rem;
-  font-style: italic;
-}
-
-.form-input:focus::placeholder {
-  color: #D1D5DB;
-  opacity: 0.4;
-  transform: translateX(4px);
-  transition: all 0.3s ease;
-}
-
-/* Enhanced labels */
-label {
-  font-weight: 700;
-  color: #1F2937;
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
-  display: block;
-  margin-bottom: 0.4rem;
-}
-
-.field-error {
-  color: #DC2626;
-  font-size: 0.8125rem;
-  margin-top: 0.5rem;
-  display: none;
-  font-weight: 500;
-  padding-left: 0.25rem;
-  line-height: 1.4;
-}
-
-.field-error.show {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.375rem;
-  animation: slideDown 0.2s ease-out;
-}
-
-.field-error::before {
-  content: "⚠";
-  font-size: 0.875rem;
-  flex-shrink: 0;
-  margin-top: 0.125rem;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ---------------------------------------------------
-   11. CONTACT PAGE SPECIFIC - Equal Heights & Social
---------------------------------------------------- */
-.contact-info-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.social-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background-color: rgba(176,141,87,0.1);
-  color: #B08D57;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.28s ease;
-  border: 1px solid rgba(176,141,87,0.2);
-}
-
-.social-icon:hover {
-  background-color: #B08D57;
-  color: #F7F5F2;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(176,141,87,0.3);
-}
-
-/* FAQ Accordion */
-.faq-item {
-  border: 1px solid rgba(31,41,55,0.1);
-  border-radius: 4px;
-  background: #fff;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.faq-item:hover {
-  border-color: rgba(176,141,87,0.3);
-}
-
-.faq-question {
-  cursor: pointer;
-  padding: 1.2rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 500;
-  color: #1F2937;
-  transition: background 0.3s ease;
-}
-
-.faq-question:hover {
-  background: rgba(176,141,87,0.03);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.4s ease;
-  padding: 0 1.5rem;
-}
-
-.faq-answer.open {
-  max-height: 500px;
-  padding: 0 1.5rem 1.2rem;
-}
-
-.faq-icon {
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-  margin-left: 1rem;
-}
-
-.faq-icon.open {
-  transform: rotate(180deg);
-}
-
-/* MOBILE RESPONSIVE - ENHANCED */
-@media (max-width: 768px) {
-  /* Better mobile form layout */
-  .grid.lg\\:grid-cols-\\[0\\.8fr_1\\.2fr\\] {
-    gap: 1.5rem !important;
-  }
-  
-  /* Mobile-friendly headings */
-  h1 {
-    font-size: 1.75rem !important;
-    line-height: 1.2 !important;
-  }
-  
-  /* Better mobile inputs */
-  .form-input {
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-  
-  /* Mobile contact info */
-  .icon-wrap {
-    width: 36px;
-    height: 36px;
-  }
-}
-
-/* Tablet responsive */
-@media (min-width: 768px) and (max-width: 1024px) {
-  h1 {
-    font-size: 2rem !important;
-  }
-}
-
-/* Small mobile */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem !important;
-  }
-  
-  /* Better mobile button sizing */
-  button[type="submit"] {
-    width: 100%;
-    padding: 1rem 1.5rem;
-    font-size: 0.9375rem;
-  }
-  
-  /* FAQ mobile optimization */
-  .faq-trigger {
-    font-size: 1rem;
-    padding: 1rem 1.25rem;
-  }
-  
-  /* Social icons mobile */
-  .icon-wrap {
-    width: 40px !important;
-    height: 40px !important;
-  }
-  
-  /* Better form inputs on mobile */
-  .form-input {
-    padding: 0.875rem 1rem;
-    font-size: 16px; /* Prevents iOS zoom */
-  }
-  
-  label {
-    font-size: 0.8125rem;
-  }
-}
-
-/* FAQ specific styles */
-.faq-trigger:focus {
-  outline: 2px solid #B08D57;
-  outline-offset: -2px;
-}
-
-/* Height matching for form and info card */
-@media (min-width: 1024px) {
-  .grid.lg\\:grid-cols-\\[0\\.8fr_1\\.2fr\\] {
-    align-items: stretch;
-  }
-}
-
-/* ============================= */
-/* ADVANCED ANIMATIONS */
-/* ============================= */
-
-/* Slide from Left */
-.slide-in-left {
-  opacity: 0;
-  transform: translateX(-80px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.slide-in-left.reveal-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Slide from Right */
-.slide-in-right {
-  opacity: 0;
-  transform: translateX(80px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.slide-in-right.reveal-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Fade Up (existing but enhanced) */
-.fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.fade-up.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Scale In */
-.scale-in {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.scale-in.reveal-visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Stagger delays for group animations */
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.4s; }
-.delay-5 { transition-delay: 0.5s; }
-
-/* Mobile: reduce animation distance */
-@media (max-width: 768px) {
-  .slide-in-left {
-    transform: translateX(-40px);
-  }
-  
-  .slide-in-right {
-    transform: translateX(40px);
-  }
-  
-  .fade-up {
-    transform: translateY(20px);
-  }
-}
-
-/* Newsletter input — footer Stay Connected */
-.newsletter-input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px 0 0 4px; padding: 0.65rem 1rem; color: #F7F5F2; font-size: 0.875rem; outline: none; width: 100%; transition: border-color 0.25s; }
-.newsletter-input::placeholder { color: rgba(247,245,242,0.4); }
-.newsletter-input:focus { border-color: #B08D57; }
-.newsletter-btn { background: #B08D57; color: #fff; border: none; padding: 0.65rem 1.2rem; border-radius: 0 4px 4px 0; font-size: 0.875rem; cursor: pointer; white-space: nowrap; transition: background 0.25s; }
-.newsletter-btn:hover { background: #9a7a47; }
-
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .slide-in-left,
-  .slide-in-right,
-  .fade-up,
-  .scale-in {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-</style>
-<noscript><style>body { opacity: 1 !important; }</style></noscript>
-</head>
-
-<body class="bg-bg text-body font-sans antialiased">
-<a id="top" class="sr-only">Top of page</a>
-
-<!-- ============================= -->
-<!-- NAVBAR -->
-<!-- ============================= -->
-<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-bg/0">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="flex items-center justify-between h-20">
-      <a href="index.html" class="flex flex-col leading-tight group">
-        <span class="font-display text-xl md:text-2xl text-heading tracking-wide">Jonatas Baptista</span>
-        <span class="text-[10px] md:text-[11px] uppercase tracking-[2px] text-accent font-medium mt-0.5">Real Estate Coach</span>
-      </a>
-      <nav class="hidden lg:flex items-center gap-10">
-        <a href="index.html" class="nav-link text-sm font-medium text-heading">Home</a>
-        <a href="about.html" class="nav-link text-sm font-medium text-heading">About</a>
-        <a href="service.html" class="nav-link text-sm font-medium text-heading">Services</a>
-        <a href="contact.html" class="nav-link text-sm font-medium text-heading">Contact</a>
-      </nav>
-      <div class="flex items-center gap-4">
-        <a href="contact.html" class="hidden lg:inline-flex items-center px-6 py-2.5 rounded-sm bg-accent text-white text-sm font-medium tracking-wide btn-hover touch-target">
-          Schedule a Consultation
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Contact Jonatas Baptista | Book a Free Real Estate Coaching Call
+    </title>
+    <meta
+      name="description"
+      content="Book a free 30-minute strategy call with Jonatas Baptista, Real Estate Coach. No pressure, no sales pitch — just clarity on how to attract premium clients and grow your real estate business."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --dark: #0e1117;
+        --red: #c0392b;
+        --red-h: #e74c3c;
+        --red-light: #ef6f61;
+        --blue: #1565c0;
+        --off-white: #f4f3ef;
+        --navy: #0d1b2a;
+        --radius-xl: 28px;
+        --transition: 0.3s ease;
+        --gradient: linear-gradient(135deg, var(--red) 0%, var(--blue) 100%);
+        --text: #14213d;
+        --text-muted: #5f6b7a;
+        --gray-100: #f7f7f7;
+        --gray-200: #e5e7eb;
+        --gray-400: #94a3b8;
+      }
+
+      /* ===== HOME-STYLE NAVBAR ===== */
+      #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        padding: 0;
+        transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #navbar .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.4rem 3rem;
+        transition:
+          padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          background 0.45s;
+        background: rgba(14, 17, 23, 0.97);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.06),
+          0 8px 40px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(12px);
+      }
+      #navbar.scrolled .nav-inner {
+        padding: 0.9rem 3rem;
+        background: rgba(14, 17, 23, 0.98);
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        text-decoration: none;
+      }
+      .nav-brand img {
+        height: 44px;
+        width: auto;
+        display: block;
+      }
+      .nav-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .nav-brand-name {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .nav-brand-subtitle {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+      }
+      .nav-link {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        position: relative;
+        transition: color 0.2s;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .nav-link:hover {
+        color: #fff;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        transform: scaleX(1);
+      }
+      .nav-link.active {
+        color: #fff;
+      }
+      .btn-nav {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: var(--red);
+        color: #fff;
+        padding: 0.65rem 1.6rem;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        display: inline-block;
+      }
+      .btn-nav:hover {
+        background: var(--red-h);
+        transform: translateY(-1px);
+      }
+      #hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+        background: none;
+        border: none;
+      }
+      .hline {
+        display: block;
+        width: 24px;
+        height: 1.5px;
+        background: #fff;
+        transition: all 0.3s;
+      }
+      @media (max-width: 1023px) {
+        #hamburger {
+          display: flex;
+        }
+        .nav-links {
+          display: none;
+        }
+        .btn-nav-wrap {
+          display: none;
+        }
+        .nav-brand-text {
+          display: none;
+        }
+      }
+      #mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--dark);
+        z-index: 998;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+      }
+      #mobile-menu.open {
+        display: flex;
+      }
+      .mob-link {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: color 0.2s;
+      }
+      #mobile-menu.open .mob-link {
+        animation: mob-in 0.4s forwards;
+      }
+      #mobile-menu.open .mob-link:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      #mobile-menu.open .mob-link:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      #mobile-menu.open .mob-link:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+      #mobile-menu.open .mob-link:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      #mobile-menu.open .mob-link:nth-child(5) {
+        animation-delay: 0.25s;
+      }
+      #mobile-menu.open .mob-link:nth-child(6) {
+        animation-delay: 0.3s;
+      }
+      @keyframes mob-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mob-link:hover {
+        color: var(--red);
+      }
+      #mob-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* ── Contact page extras ── */
+      .contact-section {
+        background: #f7f4ee;
+        padding: 5.5rem 0;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 1fr) minmax(360px, 1.25fr);
+        gap: 2rem;
+        align-items: start;
+        padding: 0 1.5rem;
+      }
+      .contact-info-box {
+        background: #ffffff;
+        border: 1px solid rgba(20, 33, 61, 0.08);
+        border-radius: 28px;
+        padding: 2.4rem;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+      }
+      .contact-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: "Outfit", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1rem;
+      }
+      .contact-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 1.7rem;
+        height: 1px;
+        background: var(--red);
+      }
+      .contact-info-box h3 {
+        color: var(--text);
+        margin-bottom: 0.8rem;
+        font-size: 1.8rem;
+        line-height: 1.25;
+      }
+      .contact-info-box > p {
+        color: var(--text-muted);
+        margin-bottom: 1.75rem;
+        font-size: 0.98rem;
+        line-height: 1.75;
+      }
+      .contact-info-items {
+        display: grid;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+      }
+      .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--gray-200);
+      }
+      .contact-info-item:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+      .contact-info-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(192, 57, 43, 0.08);
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .contact-info-label {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 3px;
+      }
+      .contact-info-value {
+        font-size: 0.95rem;
+        color: var(--text);
+        font-weight: 500;
+      }
+      .contact-quick-card {
+        border: 1px solid rgba(20, 33, 61, 0.08);
+        border-radius: 20px;
+        padding: 1.15rem 1.2rem;
+        background: linear-gradient(
+          135deg,
+          rgba(192, 57, 43, 0.06),
+          rgba(21, 101, 192, 0.06)
+        );
+      }
+      .contact-quick-title {
+        font-family: "Outfit", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 0.45rem;
+      }
+      .contact-quick-card p {
+        color: var(--text-muted);
+        font-size: 0.94rem;
+        line-height: 1.7;
+        margin-bottom: 0.8rem;
+      }
+      .contact-quick-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text);
+        font-family: "Outfit", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .contact-quick-link:hover {
+        color: var(--red);
+      }
+      /* Map placeholder */
+      .map-section {
+        background: var(--gray-100);
+        height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .map-placeholder {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .map-placeholder-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--gradient);
+        margin: 0 auto 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .map-placeholder h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: var(--text);
+      }
+      .map-placeholder p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+      }
+      .map-bg-dot-1,
+      .map-bg-dot-2 {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--gradient);
+        opacity: 0.06;
+      }
+      .map-bg-dot-1 {
+        width: 400px;
+        height: 400px;
+        top: -100px;
+        left: -100px;
+      }
+      .map-bg-dot-2 {
+        width: 300px;
+        height: 300px;
+        bottom: -80px;
+        right: -80px;
+      }
+      /* Radio buttons for service selection */
+      .radio-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+      .radio-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.75rem 1rem;
+        border: 1.5px solid var(--gray-200);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.25s;
+        font-size: 0.85rem;
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .radio-label:hover {
+        border-color: var(--blue);
+        background: rgba(21, 101, 192, 0.03);
+      }
+      .radio-label input[type="radio"] {
+        display: none;
+      }
+      .radio-indicator {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid var(--gray-400);
+        transition: all 0.25s;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .radio-label:has(input:checked) {
+        border-color: var(--red);
+        background: rgba(198, 40, 40, 0.04);
+      }
+      .radio-label:has(input:checked) .radio-indicator {
+        border-color: var(--red);
+        background: var(--red);
+      }
+      .radio-label:has(input:checked) .radio-indicator::after {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .wa-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 998;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: #25d366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+        animation: wa-pulse 2.8s ease infinite;
+        transition: transform 0.25s ease;
+      }
+      .wa-float:hover {
+        transform: translateY(-2px) scale(1.03);
+      }
+      .wa-float svg {
+        width: 26px;
+        height: 26px;
+        color: #fff;
+      }
+      @keyframes wa-pulse {
+        0%,
+        100% {
+          box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.3),
+            0 0 0 0 rgba(37, 211, 102, 0.45);
+        }
+        55% {
+          box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.3),
+            0 0 0 12px rgba(37, 211, 102, 0);
+        }
+      }
+      @media (max-width: 840px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .radio-group {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- WhatsApp -->
+    <a
+      href="https://wa.me/351910000000?text=Hello%20Jonatas%2C%20I%27m%20interested%20in%20your%20coaching%20services."
+      class="wa-float"
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <img src="image/jb-logo.png" alt="Jonatas Baptista" />
+          <div class="nav-brand-text">
+            <span class="nav-brand-name">Jonatas Baptista</span>
+            <span class="nav-brand-subtitle">Real Estate Coach</span>
+          </div>
         </a>
-        <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] touch-target">
-          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
-          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
-          <span class="hamburger-line block w-6 h-[1.5px] bg-heading transition-all duration-300"></span>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Overview</a>
+          <a href="about.html" class="nav-link">My Story</a>
+          <a href="service.html" class="nav-link">Work With Me</a>
+          <!-- <a href="stories.html" class="nav-link">Success Stories</a> -->
+          <!-- <a href="insight.html" class="nav-link">Insights</a> -->
+          <a href="contact.html" class="nav-link active">Let's Connect</a>
+        </div>
+        <div class="btn-nav-wrap">
+          <a href="contact.html" class="btn-nav">Book a Call</a>
+        </div>
+        <button id="hamburger" aria-label="Open menu">
+          <span class="hline"></span>
+          <span class="hline"></span>
+          <span class="hline" style="width: 16px"></span>
         </button>
       </div>
-    </div>
-  </div>
-  <div id="mobileMenu" class="lg:hidden fixed top-0 right-0 h-screen w-[78%] max-w-sm bg-bg2 z-50 mobile-drawer shadow-2xl">
-    <div class="flex flex-col h-full px-8 pt-8 pb-10">
-      <div class="flex justify-end">
-        <button id="menuClose" aria-label="Close menu" class="w-10 h-10 flex items-center justify-center text-heading text-2xl touch-target">&times;</button>
-      </div>
-      <nav class="flex flex-col gap-8 mt-12">
-        <a href="index.html" class="font-display text-2xl text-heading">Home</a>
-        <a href="about.html" class="font-display text-2xl text-heading">About</a>
-        <a href="service.html" class="font-display text-2xl text-heading">Services</a>
-        <a href="contact.html" class="font-display text-2xl text-heading">Contact</a>
-      </nav>
-      <a href="contact.html" class="mt-auto w-full text-center px-6 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide">Schedule a Consultation</a>
-    </div>
-  </div>
-  <div id="menuOverlay" class="fixed inset-0 bg-heading/40 z-40 hidden"></div>
-</header>
+    </nav>
 
-<main>
-<!-- ============================= -->
-<!-- CONTACT — Compact Hero + Info + Form (single screen friendly) -->
-<!-- ============================= -->
-<section class="pt-24 pb-8 md:pt-28 md:pb-12">
-  <div class="max-w-6xl mx-auto px-6 lg:px-10">
-
-    <!-- Compact intro -->
-    <div class="reveal fade-up text-center max-w-2xl mx-auto mb-6 md:mb-8">
-      <p class="text-[11px] md:text-xs uppercase tracking-[2.5px] text-accent font-semibold mb-2">
-        Contact
-      </p>
-      <h1 class="font-display text-[1.7rem] leading-[1.15] md:text-3xl lg:text-[2.2rem] text-heading">
-        Let's Talk About Your Business
-      </h1>
-      <p class="mt-3 text-sm md:text-base text-body leading-relaxed">
-        If you're a real estate agent looking to improve results and build a stronger business,
-        I'd like to hear where you are today — and where you want to be.
-      </p>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+      <button id="mob-close" aria-label="Close">✕</button>
+      <a href="index.html" class="mob-link">Overview</a>
+      <a href="about.html" class="mob-link">My Story</a>
+      <a href="service.html" class="mob-link">Work With Me</a>
+      <!-- <a href="stories.html" class="mob-link">Success Stories</a>
+      <a href="insight.html" class="mob-link">Insights</a> -->
+      <a href="contact.html" class="mob-link">Let's Connect</a>
     </div>
 
-    <!-- Info + Form -->
-    <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-6 lg:gap-8 items-stretch">
-
-      <!-- Contact Information -->
-      <div class="reveal slide-in-left bg-gradient-to-br from-bg2 to-bg border-2 border-heading/10 rounded-2xl p-5 md:p-6 flex flex-col shadow-lg hover:shadow-xl hover:border-accent/30 transition-all duration-500">
-        <h2 class="font-display text-xl md:text-2xl text-heading font-bold">Contact Information</h2>
-        <p class="mt-2 text-sm text-body leading-relaxed">
-          Reach out through any of these channels — every enquiry is answered personally.
-        </p>
-
-        <ul class="mt-4 space-y-3 flex-grow">
-          <li class="flex items-start gap-2.5">
-            <div class="icon-wrap shrink-0 w-9 h-9"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg></div>
-            <div>
-              <p class="text-[10px] uppercase tracking-[1.5px] text-heading/50 mb-0.5">Email</p>
-              <a href="mailto:contact@example.com" class="text-sm text-heading hover:text-accent transition-colors duration-300 break-all">contact@example.com</a>
-            </div>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <div class="icon-wrap shrink-0 w-9 h-9"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
-            <div>
-              <p class="text-[10px] uppercase tracking-[1.5px] text-heading/50 mb-0.5">Phone</p>
-              <a href="tel:+351000000000" class="text-sm text-heading hover:text-accent transition-colors duration-300">+351 000 000 000</a>
-            </div>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <div class="icon-wrap shrink-0 w-9 h-9"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-7.2 7-12a7 7 0 10-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-            <div>
-              <p class="text-[10px] uppercase tracking-[1.5px] text-heading/50 mb-0.5">Location</p>
-              <p class="text-sm text-heading">Lisbon, Portugal</p>
-            </div>
-          </li>
-        </ul>
-
-        <!-- Social Media Icons -->
-        <div class="mt-4 pt-4 border-t border-heading/10">
-          <p class="text-[10px] uppercase tracking-[1.5px] text-heading/50 mb-3">Follow Us</p>
-          <div class="flex items-center gap-2.5 flex-wrap">
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="icon-wrap w-10 h-10 hover:bg-accent hover:text-white transition-all">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="icon-wrap w-10 h-10 hover:bg-accent hover:text-white transition-all">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm6.5 0h3.8v1.7h.05c.53-1 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.16 1.45-2.16 2.96V21h-4V9z"/></svg>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="icon-wrap w-10 h-10 hover:bg-accent hover:text-white transition-all">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="icon-wrap w-10 h-10 hover:bg-accent hover:text-white transition-all">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-          </div>
+    <main>
+      <!-- PAGE HERO -->
+      <!-- <section class="page-hero">
+        <div class="page-hero-bg">
+          <img
+            src="images/coaching_session.png"
+            alt="Coaching session"
+            loading="eager"
+          />
+          <div class="page-hero-gradient"></div>
         </div>
-
-        <p class="mt-4 pt-4 border-t border-heading/10 font-display italic text-heading/70 text-xs leading-relaxed">
-          "More income. More consistency. More control over your business."
-        </p>
-      </div>
-
-      <!-- Contact Form -->
-      <div class="reveal slide-in-right flex flex-col">
-        <form id="contactForm" novalidate class="bg-gradient-to-br from-white to-bg/30 border-2 border-accent/20 rounded-2xl p-5 md:p-7 flex-grow flex flex-col shadow-xl hover:shadow-2xl hover:border-accent/40 transition-all duration-500">
-          <div class="flex items-baseline justify-between mb-5">
-            <h2 class="font-display text-xl md:text-2xl text-heading font-bold">Send A Message</h2>
-            <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-3.5 flex-grow">
-            <!-- Full Name -->
-            <div>
-              <label for="fullName" class="block text-xs font-bold text-heading mb-1.5">
-                Full Name <span class="text-accent">*</span>
-              </label>
-              <input 
-                type="text" 
-                id="fullName" 
-                name="fullName" 
-                class="form-input" 
-                placeholder="John Doe" 
-                autocomplete="name"
-                required
-              >
-              <p id="fullNameError" class="field-error">Please enter your full name.</p>
-            </div>
-
-            <!-- Email -->
-            <div>
-              <label for="email" class="block text-xs font-bold text-heading mb-1.5">
-                Email <span class="text-accent">*</span>
-              </label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                class="form-input" 
-                placeholder="your@email.com" 
-                autocomplete="email"
-                required
-              >
-              <p id="emailError" class="field-error">Please enter a valid email.</p>
-            </div>
-
-            <!-- Phone -->
-            <div>
-              <label for="phone" class="block text-xs font-bold text-heading mb-1.5">
-                Phone
-              </label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                class="form-input" 
-                placeholder="+351 000 000 000" 
-                autocomplete="tel"
-              >
-              <p id="phoneError" class="field-error">Please enter a valid phone.</p>
-            </div>
-
-            <!-- Country -->
-            <div>
-              <label for="country" class="block text-xs font-bold text-heading mb-1.5">
-                Country <span class="text-accent">*</span>
-              </label>
-              <input 
-                type="text" 
-                id="country" 
-                name="country" 
-                class="form-input" 
-                placeholder="e.g. Portugal" 
-                autocomplete="country-name"
-                required
-              >
-              <p id="countryError" class="field-error">Please enter your country.</p>
-            </div>
-
-            <!-- Message -->
-            <div class="sm:col-span-2">
-              <label for="message" class="block text-xs font-bold text-heading mb-1.5">
-                Message <span class="text-accent">*</span>
-              </label>
-              <textarea 
-                id="message" 
-                name="message" 
-                rows="3" 
-                class="form-input" 
-                placeholder="Tell me about your business and goals..."
-                style="min-height: 90px; max-height: 120px; resize: vertical;"
-                required
-              ></textarea>
-              <p id="messageError" class="field-error">Please add a short message.</p>
-            </div>
-          </div>
-
-          <button type="submit" class="w-full inline-flex justify-center items-center gap-2 px-8 py-3.5 mt-5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover touch-target">
-            Send Message
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-          </button>
-
-          <div id="formSuccess" class="hidden mt-4 px-4 py-3 rounded-xl bg-green-50 border-2 border-green-500 text-xs flex items-start gap-2.5 shadow-sm">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 flex-shrink-0 mt-0.5">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        <div class="container page-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M9 18l6-6-6-6" />
             </svg>
-            
-          </div>
+            <span>Contact</span>
+          </nav>
+          <h1 class="reveal">Let's Talk</h1>
+          <p class="page-hero-sub reveal d1">
+            Book a free 30-minute strategy call. No pressure, no obligation —
+            just a clear plan for where you want to go.
+          </p>
+        </div>
+      </section> -->
 
-          <div id="formSuccess" class="hidden mt-6 px-5 py-4 rounded-xl bg-green-50 border-2 border-green-500 text-sm flex items-start gap-3 shadow-sm animate-slideIn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 flex-shrink-0 mt-0.5">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            <div>
-              <p class="font-bold text-green-800 text-base mb-1">Message sent successfully!</p>
-              <p class="text-green-700 text-sm">Thank you for reaching out. We'll get back to you personally as soon as possible.</p>
+      <!-- CONTACT SECTION -->
+      <section class="contact-section section">
+        <div class="container">
+          <div class="contact-grid">
+            <section class="reveal-left">
+              <div class="contact-info-box">
+                <div class="contact-eyebrow">Start Here</div>
+                <h3>Tell Me How I Can Support You</h3>
+                <p>
+                  Whether you're ready to join a coaching programme, book a
+                  call, or simply want to learn more, I'd love to hear from you.
+                </p>
+
+                <div class="contact-info-items">
+                  <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                      <svg
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.08 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="contact-info-label">Phone</div>
+                      <div class="contact-info-value">+351 910 000 000</div>
+                    </div>
+                  </div>
+
+                  <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                      <svg
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="contact-info-label">Email</div>
+                      <div class="contact-info-value">
+                        jonatas@realestate.pt
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                      <svg
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"
+                        />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="contact-info-label">Location</div>
+                      <div class="contact-info-value">
+                        Lisbon, Portugal<br />
+                        <span style="font-size: 0.8rem; opacity: 0.6">
+                          Coaching available worldwide via video call
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="contact-quick-card">
+                  <div class="contact-quick-title">Prefer to chat?</div>
+                  <p>
+                    Schedule a 15-minute intro call to learn more about how I
+                    can help you grow your business.
+                  </p>
+                  <a
+                    href="https://calendly.com/"
+                    class="contact-quick-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Book a call →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Form -->
+            <section class="reveal-right">
+              <div
+                class="contact-form-wrap bg-white border border-slate-200 rounded-[24px] p-8 shadow-[0_18px_45px_rgba(15,23,42,0.08)]"
+              >
+                <div id="formContent">
+                  <div class="text-3xl font-semibold font-serif text-slate-900 mb-3">
+                    Book Your Strategy Call
+                  </div>
+                  <p class="text-sm leading-7 text-slate-600 mb-6">
+                    Complete the form below and I’ll get back to you with a
+                    tailored next step within one business day.
+                  </p>
+
+                  <form id="contactForm" novalidate class="grid gap-5">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label
+                          for="name"
+                          class="block text-xs font-semibold tracking-[0.18em] uppercase text-slate-900 mb-2"
+                        >
+                          Name
+                          <span class="text-red-600">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          placeholder="Ana Costa"
+                          required
+                          autocomplete="name"
+                          class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          for="email"
+                          class="block text-xs font-semibold tracking-[0.18em] uppercase text-slate-900 mb-2"
+                        >
+                          Email
+                          <span class="text-red-600">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          placeholder="ana.costa@agency.pt"
+                          required
+                          autocomplete="email"
+                          class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label
+                          for="location"
+                          class="block text-xs font-semibold tracking-[0.18em] uppercase text-slate-900 mb-2"
+                        >
+                          Location
+                          <span class="text-red-600">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="location"
+                          name="location"
+                          placeholder="Lisbon, Portugal"
+                          required
+                          autocomplete="address-level2"
+                          class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+                        />
+                      </div>
+                      <div class="sm:col-span-1">
+                        <label
+                          for="message"
+                          class="block text-xs font-semibold tracking-[0.18em] uppercase text-slate-900 mb-2"
+                        >
+                          Message
+                          <span class="text-red-600">*</span>
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          placeholder="Briefly describe your current challenge or goal."
+                          required
+                          rows="6"
+                          class="w-full min-h-[180px] resize-y rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+                        ></textarea>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      id="submitBtn"
+                      class="sm:col-span-2 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_rgba(192,57,43,0.22)] transition duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      <span id="btnText">Send Message</span>
+                      <svg
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+
+                    <p class="sm:col-span-2 text-center text-sm leading-7 text-slate-600">
+                      🔒 Your information is confidential and will never be shared.
+                      <br />Jonatas personally reviews every application.
+                    </p>
+                  </form>
+                </div>
+
+                <!-- Success state -->
+                <div
+                  class="form-success hidden text-center p-12"
+                  id="formSuccess"
+                >
+                  <div
+                    class="mx-auto mb-6 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-blue-600"
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      fill="none"
+                      stroke="#fff"
+                      stroke-width="2.5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </div>
+                  <h3 class="mb-3 text-2xl font-semibold text-slate-900">
+                    Application Received! 🎉
+                  </h3>
+                  <p class="text-slate-600 mb-4">
+                    Thank you for reaching out. Jonatas will personally review
+                    your application and contact you within 24 hours to schedule
+                    your free strategy call.
+                  </p>
+                  <p class="text-sm text-slate-600 mb-6">
+                    While you wait, feel free to explore the
+                    <a href="service.html" class="font-semibold text-red-600"
+                      >coaching programmes</a
+                    >
+                    or connect on WhatsApp for a faster response.
+                  </p>
+                  <a
+                    href="https://wa.me/351910000000"
+                    class="inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition duration-200 hover:-translate-y-0.5"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </section>
 
-    </div>
-  </div>
-</section>
+      <!-- WHAT TO EXPECT -->
+      <!-- <section class="section" style="background: var(--white)">
+        <div class="container">
+          <div class="text-center reveal" style="margin-bottom: 3.5rem">
+            <div class="section-label" style="justify-content: center">
+              The Process
+            </div>
+            <h2>
+              What Happens <span class="gradient-text">After You Apply</span>
+            </h2>
+          </div>
+          <div class="approach-grid">
+            <div class="approach-card reveal d1">
+              <div class="approach-step-num">01</div>
+              <div class="approach-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="#C62828"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <h4>Application Review</h4>
+              <p>
+                Jonatas personally reviews every application within 24 hours.
+                He'll take note of your situation and goals before reaching out.
+              </p>
+            </div>
+            <div class="approach-card reveal d2">
+              <div class="approach-step-num">02</div>
+              <div class="approach-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="#1565C0"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81"
+                  />
+                  <path
+                    d="M.08 1.18 2.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6"
+                  />
+                </svg>
+              </div>
+              <h4>Discovery Call</h4>
+              <p>
+                A free 30-minute video or phone call to understand your business
+                deeply, identify your biggest opportunity areas, and determine
+                the best coaching path.
+              </p>
+            </div>
+            <div class="approach-card reveal d3">
+              <div class="approach-step-num">03</div>
+              <div class="approach-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="#C62828"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M8 12h8M8 8h8M8 16h5" />
+                </svg>
+              </div>
+              <h4>Custom Strategy</h4>
+              <p>
+                Based on your call, Jonatas will outline a personalised strategy
+                and recommend the programme that best fits your goals, timeline,
+                and market.
+              </p>
+            </div>
+            <div class="approach-card reveal d4">
+              <div class="approach-step-num">04</div>
+              <div class="approach-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="#1565C0"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                  <polyline points="17 6 23 6 23 12" />
+                </svg>
+              </div>
+              <h4>Start Growing</h4>
+              <p>
+                Once you're onboarded, we get to work immediately. Most clients
+                see their first significant shifts within the first 4-6 weeks of
+                coaching.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section> -->
 
-<!-- ============================= -->
-<!-- FAQ SECTION -->
-<!-- ============================= -->
-<section class="bg-bg2 py-16 md:py-20">
-  <div class="max-w-4xl mx-auto px-6 lg:px-10">
-    <div class="reveal fade-up text-center mb-12">
-      <p class="text-[11px] md:text-xs uppercase tracking-[2.5px] text-accent font-semibold mb-4">
-        Frequently Asked Questions
-      </p>
-      <h2 class="font-display text-3xl md:text-4xl text-heading leading-tight">
-        Common Questions About Our Services
-      </h2>
-    </div>
+      <!-- MAP PLACEHOLDER -->
+      <!-- <div class="map-section" role="region" aria-label="Location">
+        <div class="map-bg-dot-1"></div>
+        <div class="map-bg-dot-2"></div>
+        <div class="map-placeholder">
+          <div class="map-placeholder-icon">
+            <svg
+              width="30"
+              height="30"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <h4>Based in Lisbon, Portugal</h4>
+          <p>
+            Coaching available worldwide via video call · Online &amp; In-Person
+            Sessions Available
+          </p>
+        </div>
+      </div> -->
 
-    <div class="space-y-5">
-      <!-- FAQ Item 1 -->
-      <div class="reveal fade-up delay-1 bg-bg border border-heading/10 rounded-sm overflow-hidden">
-        <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between hover:bg-heading/[0.02] transition-colors" data-faq="1">
-          <span class="font-display text-lg text-heading pr-4">How long does coaching typically last?</span>
-          <svg class="faq-icon w-5 h-5 text-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-content px-6 pb-5 text-sm md:text-base text-body leading-relaxed" style="display: none;">
-          <p>Coaching duration varies based on your goals and current situation. Most clients work with us for 3-6 months to see significant, lasting improvements. We offer flexible arrangements including one-time audits, monthly coaching packages, and ongoing support.</p>
+      <!-- CTA -->
+      <!-- <section class="cta-banner">
+        <div class="container">
+          <div class="reveal">
+            <h2>Still Have Questions?</h2>
+            <p>
+              No pressure whatsoever. Reach out via WhatsApp for a quick,
+              informal conversation before committing to anything.
+            </p>
+            <div class="cta-buttons">
+              <a
+                href="https://wa.me/351910000000"
+                class="btn btn-white"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="color: var(--red)"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                WhatsApp Jonatas
+              </a>
+              <a href="service.html" class="btn btn-outline-white"
+                >Browse Services</a
+              >
+            </div>
+          </div>
+        </div>
+      </section> -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      style="
+        background: #060910;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      "
+    >
+      <div
+        style="
+          background: linear-gradient(105deg, #c0392b 0%, #96231a 100%);
+          padding: 2.5rem 1.5rem;
+          text-align: center;
+        "
+      >
+        <div style="max-width: 700px; margin: 0 auto">
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.8);
+              font-size: 0.72rem;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              font-weight: 600;
+              margin-bottom: 0.6rem;
+            "
+          >
+            Limited Spots Available — 2025 Cohort
+          </p>
+          <h3
+            style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: clamp(1.4rem, 3vw, 2rem);
+              color: #fff;
+              font-weight: 400;
+              margin-bottom: 1.2rem;
+            "
+          >
+            Ready to Attract Premium Clients?<br /><em
+              >Book Your Free Strategy Call Today.</em
+            >
+          </h3>
+          <a
+            href="contact.html"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+              background: #fff;
+              color: #c0392b;
+              font-family: &quot;Outfit&quot;, sans-serif;
+              font-size: 0.72rem;
+              font-weight: 700;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              padding: 0.85rem 2rem;
+              text-decoration: none;
+            "
+            >Book a Free Call</a
+          >
         </div>
       </div>
-
-      <!-- FAQ Item 2 -->
-      <div class="reveal fade-up delay-2 bg-bg border border-heading/10 rounded-sm overflow-hidden">
-        <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between hover:bg-heading/[0.02] transition-colors" data-faq="2">
-          <span class="font-display text-lg text-heading pr-4">What results can I expect?</span>
-          <svg class="faq-icon w-5 h-5 text-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-content px-6 pb-5 text-sm md:text-base text-body leading-relaxed" style="display: none;">
-          <p>Results depend on your current situation and commitment level. Clients typically see improvements in lead quality, conversion rates, and monthly income consistency within the first 90 days. Our focus is on building sustainable systems that create predictable results, not temporary spikes.</p>
+      <div style="max-width: 1280px; margin: 0 auto; padding: 4rem 1.5rem 2rem">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3.5rem;
+          "
+        >
+          <div>
+            <img
+              src="image/jb-logo.png"
+              alt="Jonatas Baptista"
+              style="
+                height: 44px;
+                width: auto;
+                margin-bottom: 1.2rem;
+                display: block;
+              "
+            />
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 0.84rem;
+                line-height: 1.7;
+                margin-bottom: 1.5rem;
+                max-width: 240px;
+              "
+            >
+              Real Estate Coach &amp; Sales Strategist helping professionals
+              attract premium clients, close more deals, and build businesses
+              that last.
+            </p>
+            <div style="display: flex; gap: 0.6rem">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                style="
+                  width: 36px;
+                  height: 36px;
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.4);
+                  text-decoration: none;
+                "
+                ><svg
+                  width="14"
+                  height="14"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                  />
+                  <circle cx="4" cy="4" r="2" /></svg
+              ></a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                style="
+                  width: 36px;
+                  height: 36px;
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.4);
+                  text-decoration: none;
+                "
+                ><svg
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  /></svg
+              ></a>
+              <a
+                href="https://wa.me/15550000000"
+                aria-label="WhatsApp"
+                style="
+                  width: 36px;
+                  height: 36px;
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: rgba(255, 255, 255, 0.4);
+                  text-decoration: none;
+                "
+                ><svg
+                  width="14"
+                  height="14"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+          <div>
+            <div
+              style="
+                color: #fff;
+                font-size: 0.68rem;
+                font-weight: 700;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                margin-bottom: 1.2rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+              "
+            >
+              Navigate
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a
+                href="index.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Overview</a
+              >
+              <a
+                href="about.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >My Story</a
+              >
+              <a
+                href="service.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Work With Me</a
+              >
+              <a
+                href="stories.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Success Stories</a
+              >
+              <a
+                href="insight.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Insights</a
+              >
+              <a
+                href="contact.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Let's Connect</a
+              >
+            </div>
+          </div>
+          <div>
+            <div
+              style="
+                color: #fff;
+                font-size: 0.68rem;
+                font-weight: 700;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                margin-bottom: 1.2rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+              "
+            >
+              Services
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a
+                href="service.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >1-on-1 Coaching</a
+              >
+              <a
+                href="service.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Strategic Advisory</a
+              >
+              <a
+                href="service.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Group Mentorship</a
+              >
+              <a
+                href="service.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >Portfolio Review</a
+              >
+              <a
+                href="service.html"
+                style="
+                  color: rgba(255, 255, 255, 0.45);
+                  font-size: 0.85rem;
+                  text-decoration: none;
+                "
+                >First-Time Investor</a
+              >
+            </div>
+          </div>
+          <div>
+            <div
+              style="
+                color: #fff;
+                font-size: 0.68rem;
+                font-weight: 700;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                margin-bottom: 1.2rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+              "
+            >
+              Contact
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 0.9rem;
+                margin-bottom: 1.4rem;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.7rem">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c0392b"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" /></svg
+                ><a
+                  href="mailto:hello@jonatasbaptista.com"
+                  style="
+                    color: rgba(255, 255, 255, 0.45);
+                    font-size: 0.82rem;
+                    text-decoration: none;
+                  "
+                  >hello@jonatasbaptista.com</a
+                >
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.7rem">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c0392b"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"
+                  /></svg
+                ><span
+                  style="color: rgba(255, 255, 255, 0.45); font-size: 0.82rem"
+                  >+1 (555) 000-0000</span
+                >
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.7rem">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c0392b"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="10" r="3" />
+                  <path
+                    d="M12 2a8 8 0 00-8 8c0 5.25 8 13 8 13s8-7.75 8-13a8 8 0 00-8-8z"
+                  /></svg
+                ><span
+                  style="color: rgba(255, 255, 255, 0.45); font-size: 0.82rem"
+                  >Worldwide · Online &amp; In-Person</span
+                >
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  background: rgba(255, 255, 255, 0.04);
+                  border: 1px solid rgba(255, 255, 255, 0.07);
+                  padding: 0.45rem 0.7rem;
+                "
+              >
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c0392b"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                ><span
+                  style="color: rgba(255, 255, 255, 0.45); font-size: 0.72rem"
+                  >200+ Clients Coached Globally</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  background: rgba(255, 255, 255, 0.04);
+                  border: 1px solid rgba(255, 255, 255, 0.07);
+                  padding: 0.45rem 0.7rem;
+                "
+              >
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c0392b"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                ><span
+                  style="color: rgba(255, 255, 255, 0.45); font-size: 0.72rem"
+                  >98% Client Satisfaction Rate</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  background: rgba(255, 255, 255, 0.04);
+                  border: 1px solid rgba(255, 255, 255, 0.07);
+                  padding: 0.45rem 0.7rem;
+                "
+              >
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c0392b"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" /></svg
+                ><span
+                  style="color: rgba(255, 255, 255, 0.45); font-size: 0.72rem"
+                  >Response Within 24 Hours</span
+                >
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <!-- FAQ Item 3 -->
-      <div class="reveal fade-up delay-3 bg-bg border border-heading/10 rounded-sm overflow-hidden">
-        <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between hover:bg-heading/[0.02] transition-colors" data-faq="3">
-          <span class="font-display text-lg text-heading pr-4">Do you work with new agents or only experienced ones?</span>
-          <svg class="faq-icon w-5 h-5 text-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-content px-6 pb-5 text-sm md:text-base text-body leading-relaxed" style="display: none;">
-          <p>We work with both new and experienced agents. New agents benefit from building the right foundations from day one. Experienced agents often have performance leaks they can't see from inside their own business. Our approach adapts to your experience level and specific challenges.</p>
-        </div>
-      </div>
-
-      <!-- FAQ Item 4 -->
-      <div class="reveal fade-up delay-4 bg-bg border border-heading/10 rounded-sm overflow-hidden">
-        <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between hover:bg-heading/[0.02] transition-colors" data-faq="4">
-          <span class="font-display text-lg text-heading pr-4">Is coaching available remotely?</span>
-          <svg class="faq-icon w-5 h-5 text-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-content px-6 pb-5 text-sm md:text-base text-body leading-relaxed" style="display: none;">
-          <p>Yes, all coaching sessions are conducted remotely via video calls, making it convenient regardless of your location. We work with agents throughout Portugal and internationally. You'll receive the same level of support and results as in-person coaching.</p>
-        </div>
-      </div>
-
-      <!-- FAQ Item 5 -->
-      <div class="reveal fade-up delay-5 bg-bg border border-heading/10 rounded-sm overflow-hidden">
-        <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between hover:bg-heading/[0.02] transition-colors" data-faq="5">
-          <span class="font-display text-lg text-heading pr-4">What's included in a Business Performance Audit?</span>
-          <svg class="faq-icon w-5 h-5 text-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-content px-6 pb-5 text-sm md:text-base text-body leading-relaxed" style="display: none;">
-          <p>A Business Performance Audit includes a comprehensive review of your lead generation, conversion processes, follow-up systems, pipeline management, and communication strategies. You'll receive a detailed report identifying specific performance leaks and prioritized recommendations for improvement.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================= -->
-<!-- CTA SECTION -->
-<!-- ============================= -->
-<section class="py-16 md:py-20">
-  <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center">
-    <p class="reveal fade-up text-[11px] md:text-xs uppercase tracking-[2.5px] text-accent font-semibold mb-4">
-      Let's Connect
-    </p>
-    <h2 class="reveal fade-up delay-1 font-display text-3xl md:text-4xl lg:text-[2.4rem] text-heading leading-tight">
-      Ready To Find Out Where Your Business Is Leaking Income?
-    </h2>
-    <p class="reveal fade-up delay-2 mt-6 text-base md:text-lg text-body leading-relaxed max-w-xl mx-auto">
-      If you're a real estate agent looking to improve results and build a stronger business — let's talk.
-    </p>
-    <div class="reveal scale-in delay-3 mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="contact.html" class="inline-flex justify-center items-center px-8 py-3.5 rounded-sm bg-btn text-bg text-sm font-medium tracking-wide btn-hover touch-target">
-        Schedule a Consultation
-      </a>
-      <a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center gap-2 px-8 py-3.5 rounded-sm border border-heading/20 text-heading text-sm font-medium tracking-wide btn-hover-outline touch-target">
-        Connect on LinkedIn
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ============================= -->
-<!-- FOOTER -->
-<!-- ============================= -->
-<footer class="bg-footer text-bg/80">
-  <div class="footer-accent"></div>
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-14 pb-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-      <div class="sm:col-span-2 lg:col-span-1">
-        <span class="font-display text-xl text-bg">Jonatas Baptista</span>
-        <p class="text-[10px] uppercase tracking-[2px] text-accent font-medium mt-1">Real Estate Coach &bull; Lisbon, Portugal</p>
-        <p class="mt-4 text-sm leading-relaxed text-bg/65 max-w-xs">After 20 years in real estate, Jonatas now helps agents build stronger, more consistent businesses — through better systems, not more hustle.</p>
-        <div class="flex items-center gap-3 mt-6">
-          <a href="mailto:jonatas.baptista1@gmail.com" aria-label="Email" class="footer-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/jonatasbaptista-42992113" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm6.5 0h3.8v1.7h.05c.53-1 1.83-1.96 3.77-1.96 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.16 1.45-2.16 2.96V21h-4V9z"/></svg>
-          </a>
-          <a href="https://wa.me/351000000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.933 1.395 5.61L.057 23.25l5.763-1.31A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.8a9.8 9.8 0 01-4.937-1.326l-.354-.21-3.664.834.872-3.546-.231-.365A9.8 9.8 0 012.2 12C2.2 6.587 6.587 2.2 12 2.2S21.8 6.587 21.8 12 17.413 21.8 12 21.8z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div>
-        <h4 class="text-sm font-semibold text-bg tracking-widest uppercase mb-5">Navigate</h4>
-        <ul class="space-y-3 text-sm text-bg/65">
-          <li><a href="index.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Home</a></li>
-          <li><a href="about.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> About Jonatas</a></li>
-          <li><a href="service.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Services</a></li>
-          <li><a href="contact.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Contact</a></li>
-          <li><a href="contact.html" class="footer-link flex items-center gap-2"><span class="text-accent text-xs">›</span> Schedule a Session</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-sm font-semibold text-bg tracking-widest uppercase mb-5">Coaching Areas</h4>
-        <ul class="space-y-3 text-sm text-bg/65">
-          <li class="flex items-center gap-2"><span class="text-accent text-xs">›</span> Lead Generation</li>
-          <li class="flex items-center gap-2"><span class="text-accent text-xs">›</span> Client Conversion</li>
-          <li class="flex items-center gap-2"><span class="text-accent text-xs">›</span> Pipeline Management</li>
-          <li class="flex items-center gap-2"><span class="text-accent text-xs">›</span> Business Growth</li>
-          <li class="flex items-center gap-2"><span class="text-accent text-xs">›</span> Communication Strategy</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-sm font-semibold text-bg tracking-widest uppercase mb-5">Get In Touch</h4>
-        <ul class="space-y-4 text-sm text-bg/65">
-          <li class="flex items-start gap-3"><span class="text-accent mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9 7 9-7"/><rect x="3" y="5" width="18" height="14" rx="1.5"/></svg></span><a href="mailto:jonatas.baptista1@gmail.com" class="footer-link break-all">jonatas.baptista1@gmail.com</a></li>
-          <li class="flex items-start gap-3"><span class="text-accent mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>Lisbon, Portugal</span></li>
-          <li class="flex items-start gap-3"><span class="text-accent mt-0.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span>Mon – Fri, 9am – 6pm WET</span></li>
-        </ul>
-        <div class="mt-6">
-          <p class="text-xs text-bg/50 mb-3 uppercase tracking-widest">Stay Connected</p>
-          <div class="flex">
-            <input type="email" placeholder="Your email" class="newsletter-input" aria-label="Subscribe email">
-            <button class="newsletter-btn" type="button">Subscribe</button>
+        <div
+          style="
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+          "
+        >
+          <p style="color: rgba(255, 255, 255, 0.2); font-size: 0.72rem">
+            © 2025 Jonatas Baptista. All rights reserved.
+          </p>
+          <div style="display: flex; gap: 1.5rem">
+            <a
+              href="#"
+              style="
+                color: rgba(255, 255, 255, 0.2);
+                font-size: 0.72rem;
+                text-decoration: none;
+              "
+              >Privacy Policy</a
+            ><a
+              href="#"
+              style="
+                color: rgba(255, 255, 255, 0.2);
+                font-size: 0.72rem;
+                text-decoration: none;
+              "
+              >Terms of Service</a
+            >
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-12 pt-7 border-t border-bg/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-bg/40">
-      <p>&copy; <span id="year"></span> Jonatas Baptista. All rights reserved. &bull; Lisbon, Portugal</p>
-      <div class="flex items-center gap-5">
-        <span>Real Estate Coaching</span>
-        <a href="#top" id="backToTop" aria-label="Back to top" class="back-to-top">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
-<script>
-/* =====================================================
-   Jonatas Baptista — Real Estate Coach
-   Vanilla JavaScript — shared across all pages
-   ===================================================== */
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("loaded");
 
-document.addEventListener('DOMContentLoaded', function () {
+        const navbar = document.getElementById("navbar");
+        const hamburger = document.getElementById("hamburger");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobClose = document.getElementById("mob-close");
+        const hlines = hamburger.querySelectorAll(".hline");
 
-  /* -------------------------------------------------
-     0. PAGE FADE-IN (light, one-time, on load)
-  ------------------------------------------------- */
-  requestAnimationFrame(function () {
-    document.body.classList.add('page-loaded');
-  });
-
-  /* -------------------------------------------------
-     1. STICKY NAVBAR BACKGROUND ON SCROLL
-  ------------------------------------------------- */
-  var navbar = document.getElementById('navbar');
-
-  function handleNavbarScroll() {
-    if (!navbar) return;
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }
-  handleNavbarScroll();
-  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-
-  /* -------------------------------------------------
-     2. MOBILE MENU (drawer + hamburger + overlay)
-  ------------------------------------------------- */
-  var menuToggle = document.getElementById('menuToggle');
-  var menuClose = document.getElementById('menuClose');
-  var mobileMenu = document.getElementById('mobileMenu');
-  var menuOverlay = document.getElementById('menuOverlay');
-
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    menuOverlay.classList.remove('hidden');
-    menuOverlay.classList.add('show');
-    menuToggle.classList.add('active');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    menuOverlay.classList.remove('show');
-    menuToggle.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    setTimeout(function () {
-      menuOverlay.classList.add('hidden');
-    }, 320);
-  }
-
-  if (menuToggle && mobileMenu && menuOverlay && menuClose) {
-    menuToggle.addEventListener('click', function () {
-      var isOpen = mobileMenu.classList.contains('open');
-      isOpen ? closeMenu() : openMenu();
-    });
-    menuClose.addEventListener('click', closeMenu);
-    menuOverlay.addEventListener('click', closeMenu);
-
-    // Close menu when a link inside it is clicked
-    mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeMenu);
-    });
-
-    // Close on escape key
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-        closeMenu();
-      }
-    });
-  }
-
-  /* -------------------------------------------------
-     3. SCROLL REVEAL — Fade Up On Scroll
-     Uses IntersectionObserver; falls back gracefully
-     if unsupported (elements simply stay visible).
-     Now supports multiple animation types:
-     - .reveal (default fade up)
-     - .slide-in-left (slide from left)
-     - .slide-in-right (slide from right)
-     - .fade-up (enhanced fade up)
-     - .scale-in (scale animation)
-  ------------------------------------------------- */
-  var revealEls = document.querySelectorAll('.reveal, .slide-in-left, .slide-in-right, .fade-up, .scale-in');
-
-  if ('IntersectionObserver' in window && revealEls.length) {
-    var revealObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          // Add reveal-visible class to trigger animation
-          entry.target.classList.add('reveal-visible');
-          observer.unobserve(entry.target);
+        if (navbar) {
+          navbar.classList.add("scrolled");
+          window.addEventListener(
+            "scroll",
+            () => {
+              navbar.classList.toggle("scrolled", window.scrollY > 50);
+            },
+            { passive: true },
+          );
         }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -60px 0px'
-    });
 
-    revealEls.forEach(function (el) {
-      revealObserver.observe(el);
-    });
-  } else {
-    // Fallback: just show everything
-    revealEls.forEach(function (el) {
-      el.classList.add('reveal-visible');
-    });
-  }
+        function openMenu() {
+          mobileMenu.classList.add("open");
+          hlines[0].style.transform = "rotate(45deg) translate(5px,5px)";
+          hlines[1].style.opacity = "0";
+          hlines[2].style.transform = "rotate(-45deg) translate(4px,-4px)";
+          hlines[2].style.width = "24px";
+          document.body.style.overflow = "hidden";
+        }
 
-  /* -------------------------------------------------
-     4. ACTIVE NAV LINK (based on current page)
-  ------------------------------------------------- */
-  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(function (link) {
-    var linkPage = link.getAttribute('href');
-    if (linkPage === currentPage) {
-      link.classList.add('active-link');
-    } else {
-      link.classList.remove('active-link');
-    }
-  });
+        function closeMenu() {
+          mobileMenu.classList.remove("open");
+          hlines[0].style.transform = "";
+          hlines[1].style.opacity = "";
+          hlines[2].style.transform = "";
+          hlines[2].style.width = "";
+          document.body.style.overflow = "";
+        }
 
-  /* -------------------------------------------------
-     5. FOOTER — AUTO YEAR
-  ------------------------------------------------- */
-  var yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
-  /* -------------------------------------------------
-     5b. BACK TO TOP
-  ------------------------------------------------- */
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  /* -------------------------------------------------
-     6. CONTACT FORM VALIDATION (only present on contact.html)
-  ------------------------------------------------- */
-  var contactForm = document.getElementById('contactForm');
-
-  if (contactForm) {
-    var fields = {
-      fullName: { el: document.getElementById('fullName'), error: document.getElementById('fullNameError') },
-      email: { el: document.getElementById('email'), error: document.getElementById('emailError') },
-      phone: { el: document.getElementById('phone'), error: document.getElementById('phoneError') },
-      country: { el: document.getElementById('country'), error: document.getElementById('countryError') },
-      message: { el: document.getElementById('message'), error: document.getElementById('messageError') }
-    };
-
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    var phonePattern = /^[0-9+\s()-]{7,20}$/;
-
-    function setError(field, message) {
-      if (!field.el) return;
-      field.el.classList.add('input-error');
-      if (field.error) {
-        field.error.textContent = message;
-        field.error.classList.add('show');
-      }
-    }
-
-    function clearError(field) {
-      if (!field.el) return;
-      field.el.classList.remove('input-error');
-      if (field.error) {
-        field.error.classList.remove('show');
-      }
-    }
-
-    function validateField(name) {
-      var field = fields[name];
-      if (!field || !field.el) return true;
-      var value = field.el.value.trim();
-
-      switch (name) {
-        case 'fullName':
-          if (value.length < 2) {
-            setError(field, 'Please enter your full name.');
-            return false;
-          }
-          break;
-        case 'email':
-          if (!emailPattern.test(value)) {
-            setError(field, 'Please enter a valid email address.');
-            return false;
-          }
-          break;
-        case 'phone':
-          if (value.length > 0 && !phonePattern.test(value)) {
-            setError(field, 'Please enter a valid phone number.');
-            return false;
-          }
-          break;
-        case 'country':
-          if (value.length < 2) {
-            setError(field, 'Please let us know your country.');
-            return false;
-          }
-          break;
-        case 'message':
-          if (value.length < 10) {
-            setError(field, 'Please add a short message (at least 10 characters).');
-            return false;
-          }
-          break;
-      }
-      clearError(field);
-      return true;
-    }
-
-    // Validate on blur for a calm, non-intrusive experience
-    Object.keys(fields).forEach(function (name) {
-      var field = fields[name];
-      if (field.el) {
-        field.el.addEventListener('blur', function () {
-          validateField(name);
+        hamburger.addEventListener("click", openMenu);
+        mobClose.addEventListener("click", closeMenu);
+        mobileMenu.querySelectorAll(".mob-link").forEach((link) => {
+          link.addEventListener("click", closeMenu);
         });
-        field.el.addEventListener('input', function () {
-          if (field.el.classList.contains('input-error')) {
-            validateField(name);
+      });
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll(".reveal,.reveal-left,.reveal-right")
+        .forEach((el) => observer.observe(el));
+
+      // Form submission
+      const form = document.getElementById("contactForm");
+      const formContent = document.getElementById("formContent");
+      const formSuccess = document.getElementById("formSuccess");
+      const btnText = document.getElementById("btnText");
+      const submitBtn = document.getElementById("submitBtn");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Basic validation
+        const required = form.querySelectorAll("[required]");
+        let valid = true;
+        required.forEach((field) => {
+          if (!field.value.trim()) {
+            field.style.borderColor = "var(--red)";
+            valid = false;
+          } else {
+            field.style.borderColor = "";
           }
         });
-      }
-    });
 
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      var isValid = true;
-      ['fullName', 'email', 'phone', 'country', 'message'].forEach(function (name) {
-        if (!validateField(name)) {
-          isValid = false;
+        if (!valid) {
+          return;
         }
+
+        // Simulate submission
+        submitBtn.disabled = true;
+        btnText.textContent = "Sending...";
+
+        setTimeout(() => {
+          formContent.style.display = "none";
+          formSuccess.style.display = "block";
+        }, 1200);
       });
 
-      var successMessage = document.getElementById('formSuccess');
-
-      if (isValid) {
-        // No backend wired up — this is where a fetch() call to your
-        // form handler / email service would go in production.
-        contactForm.reset();
-        if (successMessage) {
-          successMessage.classList.remove('hidden');
-          successMessage.classList.add('reveal', 'reveal-visible');
-          successMessage.setAttribute('tabindex', '-1');
-          successMessage.focus();
-        }
-      } else {
-        var firstError = contactForm.querySelector('.input-error');
-        if (firstError) {
-          firstError.focus();
-        }
-      }
-    });
-  }
-
-  /* -------------------------------------------------
-     7. FAQ ACCORDION (only on contact page)
-  ------------------------------------------------- */
-  var faqTriggers = document.querySelectorAll('.faq-trigger');
-  
-  faqTriggers.forEach(function(trigger) {
-    trigger.addEventListener('click', function() {
-      var content = this.nextElementSibling;
-      var icon = this.querySelector('.faq-icon');
-      var isOpen = content.style.display === 'block';
-      
-      // Close all other FAQs
-      document.querySelectorAll('.faq-content').forEach(function(item) {
-        item.style.display = 'none';
+      // Clear validation on input
+      form.querySelectorAll("input, textarea").forEach((field) => {
+        field.addEventListener("input", () => {
+          field.style.borderColor = "";
+        });
       });
-      document.querySelectorAll('.faq-icon').forEach(function(item) {
-        item.style.transform = 'rotate(0deg)';
-      });
-      
-      // Toggle current FAQ
-      if (!isOpen) {
-        content.style.display = 'block';
-        icon.style.transform = 'rotate(180deg)';
-      }
-    });
-  });
-
-});
-
-</script>
-</body>
+    </script>
+  </body>
 </html>
