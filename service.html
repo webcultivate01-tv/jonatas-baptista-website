@@ -11,38 +11,47 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     h1,h2,h3 { font-family: 'Playfair Display', serif; }
-    /* ===== UNIFIED NAVBAR ===== */
+    /* ===== NAVBAR ===== */
     :root { --red: #c0392b; --red-h: #e74c3c; --dark: #0e1117; }
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      padding: 0;
       transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
     }
     #navbar .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
+      padding: 1.4rem 3rem;
       transition: padding 0.45s cubic-bezier(0.4,0,0.2,1), background 0.45s;
-      background: rgba(14,17,23,0.92);
+      background: transparent;
     }
     #navbar.scrolled .nav-inner {
-      padding: 0.75rem 3rem;
+      padding: 0.9rem 3rem;
       background: rgba(14,17,23,0.97);
       box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35);
       backdrop-filter: blur(12px);
     }
-    .nav-brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
-    .nav-brand img { height: 44px; width: auto; display: block; }
+    .nav-brand { display: flex; align-items: center; gap: 0.2rem; text-decoration: none; }
+    .nav-brand img { height: 66px; width: auto; display: block; }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
-      font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Outfit', sans-serif; font-size: 1.201rem; font-weight: 600;
       color: #fff; letter-spacing: 0.02em; white-space: nowrap;
     }
     .nav-brand-subtitle {
-      font-family: 'Outfit', sans-serif; font-size: 0.65rem; font-weight: 400;
+      font-family: 'Outfit', sans-serif; font-size: 0.822rem; font-weight: 400;
       color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
-    .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+    @media (max-width: 639px) {
+      .nav-brand { gap: 0.35rem; }
+      .nav-brand-text { display: flex !important; }
+      .nav-brand img { height: 48px; }
+      .nav-brand-name { font-size: 1rem; }
+      .nav-brand-subtitle { font-size: 0.7rem; }
+    }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    @media (max-width: 1023px) { .nav-links { display: none !important; } }
     .nav-link {
-      font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 500;
+      font-family: 'Outfit', sans-serif; font-size: 0.948rem; font-weight: 500;
       letter-spacing: 0.12em; text-transform: uppercase;
       color: rgba(255,255,255,0.7); text-decoration: none; position: relative; transition: color 0.2s;
     }
@@ -56,40 +65,74 @@
     .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
     .nav-link.active { color: #fff; }
     .btn-nav {
-      font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 600;
+      font-family: 'Outfit', sans-serif; font-size: 0.911rem; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
       background: var(--red); color: #fff; padding: 0.65rem 1.6rem;
       text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block;
     }
     .btn-nav:hover { background: var(--red-h); transform: translateY(-1px); }
-    #hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .hline { display: block; width: 24px; height: 1.5px; background: #fff; transition: all 0.3s; }
+    #hamburger {
+      display: none; flex-direction: column; gap: 4px; cursor: pointer;
+      padding: 6px; background: transparent; border: none;
+      transition: all 0.3s; position: relative; align-items: flex-end;
+    }
+    @media (max-width: 1023px) { #hamburger { display: flex; } }
+    #hamburger:hover .hline { background: #c0392b; }
+    .hline { display: block; height: 2px; background: #fff; transition: all 0.3s; border-radius: 2px; }
+    .hline:nth-child(1) { width: 28px; }
+    .hline:nth-child(2) { width: 22px; }
+    .hline:nth-child(3) { width: 16px; }
+    @media (max-width: 1023px) {
+      .nav-links { display: none; } .btn-nav-wrap { display: none; }
+      .nav-inner { padding: 1rem 1rem !important; }
+      #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
+    }
     #mobile-menu {
       display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--dark); z-index: 998;
-      flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+      background: #fff; z-index: 1000;
+      flex-direction: column; padding: 2rem 1.5rem; overflow-y: auto;
     }
     #mobile-menu.open { display: flex; }
+    .mob-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 2rem;
+    }
+    .mob-logo-section { display: flex; align-items: center; gap: 0.45rem; }
+    .mob-logo-section img { height: 56px; width: auto; filter: brightness(0); }
+    .mob-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .mob-brand-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1a1a1a; letter-spacing: 0.02em; }
+    .mob-brand-subtitle { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 400; color: rgba(0,0,0,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
     .mob-link {
-      font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff;
-      text-decoration: none; opacity: 0; transform: translateY(20px); transition: color 0.2s;
+      display: flex; align-items: center; gap: 1rem;
+      font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 500;
+      color: #4a4a4a; text-decoration: none;
+      padding: 1rem 1.25rem; background: #f8f6f3; border-radius: 8px; margin-bottom: 0.75rem;
+      transition: all 0.3s; opacity: 0; transform: translateY(20px);
     }
     #mobile-menu.open .mob-link { animation: mob-in 0.4s forwards; }
-    #mobile-menu.open .mob-link:nth-child(1) { animation-delay: 0.05s; }
-    #mobile-menu.open .mob-link:nth-child(2) { animation-delay: 0.10s; }
-    #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.15s; }
-    #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.20s; }
-    #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.25s; }
-    #mobile-menu.open .mob-link:nth-child(6) { animation-delay: 0.30s; }
+    #mobile-menu.open .mob-link:nth-child(2) { animation-delay: 0.05s; }
+    #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.1s; }
+    #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.15s; }
+    #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.2s; }
     @keyframes mob-in { to { opacity:1; transform:translateY(0); } }
-    .mob-link:hover { color: var(--red); }
-    #mob-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-    @media (max-width: 1023px) {
-      #hamburger { display: flex; } .nav-links { display: none; } .btn-nav-wrap { display: none; }
-      .nav-inner { padding: 1.1rem 1.25rem !important; }
-      #navbar.scrolled .nav-inner { padding: 0.8rem 1.25rem !important; }
-      .nav-brand-text { display: none; }
+    .mob-link:active { background: #e8e6e3; transform: scale(0.98); }
+    .mob-link-icon {
+      width: 40px; height: 40px; background: rgba(192,57,43,0.1); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
+    .mob-cta-btn {
+      margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: #c0392b; color: #fff; padding: 1rem 1.5rem; border-radius: 8px;
+      text-decoration: none; font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s;
+    }
+    .mob-cta-btn:active { background: #a0301f; transform: scale(0.98); }
+    #mob-close {
+      background: none; border: none; color: #1a1a1a; font-size: 1.8rem; cursor: pointer;
+      padding: 0.5rem; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.3s;
+    }
+    #mob-close:active { background: rgba(0,0,0,0.05); }
     /* WhatsApp */
     .wa-float {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 998;
@@ -102,7 +145,6 @@
       0%,100% { box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 0 rgba(37,211,102,0.45); }
       55%      { box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 12px rgba(37,211,102,0); }
     }
-    /* Service page - add top padding for fixed nav */
     body > main:first-of-type, .pt-nav { padding-top: 80px; }
 
     /* ---- Scroll-reveal system (vanilla JS driven, self-contained) ---- */
@@ -168,38 +210,74 @@
       <a href="index.html" class="nav-link">Overview</a>
       <a href="about.html" class="nav-link">My Story</a>
       <a href="service.html" class="nav-link active">Work With Me</a>
-      <a href="stories.html" class="nav-link">Success Stories</a>
-      <a href="insight.html" class="nav-link">Insights</a>
       <a href="contact.html" class="nav-link">Let's Connect</a>
     </div>
     <div class="btn-nav-wrap">
       <a href="contact.html" class="btn-nav">Book a Call</a>
     </div>
     <button id="hamburger" aria-label="Open menu">
-      <span class="hline"></span><span class="hline"></span><span class="hline" style="width:16px"></span>
+      <span class="hline"></span>
+      <span class="hline"></span>
+      <span class="hline"></span>
     </button>
   </div>
 </nav>
+
 <div id="mobile-menu">
-  <button id="mob-close" aria-label="Close">✕</button>
-  <a href="index.html" class="mob-link">Overview</a>
-  <a href="about.html" class="mob-link">My Story</a>
-  <a href="service.html" class="mob-link">Work With Me</a>
-  <a href="stories.html" class="mob-link">Success Stories</a>
-  <a href="insight.html" class="mob-link">Insights</a>
-  <a href="contact.html" class="mob-link">Let's Connect</a>
+  <div class="mob-header">
+    <div class="mob-logo-section">
+      <img src="image/jb-logo.png" alt="Jonatas Baptista" />
+      <div class="mob-brand-text">
+        <span class="mob-brand-name">Jonatas Baptista</span>
+        <span class="mob-brand-subtitle">Real Estate Coach</span>
+      </div>
+    </div>
+    <button id="mob-close" aria-label="Close">✕</button>
+  </div>
+
+  <a href="index.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <span>Overview</span>
+  </a>
+
+  <a href="about.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <span>My Story</span>
+  </a>
+
+  <a href="service.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+    </div>
+    <span>Work With Me</span>
+  </a>
+
+  <a href="contact.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </div>
+    <span>Let's Connect</span>
+  </a>
+
+  <a href="contact.html" class="mob-cta-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
+    Book a Call
+  </a>
 </div>
-<div id="menuOverlay" class="fixed inset-0 bg-slate-900/40 z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
 <!-- HERO -->
-<section class="hero-bg relative overflow-hidden min-h-screen flex items-center">
+<section class="relative overflow-hidden min-h-screen flex items-center" style="background:#070a10;">
   <div class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/85 to-slate-900/95"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(7,10,16,0.95) 0%, rgba(7,10,16,0.82) 50%, rgba(7,10,16,0.95) 100%);"></div>
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-10 right-0 w-64 h-64 bg-red-600 opacity-20 rounded-full blur-3xl translate-x-1/2"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-700 opacity-20 rounded-full blur-3xl -translate-x-1/2"></div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-20 lg:pt-16 pb-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pb-10" style="padding-top: 120px;">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
       <!-- Text -->
       <div class="text-center lg:text-left">

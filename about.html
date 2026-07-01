@@ -10,38 +10,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     body { font-family: 'Inter', sans-serif; } h1,h2,h3 { font-family: 'Playfair Display', serif; }
-    /* ===== UNIFIED NAVBAR ===== */
+    /* ===== NAVBAR ===== */
     :root { --red: #c0392b; --red-h: #e74c3c; --dark: #0e1117; }
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      padding: 0;
       transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
     }
     #navbar .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
+      padding: 1.4rem 3rem;
       transition: padding 0.45s cubic-bezier(0.4,0,0.2,1), background 0.45s;
-      background: linear-gradient(180deg, rgba(14,17,23,0.85) 0%, transparent 100%);
+      background: transparent;
     }
     #navbar.scrolled .nav-inner {
-      padding: 0.75rem 3rem;
+      padding: 0.9rem 3rem;
       background: rgba(14,17,23,0.97);
       box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35);
       backdrop-filter: blur(12px);
     }
-    .nav-brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
-    .nav-brand img { height: 44px; width: auto; display: block; }
+    .nav-brand { display: flex; align-items: center; gap: 0.2rem; text-decoration: none; }
+    .nav-brand img { height: 66px; width: auto; display: block; }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
-      font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Outfit', sans-serif; font-size: 1.201rem; font-weight: 600;
       color: #fff; letter-spacing: 0.02em; white-space: nowrap;
     }
     .nav-brand-subtitle {
-      font-family: 'Outfit', sans-serif; font-size: 0.65rem; font-weight: 400;
+      font-family: 'Outfit', sans-serif; font-size: 0.822rem; font-weight: 400;
       color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
-    .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+    @media (max-width: 639px) {
+      .nav-brand { gap: 0.35rem; }
+      .nav-brand-text { display: flex !important; }
+      .nav-brand img { height: 48px; }
+      .nav-brand-name { font-size: 1rem; }
+      .nav-brand-subtitle { font-size: 0.7rem; }
+    }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    @media (max-width: 1023px) { .nav-links { display: none !important; } }
     .nav-link {
-      font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 500;
+      font-family: 'Outfit', sans-serif; font-size: 0.948rem; font-weight: 500;
       letter-spacing: 0.12em; text-transform: uppercase;
       color: rgba(255,255,255,0.7); text-decoration: none; position: relative; transition: color 0.2s;
     }
@@ -55,40 +64,74 @@
     .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
     .nav-link.active { color: #fff; }
     .btn-nav {
-      font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 600;
+      font-family: 'Outfit', sans-serif; font-size: 0.911rem; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
       background: var(--red); color: #fff; padding: 0.65rem 1.6rem;
       text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block;
     }
     .btn-nav:hover { background: var(--red-h); transform: translateY(-1px); }
-    #hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .hline { display: block; width: 24px; height: 1.5px; background: #fff; transition: all 0.3s; }
+    #hamburger {
+      display: none; flex-direction: column; gap: 4px; cursor: pointer;
+      padding: 6px; background: transparent; border: none;
+      transition: all 0.3s; position: relative; align-items: flex-end;
+    }
+    @media (max-width: 1023px) { #hamburger { display: flex; } }
+    #hamburger:hover .hline { background: #c0392b; }
+    .hline { display: block; height: 2px; background: #fff; transition: all 0.3s; border-radius: 2px; }
+    .hline:nth-child(1) { width: 28px; }
+    .hline:nth-child(2) { width: 22px; }
+    .hline:nth-child(3) { width: 16px; }
+    @media (max-width: 1023px) {
+      .nav-links { display: none; } .btn-nav-wrap { display: none; }
+      .nav-inner { padding: 1rem 1rem !important; }
+      #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
+    }
     #mobile-menu {
       display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--dark); z-index: 998;
-      flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+      background: #fff; z-index: 1000;
+      flex-direction: column; padding: 2rem 1.5rem; overflow-y: auto;
     }
     #mobile-menu.open { display: flex; }
+    .mob-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 2rem;
+    }
+    .mob-logo-section { display: flex; align-items: center; gap: 0.45rem; }
+    .mob-logo-section img { height: 56px; width: auto; filter: brightness(0); }
+    .mob-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .mob-brand-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1a1a1a; letter-spacing: 0.02em; }
+    .mob-brand-subtitle { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 400; color: rgba(0,0,0,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
     .mob-link {
-      font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff;
-      text-decoration: none; opacity: 0; transform: translateY(20px); transition: color 0.2s;
+      display: flex; align-items: center; gap: 1rem;
+      font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 500;
+      color: #4a4a4a; text-decoration: none;
+      padding: 1rem 1.25rem; background: #f8f6f3; border-radius: 8px; margin-bottom: 0.75rem;
+      transition: all 0.3s; opacity: 0; transform: translateY(20px);
     }
     #mobile-menu.open .mob-link { animation: mob-in 0.4s forwards; }
-    #mobile-menu.open .mob-link:nth-child(1) { animation-delay: 0.05s; }
-    #mobile-menu.open .mob-link:nth-child(2) { animation-delay: 0.10s; }
-    #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.15s; }
-    #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.20s; }
-    #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.25s; }
-    #mobile-menu.open .mob-link:nth-child(6) { animation-delay: 0.30s; }
+    #mobile-menu.open .mob-link:nth-child(2) { animation-delay: 0.05s; }
+    #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.1s; }
+    #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.15s; }
+    #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.2s; }
     @keyframes mob-in { to { opacity:1; transform:translateY(0); } }
-    .mob-link:hover { color: var(--red); }
-    #mob-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-    @media (max-width: 1023px) {
-      #hamburger { display: flex; } .nav-links { display: none; } .btn-nav-wrap { display: none; }
-      .nav-inner { padding: 1.1rem 1.25rem !important; }
-      #navbar.scrolled .nav-inner { padding: 0.8rem 1.25rem !important; }
-      .nav-brand-text { display: none; }
+    .mob-link:active { background: #e8e6e3; transform: scale(0.98); }
+    .mob-link-icon {
+      width: 40px; height: 40px; background: rgba(192,57,43,0.1); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
+    .mob-cta-btn {
+      margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: #c0392b; color: #fff; padding: 1rem 1.5rem; border-radius: 8px;
+      text-decoration: none; font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s;
+    }
+    .mob-cta-btn:active { background: #a0301f; transform: scale(0.98); }
+    #mob-close {
+      background: none; border: none; color: #1a1a1a; font-size: 1.8rem; cursor: pointer;
+      padding: 0.5rem; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.3s;
+    }
+    #mob-close:active { background: rgba(0,0,0,0.05); }
     /* WhatsApp */
     .wa-float {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 998;
@@ -101,7 +144,6 @@
       0%,100% { box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 0 rgba(37,211,102,0.45); }
       55%      { box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 12px rgba(37,211,102,0); }
     }
-    /* Offset body for fixed nav */
     body { padding-top: 0; }
   </style>
 </head>
@@ -123,26 +165,63 @@
       <a href="index.html" class="nav-link">Overview</a>
       <a href="about.html" class="nav-link active">My Story</a>
       <a href="service.html" class="nav-link">Work With Me</a>
-      <a href="stories.html" class="nav-link">Success Stories</a>
-      <a href="insight.html" class="nav-link">Insights</a>
       <a href="contact.html" class="nav-link">Let's Connect</a>
     </div>
     <div class="btn-nav-wrap">
       <a href="contact.html" class="btn-nav">Book a Call</a>
     </div>
     <button id="hamburger" aria-label="Open menu">
-      <span class="hline"></span><span class="hline"></span><span class="hline" style="width:16px"></span>
+      <span class="hline"></span>
+      <span class="hline"></span>
+      <span class="hline"></span>
     </button>
   </div>
 </nav>
+
 <div id="mobile-menu">
-  <button id="mob-close" aria-label="Close">✕</button>
-  <a href="index.html" class="mob-link">Overview</a>
-  <a href="about.html" class="mob-link">My Story</a>
-  <a href="service.html" class="mob-link">Work With Me</a>
-  <a href="stories.html" class="mob-link">Success Stories</a>
-  <a href="insight.html" class="mob-link">Insights</a>
-  <a href="contact.html" class="mob-link">Let's Connect</a>
+  <div class="mob-header">
+    <div class="mob-logo-section">
+      <img src="image/jb-logo.png" alt="Jonatas Baptista" />
+      <div class="mob-brand-text">
+        <span class="mob-brand-name">Jonatas Baptista</span>
+        <span class="mob-brand-subtitle">Real Estate Coach</span>
+      </div>
+    </div>
+    <button id="mob-close" aria-label="Close">✕</button>
+  </div>
+
+  <a href="index.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <span>Overview</span>
+  </a>
+
+  <a href="about.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <span>My Story</span>
+  </a>
+
+  <a href="service.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+    </div>
+    <span>Work With Me</span>
+  </a>
+
+  <a href="contact.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </div>
+    <span>Let's Connect</span>
+  </a>
+
+  <a href="contact.html" class="mob-cta-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
+    Book a Call
+  </a>
 </div>
 
 <!-- PREMIUM HERO -->
@@ -297,7 +376,7 @@
   }
 </style>
 
-<section class="hero-premium relative overflow-hidden pt-20 lg:pt-0" id="heroSection">
+<section class="hero-premium relative overflow-hidden" id="heroSection" style="padding-top: 90px;">
 
   <!-- Grain -->
   <div class="grain-overlay"></div>
@@ -316,42 +395,47 @@
         <!-- Small label -->
         <div class="flex items-center gap-3 mb-8 fade-up">
           <span class="accent-sweep"></span>
-          <span class="text-xs font-semibold tracking-[0.22em] text-slate-400 uppercase">About Jonatas</span>
+          <span class="text-xs font-semibold tracking-[0.22em] text-slate-400 uppercase">About Jonatas Baptista</span>
         </div>
 
-        <!-- Main heading — editorial split -->
-        <div class="mb-8 fade-up fade-up-d1">
-          <h1 class="hero-display text-white leading-[1.05]" style="font-size: clamp(2.6rem, 5.5vw, 5.2rem); font-weight: 300; letter-spacing: -0.01em;">
-            Helping People<br />
-            <em style="font-style:italic; font-weight:600; color:#fff;">Make Smarter</em><br />
-            <span style="font-weight:300;">Real Estate Decisions</span><br />
-            <span class="hero-display" style="font-weight:700; font-style:italic; background:linear-gradient(90deg,#ef4444,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">With Confidence.</span>
+        <!-- Main heading -->
+        <div class="mb-6 fade-up fade-up-d1">
+          <h1 class="hero-display text-white leading-[1.08]" style="font-size: clamp(2.2rem, 4.5vw, 4.4rem); font-weight: 300; letter-spacing: -0.01em;">
+            Two Decades in Real Estate.<br />
+            <em style="font-style:italic; font-weight:600; color:#fff;">One Purpose:</em><br />
+            <span class="hero-display" style="font-weight:700; font-style:italic; background:linear-gradient(90deg,#dc2626,#c0392b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Helping Professionals<br/>Build Businesses That Last.</span>
           </h1>
         </div>
 
         <!-- Vertical rule + body copy -->
-        <div class="flex gap-6 mb-10 fade-up fade-up-d2">
+        <div class="flex gap-6 mb-8 fade-up fade-up-d2">
           <div class="v-rule flex-shrink-0 self-stretch" style="min-height:80px;"></div>
-          <p class="text-slate-400 leading-relaxed" style="font-size:1.05rem; font-weight:300; max-width: 42ch;">
-            Jonatas built his practice on a simple belief: every person deserves clarity before they commit capital. Drawing on years navigating complex markets, he translates data, risk, and opportunity into language that empowers — not overwhelms — his clients. Whether you're acquiring your first investment property or restructuring a portfolio, Jonatas stands beside you as a trusted advisor, not just a transactional broker.
+          <p class="text-slate-400 leading-relaxed" style="font-size:1.05rem; font-weight:300; max-width: 46ch;">
+            After more than 20 years as a real estate agent, manager, director, and coach, I've learned that lasting success isn't built by working harder — it's built by creating the right systems. Today, I help ambitious real estate professionals build predictable businesses, attract better opportunities, and grow with confidence.
           </p>
         </div>
 
+        <!-- Credential tags -->
+        <div class="flex flex-wrap gap-2 mb-8 fade-up fade-up-d2">
+          <span style="background:rgba(192,57,43,0.12); border:1px solid rgba(192,57,43,0.25); color:rgba(255,255,255,0.65); font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.35rem 0.85rem;">20+ Years Experience</span>
+          <span style="background:rgba(192,57,43,0.12); border:1px solid rgba(192,57,43,0.25); color:rgba(255,255,255,0.65); font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.35rem 0.85rem;">Agent · Manager · Director · Coach</span>
+          <span style="background:rgba(192,57,43,0.12); border:1px solid rgba(192,57,43,0.25); color:rgba(255,255,255,0.65); font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.35rem 0.85rem;">150+ Professionals Coached</span>
+        </div>
+
         <!-- CTA buttons -->
-        <div class="flex flex-wrap gap-4 mb-12 fade-up fade-up-d3">
+        <div class="flex flex-wrap gap-4 mb-10 fade-up fade-up-d3">
           <a href="contact.html"
-             class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white transition-all duration-300"
-             style="background: linear-gradient(135deg, #dc2626, #1d4ed8); box-shadow: 0 8px 32px rgba(220,38,38,0.25);"
-             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 14px 40px rgba(220,38,38,0.35)'"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(220,38,38,0.25)'">
+             class="inline-flex items-center gap-2 text-white font-semibold tracking-widest uppercase text-xs px-7 py-3.5 border-2 border-red-600 transition-all duration-300"
+             style="background:#c0392b;"
+             onmouseover="this.style.background='#e74c3c'"
+             onmouseout="this.style.background='#c0392b'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
             Book a Strategy Call
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
           <a href="#story-section"
-             class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-slate-300 border transition-all duration-300"
-             style="border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.03);"
-             onmouseover="this.style.borderColor='rgba(255,255,255,0.35)'; this.style.color='#fff'"
-             onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color=''">
+             class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-slate-300 border border-white/20 px-7 py-3.5 transition-all duration-300"
+             onmouseover="this.style.borderColor='rgba(255,255,255,0.4)'; this.style.color='#fff'"
+             onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'; this.style.color=''">
             Explore My Journey
           </a>
         </div>
@@ -368,27 +452,25 @@
       <div class="order-1 lg:order-2 relative img-reveal" id="heroImgCol">
 
         <!-- Decorative corner lines -->
-        <div class="absolute -top-4 -right-4 w-16 h-16 pointer-events-none z-10" style="border-top:1px solid rgba(220,38,38,0.4); border-right:1px solid rgba(220,38,38,0.4);"></div>
-        <div class="absolute -bottom-4 -left-4 w-16 h-16 pointer-events-none z-10" style="border-bottom:1px solid rgba(29,78,216,0.4); border-left:1px solid rgba(29,78,216,0.4);"></div>
-
-        <!-- Large editorial quote mark behind image -->
-        <div class="quote-mark absolute -top-6 -left-4 select-none pointer-events-none z-0">"</div>
+        <div class="absolute -top-4 -right-4 w-16 h-16 pointer-events-none z-10" style="border-top:1px solid rgba(192,57,43,0.5); border-right:1px solid rgba(192,57,43,0.5);"></div>
+        <div class="absolute -bottom-4 -left-4 w-16 h-16 pointer-events-none z-10" style="border-bottom:1px solid rgba(192,57,43,0.3); border-left:1px solid rgba(192,57,43,0.3);"></div>
 
         <!-- Image -->
         <div class="hero-img-wrap parallax-img" style="height: clamp(420px, 65vh, 720px); border-radius: 3px;">
           <img
-            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85&auto=format&fit=crop"
-            alt="Jonatas — Real Estate Advisor"
+            src="image/jb.jpg"
+            alt="Jonatas Baptista — Real Estate Coach"
             loading="eager"
+            onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85&auto=format&fit=crop'"
           />
         </div>
 
         <!-- Floating credential badge -->
         <div class="absolute -bottom-6 right-6 z-20 fade-up fade-up-d5"
-             style="background: rgba(10,10,15,0.92); border:1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px); padding: 1.1rem 1.6rem; border-radius: 3px; min-width: 160px;">
-          <div class="text-xs font-semibold tracking-widest text-slate-500 uppercase mb-1">Based In</div>
-          <div class="text-white font-semibold text-sm">Real Estate Advisory</div>
-          <div class="accent-sweep mt-2" style="width:28px;"></div>
+             style="background: rgba(10,10,15,0.95); border:1px solid rgba(192,57,43,0.3); backdrop-filter: blur(20px); padding: 1.1rem 1.6rem; border-radius: 2px; min-width: 180px;">
+          <div class="text-xs font-semibold tracking-widest text-slate-500 uppercase mb-1">Experience</div>
+          <div class="text-white font-semibold text-sm">20+ Years in Real Estate</div>
+          <div class="accent-sweep mt-2" style="width:28px; background: linear-gradient(90deg,#c0392b,#e74c3c);"></div>
         </div>
 
       </div>
@@ -746,6 +828,8 @@
   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 <script>
+/* Body loaded */
+document.body.classList.add('loaded');
 /* Unified Navbar */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
@@ -770,7 +854,7 @@ mobileMenu.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click'
 /* Scroll reveal */
 const revealEls = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); revealObs.unobserve(e.target); }});
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObs.observe(el));
 </script>

@@ -60,7 +60,7 @@
       box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35);
       backdrop-filter: blur(12px);
     }
-    .nav-brand { display: flex; align-items: center; gap: 0.4rem; text-decoration: none; }
+    .nav-brand { display: flex; align-items: center; gap: 0.2rem; text-decoration: none; }
     .nav-brand img { height: 66px; width: auto; display: block; }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
@@ -627,7 +627,7 @@
       #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
       
       /* Hero section fit to screen */
-      .hero { height: auto !important; min-height: 100vh; }
+      .hero { height: 100svh !important; }
       
       /* Hero responsive */
       .hero-photo-circle { width: 170px; height: 170px; }
@@ -690,16 +690,12 @@
       
       /* Social proof smaller */
       .hero-anim-5 img {
-        width: 28px !important;
-        height: 28px !important;
+        width: 24px !important;
+        height: 24px !important;
       }
       
       .hero-anim-5 .text-base {
-        font-size: 0.8rem !important;
-      }
-      
-      .hero-anim-5 span {
-        font-size: 0.7rem !important;
+        font-size: 0.85rem !important;
       }
       
       /* Footer responsive */
@@ -744,30 +740,7 @@
       }
     }
 
-    /* ===== STUCK SECTION MOBILE FIXES ===== */
-    /* Body base */
-    body { font-size: 1.518rem; }
-
-    /* Eyebrow labels */
-    .eyebrow { font-size: 1.391rem; }
-
-    /* Subtext / muted paragraphs */
-    .text-xs  { font-size: 1.454rem  !important; }
-    .text-sm  { font-size: 1.582rem !important; }
-    .text-base { font-size: 1.265rem !important; }
-    .text-lg { font-size: 1.423rem !important; }
-    .text-xl { font-size: 1.582rem !important; }
-    .text-2xl { font-size: 1.898rem !important; }
-    .text-3xl { font-size: 2.372rem !important; }
-    .text-4xl { font-size: 2.847rem !important; }
-    .text-5xl { font-size: 3.795rem !important; }
-    @media (min-width: 768px) {
-      .md\:text-lg { font-size: 1.423rem !important; }
-      .md\:text-4xl { font-size: 2.847rem !important; }
-      .md\:text-5xl { font-size: 3.795rem !important; }
-    }
-
-    /* Keep headings untouched (serif sizes are already good) */
+    /* ===== SECTION FONT SIZES ===== */
 
     /* ===== HERO MOBILE FIXES ===== */
     @media (max-width: 1023px) {
@@ -938,7 +911,7 @@
 <!-- ============================================================
      HERO
 ============================================================ -->
-<section id="overview" class="hero" style="min-height:100vh;display:flex;align-items:flex-start;overflow:hidden;">
+<section id="overview" class="hero" style="min-height:100vh;display:flex;align-items:center;overflow:hidden;position:relative;">
 
   <!-- ambient glow blobs -->
   <div class="absolute inset-0 pointer-events-none" style="background:
@@ -946,23 +919,23 @@
     radial-gradient(ellipse 35% 45% at 10% 25%, rgba(42,95,199,0.09) 0%, transparent 60%),
     radial-gradient(ellipse 60% 30% at 50% 100%, rgba(7,10,16,0.95) 0%, transparent 55%);"></div>
 
-  <div class="relative z-10 w-full mx-auto px-6 lg:px-20 xl:px-32" style="min-height:100vh;display:flex;align-items:center;">
-    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 hero-inner" style="width:100%;padding-top:6rem;padding-bottom:3rem;">
+  <div class="relative z-10 w-full mx-auto px-6 lg:px-20 xl:px-32">
+    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 hero-inner" style="width:100%;padding-top:7rem;padding-bottom:3rem;">
 
       <!-- ── LEFT ── -->
       <div class="flex-1 text-center lg:text-left lg:pr-16 xl:pr-24 hero-left-col">
 
         <!-- eyebrow -->
-        <div class="inline-flex items-center gap-2 bg-red-900/20 border border-red-700/30 px-3 py-1.5 mb-6 hero-anim-1" style="margin-top: 3rem;">
+        <div class="inline-flex items-center gap-2 bg-red-900/20 border border-red-700/30 px-3 py-1.5 mb-6 hero-anim-1">
           <div class="live-dot"></div>
-          <span class="text-red-400 font-semibold tracking-widest uppercase text-[0.897rem]">Real Estate Coach &amp; Sales Strategist</span>
+          <span class="text-red-400 font-semibold tracking-widest uppercase text-[0.897rem]">Real Estate Coach</span>
         </div>
 
         <!-- headline -->
-        <h1 class="serif text-3xl md:text-4xl lg:text-[3.163rem] font-normal mb-4 hero-anim-2" style="line-height: 1.5;">
-          Stop Chasing Leads.<br />
-          <em class="italic text-white/60">Build a Real Estate Business</em><br />
-          <strong class="font-bold text-white">That Premium Clients Trust.</strong>
+        <h1 class="serif mb-4 hero-anim-2" style="font-size:clamp(2rem,4.5vw,3.163rem);line-height:1.35;font-weight:500;letter-spacing:0.01em;">
+          <span class="block" style="color:rgba(255,255,255,0.5);font-weight:300;">Stop Chasing Leads.</span>
+          <em class="block italic" style="color:rgba(255,255,255,0.75);font-weight:400;">Build a Real Estate Business</em>
+          <span class="block text-white" style="font-weight:600;">That Premium Clients Trust.</span>
         </h1>
 
         <!-- red accent line -->
@@ -990,19 +963,19 @@
           <a href="service.html" class="btn-outline-white py-2.5 px-5 hover:bg-white/5 transition-colors" style="font-size: 0.7rem;">See Programs</a>
         </div>
 
-        <!-- social proof — NO border-top line -->
+        <!-- social proof -->
         <div class="flex items-center justify-center lg:justify-start gap-3 hero-anim-5">
           <div class="hero-avatars">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
           </div>
           <div>
-            <div class="text-white font-semibold text-base">Trusted by 150+ professionals</div>
-            <div class="flex items-center gap-1 mt-0.5">
-              <span class="text-red-500 text-[0.977rem]">★★★★★</span>
-              <span class="text-white/35 text-[0.943rem]">85% satisfaction</span>
+            <div style="color:#fff;font-weight:600;font-size:0.95rem;white-space:nowrap;">Trusted by 150+ professionals</div>
+            <div style="display:flex;align-items:center;gap:4px;margin-top:3px;">
+              <span style="color:#e74c3c;font-size:0.85rem;letter-spacing:1px;">★★★★★</span>
+              <span style="color:rgba(255,255,255,0.4);font-size:0.8rem;">85% satisfaction</span>
             </div>
           </div>
         </div>
