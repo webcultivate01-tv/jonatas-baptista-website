@@ -627,16 +627,17 @@
       #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
       
       /* Hero section fit to screen */
-      .hero { height: 100vh !important; min-height: 580px; }
+      .hero { height: auto !important; min-height: 100vh; }
       
       /* Hero responsive */
       .hero-photo-circle { width: 170px; height: 170px; }
       .hero-inner { 
-        padding-top: 7.5rem !important; 
-        padding-bottom: 2rem !important; 
+        padding-top: 5.5rem !important; 
+        padding-bottom: 2.5rem !important; 
         flex-direction: column !important;
         gap: 2rem !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
       }
       
       /* Hero eyebrow spacing - reduced for mobile */
@@ -729,7 +730,7 @@
     
     @media (max-width: 480px) {
       /* Extra small screens */
-      .hero { min-height: 520px; }
+      .hero { min-height: 100vh; }
       .hero-photo-circle { width: 150px; height: 150px; }
       
       .hero-left-col h1 {
@@ -937,7 +938,7 @@
 <!-- ============================================================
      HERO
 ============================================================ -->
-<section id="overview" class="hero" style="height:100vh;display:flex;align-items:center;overflow:hidden;">
+<section id="overview" class="hero" style="min-height:100vh;display:flex;align-items:flex-start;overflow:hidden;">
 
   <!-- ambient glow blobs -->
   <div class="absolute inset-0 pointer-events-none" style="background:
@@ -945,7 +946,7 @@
     radial-gradient(ellipse 35% 45% at 10% 25%, rgba(42,95,199,0.09) 0%, transparent 60%),
     radial-gradient(ellipse 60% 30% at 50% 100%, rgba(7,10,16,0.95) 0%, transparent 55%);"></div>
 
-  <div class="relative z-10 w-full mx-auto px-6 lg:px-20 xl:px-32" style="height:100%;display:flex;align-items:center;">
+  <div class="relative z-10 w-full mx-auto px-6 lg:px-20 xl:px-32" style="min-height:100vh;display:flex;align-items:center;">
     <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 hero-inner" style="width:100%;padding-top:6rem;padding-bottom:3rem;">
 
       <!-- ── LEFT ── -->
