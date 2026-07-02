@@ -31,7 +31,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Outfit', sans-serif;
       font-weight: 300;
@@ -60,8 +60,8 @@
       box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35);
       backdrop-filter: blur(12px);
     }
-    .nav-brand { display: flex; align-items: center; gap: 0.2rem; text-decoration: none; }
-    .nav-brand img { height: 66px; width: auto; display: block; }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .nav-brand img { height: 46px; width: auto; display: block; }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
       font-family: 'Outfit', sans-serif;
@@ -74,12 +74,12 @@
       color: rgba(255,255,255,0.45);
       letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
-    @media (max-width: 639px) { 
-      .nav-brand { gap: 0.35rem; }
+    @media (max-width: 639px) {
+      .nav-brand { gap: 0.5rem; }
       .nav-brand-text { display: flex !important; }
-      .nav-brand img { height: 48px; }
-      .nav-brand-name { font-size: 1rem; }
-      .nav-brand-subtitle { font-size: 0.7rem; }
+      .nav-brand img { height: 46px; }
+      .nav-brand-name { font-size: 1.15rem; }
+      .nav-brand-subtitle { font-size: 0.75rem; }
     }
     @media (min-width: 640px) and (max-width: 1023px) { 
       .nav-brand-text { display: flex; }
@@ -165,7 +165,7 @@
     }
     
     .mob-logo-section img {
-      height: 56px; width: auto;
+      height: 40px; width: auto;
       filter: brightness(0);
     }
     
@@ -221,7 +221,7 @@
       flex-shrink: 0;
     }
     .mob-cta-btn {
-      margin-top: auto;
+      margin-top: 0.75rem;
       display: flex; align-items: center; justify-content: center; gap: 0.5rem;
       background: #c0392b; color: #fff;
       padding: 1rem 1.5rem;
@@ -530,9 +530,46 @@
     .process-num {
       font-family: 'Playfair Display', serif;
       font-size: 5.692rem; font-weight: 600; line-height: 1;
-      color: rgba(255,255,255,0.04);
-      position: absolute; top: -0.5rem; left: -0.25rem;
+      color: rgba(255,255,255,0.05);
+      position: absolute; top: -0.75rem; right: 0.5rem;
       pointer-events: none; user-select: none;
+      transition: color .35s ease;
+    }
+
+    /* ===== PROCESS STEPS (CORPORATE) ===== */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .process-card {
+      position: relative;
+      padding: 2.5rem 2.25rem 2.75rem;
+      overflow: hidden;
+    }
+    .process-card:hover .process-num { color: rgba(126,175,255,0.12); }
+    .process-accent {
+      width: 2.25rem; height: 2px; margin-bottom: 1.75rem;
+      transition: width .35s ease;
+    }
+    .process-card:hover .process-accent { width: 3.25rem; }
+    .process-step {
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+      margin-bottom: 0.9rem;
+    }
+    .process-title {
+      font-size: 1.55rem; font-weight: 500; color: #fff;
+      line-height: 1.25; margin-bottom: 1rem;
+    }
+    .process-desc {
+      font-size: 1.12rem; line-height: 1.65; color: rgba(255,255,255,0.62);
+    }
+    @media (max-width: 1023px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 639px) {
+      .process-grid { grid-template-columns: 1fr; }
     }
 
     /* ===== TESTIMONIAL ===== */
@@ -626,8 +663,9 @@
       .nav-inner { padding: 1rem 1rem !important; }
       #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
       
-      /* Hero section fit to screen */
-      .hero { height: 100svh !important; }
+      /* Hero section fit to screen — align-items:flex-start anchors content
+         to the top so it never overlaps the fixed navbar */
+      .hero { height: 100svh !important; align-items: flex-start !important; }
       
       /* Hero responsive */
       .hero-photo-circle { width: 170px; height: 170px; }
@@ -769,19 +807,18 @@
 
     /* ===== PERFORMANCE GAP MOBILE FIXES ===== */
     @media (max-width: 767px) {
-      .gap-section {
+      .gap-split {
         grid-template-columns: 1fr !important;
+        gap: 2.25rem 0 !important;
       }
-      .gap-divider {
-        flex-direction: row !important;
-        padding: 1.25rem 0 !important;
-        justify-content: center;
+      .gap-split > div[data-reveal] {
+        padding: 0 !important;
       }
-      .gap-divider > div:first-child,
-      .gap-divider > div:last-child {
-        flex: none !important;
+      .gap-hairline {
         width: 3rem !important;
         height: 1px !important;
+        justify-self: center;
+        background: rgba(255,255,255,0.14) !important;
       }
     }
 
@@ -796,11 +833,72 @@
       }
     }
 
-    /* ===== PILLARS MOBILE ===== */
+    /* ===== FOUR PILLARS (MINIMAL / CORPORATE) ===== */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .pillar-card {
+      position: relative;
+      background: #fff;
+      padding: 2.75rem 2.25rem;
+      overflow: hidden;
+      transition: background .3s ease;
+    }
+    .pillar-card::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: #c0392b;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .pillar-card:hover { background: #fbf9f7; }
+    .pillar-card:hover::before { transform: scaleX(1); }
+    .pillar-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.4rem;
+    }
+    .pillar-icon {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(192,57,43,0.07); border: 1px solid rgba(192,57,43,0.16);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pillar-icon svg { width: 20px; height: 20px; }
+    .pillar-index {
+      font-size: 1.2rem; font-weight: 600; letter-spacing: 0.08em;
+      color: rgba(192,57,43,0.45); line-height: 1;
+    }
+    .pillar-title {
+      font-size: 1.55rem; font-weight: 500; color: #1a1a1a;
+      line-height: 1.25; margin-bottom: 0.75rem;
+    }
+    .pillar-desc {
+      font-size: 1.12rem; line-height: 1.6; color: #5a5a5a;
+      margin-bottom: 1.35rem;
+    }
+    .pillar-list {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+    .pillar-list li {
+      display: flex; align-items: flex-start; gap: 0.55rem;
+      font-size: 1.04rem; line-height: 1.5; color: #6e6e6e;
+    }
+    .pillar-list li::before {
+      content: "\2713"; color: #c0392b; font-weight: 700;
+      font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem;
+    }
+
+    /* ===== PILLARS RESPONSIVE ===== */
+    @media (max-width: 1023px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
     @media (max-width: 767px) {
-      .pillars-grid {
-        grid-template-columns: 1fr !important;
-      }
+      .pillars-grid { grid-template-columns: 1fr !important; }
+      .pillar-card { padding: 2.1rem 1.8rem !important; }
       .pillars-cta {
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -826,6 +924,83 @@
     .d4 { transition-delay: 0.28s !important; }
     .d5 { transition-delay: 0.36s !important; }
     .d6 { transition-delay: 0.44s !important; }
+
+    /* ===== HERO — PREMIUM ENHANCEMENTS ===== */
+    /* faint engineering grid, masked to fade at the edges */
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: radial-gradient(ellipse 78% 68% at 62% 42%, #000 18%, transparent 80%);
+              mask-image: radial-gradient(ellipse 78% 68% at 62% 42%, #000 18%, transparent 80%);
+    }
+    /* hairline of colour along the very top of the hero */
+    .hero-topline {
+      position: absolute; top: 0; left: 0; right: 0; height: 1px; z-index: 1;
+      background: linear-gradient(90deg, transparent, rgba(192,57,43,0.55), transparent);
+    }
+
+    /* refined eyebrow pill */
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(192,57,43,0.08);
+      border: 1px solid rgba(192,57,43,0.28);
+      border-radius: 999px;
+      padding: 0.5rem 1.1rem;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+
+    /* benefit chips */
+    .hero-benefit {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.45rem 0.95rem 0.45rem 0.55rem;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.62); font-weight: 500;
+      transition: border-color .25s, background .25s, transform .25s;
+    }
+    .hero-benefit:hover {
+      border-color: rgba(192,57,43,0.4);
+      background: rgba(192,57,43,0.07);
+      transform: translateY(-2px);
+    }
+    .hero-benefit .chk {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(192,57,43,0.16); color: #e74c3c;
+    }
+
+    /* decorative rings around the portrait */
+    .hero-ring {
+      position: absolute; top: 50%; left: 50%; border-radius: 50%;
+      transform: translate(-50%,-50%); pointer-events: none; z-index: 5;
+    }
+    .hero-ring-dashed {
+      width: calc(100% + 64px); height: calc(100% + 64px);
+      border: 1px dashed rgba(192,57,43,0.3);
+      animation: hero-spin 48s linear infinite;
+    }
+    .hero-ring-solid {
+      width: calc(100% + 28px); height: calc(100% + 28px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    @keyframes hero-spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+    /* glass stats bar under the portrait */
+    .hero-stats {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 0.9rem 1.6rem;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    @media (max-width: 767px) {
+      .hero-ring-dashed { display: none; }
+      .hero-stats { width: 100%; padding: 0.75rem 1rem; border-radius: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -913,6 +1088,12 @@
 ============================================================ -->
 <section id="overview" class="hero" style="min-height:100vh;display:flex;align-items:center;overflow:hidden;position:relative;">
 
+  <!-- top hairline accent -->
+  <div class="hero-topline"></div>
+
+  <!-- faint engineering grid -->
+  <div class="hero-grid"></div>
+
   <!-- ambient glow blobs -->
   <div class="absolute inset-0 pointer-events-none" style="background:
     radial-gradient(ellipse 50% 60% at 78% 50%, rgba(192,57,43,0.13) 0%, transparent 65%),
@@ -926,10 +1107,10 @@
       <div class="flex-1 text-center lg:text-left lg:pr-16 xl:pr-24 hero-left-col">
 
         <!-- eyebrow -->
-        <div class="inline-flex items-center gap-2 bg-red-900/20 border border-red-700/30 px-3 py-1.5 mb-6 hero-anim-1">
+        <!-- <div class="hero-eyebrow mb-6 hero-anim-1">
           <div class="live-dot"></div>
           <span class="text-red-400 font-semibold tracking-widest uppercase text-[0.897rem]">Real Estate Coach</span>
-        </div>
+        </div> -->
 
         <!-- headline -->
         <h1 class="serif mb-4 hero-anim-2" style="font-size:clamp(2rem,4.5vw,3.163rem);line-height:1.35;font-weight:500;letter-spacing:0.01em;">
@@ -947,10 +1128,10 @@
         </p>
 
         <!-- benefit checks -->
-        <div class="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 mb-7 hero-anim-3">
-          <span class="flex items-center gap-1.5 text-white/55 font-medium text-[1.035rem]"><span class="text-red-500 font-bold">✓</span>Attract Qualified Buyers & Sellers</span>
-          <span class="flex items-center gap-1.5 text-white/55 font-medium text-[1.035rem]"><span class="text-red-500 font-bold">✓</span>Close Higher Commission Deals</span>
-          <span class="flex items-center gap-1.5 text-white/55 font-medium text-[1.035rem]"><span class="text-red-500 font-bold">✓</span>Build a Consistent Lead Pipeline</span>
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2.5 mb-7 hero-anim-3">
+          <span class="hero-benefit text-[0.95rem]"><span class="chk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>Attract Qualified Buyers &amp; Sellers</span>
+          <span class="hero-benefit text-[0.95rem]"><span class="chk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>Close Higher Commission Deals</span>
+          <span class="hero-benefit text-[0.95rem]"><span class="chk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>Build a Consistent Lead Pipeline</span>
         </div>
 
         <!-- CTAs -->
@@ -988,13 +1169,17 @@
         <!-- glow blob behind photo -->
         <div class="hero-circle-glow"></div>
 
-        <!-- circle image -->
-        <div class="hero-photo-circle relative z-10">
-          <img src="image/jb.jpg" alt="Jonatas Baptista — Real Estate Coach" />
+        <!-- circle image with decorative rings -->
+        <div class="relative flex items-center justify-center">
+          <div class="hero-ring hero-ring-dashed"></div>
+          <div class="hero-ring hero-ring-solid"></div>
+          <div class="hero-photo-circle relative z-10">
+            <img src="image/jb.jpg" alt="Jonatas Baptista — Real Estate Coach" />
+          </div>
         </div>
 
         <!-- stats row under circle -->
-        <div class="flex items-center gap-5 mt-7 hero-anim-5">
+        <div class="hero-stats flex items-center gap-5 mt-8 hero-anim-5">
           <div class="text-center">
             <div class="serif text-xl font-bold text-white leading-none">150+</div>
             <div class="text-white/40 tracking-widest uppercase mt-1" style="font-size: 0.75rem;">Clients</div>
@@ -1111,118 +1296,103 @@
 </section>
 
 <!-- ============================================================
-     THE PERFORMANCE GAP  (DARK — PREMIUM)
+     THE PERFORMANCE GAP  (DARK — EDITORIAL)
 ============================================================ -->
-<section style="background:#0a0d14;position:relative;overflow:hidden;padding:6rem 1.5rem;">
+<section style="background:#0a0d14;position:relative;overflow:hidden;padding:5rem 1.5rem;">
 
   <!-- ambient background glows -->
   <div style="position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(ellipse 55% 50% at 20% 50%, rgba(192,57,43,0.07) 0%, transparent 65%),
-               radial-gradient(ellipse 55% 50% at 80% 50%, rgba(42,95,199,0.07) 0%, transparent 65%);"></div>
+    background:radial-gradient(ellipse 55% 50% at 20% 45%, rgba(192,57,43,0.06) 0%, transparent 62%),
+               radial-gradient(ellipse 55% 50% at 80% 55%, rgba(42,95,199,0.06) 0%, transparent 62%);"></div>
 
-  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+  <div style="max-width:1080px;margin:0 auto;position:relative;z-index:1;">
 
-    <!-- Eyebrow -->
-    <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1.5rem;" data-reveal="up">
-      <span style="width:2rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
-      <span style="font-size:0.987rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#c0392b;">The Performance Gap</span>
-      <span style="width:2rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
-    </div>
-
-    <!-- Heading -->
-    <h2 class="serif" style="text-align:center;font-size:clamp(2.34rem,5.06vw,3.795rem);font-weight:400;line-height:1.2;color:#fff;margin-bottom:1.25rem;" data-reveal="up">
-      The Gap Between Where You Are<br />
-      <em style="color:rgba(255,255,255,0.5);">and Where You Want to Be</em><br />
-      Is Smaller Than You Think.
-    </h2>
-
-    <!-- Accent line -->
-    <div style="width:3rem;height:2px;background:#c0392b;margin:0 auto 2rem;" data-reveal="up"></div>
-
-    <!-- Intro -->
-    <p style="text-align:center;max-width:640px;margin:0 auto 4rem;font-size:1.329rem;line-height:1.75;color:rgba(255,255,255,0.5);" data-reveal="up">
-      Most agents don't need to work harder. They need to identify exactly which ceiling they've hit — and build the system to break through it.
-    </p>
-
-    <!-- Two agent type cards -->
-    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin-bottom:3.5rem;" class="gap-section">
-
-      <!-- Card A: €3k–€5k -->
-      <div data-reveal="left" style="background:#13181f;border:1px solid rgba(255,255,255,0.07);padding:2.5rem;position:relative;overflow:hidden;">
-        <!-- top accent -->
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c0392b,transparent);"></div>
-        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);padding:0.4rem 0.9rem;margin-bottom:1.75rem;">
-          <span style="font-size:0.911rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c0392b;">Agent Type A</span>
-        </div>
-        <div class="serif" style="font-size:3.478rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.35rem;">€3k – €5k</div>
-        <div style="font-size:1.012rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1.75rem;font-weight:500;">Per Month</div>
-        <div style="width:2rem;height:1.5px;background:rgba(192,57,43,0.4);margin-bottom:1.5rem;"></div>
-        <p style="font-size:1.265rem;line-height:1.7;color:rgba(255,255,255,0.55);margin-bottom:1.5rem;">Working harder every month. Always busy, rarely predictable. Relying on the next referral, the next cold call, the next lucky break.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;">
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
-            <span style="color:#c0392b;font-size:1.265rem;line-height:1.6;flex-shrink:0;">—</span>
-            <span style="font-size:1.201rem;color:rgba(255,255,255,0.45);line-height:1.6;">Inconsistent monthly income</span>
-          </li>
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
-            <span style="color:#c0392b;font-size:1.265rem;line-height:1.6;flex-shrink:0;">—</span>
-            <span style="font-size:1.201rem;color:rgba(255,255,255,0.45);line-height:1.6;">No repeatable lead system</span>
-          </li>
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
-            <span style="color:#c0392b;font-size:1.265rem;line-height:1.6;flex-shrink:0;">—</span>
-            <span style="font-size:1.201rem;color:rgba(255,255,255,0.45);line-height:1.6;">Trading time for every euro earned</span>
-          </li>
-        </ul>
+    <!-- Header row -->
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <!-- Eyebrow -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1.1rem;" data-reveal="up">
+        <span style="width:1.75rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
+        <span style="font-size:0.9rem;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:#c0392b;">The Performance Gap</span>
+        <span style="width:1.75rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
       </div>
 
-      <!-- Centre divider -->
-      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 2rem;" class="gap-divider">
-        <div style="flex:1;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.1),transparent);"></div>
-        <div style="width:52px;height:52px;border-radius:50%;background:#0a0d14;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin:1rem 0;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-        <div style="flex:1;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.1),transparent);"></div>
-      </div>
+      <!-- Heading (compact) -->
+      <h2 class="serif" style="font-size:clamp(1.85rem,3.6vw,2.75rem);font-weight:400;line-height:1.25;color:#fff;margin:0 auto 1.1rem;max-width:760px;" data-reveal="up">
+        The Gap Between Where You Are and <em style="color:rgba(255,255,255,0.5);">Where You Want to Be</em> Is Smaller Than You Think.
+      </h2>
 
-      <!-- Card B: €10k+ -->
-      <div data-reveal="right" style="background:#13181f;border:1px solid rgba(255,255,255,0.07);padding:2.5rem;position:relative;overflow:hidden;">
-        <!-- top accent -->
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2a5fc7,transparent);"></div>
-        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(42,95,199,0.1);border:1px solid rgba(42,95,199,0.25);padding:0.4rem 0.9rem;margin-bottom:1.75rem;">
-          <span style="font-size:0.911rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#3b76e8;">Agent Type B</span>
-        </div>
-        <div class="serif" style="font-size:3.478rem;font-weight:600;color:#3b76e8;line-height:1;margin-bottom:0.35rem;">€10k+</div>
-        <div style="font-size:1.012rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1.75rem;font-weight:500;">Per Month</div>
-        <div style="width:2rem;height:1.5px;background:rgba(42,95,199,0.4);margin-bottom:1.5rem;"></div>
-        <p style="font-size:1.265rem;line-height:1.7;color:rgba(255,255,255,0.55);margin-bottom:1.5rem;">Making money — but trapped inside the business. Every deal still requires them personally. Can't scale. Can't step back. Growth has stalled.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;">
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
-            <span style="color:#3b76e8;font-size:1.265rem;line-height:1.6;flex-shrink:0;">—</span>
-            <span style="font-size:1.201rem;color:rgba(255,255,255,0.45);line-height:1.6;">Ceiling hit — can't grow further alone</span>
-          </li>
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
-            <span style="color:#3b76e8;font-size:1.265rem;line-height:1.6;flex-shrink:0;">—</span>
-            <span style="font-size:1.201rem;color:rgba(255,255,255,0.45);line-height:1.6;">Business depends entirely on presence</span>
-          </li>
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
-            <span style="color:#3b76e8;font-size:1.265rem;line-height:1.6;flex-shrink:0;">—</span>
-            <span style="font-size:1.201rem;color:rgba(255,255,255,0.45);line-height:1.6;">No leverage, no system, no exit</span>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-
-    <!-- Bottom insight block -->
-    <div style="background:#161b25;border:1px solid rgba(255,255,255,0.08);border-top:3px solid #c0392b;padding:2.5rem 2.75rem;max-width:780px;margin:0 auto;text-align:center;position:relative;" data-reveal="up">
-      <div class="serif" style="font-size:0.911rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#c0392b;margin-bottom:1.25rem;">The Real Problem</div>
-      <p class="serif" style="font-size:clamp(1.518rem,3.163vw,2.087rem);font-weight:400;line-height:1.5;color:#fff;margin-bottom:1rem;">
-        Both have the same problem:<br />
-        <em style="color:rgba(255,255,255,0.5);">They've reached the limit of their current systems.</em>
+      <!-- Intro -->
+      <p style="max-width:600px;margin:0 auto;font-size:1.265rem;line-height:1.7;color:rgba(255,255,255,0.5);" data-reveal="up">
+        Most agents don't need to work harder. They need to identify exactly which ceiling they've hit — and build the system to break through it.
       </p>
-      <div style="width:3rem;height:1.5px;background:rgba(255,255,255,0.15);margin:1.25rem auto 1.5rem;"></div>
-      <p style="font-size:1.265rem;line-height:1.7;color:rgba(255,255,255,0.45);max-width:560px;margin:0 auto 2rem;">The solution isn't more effort. It's a smarter system — one built around your specific stage, market, and goals.</p>
+    </div>
+
+    <!-- Two agent types — open editorial split -->
+    <div class="gap-split" style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0;align-items:start;margin-bottom:3rem;">
+
+      <!-- Type A: €3k–€5k -->
+      <div data-reveal="left" style="padding:0 2.75rem;position:relative;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:0.35rem;">
+          <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#c0392b;">Agent Type A</span>
+          <span style="font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-weight:500;">Per Month</span>
+        </div>
+        <div class="serif" style="font-size:clamp(2.6rem,5vw,3.4rem);font-weight:600;color:#c0392b;line-height:1;margin-bottom:1.25rem;">€3k – €5k</div>
+        <p style="font-size:1.201rem;line-height:1.7;color:rgba(255,255,255,0.55);margin-bottom:1.5rem;">Working harder every month. Always busy, rarely predictable. Relying on the next referral, the next cold call, the next lucky break.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.7rem;">
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="color:#c0392b;font-size:1.201rem;line-height:1.6;flex-shrink:0;">—</span>
+            <span style="font-size:1.13rem;color:rgba(255,255,255,0.45);line-height:1.6;">Inconsistent monthly income</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="color:#c0392b;font-size:1.201rem;line-height:1.6;flex-shrink:0;">—</span>
+            <span style="font-size:1.13rem;color:rgba(255,255,255,0.45);line-height:1.6;">No repeatable lead system</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="color:#c0392b;font-size:1.201rem;line-height:1.6;flex-shrink:0;">—</span>
+            <span style="font-size:1.13rem;color:rgba(255,255,255,0.45);line-height:1.6;">Trading time for every euro earned</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Hairline divider -->
+      <div class="gap-hairline" style="align-self:stretch;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.12),transparent);"></div>
+
+      <!-- Type B: €10k+ -->
+      <div data-reveal="right" style="padding:0 2.75rem;position:relative;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:0.35rem;">
+          <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#3b76e8;">Agent Type B</span>
+          <span style="font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-weight:500;">Per Month</span>
+        </div>
+        <div class="serif" style="font-size:clamp(2.6rem,5vw,3.4rem);font-weight:600;color:#3b76e8;line-height:1;margin-bottom:1.25rem;">€10k+</div>
+        <p style="font-size:1.201rem;line-height:1.7;color:rgba(255,255,255,0.55);margin-bottom:1.5rem;">Making money — but trapped inside the business. Every deal still requires them personally. Can't scale. Can't step back. Growth has stalled.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.7rem;">
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="color:#3b76e8;font-size:1.201rem;line-height:1.6;flex-shrink:0;">—</span>
+            <span style="font-size:1.13rem;color:rgba(255,255,255,0.45);line-height:1.6;">Ceiling hit — can't grow further alone</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="color:#3b76e8;font-size:1.201rem;line-height:1.6;flex-shrink:0;">—</span>
+            <span style="font-size:1.13rem;color:rgba(255,255,255,0.45);line-height:1.6;">Business depends entirely on presence</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="color:#3b76e8;font-size:1.201rem;line-height:1.6;flex-shrink:0;">—</span>
+            <span style="font-size:1.13rem;color:rgba(255,255,255,0.45);line-height:1.6;">No leverage, no system, no exit</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom insight — clean centered statement -->
+    <div style="max-width:720px;margin:0 auto;text-align:center;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.08);" data-reveal="up">
+      <div class="serif" style="font-size:0.82rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#c0392b;margin-bottom:1.1rem;">The Real Problem</div>
+      <p class="serif" style="font-size:clamp(1.4rem,3vw,1.85rem);font-weight:400;line-height:1.5;color:#fff;margin-bottom:0.9rem;">
+        Both have the same problem:
+        <em style="color:rgba(255,255,255,0.5);">they've reached the limit of their current systems.</em>
+      </p>
+      <p style="font-size:1.201rem;line-height:1.7;color:rgba(255,255,255,0.45);max-width:540px;margin:0 auto 2rem;">The solution isn't more effort. It's a smarter system — one built around your specific stage, market, and goals.</p>
       <a href="contact.html"
-         style="display:inline-flex;align-items:center;gap:0.6rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:1.037rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;transition:background .2s,transform .2s;"
+         style="display:inline-flex;align-items:center;gap:0.6rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0.85rem 1.9rem;text-decoration:none;transition:background .2s,transform .2s;"
          onmouseover="this.style.background='#e74c3c';this.style.transform='translateY(-2px)'"
          onmouseout="this.style.background='#c0392b';this.style.transform=''">
         Let's Build Your System
@@ -1236,120 +1406,120 @@
 <!-- ============================================================
      THE TRANSFORMATION  (LIGHT)
 ============================================================ -->
-<section style="background:#f4f3ef;position:relative;overflow:hidden;padding:6rem 1.5rem 7rem;">
+<section style="background:#f4f3ef;position:relative;overflow:hidden;padding:5rem 1.5rem;">
 
   <!-- subtle decorative top border -->
-  <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c0392b 0%,#e74c3c 40%,transparent 100%);"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(192,57,43,0.3),transparent);"></div>
 
-  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+  <div style="max-width:1080px;margin:0 auto;position:relative;z-index:1;">
 
-    <!-- Eyebrow -->
-    <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1.5rem;" data-reveal="up">
-      <span style="width:2rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
-      <span style="font-size:0.987rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#c0392b;">The Transformation</span>
-      <span style="width:2rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
+    <!-- Header row -->
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <!-- Eyebrow -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1.1rem;" data-reveal="up">
+        <span style="width:1.75rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
+        <span style="font-size:0.9rem;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:#c0392b;">The Transformation</span>
+        <span style="width:1.75rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
+      </div>
+
+      <!-- Heading (compact) -->
+      <h2 class="serif" style="font-size:clamp(1.85rem,3.6vw,2.75rem);font-weight:400;line-height:1.25;color:#1a1a1a;margin:0 auto 1.1rem;max-width:680px;" data-reveal="up">
+        Imagine a Business That <em style="color:#c0392b;">Doesn't Depend on Hustle.</em>
+      </h2>
+      <p style="max-width:580px;margin:0 auto;font-size:1.265rem;line-height:1.7;color:#5a5a5a;" data-reveal="up">
+        This is what becomes possible when you stop improvising and start operating with a proven system.
+      </p>
     </div>
-
-    <!-- Heading -->
-    <h2 class="serif" style="text-align:center;font-size:clamp(2.53rem,5.692vw,4.048rem);font-weight:400;line-height:1.2;color:#1a1a1a;margin-bottom:1rem;" data-reveal="up">
-      Imagine a Business That<br /><em style="color:#c0392b;">Doesn't Depend on Hustle.</em>
-    </h2>
-    <div style="width:3rem;height:2px;background:#c0392b;margin:0 auto 1.5rem;" data-reveal="up"></div>
-    <p style="text-align:center;max-width:580px;margin:0 auto 4.5rem;font-size:1.329rem;line-height:1.75;color:#5a5a5a;" data-reveal="up">
-      This is what becomes possible when you stop improvising and start operating with a proven system.
-    </p>
 
     <!-- Before / After comparison -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;" class="transform-grid" data-reveal="up">
 
       <!-- LEFT: Today -->
-      <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-right:none;padding:2.75rem 2.5rem;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:#e8e8e8;"></div>
-        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:#fdf2f2;border:1px solid #f5c6c6;padding:0.4rem 1rem;margin-bottom:2rem;">
-          <span style="width:8px;height:8px;border-radius:50%;background:#e74c3c;display:inline-block;"></span>
-          <span style="font-size:0.911rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c0392b;">Today — Without a System</span>
+      <div style="background:#fbfaf8;border:1px solid rgba(0,0,0,0.08);border-right:none;padding:2.5rem 2.25rem;position:relative;overflow:hidden;">
+        <div style="display:inline-flex;align-items:center;gap:0.55rem;margin-bottom:1.75rem;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#c0392b;display:inline-block;"></span>
+          <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c0392b;">Today — Without a System</span>
         </div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:1.25rem;">
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">❌</span>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:1.1rem;">
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.22);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Unpredictable income</div>
-              <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.5;">Every month feels like starting over.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.15rem;">Unpredictable income</div>
+              <div style="font-size:1.09rem;color:#8a8a8a;line-height:1.5;">Every month feels like starting over.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">❌</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.22);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Chasing leads</div>
-              <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.5;">Burning energy on the wrong prospects.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.15rem;">Chasing leads</div>
+              <div style="font-size:1.09rem;color:#8a8a8a;line-height:1.5;">Burning energy on the wrong prospects.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">❌</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.22);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Constant stress</div>
-              <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.5;">No clarity, no structure, no breathing room.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.15rem;">Constant stress</div>
+              <div style="font-size:1.09rem;color:#8a8a8a;line-height:1.5;">No clarity, no structure, no breathing room.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">❌</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.22);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Low conversions</div>
-              <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.5;">Meetings that go nowhere. Deals that slip away.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.15rem;">Low conversions</div>
+              <div style="font-size:1.09rem;color:#8a8a8a;line-height:1.5;">Meetings that go nowhere. Deals that slip away.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">❌</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.22);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">No systems</div>
-              <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.5;">Everything depends on you, all the time.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.15rem;">No systems</div>
+              <div style="font-size:1.09rem;color:#8a8a8a;line-height:1.5;">Everything depends on you, all the time.</div>
             </div>
           </li>
         </ul>
       </div>
 
       <!-- RIGHT: After Coaching -->
-      <div style="background:#1a1a1a;border:1px solid rgba(0,0,0,0.08);padding:2.75rem 2.5rem;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:#c0392b;"></div>
+      <div style="background:#12151c;border:1px solid rgba(0,0,0,0.08);padding:2.5rem 2.25rem;position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c0392b,#e74c3c,transparent);"></div>
-        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);padding:0.4rem 1rem;margin-bottom:2rem;">
-          <span style="width:8px;height:8px;border-radius:50%;background:#c0392b;display:inline-block;animation:live-pulse 2s ease infinite;"></span>
-          <span style="font-size:0.911rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#e87c6e;">After Coaching — With a System</span>
+        <div style="display:inline-flex;align-items:center;gap:0.55rem;margin-bottom:1.75rem;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#c0392b;display:inline-block;animation:live-pulse 2s ease infinite;"></span>
+          <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#e87c6e;">After Coaching — With a System</span>
         </div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:1.25rem;">
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">✅</span>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:1.1rem;">
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.18);border:1px solid rgba(192,57,43,0.45);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f0a89d" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#fff;margin-bottom:0.2rem;">Predictable pipeline</div>
-              <div style="font-size:1.113rem;color:rgba(255,255,255,0.45);line-height:1.5;">Qualified leads arriving consistently, every week.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#fff;margin-bottom:0.15rem;">Predictable pipeline</div>
+              <div style="font-size:1.09rem;color:rgba(255,255,255,0.5);line-height:1.5;">Qualified leads arriving consistently, every week.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">✅</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.18);border:1px solid rgba(192,57,43,0.45);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f0a89d" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#fff;margin-bottom:0.2rem;">Premium clients</div>
-              <div style="font-size:1.113rem;color:rgba(255,255,255,0.45);line-height:1.5;">Attracting serious buyers, sellers &amp; investors who value your expertise.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#fff;margin-bottom:0.15rem;">Premium clients</div>
+              <div style="font-size:1.09rem;color:rgba(255,255,255,0.5);line-height:1.5;">Attracting serious buyers, sellers &amp; investors who value your expertise.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">✅</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.18);border:1px solid rgba(192,57,43,0.45);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f0a89d" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#fff;margin-bottom:0.2rem;">Higher commissions</div>
-              <div style="font-size:1.113rem;color:rgba(255,255,255,0.45);line-height:1.5;">Closing bigger deals with confidence and less friction.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#fff;margin-bottom:0.15rem;">Higher commissions</div>
+              <div style="font-size:1.09rem;color:rgba(255,255,255,0.5);line-height:1.5;">Closing bigger deals with confidence and less friction.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">✅</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.18);border:1px solid rgba(192,57,43,0.45);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f0a89d" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#fff;margin-bottom:0.2rem;">Better work-life balance</div>
-              <div style="font-size:1.113rem;color:rgba(255,255,255,0.45);line-height:1.5;">Working smarter, protecting your time and energy.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#fff;margin-bottom:0.15rem;">Better work-life balance</div>
+              <div style="font-size:1.09rem;color:rgba(255,255,255,0.5);line-height:1.5;">Working smarter, protecting your time and energy.</div>
             </div>
           </li>
-          <li style="display:flex;align-items:flex-start;gap:1rem;">
-            <span style="font-size:1.454rem;line-height:1;flex-shrink:0;margin-top:0.15rem;">✅</span>
+          <li style="display:flex;align-items:flex-start;gap:0.85rem;">
+            <span style="flex-shrink:0;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(192,57,43,0.18);border:1px solid rgba(192,57,43,0.45);display:flex;align-items:center;justify-content:center;margin-top:0.15rem;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f0a89d" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
             <div>
-              <div style="font-size:1.265rem;font-weight:600;color:#fff;margin-bottom:0.2rem;">Repeatable business systems</div>
-              <div style="font-size:1.113rem;color:rgba(255,255,255,0.45);line-height:1.5;">Your business runs with or without you in the room.</div>
+              <div style="font-size:1.201rem;font-weight:600;color:#fff;margin-bottom:0.15rem;">Repeatable business systems</div>
+              <div style="font-size:1.09rem;color:rgba(255,255,255,0.5);line-height:1.5;">Your business runs with or without you in the room.</div>
             </div>
           </li>
         </ul>
@@ -1358,7 +1528,7 @@
     </div>
 
     <!-- CTA -->
-    <div style="text-align:center;margin-top:3rem;" data-reveal="up">
+    <div style="text-align:center;margin-top:2.75rem;" data-reveal="up">
       <p style="font-size:1.265rem;color:#7a7a7a;margin-bottom:1.25rem;">Ready to move from the left column to the right?</p>
       <a href="contact.html"
          style="display:inline-flex;align-items:center;gap:0.6rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:1.075rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:1rem 2.25rem;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;border:2px solid #c0392b;"
@@ -1377,7 +1547,7 @@
 ============================================================ -->
 <section class="py-24 lg:py-32 px-6 lg:px-12" style="background:#f8f6f3;position:relative;overflow:hidden;">
 
-  <div class="max-w-5xl mx-auto">
+  <div class="max-w-7xl mx-auto">
 
     <!-- Eyebrow -->
     <div class="flex items-center justify-center gap-3 mb-10" data-reveal="up">
@@ -1388,7 +1558,7 @@
 
     <!-- Heading -->
     <h2 class="serif text-center mb-6" style="font-size:clamp(2.404rem,5.06vw,3.795rem);line-height:1.2;color:#1a1a1a;font-weight:400;" data-reveal="up">
-      The Four Pillars of<br /><em style="color:#c0392b;">Sustainable Growth.</em>
+      The Four Pillars of <em style="color:#c0392b;">Sustainable Growth.</em>
     </h2>
     <div class="mx-auto mb-10" style="width:3rem;height:2px;background:#c0392b;" data-reveal="up"></div>
     <p class="text-center max-w-2xl mx-auto mb-14 leading-relaxed" style="color:#5a5a5a;font-size:1.329rem;" data-reveal="up">
@@ -1396,124 +1566,89 @@
     </p>
 
     <!-- Pillar cards -->
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:3.5rem;margin-top:0;" class="pillars-grid">
+    <div class="pillars-grid" style="margin-bottom:3.5rem;">
 
       <!-- Pillar 1: Client Acquisition -->
-      <div class="pillar-card" data-reveal="left" style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:2.75rem;position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s;cursor:default;"
-           onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.1)';"
-           onmouseout="this.style.transform='';this.style.boxShadow='';">
-        <!-- top accent bar -->
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c0392b,transparent);"></div>
-        <!-- large background number -->
-        <div class="serif" style="position:absolute;top:-0.75rem;right:1.5rem;font-size:6.6rem;font-weight:700;color:rgba(192,57,43,0.06);line-height:1;pointer-events:none;user-select:none;">01</div>
-        <!-- icon -->
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.18);display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.7">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
-          </svg>
+      <article class="pillar-card" data-reveal="up">
+        <div class="pillar-top">
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.6">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </span>
+          <span class="serif pillar-index">01</span>
         </div>
-        <div style="font-size:0.911rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c0392b;margin-bottom:0.6rem;">Pillar One</div>
-        <h3 class="serif" style="font-size:1.96rem;font-weight:500;color:#1a1a1a;margin-bottom:0.85rem;line-height:1.25;">Client Acquisition</h3>
-        <p style="font-size:1.24rem;line-height:1.75;color:#5a5a5a;margin-bottom:1.5rem;">Build a predictable flow of qualified opportunities so you’re never dependent on referrals or cold outreach again.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#c0392b;flex-shrink:0;"></span>Targeted lead generation strategy
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#c0392b;flex-shrink:0;"></span>Ideal client positioning &amp; messaging
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#c0392b;flex-shrink:0;"></span>Consistent inbound pipeline
-          </li>
+        <h3 class="serif pillar-title">Client Acquisition</h3>
+        <p class="pillar-desc">A predictable flow of qualified opportunities — never dependent on referrals or cold outreach again.</p>
+        <ul class="pillar-list">
+          <li>Targeted lead generation strategy</li>
+          <li>Ideal client positioning &amp; messaging</li>
+          <li>Consistent inbound pipeline</li>
         </ul>
-      </div>
+      </article>
 
       <!-- Pillar 2: Sales & Conversion -->
-      <div class="pillar-card" data-reveal="right" style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:2.75rem;position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s;cursor:default;"
-           onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.1)';"
-           onmouseout="this.style.transform='';this.style.boxShadow='';">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2a5fc7,transparent);"></div>
-        <div class="serif" style="position:absolute;top:-0.75rem;right:1.5rem;font-size:6.6rem;font-weight:700;color:rgba(42,95,199,0.06);line-height:1;pointer-events:none;user-select:none;">02</div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(42,95,199,0.08);border:1px solid rgba(42,95,199,0.18);display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2a5fc7" stroke-width="1.7">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
+      <article class="pillar-card" data-reveal="up">
+        <div class="pillar-top">
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.6">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </span>
+          <span class="serif pillar-index">02</span>
         </div>
-        <div style="font-size:0.911rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#2a5fc7;margin-bottom:0.6rem;">Pillar Two</div>
-        <h3 class="serif" style="font-size:1.96rem;font-weight:500;color:#1a1a1a;margin-bottom:0.85rem;line-height:1.25;">Sales &amp; Conversion</h3>
-        <p style="font-size:1.24rem;line-height:1.75;color:#5a5a5a;margin-bottom:1.5rem;">Turn conversations into confident decisions. Learn how to lead high-value clients through the process without pressure or scripts.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#2a5fc7;flex-shrink:0;"></span>Consultative selling framework
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#2a5fc7;flex-shrink:0;"></span>Objection handling &amp; follow-up
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#2a5fc7;flex-shrink:0;"></span>Higher close rate, lower effort
-          </li>
+        <h3 class="serif pillar-title">Sales &amp; Conversion</h3>
+        <p class="pillar-desc">Turn conversations into confident decisions and lead high-value clients through the process without pressure or scripts.</p>
+        <ul class="pillar-list">
+          <li>Consultative selling framework</li>
+          <li>Objection handling &amp; follow-up</li>
+          <li>Higher close rate, lower effort</li>
         </ul>
-      </div>
+      </article>
 
       <!-- Pillar 3: Performance Systems -->
-      <div class="pillar-card" data-reveal="left" style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:2.75rem;position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s;cursor:default;"
-           onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.1)';"
-           onmouseout="this.style.transform='';this.style.boxShadow='';">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c0392b,transparent);"></div>
-        <div class="serif" style="position:absolute;top:-0.75rem;right:1.5rem;font-size:6.6rem;font-weight:700;color:rgba(192,57,43,0.06);line-height:1;pointer-events:none;user-select:none;">03</div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.18);display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.7">
-            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-          </svg>
+      <article class="pillar-card" data-reveal="up">
+        <div class="pillar-top">
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.6">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </span>
+          <span class="serif pillar-index">03</span>
         </div>
-        <div style="font-size:0.911rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#c0392b;margin-bottom:0.6rem;">Pillar Three</div>
-        <h3 class="serif" style="font-size:1.96rem;font-weight:500;color:#1a1a1a;margin-bottom:0.85rem;line-height:1.25;">Performance Systems</h3>
-        <p style="font-size:1.24rem;line-height:1.75;color:#5a5a5a;margin-bottom:1.5rem;">Create repeatable processes that reduce overwhelm, protect your time, and let your business run with consistency — not chaos.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#c0392b;flex-shrink:0;"></span>Daily operating structure
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#c0392b;flex-shrink:0;"></span>CRM &amp; pipeline management
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:#7a7a7a;">
-            <span style="width:5px;height:5px;border-radius:50%;background:#c0392b;flex-shrink:0;"></span>Scalable business architecture
-          </li>
+        <h3 class="serif pillar-title">Performance Systems</h3>
+        <p class="pillar-desc">Repeatable processes that reduce overwhelm, protect your time, and let your business run with consistency — not chaos.</p>
+        <ul class="pillar-list">
+          <li>Daily operating structure</li>
+          <li>CRM &amp; pipeline management</li>
+          <li>Scalable business architecture</li>
         </ul>
-      </div>
+      </article>
 
       <!-- Pillar 4: AI & Automation -->
-      <div class="pillar-card" data-reveal="right" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);padding:2.75rem;position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s;cursor:default;"
-           onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.25)';"
-           onmouseout="this.style.transform='';this.style.boxShadow='';">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c0392b,#e74c3c,transparent);"></div>
-        <div class="serif" style="position:absolute;top:-0.75rem;right:1.5rem;font-size:6.6rem;font-weight:700;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;user-select:none;">04</div>
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e87c6e" stroke-width="1.7">
-            <path d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2V4a2 2 0 012-2z"/>
-            <path d="M12 16a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2v-2a2 2 0 012-2z"/>
-            <path d="M2 12a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2H4a2 2 0 01-2-2z"/>
-            <path d="M16 12a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-            <path d="M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-          </svg>
+      <article class="pillar-card" data-reveal="up">
+        <div class="pillar-top">
+          <span class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.6">
+              <path d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2V4a2 2 0 012-2z"/>
+              <path d="M12 16a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2v-2a2 2 0 012-2z"/>
+              <path d="M2 12a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2H4a2 2 0 01-2-2z"/>
+              <path d="M16 12a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              <path d="M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          </span>
+          <span class="serif pillar-index">04</span>
         </div>
-        <div style="font-size:0.911rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#e87c6e;margin-bottom:0.6rem;">Pillar Four</div>
-        <h3 class="serif" style="font-size:1.96rem;font-weight:500;color:#fff;margin-bottom:0.85rem;line-height:1.25;">AI &amp; Automation</h3>
-        <p style="font-size:1.24rem;line-height:1.75;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;">Spend less time on repetitive work and more time closing deals. Leverage intelligent tools to follow up faster, qualify smarter, and scale further.</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:rgba(255,255,255,0.4);">
-            <span style="width:5px;height:5px;border-radius:50%;background:#e87c6e;flex-shrink:0;"></span>AI-powered follow-up sequences
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:rgba(255,255,255,0.4);">
-            <span style="width:5px;height:5px;border-radius:50%;background:#e87c6e;flex-shrink:0;"></span>Workflow automation &amp; time recovery
-          </li>
-          <li style="display:flex;align-items:center;gap:0.6rem;font-size:1.113rem;color:rgba(255,255,255,0.4);">
-            <span style="width:5px;height:5px;border-radius:50%;background:#e87c6e;flex-shrink:0;"></span>Smart lead qualification tools
-          </li>
+        <h3 class="serif pillar-title">AI &amp; Automation</h3>
+        <p class="pillar-desc">Spend less time on repetitive work and more closing deals — follow up faster, qualify smarter, and scale further.</p>
+        <ul class="pillar-list">
+          <li>AI-powered follow-up sequences</li>
+          <li>Workflow automation &amp; time recovery</li>
+          <li>Smart lead qualification tools</li>
         </ul>
-      </div>
+      </article>
 
     </div>
 
@@ -1538,9 +1673,9 @@
 <!-- ============================================================
      BRAND MARQUEE  (DARK STRIP)
 ============================================================ -->
-<div class="section-dark py-5 border-t border-b" style="border-color:rgba(255,255,255,0.06);">
+<div class="py-4 border-t border-b" style="background:#0a0d14;border-color:rgba(255,255,255,0.06);">
   <div class="marquee-wrap">
-    <div class="marquee-track text-white/20 text-xs font-medium tracking-widest uppercase">
+    <div class="marquee-track text-white text-xs font-medium tracking-widest uppercase">
       <span>Investment Strategy</span><span>·</span>
       <span>Portfolio Building</span><span>·</span>
       <span>Market Intelligence</span><span>·</span>
@@ -1561,72 +1696,79 @@
   </div>
 </div>
 
-
-
 <!-- ============================================================
      COACHING PROCESS  (BLUE)
 ============================================================ -->
-<section class="section-blue py-28 lg:py-36 px-6 lg:px-12">
-  <div class="max-w-7xl mx-auto">
+<section class="pt-16 pb-24 lg:pt-20 lg:pb-32 px-6 lg:px-12" style="background:#0a0d14;position:relative;overflow:hidden;color:#fff;">
 
-    <div class="text-center mb-16">
-      <div class="eyebrow justify-center mb-6" data-reveal="up" style="color:#7eafff">
-        <span style="background:#7eafff;width:2rem;height:1.5px;display:inline-block;"></span>
-        The Process
+  <!-- ambient background glows -->
+  <div style="position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 55% 50% at 20% 45%, rgba(192,57,43,0.06) 0%, transparent 62%),
+               radial-gradient(ellipse 55% 50% at 80% 55%, rgba(42,95,199,0.06) 0%, transparent 62%);"></div>
+
+  <div style="position:relative;z-index:1;" class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-12 lg:mb-16">
+      <div class="flex items-center justify-center gap-3 mb-8" data-reveal="up">
+        <span style="width:2rem;height:1.5px;background:#7eafff;display:inline-block;"></span>
+        <span class="tracking-widest uppercase font-semibold" style="color:#7eafff;font-size:1.037rem;letter-spacing:0.22em;">The Process</span>
+        <span style="width:2rem;height:1.5px;background:#7eafff;display:inline-block;"></span>
       </div>
-      <h2 class="serif text-4xl md:text-5xl font-light text-white leading-tight" data-reveal="up" style="transition-delay:0.08s">
-        The Performance Growth Framework
+      <h2 class="serif text-white" style="font-size:clamp(2.404rem,5.06vw,3.795rem);line-height:1.2;font-weight:400;" data-reveal="up" style="transition-delay:0.08s">
+        The Performance <em style="color:#7eafff;">Growth Framework.</em>
       </h2>
-      <p class="mx-auto mt-6 max-w-3xl text-base md:text-lg leading-relaxed text-white/70" data-reveal="up" style="transition-delay:0.12s">
-        A proven system to build a predictable real estate business.
+      <div class="mx-auto mt-8 mb-8" style="width:3rem;height:2px;background:var(--red);" data-reveal="up"></div>
+      <p class="mx-auto max-w-2xl leading-relaxed text-white/65" style="font-size:1.329rem;" data-reveal="up" style="transition-delay:0.12s">
+        A proven, four-step system for building a predictable real estate business — from first diagnosis to confident scale.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="process-grid">
 
-      <div class="card-blue-light p-8 relative" data-reveal="up" style="transition-delay:0.0s">
+      <div class="process-card card-blue-light" data-reveal="up" style="transition-delay:0.0s">
         <div class="process-num">01</div>
         <div class="relative z-10">
-          <div style="width:2rem;height:2px;background:var(--red);margin-bottom:2rem;"></div>
-          <div class="text-white/40 text-xs tracking-widest uppercase mb-2 font-medium">Step 01</div>
-          <h3 class="serif text-2xl font-normal text-white mb-4">Discover Your Performance Gap</h3>
-          <p class="text-white/55 text-sm leading-relaxed">Every successful transformation starts with clarity. We identify what's limiting your growth—from lead generation and client conversion to follow-up, communication, and business systems.</p>
+          <div class="process-accent" style="background:var(--red);"></div>
+          <div class="process-step">Step 01</div>
+          <h3 class="serif process-title">Discover Your Performance Gap</h3>
+          <p class="process-desc">Every successful transformation starts with clarity. We identify what's limiting your growth—from lead generation and client conversion to follow-up, communication, and business systems.</p>
         </div>
       </div>
 
-      <div class="card-blue-light p-8 relative" data-reveal="up" style="transition-delay:0.1s">
+      <div class="process-card card-blue-light" data-reveal="up" style="transition-delay:0.1s">
         <div class="process-num">02</div>
         <div class="relative z-10">
-          <div style="width:2rem;height:2px;background:var(--red);margin-bottom:2rem;"></div>
-          <div class="text-white/40 text-xs tracking-widest uppercase mb-2 font-medium">Step 02</div>
-          <h3 class="serif text-2xl font-normal text-white mb-4">Build Your Success Blueprint</h3>
-          <p class="text-white/55 text-sm leading-relaxed">Together, we'll create a personalized action plan tailored to your goals, strengths, and current business stage. You'll know exactly what to improve, what to eliminate, and where to focus your energy.</p>
+          <div class="process-accent" style="background:var(--red);"></div>
+          <div class="process-step">Step 02</div>
+          <h3 class="serif process-title">Build Your Success Blueprint</h3>
+          <p class="process-desc">Together, we'll create a personalized action plan tailored to your goals, strengths, and current business stage. You'll know exactly what to improve, what to eliminate, and where to focus your energy.</p>
         </div>
       </div>
 
-      <div class="card-blue-light p-8 relative" data-reveal="up" style="transition-delay:0.2s">
+      <div class="process-card card-blue-light" data-reveal="up" style="transition-delay:0.2s">
         <div class="process-num">03</div>
         <div class="relative z-10">
-          <div style="width:2rem;height:2px;background:rgba(255,255,255,0.4);margin-bottom:2rem;"></div>
-          <div class="text-white/40 text-xs tracking-widest uppercase mb-2 font-medium">Step 03</div>
-          <h3 class="serif text-2xl font-normal text-white mb-4">Implement Proven Systems</h3>
-          <p class="text-white/55 text-sm leading-relaxed">Master practical sales frameworks, client acquisition strategies, AI-powered workflows, and high-performance habits that help you attract better clients, increase conversions, and build consistent momentum.</p>
+          <div class="process-accent" style="background:rgba(255,255,255,0.4);"></div>
+          <div class="process-step">Step 03</div>
+          <h3 class="serif process-title">Implement Proven Systems</h3>
+          <p class="process-desc">Master practical sales frameworks, client acquisition strategies, AI-powered workflows, and high-performance habits that help you attract better clients, increase conversions, and build consistent momentum.</p>
         </div>
       </div>
 
-      <div class="card-blue-light p-8 relative" data-reveal="up" style="transition-delay:0.3s">
+      <div class="process-card card-blue-light" data-reveal="up" style="transition-delay:0.3s">
         <div class="process-num">04</div>
         <div class="relative z-10">
-          <div style="width:2rem;height:2px;background:rgba(255,255,255,0.4);margin-bottom:2rem;"></div>
-          <div class="text-white/40 text-xs tracking-widest uppercase mb-2 font-medium">Step 04</div>
-          <h3 class="serif text-2xl font-normal text-white mb-4">Scale with Confidence</h3>
-          <p class="text-white/55 text-sm leading-relaxed">Create a business that generates predictable results, stronger client relationships, and sustainable growth—without relying on constant hustle or working longer hours.</p>
+          <div class="process-accent" style="background:rgba(255,255,255,0.4);"></div>
+          <div class="process-step">Step 04</div>
+          <h3 class="serif process-title">Scale with Confidence</h3>
+          <p class="process-desc">Create a business that generates predictable results, stronger client relationships, and sustainable growth—without relying on constant hustle or working longer hours.</p>
         </div>
       </div>
 
     </div>
 
-    <div class="text-center mt-12" data-reveal="up" style="transition-delay:0.15s">
+    <div class="text-center mt-14" data-reveal="up" style="transition-delay:0.15s">
       <a href="#contact" class="btn-primary">Start Your Growth Plan</a>
     </div>
   </div>
@@ -1635,84 +1777,108 @@
 <!-- ============================================================
      WHY CLIENTS TRUST JONATAS  (LIGHT)
 ============================================================ -->
-<section style="background:#f4f3ef;position:relative;padding:5.5rem 1.5rem;">
+<section class="trust" style="background:#f4f3ef;position:relative;padding:6.5rem 1.5rem;overflow:hidden;">
   <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c0392b 0%,#e74c3c 40%,transparent 100%);"></div>
+  <!-- soft ambient glow -->
+  <div aria-hidden="true" style="position:absolute;top:-120px;right:-140px;width:460px;height:460px;background:radial-gradient(circle,rgba(192,57,43,0.06) 0%,transparent 70%);pointer-events:none;"></div>
 
-  <div style="max-width:1100px;margin:0 auto;">
+  <style>
+    .trust .trust-stat{position:relative;padding:2.25rem 1.75rem;transition:background .35s ease;}
+    .trust .trust-stat::after{content:'';position:absolute;left:1.75rem;right:1.75rem;bottom:-1px;height:2px;background:#c0392b;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+    .trust .trust-stat:hover{background:rgba(192,57,43,0.035);}
+    .trust .trust-stat:hover::after{transform:scaleX(1);}
+    .trust .trust-num{display:inline-block;transition:transform .35s cubic-bezier(.4,0,.2,1);}
+    .trust .trust-stat:hover .trust-num{transform:translateY(-3px);}
+
+    .trust .trust-pillar{position:relative;display:flex;align-items:flex-start;gap:1.15rem;padding:1.9rem 2rem;transition:background .3s ease,transform .3s ease;}
+    .trust .trust-pillar:hover{background:#fff;transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,0,0,0.06);border-color:transparent!important;}
+    .trust .trust-ico{flex-shrink:0;width:2.85rem;height:2.85rem;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(192,57,43,0.08);color:#c0392b;transition:background .3s ease,color .3s ease,transform .3s ease;}
+    .trust .trust-pillar:hover .trust-ico{background:#c0392b;color:#fff;transform:scale(1.06);}
+  </style>
+
+  <div style="max-width:1100px;margin:0 auto;position:relative;">
 
     <!-- Header -->
-    <div class="trust-header-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:4rem;" data-reveal="up">
+    <div class="trust-header-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:4.5rem;" data-reveal="up">
       <div>
-        <div style="display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+        <div style="display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:1.15rem;">
           <span style="width:2rem;height:1.5px;background:#c0392b;display:inline-block;"></span>
           <span style="font-size:0.923rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#c0392b;">Why Clients Trust Jonatas</span>
         </div>
-        <h2 class="serif" style="font-size:clamp(2.404rem,4.428vw,3.478rem);font-weight:400;color:#1a1a1a;line-height:1.2;">
+        <h2 class="serif" style="font-size:clamp(2.404rem,4.428vw,3.478rem);font-weight:400;color:#1a1a1a;line-height:1.2;margin:0;">
           Real Experience.<br /><em style="color:#c0392b;">Proven Systems.<br />Lasting Results.</em>
         </h2>
       </div>
       <div>
-        <p style="font-size:1.265rem;line-height:1.75;color:#5a5a5a;border-left:2px solid #c0392b;padding-left:1.25rem;">
+        <p style="font-size:1.265rem;line-height:1.75;color:#5a5a5a;border-left:2px solid #c0392b;padding-left:1.5rem;margin:0;">
           With 20+ years across every stage of real estate — from agent to director to coach — Jonatas understands the challenges professionals face because he's lived them.
         </p>
       </div>
     </div>
 
     <!-- Stats row — inline, no boxes -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08);margin-bottom:4rem;" class="trust-stats-grid" data-reveal="up">
-      <div style="padding:2rem 1.5rem;border-right:1px solid rgba(0,0,0,0.08);">
-        <div class="serif" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.4rem;">20+</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08);margin-bottom:4.5rem;" class="trust-stats-grid" data-reveal="up">
+      <div class="trust-stat" style="border-right:1px solid rgba(0,0,0,0.08);">
+        <div class="serif trust-num" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.45rem;">20+</div>
         <div style="font-size:1.139rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Years of Experience</div>
         <div style="font-size:1.037rem;color:#9a9a9a;line-height:1.5;">Navigating agents through every market cycle.</div>
       </div>
-      <div style="padding:2rem 1.5rem;border-right:1px solid rgba(0,0,0,0.08);">
-        <div class="serif" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.4rem;">150+</div>
+      <div class="trust-stat" style="border-right:1px solid rgba(0,0,0,0.08);">
+        <div class="serif trust-num" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.45rem;">150+</div>
         <div style="font-size:1.139rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Professionals Coached</div>
         <div style="font-size:1.037rem;color:#9a9a9a;line-height:1.5;">Growing with clarity and proven strategy.</div>
       </div>
-      <div style="padding:2rem 1.5rem;border-right:1px solid rgba(0,0,0,0.08);">
-        <div class="serif" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.4rem;">12+</div>
+      <div class="trust-stat" style="border-right:1px solid rgba(0,0,0,0.08);">
+        <div class="serif trust-num" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.45rem;">12+</div>
         <div style="font-size:1.139rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Countries Reached</div>
         <div style="font-size:1.037rem;color:#9a9a9a;line-height:1.5;">Adapting systems to diverse markets.</div>
       </div>
-      <div style="padding:2rem 1.5rem;">
-        <div class="serif" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.4rem;">85%</div>
+      <div class="trust-stat">
+        <div class="serif trust-num" style="font-size:3.289rem;font-weight:600;color:#c0392b;line-height:1;margin-bottom:0.45rem;">85%</div>
         <div style="font-size:1.139rem;font-weight:600;color:#1a1a1a;margin-bottom:0.2rem;">Client Satisfaction</div>
         <div style="font-size:1.037rem;color:#9a9a9a;line-height:1.5;">Trusted for honest, measurable progress.</div>
       </div>
     </div>
 
-    <!-- What you get — two-column list, no cards -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:4rem;" class="trust-pillars-grid" data-reveal="up">
+    <!-- What you get — two-column list with icon badges -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:4.5rem;" class="trust-pillars-grid" data-reveal="up">
 
-      <div style="display:flex;align-items:flex-start;gap:1.25rem;padding:1.75rem 2rem 1.75rem 0;border-right:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08);">
-        <span style="color:#c0392b;font-size:1.391rem;margin-top:0.1rem;flex-shrink:0;">→</span>
+      <div class="trust-pillar" style="border-right:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08);">
+        <span class="trust-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
         <div>
-          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.25rem;">Built on Experience</div>
+          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.35rem;">Built on Experience</div>
           <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.6;">Every strategy backed by decades of real-world results — not theory.</div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:1.25rem;padding:1.75rem 0 1.75rem 2rem;border-bottom:1px solid rgba(0,0,0,0.08);">
-        <span style="color:#c0392b;font-size:1.391rem;margin-top:0.1rem;flex-shrink:0;">→</span>
+      <div class="trust-pillar" style="border-bottom:1px solid rgba(0,0,0,0.08);">
+        <span class="trust-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg>
+        </span>
         <div>
-          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.25rem;">Systems That Scale</div>
+          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.35rem;">Systems That Scale</div>
           <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.6;">Repeatable processes that generate consistent results without constant hustle.</div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:1.25rem;padding:1.75rem 2rem 1.75rem 0;border-right:1px solid rgba(0,0,0,0.08);">
-        <span style="color:#c0392b;font-size:1.391rem;margin-top:0.1rem;flex-shrink:0;">→</span>
+      <div class="trust-pillar" style="border-right:1px solid rgba(0,0,0,0.08);">
+        <span class="trust-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9 10h6M9 13h4"/></svg>
+        </span>
         <div>
-          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.25rem;">Honest, Practical Coaching</div>
+          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.35rem;">Honest, Practical Coaching</div>
           <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.6;">Clear feedback and accountability at every stage of your business.</div>
         </div>
       </div>
 
-      <div style="display:flex;align-items:flex-start;gap:1.25rem;padding:1.75rem 0 1.75rem 2rem;">
-        <span style="color:#c0392b;font-size:1.391rem;margin-top:0.1rem;flex-shrink:0;">→</span>
+      <div class="trust-pillar">
+        <span class="trust-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 15l7-7 7 7"/><path d="M5 22h14"/></svg>
+        </span>
         <div>
-          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.25rem;">Long-Term Growth</div>
+          <div style="font-size:1.201rem;font-weight:600;color:#1a1a1a;margin-bottom:0.35rem;">Long-Term Growth</div>
           <div style="font-size:1.113rem;color:#7a7a7a;line-height:1.6;">Build a business designed for sustainable success — not just the next commission.</div>
         </div>
       </div>
@@ -1720,7 +1886,7 @@
     </div>
 
     <!-- CTA -->
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding-top:2rem;border-top:1px solid rgba(0,0,0,0.08);" data-reveal="up">
+    <div class="pillars-cta" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding-top:2.25rem;border-top:1px solid rgba(0,0,0,0.08);" data-reveal="up">
       <p style="font-size:1.265rem;color:#5a5a5a;margin:0;">Ready to build a business that works consistently?</p>
       <a href="contact.html"
          style="display:inline-flex;align-items:center;gap:0.6rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:1.012rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;border:2px solid #c0392b;transition:background .2s,transform .2s;white-space:nowrap;"
@@ -1738,7 +1904,7 @@
      TESTIMONIALS  (LIGHT)
 ============================================================ -->
 <style>
-  #testimonials { background:#f4f3ef; }
+  #testimonials { background: #f4f3ef; }
 
   /* Slider container */
   .ts-viewport { overflow: hidden; }
@@ -1752,38 +1918,70 @@
   .ts-slide {
     flex: 0 0 calc(33.333% - 14px);
     margin-right: 21px;
+    display: flex;
+    flex-direction: column;
   }
   .ts-slide:last-child { margin-right: 0; }
 
-  /* Card design */
+  /* Card */
   .ts-card {
     background: #fff;
     border: 1px solid rgba(0,0,0,0.07);
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex: 1;
     position: relative;
     overflow: hidden;
     transition: transform .35s, box-shadow .35s;
   }
   .ts-card::before {
     content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg,#c0392b,transparent);
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: #c0392b;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s cubic-bezier(0.4,0,0.2,1);
   }
   .ts-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+  .ts-card:hover::before { transform: scaleX(1); }
 
-  .ts-card-body { padding: 2.25rem 2.25rem 1.75rem; flex: 1; display: flex; flex-direction: column; }
+  .ts-card-body { padding: 2.25rem 2.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
   .ts-card-footer { padding: 1.25rem 2.25rem 1.75rem; border-top: 1px solid rgba(0,0,0,0.06); }
 
-  .ts-quote-icon { color: rgba(192,57,43,0.12); font-size: 5.06rem; line-height: 1; font-family:'Playfair Display',serif; font-weight:700; margin-bottom: .25rem; }
-  .ts-stars { color: #c0392b; letter-spacing: 2px; font-size: 1.037rem; margin-bottom: 1rem; }
-  .ts-text { font-family:'Playfair Display',serif; font-style:italic; font-size:1.329rem; line-height:1.7; color:#3a3a3a; flex:1; }
+  .ts-quote-icon { color: rgba(192,57,43,0.1); font-size: 5rem; line-height: 1; font-family:'Playfair Display',serif; font-weight:700; margin-bottom: .1rem; }
+  .ts-stars { color: #c0392b; letter-spacing: 2px; font-size: 1rem; margin-bottom: 1rem; }
+  .ts-text { font-family:'Playfair Display',serif; font-style:italic; font-size:1.18rem; line-height:1.72; color:#3a3a3a; flex:1; }
 
-  .ts-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(192,57,43,0.2); flex-shrink:0; }
-  .ts-name { font-size: 1.139rem; font-weight: 700; color: #1a1a1a; }
-  .ts-role { font-size: 0.948rem; color: #9a9a9a; margin-top: 1px; }
+  .ts-result-tag {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    margin-top: 1.35rem; align-self: flex-start;
+    padding: 0.33rem 0.9rem;
+    background: rgba(192,57,43,0.07);
+    border: 1px solid rgba(192,57,43,0.18);
+    border-radius: 999px;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #c0392b;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  /* Initials Avatar — single brand color */
+  .ts-avatar-init {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700; font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: #0f2d5e;
+    box-shadow: 0 4px 12px rgba(15,45,94,0.25);
+  }
+
+  .ts-name { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; }
+  .ts-role { font-size: 0.875rem; color: #9a9a9a; margin-top: 2px; }
 
   /* Nav buttons */
   .ts-btn {
@@ -1822,27 +2020,12 @@
   <div class="max-w-7xl mx-auto">
 
     <!-- Header -->
-    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:3.5rem;">
-      <div>
-        <div class="eyebrow mb-5" data-reveal="up">Success Stories</div>
-        <h2 class="serif" style="font-size:clamp(2.53rem,5.692vw,3.795rem);font-weight:400;line-height:1.2;color:#1a1a1a;" data-reveal="up">
-          Real People.<br /><em style="color:#c0392b;">Real Transformations.</em>
-        </h2>
-      </div>
-      <div data-reveal="up" style="max-width:280px;">
-        <p style="font-size:1.201rem;color:#7a7a7a;line-height:1.65;">These aren't exceptional outliers — they're the standard when strategy meets commitment.</p>
-        <!-- Stats row -->
-        <div style="display:flex;gap:2rem;margin-top:1.25rem;">
-          <div>
-            <div class="serif" style="font-size:2.277rem;font-weight:600;color:#c0392b;line-height:1;">150+</div>
-            <div style="font-size:0.886rem;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-top:2px;">Clients Coached</div>
-          </div>
-          <div>
-            <div class="serif" style="font-size:2.277rem;font-weight:600;color:#c0392b;line-height:1;">85%</div>
-            <div style="font-size:0.886rem;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-top:2px;">Satisfaction</div>
-          </div>
-        </div>
-      </div>
+    <div style="text-align:center;margin-bottom:3.75rem;">
+      <div class="eyebrow mb-5" style="justify-content:center;" data-reveal="up">Success Stories</div>
+      <h2 class="serif" style="font-size:clamp(2rem,4.5vw,3rem);font-weight:400;line-height:1.2;color:#1a1a1a;margin-bottom:1rem;" data-reveal="up">
+        Real People. <em style="color:#c0392b;">Real Transformations.</em>
+      </h2>
+      <p style="font-size:1.15rem;color:#7a7a7a;line-height:1.65;max-width:420px;margin:0 auto;" data-reveal="up">These aren't exceptional outliers — they're the standard when strategy meets commitment.</p>
     </div>
 
     <!-- Slider -->
@@ -1859,7 +2042,7 @@
             </div>
             <div class="ts-card-footer">
               <div style="display:flex;align-items:center;gap:.85rem;">
-                <img class="ts-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=88&h=88&q=80&fit=crop&crop=face" alt="Marcus T." />
+                <div class="ts-avatar-init">MT</div>
                 <div>
                   <div class="ts-name">Marcus T.</div>
                   <div class="ts-role">IT Director → Real Estate Investor</div>
@@ -1879,7 +2062,7 @@
             </div>
             <div class="ts-card-footer">
               <div style="display:flex;align-items:center;gap:.85rem;">
-                <img class="ts-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=88&h=88&q=80&fit=crop&crop=face" alt="Priya S." />
+                <div class="ts-avatar-init">PS</div>
                 <div>
                   <div class="ts-name">Priya S.</div>
                   <div class="ts-role">Entrepreneur &amp; Portfolio Investor</div>
@@ -1899,7 +2082,7 @@
             </div>
             <div class="ts-card-footer">
               <div style="display:flex;align-items:center;gap:.85rem;">
-                <img class="ts-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=88&h=88&q=80&fit=crop&crop=face" alt="Daniel R." />
+                <div class="ts-avatar-init">DR</div>
                 <div>
                   <div class="ts-name">Daniel R.</div>
                   <div class="ts-role">Commercial Developer</div>
@@ -1919,7 +2102,7 @@
             </div>
             <div class="ts-card-footer">
               <div style="display:flex;align-items:center;gap:.85rem;">
-                <img class="ts-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&q=80&fit=crop&crop=face" alt="Aisha M." />
+                <div class="ts-avatar-init">AM</div>
                 <div>
                   <div class="ts-name">Aisha M.</div>
                   <div class="ts-role">Finance Professional &amp; Investor</div>
@@ -1939,7 +2122,7 @@
             </div>
             <div class="ts-card-footer">
               <div style="display:flex;align-items:center;gap:.85rem;">
-                <img class="ts-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=88&h=88&q=80&fit=crop&crop=face" alt="Chris L." />
+                <div class="ts-avatar-init">CL</div>
                 <div>
                   <div class="ts-name">Chris L.</div>
                   <div class="ts-role">Multi-Family Investor</div>
@@ -1959,7 +2142,7 @@
             </div>
             <div class="ts-card-footer">
               <div style="display:flex;align-items:center;gap:.85rem;">
-                <img class="ts-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=88&h=88&q=80&fit=crop&crop=face" alt="Rafael M." />
+                <div class="ts-avatar-init">RM</div>
                 <div>
                   <div class="ts-name">Rafael M.</div>
                   <div class="ts-role">Real Estate Agent, Lisbon</div>
@@ -2061,122 +2244,190 @@
 <footer style="background:#060910;border-top:1px solid rgba(255,255,255,0.06);">
 
   <!-- Pre-footer CTA strip -->
-  <div style="background:linear-gradient(105deg,#c0392b 0%,#96231a 100%);padding:2.5rem 1.5rem;text-align:center;">
-    <div style="max-width:700px;margin:0 auto;">
-      <p style="color:rgba(255,255,255,0.8);font-size:0.911rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:.6rem;">Limited Spots Available — 2025 Cohort</p>
-      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.771rem,3.795vw,2.53rem);color:#fff;font-weight:400;margin-bottom:1.2rem;">Ready to Attract Premium Clients?<br/><em>Book Your Free Strategy Call Today.</em></h3>
-      <a href="contact.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:#c0392b;font-family:'Outfit',sans-serif;font-size:0.911rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.85rem 2rem;text-decoration:none;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
-        Book a Free Call
-      </a>
+  <div style="background:linear-gradient(135deg,#f4f3ef 0%,#ede9e0 100%);padding:4.5rem 2rem;position:relative;overflow:hidden;">
+    <!-- subtle decorative glow blobs -->
+    <div style="position:absolute;top:-30%;right:-10%;width:45%;height:180%;background:radial-gradient(ellipse,rgba(192,57,43,0.06) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-30%;left:-8%;width:40%;height:180%;background:radial-gradient(ellipse,rgba(42,95,199,0.05) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+
+      <!-- Top divider line -->
+      <div style="width:3rem;height:2px;background:linear-gradient(90deg,#c0392b,transparent);margin:0 auto 2rem;"></div>
+
+      <!-- Eyebrow pill -->
+      <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+        <span style="display:inline-flex;align-items:center;gap:0.55rem;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:999px;padding:0.45rem 1.1rem;font-family:'Outfit',sans-serif;font-size:0.836rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(192,57,43,0.9);">
+          <span style="width:7px;height:7px;border-radius:50%;background:#c0392b;display:inline-block;"></span>
+          Limited Slots Available
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:400;color:#1a1a1a;text-align:center;line-height:1.35;margin-bottom:1rem;">
+        Ready to Attract Premium Clients?<br/>
+        <em style="color:rgba(0,0,0,0.65);font-weight:300;">Book Your Free Strategy Call Today.</em>
+      </h3>
+
+      <!-- Subtext -->
+      <p style="font-family:'Outfit',sans-serif;font-size:1.063rem;color:#4a4a4a;text-align:center;max-width:540px;margin:0 auto 2.5rem;line-height:1.7;">
+        One focused conversation. Real strategies. No obligation.
+      </p>
+
+      <!-- CTA buttons row -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
+        <a href="contact.html"
+           style="display:inline-flex;align-items:center;gap:.55rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:2px solid #c0392b;transition:background .2s,transform .2s,box-shadow .2s;"
+           onmouseover="this.style.background='#e74c3c';this.style.borderColor='#e74c3c';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(192,57,43,0.35)'"
+           onmouseout="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.transform='';this.style.boxShadow=''">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
+          Book a Free Call
+        </a>
+        <a href="service.html"
+           style="display:inline-flex;align-items:center;gap:.55rem;background:transparent;color:rgba(0,0,0,0.6);font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:1.5px solid rgba(0,0,0,0.2);transition:border-color .2s,color .2s,transform .2s;"
+           onmouseover="this.style.borderColor='rgba(0,0,0,0.55)';this.style.color='#1a1a1a';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.borderColor='rgba(0,0,0,0.2)';this.style.color='rgba(0,0,0,0.6)';this.style.transform=''">
+          Explore Services
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Trust micro-line -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
+        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          No commitment required
+        </span>
+        <span style="width:1px;height:16px;background:rgba(0,0,0,0.12);display:inline-block;"></span>
+        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          30-minute focused session
+        </span>
+        <span style="width:1px;height:16px;background:rgba(0,0,0,0.12);display:inline-block;"></span>
+        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          150 agents coached
+        </span>
+      </div>
+
     </div>
   </div>
 
   <!-- Main footer body -->
-  <div style="max-width:1280px;margin:0 auto;padding:4rem 1.5rem 2rem;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;margin-bottom:3.5rem;">
+  <div class="ft-body" style="position:relative;overflow:hidden;">
+    <!-- ambient brand glow -->
+    <div aria-hidden="true" style="position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:70%;height:120%;background:radial-gradient(ellipse at top,rgba(192,57,43,0.07) 0%,transparent 60%);pointer-events:none;"></div>
+
+    <style>
+      .ft-body{--muted:rgba(255,255,255,0.45);}
+      .ft-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.4fr;gap:3rem;margin-bottom:3.25rem;position:relative;z-index:1;}
+      @media(max-width:900px){.ft-grid{grid-template-columns:1fr 1fr;gap:2.75rem 2rem;}}
+      @media(max-width:520px){.ft-grid{grid-template-columns:1fr;gap:2.5rem;}}
+
+      .ft-head{display:flex;align-items:center;gap:.65rem;color:#fff;font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;}
+      .ft-head::before{content:'';width:1.4rem;height:2px;background:#c0392b;border-radius:2px;flex-shrink:0;}
+
+      .ft-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1.02rem;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
+      .ft-link svg{opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease;color:#c0392b;}
+      .ft-link:hover{color:#fff;transform:translateX(4px);}
+      .ft-link:hover svg{opacity:1;transform:translateX(0);}
+
+      .ft-social{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.55);text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
+      .ft-social:hover{transform:translateY(-3px);}
+
+      .ft-contact{display:flex;align-items:center;gap:.85rem;color:rgba(255,255,255,0.55);font-size:1.01rem;text-decoration:none;transition:color .25s ease;}
+      .ft-contact .ft-ic{flex-shrink:0;width:2.1rem;height:2.1rem;border-radius:9px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);display:flex;align-items:center;justify-content:center;color:#e74c3c;transition:background .25s ease,color .25s ease;}
+      a.ft-contact:hover{color:#fff;}
+      a.ft-contact:hover .ft-ic{background:#c0392b;color:#fff;}
+
+      .ft-badge{display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:.6rem .85rem;transition:border-color .25s ease,background .25s ease;}
+      .ft-badge:hover{border-color:rgba(192,57,43,0.35);background:rgba(192,57,43,0.05);}
+
+      .ft-bottom-link{color:rgba(255,255,255,0.3);font-size:0.9rem;text-decoration:none;transition:color .25s ease;}
+      .ft-bottom-link:hover{color:rgba(255,255,255,0.7);}
+    </style>
+
+    <div style="max-width:1280px;margin:0 auto;padding:4.5rem 1.5rem 2rem;">
+    <div class="ft-grid">
 
       <!-- Brand col -->
-      <div style="grid-column:span 1;">
-        <div style="margin-bottom:1.2rem;">
-          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-            <img src="image/jb-logo.png" alt="Jonatas Baptista" style="height:66px;width:auto;display:block;"/>
-            <div style="display:flex;flex-direction:column;line-height:1.2;">
-              <span style="font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:0.02em;white-space:nowrap;">Jonatas Baptista</span>
-              <span style="font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">Real Estate Coach</span>
-            </div>
+      <div>
+        <div style="display:flex;align-items:center;gap:0.65rem;margin-bottom:1.25rem;">
+          <img src="image/jb-logo.png" alt="Jonatas Baptista" style="height:68px;width:auto;display:block;"/>
+          <div style="display:flex;flex-direction:column;line-height:1.2;">
+            <span style="font-family:'Outfit',sans-serif;font-size:1.18rem;font-weight:600;color:#fff;letter-spacing:0.02em;white-space:nowrap;">Jonatas Baptista</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;">Real Estate Coach</span>
           </div>
-          <p style="color:rgba(255,255,255,0.4);font-size:1.063rem;line-height:1.7;max-width:340px;">Real Estate Coach &amp; Sales Strategist helping professionals attract premium clients, close more deals, and build businesses that last.</p>
         </div>
+        <p style="color:rgba(255,255,255,0.42);font-size:1.02rem;line-height:1.75;max-width:340px;margin:0 0 1.75rem;">Real Estate Coach &amp; Sales Strategist helping professionals attract premium clients, close more deals, and build businesses that last.</p>
         <!-- Social icons -->
-        <div style="display:flex;gap:.6rem;">
-          <a href="https://www.linkedin.com/in/jonatas-baptista-42992113/" aria-label="LinkedIn" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#e74c3c'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        <div style="display:flex;gap:.65rem;">
+          <a href="https://www.linkedin.com/in/jonatas-baptista-42992113/" aria-label="LinkedIn" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
-          <a href="#" aria-label="Facebook" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#e74c3c'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <a href="#" aria-label="Facebook" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a href="#" aria-label="Instagram" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#e74c3c'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <a href="#" aria-label="Instagram" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a href="https://wa.me/351 910 083 701 aria-label="WhatsApp" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#25D366';this.style.color='#25D366'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/351910083701" aria-label="WhatsApp" class="ft-social" onmouseover="this.style.background='#25D366';this.style.borderColor='#25D366';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </a>
         </div>
       </div>
 
       <!-- Navigation -->
       <div>
-        <div style="color:#fff;font-size:0.86rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,0.07);">Navigate</div>
-        <div style="display:flex;flex-direction:column;gap:.75rem;">
-          <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Overview
-          </a>
-          <a href="about.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> My Story
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Work With Me
-          </a>
-
-          <a href="contact.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Let's Connect
-          </a>
+        <div class="ft-head">Navigate</div>
+        <div style="display:flex;flex-direction:column;gap:.9rem;">
+          <a href="index.html" class="ft-link">Overview<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="about.html" class="ft-link">My Story<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Work With Me<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="contact.html" class="ft-link">Let's Connect<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
       <!-- Services -->
       <div>
-        <div style="color:#fff;font-size:0.86rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,0.07);">Services</div>
-        <div style="display:flex;flex-direction:column;gap:.75rem;">
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> 1-on-1 Coaching
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Strategic Advisory
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Group Mentorship
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Portfolio Review
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> First-Time Investor
-          </a>
+        <div class="ft-head">Services</div>
+        <div style="display:flex;flex-direction:column;gap:.9rem;">
+          <a href="service.html" class="ft-link">1-on-1 Coaching<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Strategic Advisory<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Group Mentorship<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Portfolio Review<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">First-Time Investor<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
       <!-- Contact -->
       <div>
-        <div style="color:#fff;font-size:0.86rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,0.07);">Contact</div>
-        <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span>
-            <a href="mailto:support@jonatasbaptista.com" style="color:rgba(255,255,255,0.5);font-size:1.037rem;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">support@jonatasbaptista.com</a>
-          </div>
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span>
-            <span style="color:rgba(255,255,255,0.5);font-size:1.037rem;">+351 910 083 701</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span>
-            <span style="color:rgba(255,255,255,0.5);font-size:1.037rem;">Available Worldwide</span>
+        <div class="ft-head">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.75rem;">
+          <a href="mailto:support@jonatasbaptista.com" class="ft-contact">
+            <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span>
+            support@jonatasbaptista.com
+          </a>
+          <a href="tel:+351910083701" class="ft-contact">
+            <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg></span>
+            +351 910 083 701
+          </a>
+          <div class="ft-contact" style="cursor:default;">
+            <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></span>
+            Available Worldwide
           </div>
         </div>
         <!-- Trust badges -->
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:.5rem .75rem;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.5);font-size:0.911rem;">150+ Clients Coached Globally</span>
+        <div style="display:flex;flex-direction:column;gap:.55rem;">
+          <div class="ft-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">150+ Clients Coached Globally</span>
           </div>
-          <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:.5rem .75rem;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.5);font-size:0.911rem;">85% Client Satisfaction Rate</span>
+          <div class="ft-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">85% Client Satisfaction Rate</span>
           </div>
-          <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:.5rem .75rem;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.5);font-size:0.911rem;">Response Within 24 Hours</span>
+          <div class="ft-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Response Within 24 Hours</span>
           </div>
         </div>
       </div>
@@ -2184,12 +2435,16 @@
     </div>
 
     <!-- Bottom bar -->
-    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;">
-      <p style="color:rgba(255,255,255,0.2);font-size:0.911rem;">© 2026 Jonatas Baptista. All rights reserved.</p>
-      <div style="display:flex;gap:1.5rem;">
-        <a href="#" style="color:rgba(255,255,255,0.2);font-size:0.911rem;text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Privacy Policy</a>
-        <a href="#" style="color:rgba(255,255,255,0.2);font-size:0.911rem;text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Terms of Service</a>
+    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:1.75rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;position:relative;z-index:1;">
+      <p style="color:rgba(255,255,255,0.3);font-size:0.9rem;margin:0;">© 2026 Jonatas Baptista. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:1.75rem;">
+        <a href="privacy-policy.html" class="ft-bottom-link">Privacy Policy</a>
+        <a href="terms-of-service.html" class="ft-bottom-link">Terms of Service</a>
+        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" aria-label="Back to top" style="display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,0.55);font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:.45rem .95rem;transition:border-color .25s ease,color .25s ease,transform .25s ease;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.55)';this.style.transform=''">
+          Top<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </a>
       </div>
+    </div>
     </div>
   </div>
 </footer>

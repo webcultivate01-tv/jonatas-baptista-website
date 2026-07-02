@@ -60,8 +60,8 @@
       box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35);
       backdrop-filter: blur(12px);
     }
-    .nav-brand { display: flex; align-items: center; gap: 0.2rem; text-decoration: none; }
-    .nav-brand img { height: 66px; width: auto; display: block; }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .nav-brand img { height: 46px; width: auto; display: block; }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
       font-family: 'Outfit', sans-serif;
@@ -75,9 +75,9 @@
       letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
     @media (max-width: 639px) {
-      .nav-brand { gap: 0.35rem; }
+      .nav-brand { gap: 0.4rem; }
       .nav-brand-text { display: flex !important; }
-      .nav-brand img { height: 48px; }
+      .nav-brand img { height: 36px; }
       .nav-brand-name { font-size: 1rem; }
       .nav-brand-subtitle { font-size: 0.7rem; }
     }
@@ -761,6 +761,61 @@
       padding: 0 1.6rem;
     }
     .faq-item.open .faq-panel { padding: 0 1.6rem 1.4rem; }
+
+    /* ===== CONTACT HERO — REFINED ===== */
+    /* faint engineering grid */
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: radial-gradient(ellipse 78% 78% at 50% 40%, #000 20%, transparent 80%);
+              mask-image: radial-gradient(ellipse 78% 78% at 50% 40%, #000 20%, transparent 80%);
+    }
+    /* hairline of colour along the very top of the hero */
+    .hero-topline {
+      position: absolute; top: 0; left: 0; right: 0; height: 1px; z-index: 1;
+      background: linear-gradient(90deg, transparent, rgba(192,57,43,0.55), transparent);
+    }
+    /* refined eyebrow pill */
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(192,57,43,0.08);
+      border: 1px solid rgba(192,57,43,0.28);
+      border-radius: 999px;
+      padding: 0.5rem 1.1rem;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    /* trust chips under the sub-headline */
+    .hero-benefit {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.5rem 1.05rem 0.5rem 0.6rem;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.65); font-weight: 500;
+      transition: border-color .25s, background .25s, transform .25s;
+    }
+    .hero-benefit:hover {
+      border-color: rgba(192,57,43,0.4);
+      background: rgba(192,57,43,0.07);
+      transform: translateY(-2px);
+    }
+    .hero-benefit .chk {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(192,57,43,0.16); color: #e74c3c;
+    }
+    /* glass social-proof strip */
+    .hero-proof {
+      display: inline-flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 999px;
+      padding: 0.55rem 1.3rem 0.55rem 0.65rem;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
   </style>
 </head>
 <body>
@@ -847,29 +902,76 @@
 <!-- ============================================================
      CONTACT HERO
 ============================================================ -->
-<section class="hero" style="position:relative;overflow:hidden;min-height:50vh;display:flex;align-items:center;">
-  <div class="absolute inset-0 pointer-events-none" style="background:
-    radial-gradient(ellipse 50% 60% at 80% 20%, rgba(192,57,43,0.14) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 45% at 8% 80%, rgba(42,95,199,0.10) 0%, transparent 60%);"></div>
+<section class="hero" style="position:relative;overflow:hidden;min-height:60vh;display:flex;align-items:center;">
 
-  <div class="relative z-10 mx-auto px-6 lg:px-20 xl:px-32 hero-inner" style="max-width:1000px;padding-top:7rem;padding-bottom:3rem;width:100%;">
+  <!-- top hairline accent -->
+  <div class="hero-topline"></div>
+
+  <!-- faint engineering grid -->
+  <div class="hero-grid"></div>
+
+  <!-- ambient glow blobs -->
+  <div class="absolute inset-0 pointer-events-none" style="background:
+    radial-gradient(ellipse 50% 60% at 80% 15%, rgba(192,57,43,0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 50% at 12% 85%, rgba(42,95,199,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 30% at 50% 100%, rgba(7,10,16,0.9) 0%, transparent 55%);"></div>
+
+  <div class="relative z-10 mx-auto px-6 lg:px-20 xl:px-32 hero-inner" style="max-width:1040px;padding-top:6.5rem;padding-bottom:2.5rem;width:100%;">
     <div class="flex flex-col items-center text-center">
 
-      <div class="inline-flex items-center gap-2 bg-red-900/20 border border-red-700/30 px-3 py-1.5 mb-5 hero-anim-1">
+      <!-- eyebrow pill -->
+      <div class="hero-eyebrow mb-4 hero-anim-1">
         <div class="live-dot"></div>
-        <span class="text-red-400 font-semibold tracking-widest uppercase" style="font-size:1.012rem;">Let's Connect</span>
+        <span class="text-red-400 font-semibold tracking-widest uppercase" style="font-size:0.95rem;">Let's Connect</span>
       </div>
 
-      <h1 class="serif text-3xl md:text-4xl lg:text-[2.6rem] font-normal leading-tight mb-4 hero-anim-2">
-        Let's Build Your <em class="italic text-white/60">Real Estate Strategy</em>
-        <strong class="font-bold text-white">Together.</strong>
+      <!-- headline -->
+      <h1 class="serif font-normal leading-tight mb-3 hero-anim-2" style="font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.3;letter-spacing:0.01em;">
+        <span style="color:rgba(255,255,255,0.5);font-weight:300;">Let's Build Your</span>
+        <em class="italic" style="color:rgba(255,255,255,0.78);font-weight:400;">Real Estate Strategy</em>
+        <span class="text-white" style="font-weight:600;">Together.</span>
       </h1>
 
-      <div class="w-10 h-0.5 bg-red-600 mb-4 mx-auto hero-anim-2"></div>
+      <!-- red accent line -->
+      <div class="w-12 h-0.5 bg-red-600 mb-4 mx-auto hero-anim-2"></div>
 
-      <p class="text-white/55 leading-relaxed max-w-lg mx-auto hero-anim-3" style="font-size:1.265rem;">
+      <!-- subheadline -->
+      <p class="text-white/55 leading-relaxed max-w-xl mx-auto mb-5 hero-anim-3" style="font-size:1.235rem;">
         Whether you're scaling your portfolio, sharpening your sales process, or exploring 1-on-1 coaching, this is where the conversation starts. Tell me about your goals and I'll personally follow up within 24 hours.
       </p>
+
+      <!-- trust chips -->
+      <div class="flex flex-wrap justify-center gap-3 mb-5 hero-anim-3">
+        <span class="hero-benefit text-[1rem]">
+          <span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Reply Within 24 Hours
+        </span>
+        <span class="hero-benefit text-[1rem]">
+          <span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+          100% Confidential
+        </span>
+        <span class="hero-benefit text-[1rem]">
+          <span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+          No Obligation
+        </span>
+      </div>
+
+      <!-- social proof strip -->
+      <div class="hero-proof hero-anim-4">
+        <div class="hero-avatars">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=64&h=64&q=80&fit=crop&crop=face" alt="" />
+        </div>
+        <div class="text-left" style="line-height:1.3;">
+          <div class="text-white font-semibold" style="font-size:0.95rem;white-space:nowrap;">Trusted by 150+ professionals</div>
+          <div class="flex items-center gap-1.5" style="margin-top:2px;">
+            <span style="color:#e74c3c;font-size:0.82rem;letter-spacing:1px;">★★★★★</span>
+            <span class="text-white/40" style="font-size:0.8rem;">85% satisfaction</span>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -1097,122 +1199,190 @@
 <footer style="background:#060910;border-top:1px solid rgba(255,255,255,0.06);">
 
   <!-- Pre-footer CTA strip -->
-  <div style="background:linear-gradient(105deg,#c0392b 0%,#96231a 100%);padding:2.5rem 1.5rem;text-align:center;">
-    <div style="max-width:700px;margin:0 auto;">
-      <p style="color:rgba(255,255,255,0.8);font-size:0.911rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:.6rem;">Limited Spots Available — 2025 Cohort</p>
-      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.771rem,3.795vw,2.53rem);color:#fff;font-weight:400;margin-bottom:1.2rem;">Ready to Attract Premium Clients?<br/><em>Book Your Free Strategy Call Today.</em></h3>
-      <a href="contact.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:#c0392b;font-family:'Outfit',sans-serif;font-size:0.911rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.85rem 2rem;text-decoration:none;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
-        Book a Free Call
-      </a>
+  <div style="background:linear-gradient(135deg,#f4f3ef 0%,#ede9e0 100%);padding:4.5rem 2rem;position:relative;overflow:hidden;">
+    <!-- subtle decorative glow blobs -->
+    <div style="position:absolute;top:-30%;right:-10%;width:45%;height:180%;background:radial-gradient(ellipse,rgba(192,57,43,0.06) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-30%;left:-8%;width:40%;height:180%;background:radial-gradient(ellipse,rgba(42,95,199,0.05) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+
+      <!-- Top divider line -->
+      <div style="width:3rem;height:2px;background:linear-gradient(90deg,#c0392b,transparent);margin:0 auto 2rem;"></div>
+
+      <!-- Eyebrow pill -->
+      <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+        <span style="display:inline-flex;align-items:center;gap:0.55rem;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:999px;padding:0.45rem 1.1rem;font-family:'Outfit',sans-serif;font-size:0.836rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(192,57,43,0.9);">
+          <span style="width:7px;height:7px;border-radius:50%;background:#c0392b;display:inline-block;"></span>
+          Limited Slots Available
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:400;color:#1a1a1a;text-align:center;line-height:1.35;margin-bottom:1rem;">
+        Ready to Attract Premium Clients?<br/>
+        <em style="color:rgba(0,0,0,0.65);font-weight:300;">Book Your Free Strategy Call Today.</em>
+      </h3>
+
+      <!-- Subtext -->
+      <p style="font-family:'Outfit',sans-serif;font-size:1.063rem;color:#4a4a4a;text-align:center;max-width:540px;margin:0 auto 2.5rem;line-height:1.7;">
+        One focused conversation. Real strategies. No obligation.
+      </p>
+
+      <!-- CTA buttons row -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
+        <a href="contact.html"
+           style="display:inline-flex;align-items:center;gap:.55rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:2px solid #c0392b;transition:background .2s,transform .2s,box-shadow .2s;"
+           onmouseover="this.style.background='#e74c3c';this.style.borderColor='#e74c3c';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(192,57,43,0.35)'"
+           onmouseout="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.transform='';this.style.boxShadow=''">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
+          Book a Free Call
+        </a>
+        <a href="service.html"
+           style="display:inline-flex;align-items:center;gap:.55rem;background:transparent;color:rgba(0,0,0,0.6);font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:1.5px solid rgba(0,0,0,0.2);transition:border-color .2s,color .2s,transform .2s;"
+           onmouseover="this.style.borderColor='rgba(0,0,0,0.55)';this.style.color='#1a1a1a';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.borderColor='rgba(0,0,0,0.2)';this.style.color='rgba(0,0,0,0.6)';this.style.transform=''">
+          Explore Services
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Trust micro-line -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
+        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          No commitment required
+        </span>
+        <span style="width:1px;height:16px;background:rgba(0,0,0,0.12);display:inline-block;"></span>
+        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          30-minute focused session
+        </span>
+        <span style="width:1px;height:16px;background:rgba(0,0,0,0.12);display:inline-block;"></span>
+        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          150 agents coached
+        </span>
+      </div>
+
     </div>
   </div>
 
   <!-- Main footer body -->
-  <div style="max-width:1280px;margin:0 auto;padding:4rem 1.5rem 2rem;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;margin-bottom:3.5rem;">
+  <div class="ft-body" style="position:relative;overflow:hidden;">
+    <!-- ambient brand glow -->
+    <div aria-hidden="true" style="position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:70%;height:120%;background:radial-gradient(ellipse at top,rgba(192,57,43,0.07) 0%,transparent 60%);pointer-events:none;"></div>
+
+    <style>
+      .ft-body{--muted:rgba(255,255,255,0.45);}
+      .ft-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.4fr;gap:3rem;margin-bottom:3.25rem;position:relative;z-index:1;}
+      @media(max-width:900px){.ft-grid{grid-template-columns:1fr 1fr;gap:2.75rem 2rem;}}
+      @media(max-width:520px){.ft-grid{grid-template-columns:1fr;gap:2.5rem;}}
+
+      .ft-head{display:flex;align-items:center;gap:.65rem;color:#fff;font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;}
+      .ft-head::before{content:'';width:1.4rem;height:2px;background:#c0392b;border-radius:2px;flex-shrink:0;}
+
+      .ft-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1.02rem;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
+      .ft-link svg{opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease;color:#c0392b;}
+      .ft-link:hover{color:#fff;transform:translateX(4px);}
+      .ft-link:hover svg{opacity:1;transform:translateX(0);}
+
+      .ft-social{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.55);text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
+      .ft-social:hover{transform:translateY(-3px);}
+
+      .ft-contact{display:flex;align-items:center;gap:.85rem;color:rgba(255,255,255,0.55);font-size:1.01rem;text-decoration:none;transition:color .25s ease;}
+      .ft-contact .ft-ic{flex-shrink:0;width:2.1rem;height:2.1rem;border-radius:9px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);display:flex;align-items:center;justify-content:center;color:#e74c3c;transition:background .25s ease,color .25s ease;}
+      a.ft-contact:hover{color:#fff;}
+      a.ft-contact:hover .ft-ic{background:#c0392b;color:#fff;}
+
+      .ft-badge{display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:.6rem .85rem;transition:border-color .25s ease,background .25s ease;}
+      .ft-badge:hover{border-color:rgba(192,57,43,0.35);background:rgba(192,57,43,0.05);}
+
+      .ft-bottom-link{color:rgba(255,255,255,0.3);font-size:0.9rem;text-decoration:none;transition:color .25s ease;}
+      .ft-bottom-link:hover{color:rgba(255,255,255,0.7);}
+    </style>
+
+    <div style="max-width:1280px;margin:0 auto;padding:4.5rem 1.5rem 2rem;">
+    <div class="ft-grid">
 
       <!-- Brand col -->
-      <div style="grid-column:span 1;">
-        <div style="margin-bottom:1.2rem;">
-          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-            <img src="image/jb-logo.png" alt="Jonatas Baptista" style="height:66px;width:auto;display:block;"/>
-            <div style="display:flex;flex-direction:column;line-height:1.2;">
-              <span style="font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:0.02em;white-space:nowrap;">Jonatas Baptista</span>
-              <span style="font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">Real Estate Coach</span>
-            </div>
+      <div>
+        <div style="display:flex;align-items:center;gap:0.65rem;margin-bottom:1.25rem;">
+          <img src="image/jb-logo.png" alt="Jonatas Baptista" style="height:68px;width:auto;display:block;"/>
+          <div style="display:flex;flex-direction:column;line-height:1.2;">
+            <span style="font-family:'Outfit',sans-serif;font-size:1.18rem;font-weight:600;color:#fff;letter-spacing:0.02em;white-space:nowrap;">Jonatas Baptista</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;">Real Estate Coach</span>
           </div>
-          <p style="color:rgba(255,255,255,0.4);font-size:1.063rem;line-height:1.7;max-width:340px;">Real Estate Coach &amp; Sales Strategist helping professionals attract premium clients, close more deals, and build businesses that last.</p>
         </div>
+        <p style="color:rgba(255,255,255,0.42);font-size:1.02rem;line-height:1.75;max-width:340px;margin:0 0 1.75rem;">Real Estate Coach &amp; Sales Strategist helping professionals attract premium clients, close more deals, and build businesses that last.</p>
         <!-- Social icons -->
-        <div style="display:flex;gap:.6rem;">
-          <a href="https://www.linkedin.com/in/jonatas-baptista-42992113/" aria-label="LinkedIn" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#e74c3c'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        <div style="display:flex;gap:.65rem;">
+          <a href="https://www.linkedin.com/in/jonatas-baptista-42992113/" aria-label="LinkedIn" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
-          <a href="#" aria-label="Facebook" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#e74c3c'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <a href="#" aria-label="Facebook" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a href="#" aria-label="Instagram" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#e74c3c'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <a href="#" aria-label="Instagram" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a href="https://wa.me/351 910 083 701 aria-label="WhatsApp" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:border-color .2s,color .2s;text-decoration:none;" onmouseover="this.style.borderColor='#25D366';this.style.color='#25D366'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.4)'">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/351910083701" aria-label="WhatsApp" class="ft-social" onmouseover="this.style.background='#25D366';this.style.borderColor='#25D366';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </a>
         </div>
       </div>
 
       <!-- Navigation -->
       <div>
-        <div style="color:#fff;font-size:0.86rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,0.07);">Navigate</div>
-        <div style="display:flex;flex-direction:column;gap:.75rem;">
-          <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Overview
-          </a>
-          <a href="about.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> My Story
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Work With Me
-          </a>
-
-          <a href="contact.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Let's Connect
-          </a>
+        <div class="ft-head">Navigate</div>
+        <div style="display:flex;flex-direction:column;gap:.9rem;">
+          <a href="index.html" class="ft-link">Overview<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="about.html" class="ft-link">My Story<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Work With Me<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="contact.html" class="ft-link">Let's Connect<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
       <!-- Services -->
       <div>
-        <div style="color:#fff;font-size:0.86rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,0.07);">Services</div>
-        <div style="display:flex;flex-direction:column;gap:.75rem;">
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> 1-on-1 Coaching
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Strategic Advisory
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Group Mentorship
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> Portfolio Review
-          </a>
-          <a href="service.html" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.45);font-size:1.075rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span> First-Time Investor
-          </a>
+        <div class="ft-head">Services</div>
+        <div style="display:flex;flex-direction:column;gap:.9rem;">
+          <a href="service.html" class="ft-link">1-on-1 Coaching<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Strategic Advisory<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Group Mentorship<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">Portfolio Review<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">First-Time Investor<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
       <!-- Contact -->
       <div>
-        <div style="color:#fff;font-size:0.86rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,0.07);">Contact</div>
-        <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span>
-            <a href="mailto:support@jonatasbaptista.com" style="color:rgba(255,255,255,0.5);font-size:1.037rem;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">support@jonatasbaptista.com</a>
-          </div>
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span>
-            <span style="color:rgba(255,255,255,0.5);font-size:1.037rem;">+351 910 083 701</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <span style="color:#c0392b;font-size:0.95rem;font-weight:600;">›</span>
-            <span style="color:rgba(255,255,255,0.5);font-size:1.037rem;">Available Worldwide</span>
+        <div class="ft-head">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.75rem;">
+          <a href="mailto:support@jonatasbaptista.com" class="ft-contact">
+            <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span>
+            support@jonatasbaptista.com
+          </a>
+          <a href="tel:+351910083701" class="ft-contact">
+            <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg></span>
+            +351 910 083 701
+          </a>
+          <div class="ft-contact" style="cursor:default;">
+            <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></span>
+            Available Worldwide
           </div>
         </div>
         <!-- Trust badges -->
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:.5rem .75rem;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.5);font-size:0.911rem;">150+ Clients Coached Globally</span>
+        <div style="display:flex;flex-direction:column;gap:.55rem;">
+          <div class="ft-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">150+ Clients Coached Globally</span>
           </div>
-          <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:.5rem .75rem;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.5);font-size:0.911rem;">85% Client Satisfaction Rate</span>
+          <div class="ft-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">85% Client Satisfaction Rate</span>
           </div>
-          <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:.5rem .75rem;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.5);font-size:0.911rem;">Response Within 24 Hours</span>
+          <div class="ft-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Response Within 24 Hours</span>
           </div>
         </div>
       </div>
@@ -1220,12 +1390,16 @@
     </div>
 
     <!-- Bottom bar -->
-    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;">
-      <p style="color:rgba(255,255,255,0.2);font-size:0.911rem;">© 2026 Jonatas Baptista. All rights reserved.</p>
-      <div style="display:flex;gap:1.5rem;">
-        <a href="#" style="color:rgba(255,255,255,0.2);font-size:0.911rem;text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Privacy Policy</a>
-        <a href="#" style="color:rgba(255,255,255,0.2);font-size:0.911rem;text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Terms of Service</a>
+    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:1.75rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;position:relative;z-index:1;">
+      <p style="color:rgba(255,255,255,0.3);font-size:0.9rem;margin:0;">© 2026 Jonatas Baptista. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:1.75rem;">
+        <a href="privacy-policy.html" class="ft-bottom-link">Privacy Policy</a>
+        <a href="terms-of-service.html" class="ft-bottom-link">Terms of Service</a>
+        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" aria-label="Back to top" style="display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,0.55);font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:.45rem .95rem;transition:border-color .25s ease,color .25s ease,transform .25s ease;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.55)';this.style.transform=''">
+          Top<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </a>
       </div>
+    </div>
     </div>
   </div>
 </footer>
