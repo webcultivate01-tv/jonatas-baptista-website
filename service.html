@@ -42,11 +42,14 @@
       color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
     @media (max-width: 639px) {
-      .nav-brand { gap: 0.4rem; }
-      .nav-brand-text { display: flex !important; }
-      .nav-brand img { height: 36px; }
-      .nav-brand-name { font-size: 1rem; }
-      .nav-brand-subtitle { font-size: 0.7rem; }
+      .nav-brand { gap: 0.5rem; }
+      .nav-brand-text { display: flex !important; gap: 0.2rem; }
+      .nav-brand img { height: 46px; }
+      .nav-brand-name { font-size: 1.15rem; }
+      .nav-brand-subtitle { font-size: 0.75rem; }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .nav-brand-text { display: flex; }
     }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; }
     @media (max-width: 1023px) { .nav-links { display: none !important; } }
@@ -88,17 +91,24 @@
       #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
     }
     #mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: #fff; z-index: 1000;
       flex-direction: column; padding: 2rem 1.5rem; overflow-y: auto;
+      opacity: 0; visibility: hidden; transform: translateY(-12px);
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.35s;
     }
-    #mobile-menu.open { display: flex; }
+    #mobile-menu.open {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      pointer-events: auto;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;
+    }
     .mob-header {
       display: flex; align-items: center; justify-content: space-between;
       padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 2rem;
     }
     .mob-logo-section { display: flex; align-items: center; gap: 0.45rem; }
-    .mob-logo-section img { height: 56px; width: auto; filter: brightness(0); }
+    .mob-logo-section img { height: 40px; width: auto; filter: brightness(0); }
     .mob-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .mob-brand-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1a1a1a; letter-spacing: 0.02em; }
     .mob-brand-subtitle { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 400; color: rgba(0,0,0,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
@@ -203,7 +213,7 @@
       <img src="image/jb-logo.png" alt="Jonatas Baptista" />
       <div class="nav-brand-text">
         <span class="nav-brand-name">Jonatas Baptista</span>
-        <span class="nav-brand-subtitle">Real Estate Coach</span>
+        <span class="nav-brand-subtitle">CLIENT ACQUISITION COACH</span>
       </div>
     </a>
     <div class="nav-links">
@@ -229,7 +239,7 @@
       <img src="image/jb-logo.png" alt="Jonatas Baptista" />
       <div class="mob-brand-text">
         <span class="mob-brand-name">Jonatas Baptista</span>
-        <span class="mob-brand-subtitle">Real Estate Coach</span>
+        <span class="mob-brand-subtitle">CLIENT ACQUISITION COACH</span>
       </div>
     </div>
     <button id="mob-close" aria-label="Close">✕</button>
@@ -281,10 +291,11 @@
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
       <!-- Text -->
       <div class="text-center lg:text-left">
-        <p class="eyebrow !text-red-400 mb-5 reveal">Real Estate Strategy &amp; Advisory</p>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.1] reveal reveal-delay-1">Smarter Property<br /> Decisions Start Here.</h1>
+        <p class="eyebrow !text-red-400 mb-5 reveal">CLIENT ACQUISITION & GROWTH STRATEGY
+</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.1] reveal reveal-delay-1">Smartery<br /> Decisions Start Here.</h1>
         <p class="text-slate-300 text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-9 reveal reveal-delay-2">
-          Jonatas Baptista helps investors, professionals, and ambitious buyers cut through the noise and build real estate strategies that actually hold up — in any market, at any stage.
+         Jonatas Baptista helps Founders, Coaches, Consultants & Service Professionals Get More Clients, Increase Sales, Create Predictable Growth & Build Systems
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 reveal reveal-delay-3">
           <a href="contact.html" class="btn-primary inline-flex items-center gap-2 text-white font-black px-9 py-4 rounded-full text-base hover:opacity-90 transition-opacity shadow-xl">
@@ -312,7 +323,7 @@
 </section>
 
 <!-- TRUST / STATS STRIP -->
-<section class="bg-white border-b border-slate-100">
+<!-- <section class="bg-white border-b border-slate-100">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-4 text-center">
       <div class="reveal">
@@ -329,7 +340,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- WORK WITH ME — INTRO -->
 <section id="work-with-me" class="py-20 md:py-24 bg-white">

@@ -112,11 +112,18 @@
 
     /* Mobile menu */
     #mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: var(--dark); z-index: 998;
       flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+      opacity: 0; visibility: hidden; transform: translateY(-12px);
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.35s;
     }
-    #mobile-menu.open { display: flex; }
+    #mobile-menu.open {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      pointer-events: auto;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;
+    }
     .mob-link {
       font-family: 'Playfair Display', serif;
       font-size: 2rem; color: #fff; text-decoration: none;

@@ -76,7 +76,7 @@
     }
     @media (max-width: 639px) {
       .nav-brand { gap: 0.5rem; }
-      .nav-brand-text { display: flex !important; }
+      .nav-brand-text { display: flex !important; gap: 0.2rem; }
       .nav-brand img { height: 46px; }
       .nav-brand-name { font-size: 1.15rem; }
       .nav-brand-subtitle { font-size: 0.75rem; }
@@ -146,12 +146,19 @@
 
     /* Mobile menu */
     #mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: #fff; z-index: 1000;
       flex-direction: column; padding: 2rem 1.5rem;
       overflow-y: auto;
+      opacity: 0; visibility: hidden; transform: translateY(-12px);
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.35s;
     }
-    #mobile-menu.open { display: flex; }
+    #mobile-menu.open {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      pointer-events: auto;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;
+    }
     
     /* Mobile menu header */
     .mob-header {
@@ -329,6 +336,7 @@
 
     /* ===== HERO ===== */
     .hero { background: #070a10; position: relative; overflow: hidden; }
+    .hero-h1-br { display: none; }
 
     /* entry animations */
     @keyframes fadeUp {
@@ -663,33 +671,57 @@
       .nav-inner { padding: 1rem 1rem !important; }
       #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
       
-      /* Hero section fit to screen — align-items:flex-start anchors content
-         to the top so it never overlaps the fixed navbar */
-      .hero { height: 100svh !important; align-items: flex-start !important; }
-      
+      /* Hero section sized to its actual content — align-items:flex-start
+         anchors content to the top so it never overlaps the fixed navbar.
+         No forced min-height: that used to leave a dead gap below the photo
+         on screens where the content is shorter than the viewport, and
+         overflow stays visible so taller content never gets clipped. */
+      .hero {
+        min-height: 0 !important;
+        height: auto !important;
+        align-items: flex-start !important;
+        /* `overflow-x: hidden` + `overflow-y: visible` is not a legal pair: the
+           spec makes the visible axis compute to `auto`, which gave the hero its
+           own scrollbar nested inside the page scroll. `clip` is the one value
+           that constrains X without forcing Y to scroll. The plain `overflow`
+           line is the Safari <16 fallback — the page-level
+           `html { overflow-x: hidden }` still stops any sideways scroll there. */
+        overflow: visible !important;
+        overflow-x: clip !important;
+        overflow-y: visible !important;
+      }
+
       /* Hero responsive */
       .hero-photo-circle { width: 170px; height: 170px; }
-      .hero-inner { 
-        padding-top: 5.5rem !important; 
-        padding-bottom: 2.5rem !important; 
+      .hero-inner {
+        padding-top: 7.25rem !important;
+        padding-bottom: 2.5rem !important;
         flex-direction: column !important;
-        gap: 2rem !important;
+        gap: 1.5rem !important;
         justify-content: flex-start !important;
         align-items: center !important;
       }
-      
+
       /* Hero eyebrow spacing - reduced for mobile */
       .hero-left-col > div:first-child {
         margin-top: 0.5rem !important;
         margin-bottom: 1rem !important;
       }
-      
-      /* Hero headline mobile */
+
+      /* Hero headline mobile — forced onto exactly two lines: the manual
+         <br class="hero-h1-br"> becomes the line break (hidden on desktop,
+         where each phrase already gets its own line), and the first two
+         phrases flow inline together as line one. Font scales with the
+         viewport so the combined phrase keeps fitting on one line across
+         common phone widths. */
       .hero-left-col h1 {
-        font-size: 1.5rem !important;
-        line-height: 1.45 !important;
+        font-size: clamp(1.05rem, 4.8vw, 1.4rem) !important;
+        line-height: 1.4 !important;
         margin-bottom: 0.8rem !important;
       }
+      .hero-left-col h1 .hero-h1-a { display: inline !important; }
+      .hero-left-col h1 .hero-h1-b { display: inline !important; }
+      .hero-h1-br { display: inline; }
       
       .hero-left-col p {
         font-size: 0.9rem !important;
@@ -748,34 +780,39 @@
         flex-direction: column !important;
       }
       
-      /* CTA buttons on mobile */
+      /* CTA buttons on mobile — one row, side by side */
       .hero-anim-4 {
         width: 100%;
+        flex-wrap: nowrap !important;
         gap: 0.5rem !important;
         margin-bottom: 1rem !important;
       }
       .hero-anim-4 a {
-        width: 100%;
+        flex: 1 1 0;
+        width: auto;
+        text-align: center;
         justify-content: center !important;
-        padding: 0.6rem 1.2rem !important;
+        padding: 0.65rem 0.4rem !important;
         font-size: 0.6rem !important;
       }
     }
     
     @media (max-width: 480px) {
       /* Extra small screens */
-      .hero { min-height: 100vh; }
       .hero-photo-circle { width: 150px; height: 150px; }
-      
-      .hero-left-col h1 {
-        font-size: 1.3rem !important;
-        line-height: 1.4 !important;
-      }
-      
+
       /* Stack stats vertically on very small screens */
       .hero-right-col > div:last-child > div {
         flex: 1 1 100%;
       }
+
+      /* Keep CTA buttons on one row even on very narrow screens */
+      .hero-anim-4 a {
+        padding: 0.6rem 0.3rem !important;
+        font-size: 0.52rem !important;
+        gap: 0.3rem !important;
+      }
+      .hero-anim-4 a svg { flex-shrink: 0; }
     }
 
     /* ===== SECTION FONT SIZES ===== */
@@ -1114,9 +1151,10 @@
 
         <!-- headline -->
         <h1 class="serif mb-4 hero-anim-2" style="font-size:clamp(2rem,4.5vw,3.163rem);line-height:1.35;font-weight:500;letter-spacing:0.01em;">
-          <span class="block" style="color:rgba(255,255,255,0.5);font-weight:300;">Stop Chasing Leads.</span>
-          <em class="block italic" style="color:rgba(255,255,255,0.75);font-weight:400;">Build a Business</em>
-          <span class="block text-white" style="font-weight:600;">That Premium Clients Trust.</span>
+          <span class="block hero-h1-a" style="color:rgba(255,255,255,0.5);font-weight:300;">Stop Chasing Leads.</span>
+          <em class="block italic hero-h1-a" style="color:rgba(255,255,255,0.75);font-weight:400;">Build a Business</em>
+          <br class="hero-h1-br" />
+          <span class="block text-white hero-h1-b" style="font-weight:600;">That Premium Clients Trust.</span>
         </h1>
 
         <!-- red accent line -->
@@ -1124,7 +1162,7 @@
 
         <!-- subheadline -->
         <p class="text-white/50 leading-relaxed max-w-lg mb-6 mx-auto lg:mx-0 hero-anim-3 text-[1.15rem]">
-          Build a predictable client acquisition system using proven sales strategies, AI-powered workflows, and high-performance coaching that helps you consistently attract premium buyers.
+          Build a predictable client acquisition system using sales strategies, AI-powered workflows, and high-performance coaching that helps you consistently attract premium buyers.
         </p>
 
         <!-- benefit checks -->
@@ -1199,10 +1237,9 @@
     </div>
 
     <!-- Heading -->
-    <h2 class="serif text-center mb-6" style="font-size:clamp(2.404rem,5.06vw,3.795rem);line-height:1.2;color:#1a1a1a;font-weight:400;" data-reveal="up" style="transition-delay:0.07s">
-      	Most professionals don't struggle because they lack ambition<br />
-      <em style="color:#c0392b;">they struggle because they lack a repeatable system. 
-</em>
+    <h2 class="serif text-center mb-6 stuck-heading" style="font-size:clamp(1.35rem,4.2vw,2.9rem);line-height:1.3;color:#1a1a1a;font-weight:400;transition-delay:0.07s" data-reveal="up">
+      Most professionals don't struggle because they lack ambition<br />
+      <em style="color:#c0392b;">they struggle because they lack a repeatable system.</em>
     </h2>
 
 

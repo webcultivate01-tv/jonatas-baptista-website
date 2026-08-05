@@ -41,11 +41,14 @@
       color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
     @media (max-width: 639px) {
-      .nav-brand { gap: 0.4rem; }
-      .nav-brand-text { display: flex !important; }
-      .nav-brand img { height: 36px; }
-      .nav-brand-name { font-size: 1rem; }
-      .nav-brand-subtitle { font-size: 0.7rem; }
+      .nav-brand { gap: 0.5rem; }
+      .nav-brand-text { display: flex !important; gap: 0.2rem; }
+      .nav-brand img { height: 46px; }
+      .nav-brand-name { font-size: 1.15rem; }
+      .nav-brand-subtitle { font-size: 0.75rem; }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .nav-brand-text { display: flex; }
     }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; }
     @media (max-width: 1023px) { .nav-links { display: none !important; } }
@@ -87,17 +90,24 @@
       #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
     }
     #mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: #fff; z-index: 1000;
       flex-direction: column; padding: 2rem 1.5rem; overflow-y: auto;
+      opacity: 0; visibility: hidden; transform: translateY(-12px);
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.35s;
     }
-    #mobile-menu.open { display: flex; }
+    #mobile-menu.open {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      pointer-events: auto;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;
+    }
     .mob-header {
       display: flex; align-items: center; justify-content: space-between;
       padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 2rem;
     }
     .mob-logo-section { display: flex; align-items: center; gap: 0.45rem; }
-    .mob-logo-section img { height: 56px; width: auto; filter: brightness(0); }
+    .mob-logo-section img { height: 40px; width: auto; filter: brightness(0); }
     .mob-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .mob-brand-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1a1a1a; letter-spacing: 0.02em; }
     .mob-brand-subtitle { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 400; color: rgba(0,0,0,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
@@ -172,7 +182,7 @@
       <img src="image/jb-logo.png" alt="Jonatas Baptista" />
       <div class="nav-brand-text">
         <span class="nav-brand-name">Jonatas Baptista</span>
-        <span class="nav-brand-subtitle">Real Estate Coach</span>
+        <span class="nav-brand-subtitle">CLIENT ACQUISITION COACH</span>
       </div>
     </a>
     <div class="nav-links">
@@ -242,23 +252,53 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap');
 
-  /* ===== ABOUT HERO ===== */
+  /* ===== ABOUT HERO =====
+     One source of truth for the portrait size: --ah-circle. The rings, glow
+     and watermark all derive from it, so they can never drift out of sync.
+     It scales fluidly, which removes the need to restate every size at each
+     breakpoint (that restating is what broke the ring alignment before).
+
+     Everything on the desktop hero is sized with `min(<vw>, <vh>)` inside a
+     clamp. Width alone is not enough: a wide-but-short laptop screen (1440x800)
+     has plenty of horizontal room but only ~660px of usable height, which is
+     what used to push the copy, buttons and quote below the fold. Keying the
+     type and the portrait to whichever axis is scarcer keeps the whole hero
+     inside one viewport without ever restating sizes per breakpoint. */
   .about-hero {
+    --ah-circle: clamp(190px, min(23vw, 40vh), 340px);
+    --ah-gap: clamp(1.75rem, 3.5vw, 3rem);
+    --ah-nav: 80px;
     background: #faf9f7;
     position: relative;
-    overflow: hidden;
-    height: calc(100vh - 80px);
+    overflow-x: hidden; /* fallback: Safari <16 ignores `clip` */
+    overflow-x: clip;   /* unlike `hidden`, leaves overflow-y truly `visible` */
+    overflow-y: visible;
+    min-height: calc(100vh - var(--ah-nav));
+    min-height: calc(100svh - var(--ah-nav)); /* avoids mobile URL-bar jump */
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     box-sizing: border-box;
-    margin-top: 80px;
-    padding: 2.5rem 0 1.5rem;
+    margin-top: var(--ah-nav);
+    padding: clamp(1.25rem, 3.5vh, 3rem) 0;
+  }
+
+  .ah-container {
+    max-width: 1340px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 0 clamp(1.15rem, 4vw, 2.5rem);
+    box-sizing: border-box;
   }
 
   .about-hero-grid {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 3.5rem;
+    /* The text column carries far more content than the portrait, so it gets
+       the wider track: longer lines mean fewer lines, which is the cheapest
+       height saving available. */
+    grid-template-columns: 1fr 1.12fr;
+    gap: var(--ah-gap);
     align-items: center;
     width: 100%;
     position: relative;
@@ -271,6 +311,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    /* Reserve room for the rings + badge so neither can be clipped by the
+       section's overflow rule at any width. */
+    margin: clamp(1.5rem, 3.5vh, 2.5rem) clamp(1.5rem, 3vw, 2.75rem);
   }
 
   /* Large watermark numeral behind the circle */
@@ -279,7 +322,7 @@
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Playfair Display', serif;
-    font-size: clamp(10rem, 18vw, 18rem);
+    font-size: calc(var(--ah-circle) * 0.62);
     font-weight: 700;
     color: rgba(192,57,43,0.045);
     line-height: 1;
@@ -291,8 +334,8 @@
   }
 
   .about-photo-circle {
-    width: 360px;
-    height: 360px;
+    width: var(--ah-circle);
+    height: var(--ah-circle);
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -310,7 +353,8 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
-    width: 480px; height: 480px;
+    width: calc(var(--ah-circle) * 1.34);
+    height: calc(var(--ah-circle) * 1.34);
     border-radius: 50%;
     background: radial-gradient(circle, rgba(192,57,43,0.14) 0%, transparent 65%);
     pointer-events: none;
@@ -336,8 +380,8 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
-    width: calc(360px + 64px);
-    height: calc(360px + 64px);
+    width: calc(var(--ah-circle) + clamp(2rem, 4vw, 4rem));
+    height: calc(var(--ah-circle) + clamp(2rem, 4vw, 4rem));
     border-radius: 50%;
     border: 1px dashed rgba(192,57,43,0.28);
     animation: ah-spin 70s linear infinite;
@@ -349,8 +393,8 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
-    width: calc(360px + 28px);
-    height: calc(360px + 28px);
+    width: calc(var(--ah-circle) + clamp(1rem, 2vw, 1.75rem));
+    height: calc(var(--ah-circle) + clamp(1rem, 2vw, 1.75rem));
     border-radius: 50%;
     border: 1px solid rgba(192,57,43,0.15);
     pointer-events: none;
@@ -361,21 +405,24 @@
     to { transform: translate(-50%,-50%) rotate(360deg); }
   }
 
-  /* ===== EXPERIENCE BADGE ===== */
+  /* ===== EXPERIENCE BADGE =====
+     Anchored to the circle's lower-right edge and offset by a fraction of the
+     circle, so it hugs the portrait consistently at every size instead of
+     drifting inward on small screens / outward on large ones. */
   .about-badge {
     position: absolute;
-    bottom: -0.75rem;
-    right: -2.75rem;
+    bottom: calc(var(--ah-circle) * 0.02);
+    right: calc(var(--ah-circle) * -0.11);
     background: #ffffff;
     border: 1px solid rgba(192,57,43,0.2);
-    border-radius: 16px;
-    padding: 1.1rem 1.5rem;
+    border-radius: clamp(12px, 2vw, 16px);
+    padding: clamp(0.8rem, 1.6vw, 1.1rem) clamp(1rem, 2vw, 1.5rem);
     box-shadow:
       0 12px 40px rgba(0,0,0,0.1),
       0 4px 16px rgba(0,0,0,0.06),
       inset 0 1px 0 rgba(255,255,255,0.9);
     z-index: 10;
-    min-width: 150px;
+    min-width: clamp(112px, 12vw, 150px);
   }
 
   .about-badge::before {
@@ -388,10 +435,21 @@
     opacity: 0.85;
   }
 
+  .about-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.45rem, 3.2vw, 1.9rem);
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+  }
+
+  /* Sits in the real gutter, not at the section's midpoint: the columns are
+     1fr / 1.12fr, so the boundary is (100% - gap) / 2.12 plus half the gap.
+     Anchored to the grid, which is why it lives inside it in the markup. */
   .about-col-divider {
     position: absolute;
-    top: 10%; bottom: 10%;
-    left: 50%;
+    top: 6%; bottom: 6%;
+    left: calc((100% - var(--ah-gap)) / 2.12 + var(--ah-gap) / 2);
     width: 1px;
     background: linear-gradient(to bottom,
       transparent,
@@ -452,6 +510,93 @@
   }
   .ah-circle-reveal.visible { opacity: 1; transform: scale(1) translateY(0); }
 
+  /* ===== TEXT COLUMN TYPOGRAPHY =====
+     Sizes and rhythm live here rather than inline so the height-aware scale
+     stays in one place. */
+  .about-text-col {
+    display: flex;
+    flex-direction: column;
+    padding-left: clamp(0rem, 2vw, 2rem);
+  }
+
+  .ah-title {
+    font-family: 'Playfair Display', serif;
+    /* Matches the index hero h1 scale — clamp(2rem, 4.5vw, 3.163rem) — with the
+       vh guard kept so a short laptop screen still holds the hero in one view. */
+    font-size: clamp(2rem, min(4.5vw, 5.9vh), 3.163rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .ah-title-muted  { font-weight: 300; color: rgba(0,0,0,0.45); }
+  .ah-title-accent {
+    display: block;
+    margin-top: 0.32em;
+    font-style: italic;
+    font-weight: 300;
+    color: #c0392b;
+    font-size: 0.84em;
+  }
+  .ah-title-strong {
+    display: block;
+    margin-top: 0.06em;
+    font-weight: 800;
+    color: #1a1a1a;
+    font-size: 1.03em;
+  }
+
+  .ah-accent-rule {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: clamp(0.9rem, 2.2vh, 1.6rem) 0;
+  }
+
+  .ah-body {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.05rem, min(1.45vw, 2.3vh), 1.25rem); /* matches .ab-lead */
+    font-weight: 300;
+    color: rgba(0,0,0,0.62);
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 0 0 clamp(1rem, 2.4vh, 1.6rem);
+  }
+
+  .ah-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: clamp(1rem, 2.4vh, 1.6rem);
+  }
+
+  .ah-quote {
+    display: flex;
+    gap: clamp(0.85rem, 1.8vw, 1.15rem);
+    align-items: flex-start;
+    padding-top: clamp(0.9rem, 2.4vh, 1.75rem);
+    border-top: 1px solid rgba(0,0,0,0.08);
+    width: 100%;
+  }
+  .ah-quote-bar {
+    width: 2px;
+    flex-shrink: 0;
+    align-self: stretch;
+    min-height: 2.6em;
+    background: linear-gradient(to bottom, #c0392b, rgba(192,57,43,0.05));
+    border-radius: 2px;
+    margin-top: 0.15em;
+  }
+  .ah-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, min(1.35vw, 2vh), 1.2rem);
+    font-style: italic;
+    color: rgba(0,0,0,0.5);
+    line-height: 1.6;
+    margin: 0;
+  }
+
   /* ===== ROLE PILLS ===== */
   .about-role-pill {
     background: rgba(192,57,43,0.1);
@@ -480,35 +625,88 @@
   .about-trust-item {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.75rem 1.25rem;
+    justify-content: center;
+    gap: clamp(0.35rem, 1.5vw, 0.6rem);
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.5rem, 2vw, 1.25rem);
     flex: 1;
+    min-width: 0;
     border-right: 1px solid rgba(0,0,0,0.07);
   }
   .about-trust-item:last-child { border-right: none; }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 1023px) {
-    .about-hero { margin-top: 65px; height: auto; min-height: calc(100vh - 65px); padding: 2rem 0; }
-    .about-hero-grid { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 0; }
-    .about-col-divider { display: none; }
-    .about-ring-spin { width: calc(260px + 56px); height: calc(260px + 56px); }
-    .about-ring-static { width: calc(260px + 26px); height: calc(260px + 26px); }
-    .about-photo-circle { width: 260px; height: 260px; }
-    .about-circle-glow { width: 360px; height: 360px; }
-    .ah-photo-col { order: -1; align-items: center !important; }
-    .about-badge { bottom: -0.5rem; right: -0.5rem; min-width: auto; }
-    .about-trust-bar { display: none; }
-    .about-watermark { font-size: 8rem; }
-    .about-text-col { padding-left: 0 !important; }
+  .about-trust-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(0.75rem, 2vw, 0.8rem);
+    font-weight: 700;
+    color: #1a1a1a;
   }
+  .about-trust-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(0.6rem, 1.6vw, 0.65rem);
+    color: rgba(0,0,0,0.45);
+    letter-spacing: 0.06em;
+  }
+
+  /* ===== RESPONSIVE =====
+     Circle, rings, glow, watermark and badge all scale from --ah-circle, so
+     these breakpoints only need to handle what genuinely changes: the column
+     layout and the content order. */
+  @media (max-width: 1023px) {
+    /* Single column: the section now hugs its content rather than being
+       pinned to the viewport, so taller content can never be clipped. */
+    .about-hero {
+      --ah-nav: 65px;
+      --ah-circle: clamp(200px, 42vw, 280px);
+      min-height: 0;
+      padding: clamp(1.75rem, 6vw, 2.5rem) 0 clamp(2.25rem, 7vw, 3rem);
+    }
+    .about-hero-grid {
+      grid-template-columns: 1fr;
+      gap: clamp(1.75rem, 6vw, 2.5rem);
+      justify-items: center;
+      text-align: center;
+    }
+    .about-col-divider { display: none; }
+    .ah-photo-col { order: -1; align-items: center !important; }
+    .about-text-col { padding-left: 0; align-items: center; }
+    /* Centring the column would otherwise leave the measure-limited
+       paragraph visually off-axis. */
+    .about-text-col p { margin-left: auto; margin-right: auto; }
+    .ah-accent-rule, .ah-cta-row { justify-content: center; }
+    .ah-quote { text-align: left; max-width: 34rem; }
+
+    /* Stacked layout scrolls, so type is no longer height-constrained and can
+       go back to comfortable reading sizes. */
+    .ah-title  { font-size: clamp(1.85rem, 5.4vw, 2.7rem); line-height: 1.14; }
+    .ah-body   { font-size: clamp(1.05rem, 2.8vw, 1.25rem); line-height: 1.8; max-width: 52ch; }
+    .ah-quote p { font-size: clamp(1.05rem, 2.4vw, 1.2rem); line-height: 1.7; }
+  }
+
+  /* Short desktop screens (small laptops, scaled displays): the fluid sizes
+     have already bottomed out at their clamp minimums, so the minimums
+     themselves have to come down for the hero to stay inside one viewport. */
+  @media (min-width: 1024px) and (max-height: 700px) {
+    .about-hero { --ah-circle: clamp(150px, min(23vw, 40vh), 340px); }
+    .ah-title   { font-size: clamp(1.7rem, min(4.5vw, 5.9vh), 3.163rem); }
+    .ah-body    { font-size: clamp(0.95rem, min(1.45vw, 2.3vh), 1.25rem); line-height: 1.6; }
+    .ah-quote p { font-size: clamp(0.9rem, min(1.35vw, 2vh), 1.2rem); line-height: 1.55; }
+  }
+
   @media (max-width: 767px) {
-    .about-photo-circle { width: 210px; height: 210px; }
-    .about-ring-spin { width: calc(210px + 56px); height: calc(210px + 56px); }
-    .about-ring-static { width: calc(210px + 26px); height: calc(210px + 26px); }
-    .about-circle-glow { width: 300px; height: 300px; }
-    .about-badge { padding: 0.85rem 1.1rem; border-radius: 12px; }
-    .about-watermark { font-size: 5rem; }
+    .about-hero { --ah-circle: clamp(185px, 46vw, 240px); }
+    .ah-cta-row a { flex: 1 1 100%; justify-content: center; }
+  }
+
+  /* Small phones: the check icons cost more width than they earn once the
+     trust bar has to fit three items across ~280px of usable space. */
+  @media (max-width: 479px) {
+    .about-trust-item svg { display: none; }
+    .about-trust-item { padding-left: 0.4rem; padding-right: 0.4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-ring-spin, .about-circle-glow { animation: none; }
+    .ah-fade, .ah-circle-reveal { transition-duration: 0.01ms; }
+    .about-photo-circle img { transition: none; }
   }
 </style>
 
@@ -523,14 +721,14 @@
   <!-- Fine dot grid (dark dots on light) -->
   <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.07) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 10%,transparent 70%);mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 10%,transparent 70%);pointer-events:none;opacity:0.5;z-index:0;"></div>
 
-  <!-- Subtle vertical line between columns -->
-  <div class="about-col-divider"></div>
-
-  <div style="max-width:1340px;margin:0 auto;padding:0 2.5rem;width:100%;position:relative;z-index:1;">
+  <div class="ah-container">
     <div class="about-hero-grid">
 
+      <!-- Subtle vertical line between columns -->
+      <div class="about-col-divider"></div>
+
       <!-- LEFT: Photo column -->
-      <div class="ah-circle-reveal ah-photo-col" id="ahCircleCol" style="display:flex;flex-direction:column;align-items:center;gap:2.25rem;">
+      <div class="ah-circle-reveal ah-photo-col" id="ahCircleCol" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
 
         <div class="about-photo-wrap">
           <div class="about-watermark">20</div>
@@ -546,13 +744,6 @@
               onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85&auto=format&fit=crop'"
             />
           </div>
-
-          <div class="about-badge">
-            <div style="font-family:'Outfit',sans-serif;font-size:0.63rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:0.22rem;">Experience</div>
-            <div style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:#1a1a1a;line-height:1;">20+</div>
-            <div style="font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:400;color:rgba(0,0,0,0.5);margin-top:0.18rem;">Years in Real Estate</div>
-            <div style="width:1.6rem;height:1.5px;background:#c0392b;margin-top:0.55rem;border-radius:2px;"></div>
-          </div>
         </div>
 
         <!-- Career role pills -->
@@ -566,24 +757,24 @@
         <!-- Trust mini bar (desktop only) -->
         <div class="about-trust-bar" style="width:100%;max-width:380px;">
           <div class="about-trust-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
             <div>
-              <div style="font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;color:#1a1a1a;">300+</div>
-              <div style="font-family:'Outfit',sans-serif;font-size:0.65rem;color:rgba(0,0,0,0.45);letter-spacing:0.06em;">Consultations</div>
+              <div class="about-trust-num">300+</div>
+              <div class="about-trust-label">Consultations</div>
             </div>
           </div>
           <div class="about-trust-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
             <div>
-              <div style="font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;color:#1a1a1a;">500+</div>
-              <div style="font-family:'Outfit',sans-serif;font-size:0.65rem;color:rgba(0,0,0,0.45);letter-spacing:0.06em;">Network</div>
+              <div class="about-trust-num">500+</div>
+              <div class="about-trust-label">Network</div>
             </div>
           </div>
           <div class="about-trust-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
             <div>
-              <div style="font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;color:#1a1a1a;">15+</div>
-              <div style="font-family:'Outfit',sans-serif;font-size:0.65rem;color:rgba(0,0,0,0.45);letter-spacing:0.06em;">Markets</div>
+              <div class="about-trust-num">15+</div>
+              <div class="about-trust-label">Markets</div>
             </div>
           </div>
         </div>
@@ -591,39 +782,39 @@
       </div>
 
       <!-- RIGHT: Text content -->
-      <div style="display:flex;flex-direction:column;padding-left:2rem;" class="about-text-col">
+      <div class="about-text-col">
 
         <!-- Headline -->
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3.2rem);color:#1a1a1a;line-height:1.17;margin-bottom:0;letter-spacing:-0.02em;" class="ah-fade">
-          <span style="font-weight:300;color:rgba(0,0,0,0.45);">More Than Two Decades</span><br/>
-          <span style="font-weight:300;color:rgba(0,0,0,0.45);">in Real Estate.</span>
-          <span style="display:block;margin-top:0.5rem;font-style:italic;font-weight:300;color:#c0392b;font-size:0.82em;">Dedicated to Helping</span>
-          <span style="display:block;font-weight:800;color:#1a1a1a;font-size:1.02em;margin-top:0.1rem;">Professionals Build<br/>Businesses That Last.</span>
+        <h1 class="ah-title ah-fade">
+          <span class="ah-title-muted">More Than Two Decades</span><br/>
+          <span class="ah-title-muted">in Real Estate.</span>
+          <span class="ah-title-accent">Dedicated to Helping</span>
+          <span class="ah-title-strong">Professionals Build<br/>Businesses That Last.</span>
         </h1>
 
         <!-- Double accent rule -->
-        <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1.75rem;margin-bottom:1.75rem;" class="ah-fade ah-d2">
+        <div class="ah-accent-rule ah-fade ah-d2">
           <div style="width:3.25rem;height:1.5px;background:#c0392b;border-radius:2px;"></div>
           <div style="width:0.9rem;height:1.5px;background:rgba(192,57,43,0.28);border-radius:2px;"></div>
           <div style="width:0.4rem;height:1.5px;background:rgba(192,57,43,0.12);border-radius:2px;"></div>
         </div>
 
         <!-- Body copy -->
-        <p style="font-family:'Outfit',sans-serif;font-size:1.22rem;font-weight:300;color:rgba(0,0,0,0.6);line-height:1.85;margin-bottom:1.5rem;max-width:47ch;" class="ah-fade ah-d2">
+        <p class="ah-body ah-fade ah-d2">
           For over 20 years, I've worked across every stage of the real estate industry—one of the most relationship-driven industries—as an agent, manager, director, and now coach. Those experiences taught me that lasting success isn't built on working harder. It's built on the right systems, better decisions, and the ability to grow with greater clarity and consistency.
         </p>
 
         <!-- CTA Buttons -->
-        <div style="display:flex;flex-wrap:wrap;gap:0.9rem;margin-bottom:1.5rem;" class="ah-fade ah-d3">
+        <div class="ah-cta-row ah-fade ah-d3">
           <a href="#story-section"
-             style="display:inline-flex;align-items:center;gap:0.6rem;background:#1a1a1a;color:#ffffff;font-family:'Outfit',sans-serif;font-size:0.79rem;font-weight:600;letter-spacing:0.17em;text-transform:uppercase;padding:0.95rem 2.25rem;text-decoration:none;border:2px solid #1a1a1a;transition:all 0.28s cubic-bezier(0.4,0,0.2,1);"
+             style="display:inline-flex;align-items:center;gap:0.6rem;background:#1a1a1a;color:#ffffff;font-family:'Outfit',sans-serif;font-size:clamp(0.72rem,1.5vw,0.79rem);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:clamp(0.7rem,1.7vh,0.95rem) clamp(1.15rem,2.8vw,2rem);text-decoration:none;border:2px solid #1a1a1a;transition:all 0.28s cubic-bezier(0.4,0,0.2,1);"
              onmouseover="this.style.background='#333';this.style.borderColor='#333';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.2)'"
              onmouseout="this.style.background='#1a1a1a';this.style.borderColor='#1a1a1a';this.style.transform='';this.style.boxShadow=''">
             My Journey
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="contact.html"
-             style="display:inline-flex;align-items:center;gap:0.6rem;background:transparent;color:#c0392b;font-family:'Outfit',sans-serif;font-size:0.79rem;font-weight:600;letter-spacing:0.17em;text-transform:uppercase;padding:0.95rem 2.25rem;text-decoration:none;border:2px solid #c0392b;transition:all 0.28s cubic-bezier(0.4,0,0.2,1);"
+             style="display:inline-flex;align-items:center;gap:0.6rem;background:transparent;color:#c0392b;font-family:'Outfit',sans-serif;font-size:clamp(0.72rem,1.5vw,0.79rem);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:clamp(0.7rem,1.7vh,0.95rem) clamp(1.15rem,2.8vw,2rem);text-decoration:none;border:2px solid #c0392b;transition:all 0.28s cubic-bezier(0.4,0,0.2,1);"
              onmouseover="this.style.background='#c0392b';this.style.color='#fff';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(192,57,43,0.32)'"
              onmouseout="this.style.background='transparent';this.style.color='#c0392b';this.style.transform='';this.style.boxShadow=''">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
@@ -632,9 +823,9 @@
         </div>
 
         <!-- Pull quote -->
-        <div style="display:flex;gap:1.25rem;align-items:flex-start;padding-top:2rem;border-top:1px solid rgba(0,0,0,0.08);" class="ah-fade ah-d4">
-          <div style="width:2px;flex-shrink:0;min-height:76px;background:linear-gradient(to bottom,#c0392b,rgba(192,57,43,0.05));border-radius:2px;margin-top:0.1rem;"></div>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:rgba(0,0,0,0.5);line-height:1.7;margin:0;">
+        <div class="ah-quote ah-fade ah-d4">
+          <div class="ah-quote-bar"></div>
+          <p>
             "Today, I help real estate professionals build predictable businesses, improve performance, and create long-term success without relying on constant hustle."
           </p>
         </div>
