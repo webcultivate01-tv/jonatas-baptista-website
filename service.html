@@ -587,7 +587,7 @@
 <section class="py-20 md:py-24 bg-slate-50">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14 reveal">
-      <p class="eyebrow mb-3">Common Questions</p>
+      <p class="eyebrow mb-3" style="color:#0f172a;">Common Questions</p>
       <h2 class="text-3xl md:text-4xl font-black text-slate-900">FAQ</h2>
     </div>
     <div class="space-y-4" id="faqContainer">
@@ -744,14 +744,14 @@
 
     <style>
       .ft-body{--muted:rgba(255,255,255,0.45);}
-      .ft-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.4fr;gap:3rem;margin-bottom:3.25rem;position:relative;z-index:1;}
-      @media(max-width:900px){.ft-grid{grid-template-columns:1fr 1fr;gap:2.75rem 2rem;}}
-      @media(max-width:520px){.ft-grid{grid-template-columns:1fr;gap:2.5rem;}}
+      .ft-grid{display:grid;grid-template-columns:1.5fr 0.7fr 1.35fr 1.35fr;gap:2.5rem;margin-bottom:3.25rem;position:relative;z-index:1;}
+      @media(max-width:1160px){.ft-grid{grid-template-columns:1fr 1fr;gap:2.75rem 2rem;}}
+      @media(max-width:620px){.ft-grid{grid-template-columns:1fr;gap:2.5rem;}}
 
       .ft-head{display:flex;align-items:center;gap:.65rem;color:#fff;font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;}
       .ft-head::before{content:'';width:1.4rem;height:2px;background:#c0392b;border-radius:2px;flex-shrink:0;}
 
-      .ft-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1.02rem;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
+      .ft-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1.02rem;line-height:1.4;white-space:nowrap;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
       .ft-link svg{opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease;color:#c0392b;}
       .ft-link:hover{color:#fff;transform:translateX(4px);}
       .ft-link:hover svg{opacity:1;transform:translateX(0);}
@@ -776,14 +776,14 @@
 
       <!-- Brand col -->
       <div>
-        <div style="display:flex;align-items:center;gap:0.65rem;margin-bottom:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.35rem;margin-bottom:1.25rem;">
           <img src="image/jb-logo.png" alt="Jonatas Baptista" style="height:68px;width:auto;display:block;"/>
-          <div style="display:flex;flex-direction:column;line-height:1.2;">
+          <div style="display:flex;flex-direction:column;line-height:1.2;gap:0.3rem;">
             <span style="font-family:'Outfit',sans-serif;font-size:1.18rem;font-weight:600;color:#fff;letter-spacing:0.02em;white-space:nowrap;">Jonatas Baptista</span>
-            <span style="font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;">Real Estate Coach</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;">Client Acquisition Coach</span>
           </div>
         </div>
-        <p style="color:rgba(255,255,255,0.42);font-size:1.02rem;line-height:1.75;max-width:340px;margin:0 0 1.75rem;">Real Estate Coach &amp; Sales Strategist helping professionals attract premium clients, close more deals, and build businesses that last.</p>
+        <p style="color:rgba(255,255,255,0.42);font-size:1.02rem;line-height:1.75;max-width:340px;margin:0 0 1.75rem;">Helping Founders, Coaches, Consultants & Service Professionals Get More Clients, Increase Sales, Create Predictable Growth & Build Better Systems. Built on 20 years of experience in Sales, Leadership, and Business Development.</p>
         <!-- Social icons -->
         <div style="display:flex;gap:.65rem;">
           <a href="https://www.linkedin.com/in/jonatas-baptista-42992113/" aria-label="LinkedIn" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
@@ -814,13 +814,13 @@
 
       <!-- Services -->
       <div>
-        <div class="ft-head">Services</div>
+        <div class="ft-head">WORK WITH ME</div>
         <div style="display:flex;flex-direction:column;gap:.9rem;">
-          <a href="service.html" class="ft-link">1-on-1 Coaching<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">Strategic Advisory<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">Group Mentorship<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">Portfolio Review<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">First-Time Investor<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">ESTAVIUM Growth Builder<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">ESTAVIUM Growth Diagnostic<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">ESTAVIUM Growth Sales System<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">ESTAVIUM Growth Automation<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html" class="ft-link">ESTAVIUM Growth Advisory<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -830,7 +830,7 @@
         <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.75rem;">
           <a href="mailto:support@jonatasbaptista.com" class="ft-contact">
             <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span>
-            support@jonatasbaptista.com
+            jonatas@jonatasbaptista.com
           </a>
           <a href="tel:+351910083701" class="ft-contact">
             <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg></span>
@@ -839,21 +839,6 @@
           <div class="ft-contact" style="cursor:default;">
             <span class="ft-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></span>
             Available Worldwide
-          </div>
-        </div>
-        <!-- Trust badges -->
-        <div style="display:flex;flex-direction:column;gap:.55rem;">
-          <div class="ft-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">150+ Clients Coached Globally</span>
-          </div>
-          <div class="ft-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">85% Client Satisfaction Rate</span>
-          </div>
-          <div class="ft-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Response Within 24 Hours</span>
           </div>
         </div>
       </div>
