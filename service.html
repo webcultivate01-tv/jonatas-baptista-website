@@ -3,16 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work With Me | JB — Real Estate Strategy & Advisory</title>
-  <meta name="description" content="Strategic real estate consulting, investment & portfolio strategy, and executive mentoring with Jonatas Baptista. Make smarter property decisions, built on trust, not trends." />
+  <title>Work With Me | Jonatas Baptista — Client Acquisition Coach</title>
+  <meta name="description" content="Five ways to work with Jonatas Baptista: the ESTAVIUM Growth Builder blueprint, Growth Diagnostic audit, Growth Sales System, Growth Automation, and Growth Advisory — systems that attract premium clients and make revenue predictable." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    /* ===== BRAND TOKENS (shared with index / about / contact) ===== */
+    :root {
+      --dark:      #0e1117;
+      --dark-deep: #070a10;
+      --red:       #c0392b;
+      --red-h:     #e74c3c;
+      --blue-acc:  #2a5fc7;
+      --off-white: #f4f3ef;
+      --cream:     #ede9e0;
+      --text-dark: #1a1a1a;
+      --text-mid:  #4a4a4a;
+    }
+    body { font-family: 'Outfit', sans-serif; font-weight: 300; }
     h1,h2,h3 { font-family: 'Playfair Display', serif; }
+    .serif { font-family: 'Playfair Display', serif; }
     /* ===== NAVBAR ===== */
-    :root { --red: #c0392b; --red-h: #e74c3c; --dark: #0e1117; }
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
       padding: 0;
@@ -124,6 +136,7 @@
     #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.1s; }
     #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.15s; }
     #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.2s; }
+    #mobile-menu.open .mob-link:nth-child(6) { animation-delay: 0.25s; }
     @keyframes mob-in { to { opacity:1; transform:translateY(0); } }
     .mob-link:active { background: #e8e6e3; transform: scale(0.98); }
     .mob-link-icon {
@@ -131,7 +144,7 @@
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .mob-cta-btn {
-      margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      margin-top: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
       background: #c0392b; color: #fff; padding: 1rem 1.5rem; border-radius: 8px;
       text-decoration: none; font-family: 'Outfit', sans-serif;
       font-size: 0.95rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s;
@@ -172,35 +185,389 @@
     .img-reveal.in-view { clip-path: inset(0 0 0% 0); }
 
     /* ---- Shared brand utility classes (kept local so this page never needs a new external stylesheet) ---- */
-    .eyebrow { display: inline-block; font-size: .75rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: #dc2626; }
-    .sweep-divider { height: 3px; background: linear-gradient(to right, #dc2626, #1d4ed8); border-radius: 9999px; }
-    .gradient-text { background: linear-gradient(to right, #dc2626, #1d4ed8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+    }
+    .eyebrow::before { content: ''; display: block; width: 2rem; height: 1.5px; background: currentColor; flex-shrink: 0; }
+    .eyebrow-center { justify-content: center; }
+    .sweep-divider { height: 2px; background: linear-gradient(to right, var(--red), rgba(192,57,43,0)); border-radius: 9999px; }
+    .gradient-text { color: var(--red); }
     .card-lift { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
     .card-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(15,23,42,.18); }
-    /* Primary CTA color lives HERE only — change these 2 stops to match the home page button exactly */
-    .btn-primary { transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease; background-image: linear-gradient(to right, #dc2626, #1d4ed8); color: #fff; }
-    .btn-primary:hover { transform: translateY(-2px); }
+
+    /* ===== BUTTONS — identical to the home / about / contact pages ===== */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.886rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      background: var(--red); color: #fff; border: 2px solid var(--red);
+      padding: .9rem 2.2rem; text-decoration: none;
+      transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { background: var(--red-h); border-color: var(--red-h); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(192,57,43,0.35); }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.886rem; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase;
+      background: transparent; color: rgba(255,255,255,0.8);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      padding: .9rem 2.2rem; text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s, transform .2s;
+    }
+    .btn-outline-white:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.886rem; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase;
+      background: transparent; color: rgba(0,0,0,0.6);
+      border: 1.5px solid rgba(0,0,0,0.2);
+      padding: .9rem 2.2rem; text-decoration: none;
+      transition: border-color .2s, color .2s, transform .2s;
+    }
+    .btn-outline-dark:hover { border-color: rgba(0,0,0,0.55); color: var(--text-dark); transform: translateY(-2px); }
 
     /* Directional reveal (used by the alternating process timeline) */
     .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
     .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
     .reveal-left.in-view, .reveal-right.in-view { opacity: 1; transform: translateX(0); }
 
-    /* Zigzag timeline center line (desktop) */
-    .zig-line { position: relative; }
-    .zig-line::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #dc2626, #1d4ed8); transform: translateX(-50%); }
     .img-hover-zoom { overflow: hidden; }
     .img-hover-zoom img { transition: transform .9s cubic-bezier(.22,.61,.36,1); }
     .img-hover-zoom:hover img { transform: scale(1.06); }
 
-    /* ---- Timeline connectors (How We Work) ---- */
-    .timeline-line-v { position: relative; }
-    .timeline-line-v::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #dc2626, #1d4ed8); }
-    .timeline-line-h::before { content: ''; position: absolute; left: 0; right: 0; top: 28px; height: 2px; background: linear-gradient(to right, #dc2626, #1d4ed8); z-index: 0; }
-
     /* ---- Counter number ticking ---- */
     .counter-num { font-variant-numeric: tabular-nums; }
+
+    /* ============================================================
+       HERO — matches the dark, restrained treatment used site-wide
+    ============================================================ */
+    .svc-hero {
+      position: relative;
+      background: var(--dark-deep);
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .svc-hero-photo {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover; background-position: center;
+      opacity: 0.16;
+      filter: grayscale(1) contrast(1.05);
+    }
+    .svc-hero-veil {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(7,10,16,0.97) 0%, rgba(7,10,16,0.86) 55%, rgba(7,10,16,0.94) 100%),
+        radial-gradient(ellipse 55% 60% at 78% 45%, rgba(192,57,43,0.13) 0%, transparent 65%);
+    }
+    /* faint engineering grid, same idiom as the home page hero */
+    .svc-hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 74px 74px;
+      mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 25%, transparent 78%);
+      -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 25%, transparent 78%);
+    }
+    .svc-hero-topline {
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(192,57,43,0.75), transparent);
+    }
+    .svc-hero h1 {
+      font-size: clamp(2.05rem, 4.4vw, 3.15rem);
+      line-height: 1.32;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .svc-hero-chip {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 400;
+      color: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px; padding: .42rem .95rem;
+    }
+    .svc-hero-chip .chk { color: var(--red); display: inline-flex; }
+
+    /* image collage — portrait anchor + two supporting frames */
+    .svc-collage {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+      max-width: 520px;
+    }
+    .svc-collage::before {
+      content: ''; position: absolute; inset: -14% -10%;
+      background: radial-gradient(circle at 60% 45%, rgba(192,57,43,0.18) 0%, transparent 66%);
+      pointer-events: none;
+    }
+    .svc-shot {
+      position: relative; z-index: 1;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 30px 70px -34px rgba(0,0,0,0.9);
+      background: #0e1117;
+    }
+    .svc-shot img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .8s cubic-bezier(.22,.61,.36,1);
+    }
+    .svc-shot:hover img { transform: scale(1.055); }
+    .svc-shot::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to top, rgba(7,10,16,0.55) 0%, transparent 55%);
+    }
+    .svc-shot-main { grid-row: span 2; aspect-ratio: 3 / 4.15; }
+    .svc-shot-sm   { aspect-ratio: 4 / 3.35; }
+    .svc-shot-sm img { filter: grayscale(0.35) contrast(1.04); }
+    .svc-shot-sm:hover img { filter: grayscale(0); }
+    .svc-shot-label {
+      position: absolute; left: 0; bottom: 0; z-index: 2;
+      font-family: 'Outfit', sans-serif; font-size: 0.66rem; font-weight: 400;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      background: rgba(7,10,16,0.62);
+      backdrop-filter: blur(6px);
+      padding: .42rem .7rem;
+      border-top: 1px solid rgba(192,57,43,0.55);
+    }
+    .svc-hero-stat {
+      position: absolute; bottom: -8%; left: -9%; z-index: 3;
+      background: rgba(14,17,23,0.94);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      padding: .85rem 1.25rem;
+    }
+    @media (max-width: 1023px) {
+      .svc-hero { min-height: auto; }
+      .svc-collage { max-width: 460px; margin: 0 auto; gap: 10px; }
+      .svc-hero-stat {
+        position: static;
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: .7rem 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .svc-shot-main { aspect-ratio: 3 / 3.6; }
+      .svc-shot-label { font-size: 0.6rem; padding: .34rem .55rem; }
+    }
+
+    /* ============================================================
+       PROCESS — numbered steps, neutral palette, one red accent
+    ============================================================ */
+    .proc-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 0; }
+    @media (max-width: 1023px) { .proc-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 639px)  { .proc-grid { grid-template-columns: 1fr; } }
+    .proc-step {
+      position: relative;
+      padding: 2.5rem 2rem 2.25rem;
+      border-left: 1px solid rgba(0,0,0,0.09);
+      transition: background .35s ease;
+    }
+    .proc-step:last-child { border-right: 1px solid rgba(0,0,0,0.09); }
+    @media (max-width: 1023px) {
+      .proc-step { border-right: 1px solid rgba(0,0,0,0.09); border-bottom: 1px solid rgba(0,0,0,0.09); }
+      .proc-step:nth-child(odd) { border-right: 0; }
+    }
+    @media (max-width: 639px) { .proc-step { border-right: 1px solid rgba(0,0,0,0.09); } }
+    .proc-step::before {
+      content: ''; position: absolute; top: -1px; left: -1px; width: 0; height: 2px;
+      background: var(--red); transition: width .5s cubic-bezier(.22,.61,.36,1);
+    }
+    .proc-step:hover { background: rgba(0,0,0,0.015); }
+    .proc-step:hover::before { width: calc(100% + 1px); }
+    .proc-num {
+      font-family: 'Playfair Display', serif; font-size: 3.1rem; font-weight: 500;
+      line-height: 1; color: rgba(26,26,26,0.13); display: block; margin-bottom: 1.1rem;
+      transition: color .35s ease;
+    }
+    .proc-step:hover .proc-num { color: rgba(192,57,43,0.55); }
+    .proc-title {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600;
+      color: var(--text-dark); margin-bottom: .7rem; line-height: 1.35;
+    }
+    .proc-body { font-size: 1rem; line-height: 1.75; color: rgba(26,26,26,0.6); font-weight: 300; }
+
+    /* ============================================================
+       FAQ — two balanced columns
+    ============================================================ */
+    .faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; align-items: start; }
+    @media (max-width: 900px) { .faq-cols { grid-template-columns: 1fr; gap: 0; } }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,0.09);
+      background: transparent;
+    }
+    .faq-btn {
+      width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 1.25rem;
+      text-align: left; background: none; border: 0; cursor: pointer;
+      padding: 1.35rem 0; color: var(--text-dark);
+      font-family: 'Outfit', sans-serif; font-size: 1.02rem; font-weight: 500; line-height: 1.5;
+      transition: color .25s ease;
+    }
+    .faq-btn:hover { color: var(--red); }
+    .faq-icon { flex-shrink: 0; margin-top: .2rem; color: var(--red); transition: transform .3s ease; }
+    .faq-answer { padding: 0 0 1.5rem; }
+    .faq-answer p { font-size: 1rem; line-height: 1.8; color: rgba(26,26,26,0.6); font-weight: 300; }
+
+    /* ============================================================
+       WORK WITH ME — offer index strip
+    ============================================================ */
+    .wwm-index { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1px; background: rgba(0,0,0,0.09); border: 1px solid rgba(0,0,0,0.09); }
+    @media (max-width: 900px) { .wwm-index { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 520px) { .wwm-index { grid-template-columns: 1fr; } }
+    .wwm-card {
+      background: #fff; padding: 1.65rem 1.4rem; text-decoration: none; display: block;
+      transition: background .3s ease, transform .3s ease;
+    }
+    .wwm-card:hover { background: var(--off-white); }
+    .wwm-card-step {
+      font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase; color: rgba(26,26,26,0.35);
+      display: block; margin-bottom: .7rem;
+    }
+    .wwm-card-name {
+      font-family: 'Playfair Display', serif; font-size: 1.06rem; font-weight: 600;
+      color: var(--text-dark); line-height: 1.35; margin-bottom: .45rem; display: block;
+    }
+    .wwm-card-note { font-size: 0.92rem; color: rgba(26,26,26,0.55); font-weight: 300; line-height: 1.55; display: block; }
+    .wwm-card:hover .wwm-card-step { color: var(--red); }
+
+    /* ============================================================
+       WHY CHOOSE JONATAS — dark editorial ledger, one red accent
+    ============================================================ */
+    .why-sec { position: relative; background: var(--dark-deep); overflow: hidden; }
+    .why-sec-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 74px 74px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 20%, transparent 78%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 20%, transparent 78%);
+    }
+    .why-sec-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 45% at 50% 0%, rgba(192,57,43,0.14) 0%, transparent 68%);
+    }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.09);
+      border-left: 1px solid rgba(255,255,255,0.09);
+    }
+    @media (max-width: 767px) { .why-grid { grid-template-columns: 1fr; } }
+    .why-item {
+      position: relative;
+      padding: 2.6rem 2.1rem 2.4rem;
+      border-right: 1px solid rgba(255,255,255,0.09);
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+      transition: background .35s ease;
+    }
+    .why-item::before {
+      content: ''; position: absolute; top: -1px; left: -1px; width: 0; height: 2px;
+      background: var(--red); transition: width .5s cubic-bezier(.22,.61,.36,1);
+    }
+    .why-item:hover { background: rgba(255,255,255,0.025); }
+    .why-item:hover::before { width: calc(100% + 1px); }
+    .why-lead { grid-column: 1 / -1; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 1rem 3rem; align-items: start; }
+    @media (max-width: 767px) { .why-lead { grid-template-columns: 1fr; gap: 0; } }
+    .why-num {
+      font-family: 'Playfair Display', serif; font-size: 3.1rem; font-weight: 500;
+      line-height: 1; color: rgba(255,255,255,0.14); display: block; margin-bottom: 1.05rem;
+      transition: color .35s ease;
+    }
+    .why-item:hover .why-num { color: rgba(231,76,60,0.6); }
+    .why-title {
+      font-family: 'Playfair Display', serif; font-size: 1.32rem; font-weight: 600;
+      color: #fff; line-height: 1.35; margin-bottom: .7rem;
+    }
+    .why-lead .why-title { font-size: 1.65rem; margin-bottom: 0; }
+    .why-body { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.5); font-weight: 300; }
+    .why-lead .why-body { font-size: 1.08rem; }
+    .why-lead .why-body strong { color: rgba(255,255,255,0.9); font-weight: 500; }
   </style>
+<!-- ============================================================
+     MOBILE REFINEMENTS — right-side nav drawer + one-row CTA pairs
+     Loaded last so it overrides the page styles above.
+============================================================ -->
+<style>
+  /* ---------- Navigation: slide-in drawer from the right ---------- */
+  #nav-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(7,10,16,0.55);
+    -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .42s cubic-bezier(.22,.61,.36,1), visibility 0s linear .42s;
+  }
+  #nav-overlay.show {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity .42s cubic-bezier(.22,.61,.36,1), visibility 0s linear 0s;
+  }
+  #mobile-menu {
+    top: 0; right: 0; bottom: 0; left: auto;
+    width: min(86vw, 370px); max-width: 100%;
+    z-index: 1000;
+    align-items: stretch; justify-content: flex-start;
+    overflow-y: auto; overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.75rem 1.35rem calc(1.75rem + env(safe-area-inset-bottom, 0px));
+    opacity: 1;
+    transform: translateX(100%);
+    border-left: 1px solid rgba(0,0,0,0.06);
+    box-shadow: -26px 0 64px -22px rgba(0,0,0,0.5);
+    will-change: transform;
+    transition: transform .46s cubic-bezier(.22,.61,.36,1), visibility 0s linear .46s;
+  }
+  #mobile-menu.open {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform .46s cubic-bezier(.22,.61,.36,1), visibility 0s linear 0s;
+  }
+  /* links now drift in from the right, matching the drawer's direction */
+  .mob-link { transform: translateX(18px); }
+  @keyframes mob-in { to { opacity: 1; transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    #mobile-menu, #nav-overlay { transition-duration: .01ms; }
+    #mobile-menu .mob-link { animation: none !important; opacity: 1; transform: none; }
+  }
+
+  /* ---------- Hero / CTA button pairs stay on one row on phones ---------- */
+  @media (max-width: 640px) {
+    .cta-btn-row {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      align-items: stretch !important;
+      gap: .55rem !important;
+      width: 100%;
+    }
+    .cta-btn-row > a {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      justify-content: center !important;
+      line-height: 1.3;
+      padding: .8rem .55rem !important;
+      font-size: .68rem !important;
+      letter-spacing: .07em !important;
+      gap: .35rem !important;
+    }
+    .cta-btn-row > a svg { flex-shrink: 0; }
+  }
+  @media (max-width: 380px) {
+    .cta-btn-row > a { font-size: .61rem !important; padding: .75rem .4rem !important; letter-spacing: .05em !important; }
+  }
+</style>
 </head>
 <body class="bg-white text-slate-900 antialiased">
 
@@ -232,6 +599,9 @@
     </button>
   </div>
 </nav>
+
+<!-- Drawer backdrop -->
+<div id="nav-overlay" aria-hidden="true"></div>
 
 <div id="mobile-menu">
   <div class="mob-header">
@@ -279,400 +649,686 @@
   </a>
 </div>
 
-<!-- HERO -->
-<section class="relative overflow-hidden min-h-screen flex items-center" style="background:#070a10;">
-  <div class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;"></div>
-  <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(7,10,16,0.95) 0%, rgba(7,10,16,0.82) 50%, rgba(7,10,16,0.95) 100%);"></div>
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-10 right-0 w-64 h-64 bg-red-600 opacity-20 rounded-full blur-3xl translate-x-1/2"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-700 opacity-20 rounded-full blur-3xl -translate-x-1/2"></div>
-  </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pb-10" style="padding-top: 120px;">
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-      <!-- Text -->
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="svc-hero">
+
+  <div class="svc-hero-photo"></div>
+  <div class="svc-hero-veil"></div>
+  <div class="svc-hero-grid"></div>
+  <div class="svc-hero-topline"></div>
+
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10" style="padding-top:8rem;padding-bottom:4rem;">
+    <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
+
+      <!-- ── LEFT: copy ── -->
       <div class="text-center lg:text-left">
-        <p class="eyebrow !text-red-400 mb-5 reveal">CLIENT ACQUISITION & GROWTH STRATEGY
-</p>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.1] reveal reveal-delay-1">Smartery<br /> Decisions Start Here.</h1>
-        <p class="text-slate-300 text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-9 reveal reveal-delay-2">
-         Jonatas Baptista helps Founders, Coaches, Consultants & Service Professionals Get More Clients, Increase Sales, Create Predictable Growth & Build Systems
+
+        <p class="eyebrow mb-6 reveal" style="color:rgba(231,76,60,0.9);">Client Acquisition &amp; Growth Strategy</p>
+
+        <h1 class="serif text-white mb-5 reveal reveal-delay-1">
+          <span class="block" style="color:rgba(255,255,255,0.5);font-weight:300;">Smarter Decisions</span>
+          <em class="block italic text-white" style="font-weight:500;">Start Here.</em>
+        </h1>
+
+        <div class="w-10 h-0.5 bg-red-600 mb-6 mx-auto lg:mx-0 reveal reveal-delay-1"></div>
+
+        <p class="text-white/50 leading-relaxed max-w-xl mx-auto lg:mx-0 mb-9 reveal reveal-delay-2" style="font-size:1.12rem;">
+          Jonatas Baptista helps Founders, Coaches, Consultants &amp; Service Professionals Get More Clients, Increase Sales, Create Predictable Growth &amp; Build Systems.
         </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 reveal reveal-delay-3">
-          <a href="contact.html" class="btn-primary inline-flex items-center gap-2 text-white font-black px-9 py-4 rounded-full text-base hover:opacity-90 transition-opacity shadow-xl">
-            Book a Call →
+
+        <div class="cta-btn-row flex flex-wrap justify-center lg:justify-start gap-3 reveal reveal-delay-3">
+          <a href="contact.html" class="btn-primary">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
+            Book a Call
           </a>
-          <a href="#work-with-me" class="inline-flex items-center gap-2 text-slate-200 font-semibold px-6 py-4 rounded-full text-sm hover:text-white transition-colors border border-white/20 hover:border-white/40">
-            See How We Work
-          </a>
+          <a href="#work-with-me" class="btn-outline-white">Explore the Five Offers</a>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT: image collage ── -->
+      <div class="flex justify-center reveal reveal-delay-2">
+        <div class="svc-collage">
+
+          <figure class="svc-shot svc-shot-main">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A founder and coach working through a client acquisition plan" />
+            <figcaption class="svc-shot-label">Client Acquisition</figcaption>
+          </figure>
+
+          <figure class="svc-shot svc-shot-sm">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Strategy session with a client team" loading="lazy" />
+            <figcaption class="svc-shot-label">Strategy Sessions</figcaption>
+          </figure>
+
+          <figure class="svc-shot svc-shot-sm">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Growth metrics and pipeline dashboard" loading="lazy" />
+            <figcaption class="svc-shot-label">Predictable Growth</figcaption>
+          </figure>
+
+          <div class="svc-hero-stat">
+            <p class="serif text-white leading-none" style="font-size:1.6rem;font-weight:600;">20+</p>
+            <p class="text-white/40 tracking-widest uppercase mt-1" style="font-size:0.7rem;">Years of Experience</p>
+          </div>
+
         </div>
       </div>
-      <!-- Image -->
-      <div class="hidden lg:block reveal-right">
-        <div class="relative">
-          <div class="rounded-3xl overflow-hidden shadow-2xl border border-white/10 img-hover-zoom">
-            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80" alt="Premium modern property — strategic real estate decisions" class="w-full h-[60vh] max-h-[520px] object-cover" />
-          </div>
-          <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl px-6 py-4 shadow-xl">
-            <p class="font-black text-2xl text-slate-900">12+</p>
-            <p class="text-slate-500 text-sm">Years of Experience</p>
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- TRUST / STATS STRIP -->
-<!-- <section class="bg-white border-b border-slate-100">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-4 text-center">
-      <div class="reveal">
-        <p class="counter-num text-4xl md:text-5xl font-black text-slate-900" data-counter data-target="180" data-prefix="$" data-suffix="M+">$0M+</p>
-        <p class="text-slate-500 text-sm mt-2 tracking-wide uppercase font-semibold">In Property Decisions Guided</p>
-      </div>
-      <div class="reveal reveal-delay-1">
-        <p class="counter-num text-4xl md:text-5xl font-black text-slate-900" data-counter data-target="300" data-suffix="+">0+</p>
-        <p class="text-slate-500 text-sm mt-2 tracking-wide uppercase font-semibold">Investors &amp; Professionals Coached</p>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <p class="counter-num text-4xl md:text-5xl font-black text-slate-900" data-counter data-target="12" data-suffix="+">0+</p>
-        <p class="text-slate-500 text-sm mt-2 tracking-wide uppercase font-semibold">Years of Market Experience</p>
-      </div>
-    </div>
-  </div>
-</section> -->
+<!-- ============================================================
+     WORK WITH ME — INTRO
+============================================================ -->
+<section id="work-with-me" class="py-20 md:py-28" style="background:#faf9f7;">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
 
-<!-- WORK WITH ME — INTRO -->
-<section id="work-with-me" class="py-20 md:py-24 bg-white">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <p class="eyebrow mb-4 reveal">Work With Me</p>
-    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-6 reveal reveal-delay-1">Three Ways to Build<br />Real Estate Wealth — Wisely.</h2>
-    <div class="sweep-divider w-20 mx-auto mb-7 reveal reveal-delay-1"></div>
-    <p class="text-slate-600 text-lg leading-relaxed reveal reveal-delay-2">
-      Whatever stage you're at — making your first strategic move, scaling a portfolio, or stepping into bigger decisions — there's a focused way to work together.
-    </p>
-  </div>
-</section>
-
-<!-- SERVICE 1: STRATEGIC REAL ESTATE CONSULTING (Image Left / Content Right) -->
-<section class="pb-24 md:pb-32 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <div class="reveal">
-        <div class="img-reveal img-hover-zoom rounded-3xl overflow-hidden shadow-xl">
-          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80" alt="Modern residential architecture representing strategic real estate consulting" class="w-full h-[340px] md:h-[440px] object-cover" />
-        </div>
-      </div>
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start mb-14 md:mb-16">
       <div>
-        <div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center mb-6 reveal">
-          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 11l8-7 8 7"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 10v9a1 1 0 001 1h10a1 1 0 001-1v-9"/><rect x="10" y="14" width="4" height="6" rx="0.5"/></svg>
-        </div>
-        <span class="eyebrow reveal reveal-delay-1">For First Decisions &amp; Big Moves</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-5 reveal reveal-delay-1">Strategic Real Estate Consulting</h2>
-        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-1"></div>
-        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
-          Real estate decisions are rarely just about the property — they're about timing, leverage, risk, and what the move actually does to your bigger financial picture. I sit down with you, pull apart the numbers, and build a clear, defensible strategy before you sign anything.
-        </p>
-        <p class="text-slate-600 leading-relaxed mb-7 reveal reveal-delay-2">
-          This isn't generic advice pulled from a blog. It's a structured process built around your goals, your market, and your risk tolerance — so every decision is one you can stand behind.
-        </p>
-        <div class="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-7 reveal reveal-delay-3">
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Full property &amp; market due diligence</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Negotiation &amp; offer strategy</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Risk &amp; financing structure review</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Clear go / no-go decision framework</p>
-        </div>
-        <div class="bg-slate-50 rounded-2xl p-5 mb-8 reveal reveal-delay-3">
-          <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> First-time buyers, professionals relocating, and anyone weighing a major property decision they can't afford to get wrong.</p>
-          <p class="text-sm text-slate-700 mt-2"><span class="font-bold text-slate-900">Expected results:</span> A documented strategy, a clear-eyed view of the risks, and the confidence to negotiate from a position of knowledge — not pressure.</p>
-        </div>
-        <a href="contact.html" class="btn-primary inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold px-7 py-3.5 rounded-full hover:opacity-90 transition-opacity reveal reveal-delay-4">
-          Book a Strategy Call →
-        </a>
+        <p class="eyebrow mb-5 reveal">Work With Me</p>
+        <h2 class="serif reveal reveal-delay-1" style="font-size:clamp(1.85rem,3.4vw,2.7rem);line-height:1.32;font-weight:400;color:var(--text-dark);">
+          Five focused ways<br class="hidden sm:block" />
+          <em class="italic" style="color:rgba(26,26,26,0.55);">to work together.</em>
+        </h2>
       </div>
+      <div class="lg:pt-3">
+        <p class="reveal reveal-delay-2" style="font-size:1.12rem;line-height:1.85;color:rgba(26,26,26,0.62);font-weight:300;">
+          Whatever stage you're at — from making your first strategic move to scaling an established business — there's a focused way to work together to build the systems that attract the right clients, create predictable growth, and give you greater clarity, confidence and control as your business grows.
+        </p>
+        <div class="sweep-divider w-16 mt-7 reveal reveal-delay-2"></div>
+      </div>
+    </div>
+
+    <!-- Offer index -->
+    <div class="wwm-index reveal reveal-delay-3">
+      <a href="#growth-builder" class="wwm-card">
+        <span class="wwm-card-step">01 · DIY</span>
+        <span class="wwm-card-name">Growth Builder&trade;</span>
+        <span class="wwm-card-note">Build the foundation yourself, in one weekend.</span>
+      </a>
+      <a href="#growth-diagnostic" class="wwm-card">
+        <span class="wwm-card-step">02 · Audit</span>
+        <span class="wwm-card-name">Growth Diagnostic&trade;</span>
+        <span class="wwm-card-note">Find exactly where clients and revenue leak out.</span>
+      </a>
+      <a href="#growth-sales-system" class="wwm-card">
+        <span class="wwm-card-step">03 · Build</span>
+        <span class="wwm-card-name">Growth Sales System&trade;</span>
+        <span class="wwm-card-note">Turn the process in your head into repeatable steps.</span>
+      </a>
+      <a href="#growth-automation" class="wwm-card">
+        <span class="wwm-card-step">04 · Install</span>
+        <span class="wwm-card-name">Growth Automation&trade;</span>
+        <span class="wwm-card-note">Let the follow-up run without you remembering it.</span>
+      </a>
+      <a href="#growth-advisory" class="wwm-card">
+        <span class="wwm-card-step">05 · Partner</span>
+        <span class="wwm-card-name">Growth Advisory&trade;</span>
+        <span class="wwm-card-note">Ongoing strategic partnership as the business grows.</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- OFFER 1: ESTAVIUM™ GROWTH BUILDER™ -->
+<section id="growth-builder" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+      <!-- Copy -->
+      <div class="lg:col-span-7">
+        <div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center mb-6 reveal">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v16H4z"/><path stroke-linecap="round" d="M4 9h16M9 9v11"/></svg>
+        </div>
+        <span class="eyebrow reveal reveal-delay-1">DIY Blueprint · Start Here</span>
+        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Builder&trade;</h2>
+        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+          Build a business that consistently attracts clients and grows predictable revenue — in one weekend.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+          The $17 blueprint for founders, coaches, consultants, and agents who are ready to stop relying on luck for their next client.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
+        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
+          You already know how to do the work. What's missing is a system that brings clients to you predictably — instead of hoping the next one shows up.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
+          ESTAVIUM&trade; Growth Builder&trade; is a 4-part DIY blueprint that walks you through building the foundation of that system yourself, over one weekend. Think of it like architectural drawings: you won't finish with four videos watched, you'll finish holding the actual documents your business runs on — the same ones built inside our higher-level programs, just built by your own hand first.
+        </p>
+        <div class="bg-slate-50 rounded-2xl p-5 reveal reveal-delay-3">
+          <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">The important part:</span> This gets you the plans, not the finished house. Most people either build it themselves this weekend, or realize partway through they'd rather hand the blueprint to someone who builds these for a living — that's exactly what our ESTAVIUM&trade; Growth Diagnostic&trade; and ESTAVIUM&trade; Growth Sales System&trade; are for.</p>
+        </div>
+      </div>
+
+      <!-- Deliverables + price -->
+      <div class="lg:col-span-5">
+        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
+          <p class="text-xs font-black tracking-widest uppercase text-red-600 mb-5">What you walk away with — four real assets, not theory</p>
+          <ul class="space-y-4 mb-7">
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">Offer Blueprint</span> — your micro-offer, target client, and price point, on one page</span></li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">Positioning Statement + Messaging Framework</span> — the exact line that makes a prospect say "tell me more," and where to use it</span></li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">Client Journey Map + Sales Process</span> — the steps a stranger takes to becoming a paying client, mapped out</span></li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">CRM Structure + Follow-Up Workflow + Automation Map</span> — how leads get tracked and followed up with, without you having to remember</span></li>
+          </ul>
+
+          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
+            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You're doing good work but your client flow depends on referrals, luck, or bursts of effort. You want the blueprint in your hands this weekend — not a strategy call, not a course you'll watch someday.</p>
+          </div>
+
+          <p class="text-sm text-slate-500 mb-1">Start building it in one weekend.</p>
+          <div class="flex items-end gap-3 mb-1">
+            <span class="text-xl text-slate-400 line-through font-semibold">$147</span>
+            <span class="text-5xl font-black text-slate-900 leading-none">$17</span>
+          </div>
+          <p class="text-sm font-bold text-red-600 mb-6">Save $130 — Special launch price. Limited time.</p>
+
+          <!-- TODO: point this at the real checkout URL (Stripe / Gumroad / etc.) -->
+          <a href="contact.html" class="btn-primary w-full">
+            Get Started →
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="sweep-divider w-full mb-0"></div></div>
 
-<!-- SERVICE 2: INVESTMENT & PORTFOLIO STRATEGY (Content Left / Image Right) -->
-<section class="py-24 md:py-32 bg-slate-50">
+<!-- OFFER 2: ESTAVIUM™ GROWTH DIAGNOSTIC™ -->
+<section id="growth-diagnostic" class="py-20 md:py-28 bg-slate-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <div class="order-2 lg:order-1">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+      <div class="lg:col-span-7">
         <div class="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center mb-6 reveal">
-          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="4"/></svg>
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.5-3.5"/></svg>
         </div>
-        <span class="eyebrow reveal reveal-delay-1">For Investors Playing the Long Game</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-5 reveal reveal-delay-1">Investment &amp; Portfolio Strategy</h2>
-        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-1"></div>
+        <span class="eyebrow reveal reveal-delay-1">One-on-One Audit</span>
+        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Diagnostic&trade;</h2>
+        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+          Stop guessing where you're losing clients.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+          A clear-eyed audit of your business — we pinpoint exactly where you're losing clients and revenue, before you spend another euro trying to fix the wrong thing.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
         <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
-          Building wealth through property isn't about chasing the next hot listing — it's about sequencing. We map your current position, model how each acquisition affects cash flow, leverage, and tax exposure, and build a portfolio roadmap for the next 5–10 years.
+          Most founders, coaches, consultants, and agents don't have a lead problem — they have a leak problem. Somewhere between a stranger noticing you and a stranger paying you, prospects are quietly slipping away. Most people never find out where, so they keep buying ads, building content, or hiring help that fixes a problem they don't actually have.
         </p>
-        <p class="text-slate-600 leading-relaxed mb-7 reveal reveal-delay-2">
-          Whether you own one property or twelve, the goal is the same: every asset earns its place, and every move compounds toward long-term financial independence.
+        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
+          The ESTAVIUM&trade; Growth Diagnostic&trade; is a one-on-one audit of your entire client-acquisition process — from first contact to closed client — mapped stage by stage so we can name, precisely, where you're losing the most revenue. Not a generic checklist. Your actual numbers, your actual process, your actual leak.
         </p>
-        <div class="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-7 reveal reveal-delay-3">
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Portfolio audit &amp; performance review</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Acquisition sequencing &amp; leverage planning</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Cash-flow &amp; equity growth modelling</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Quarterly portfolio check-ins</p>
-        </div>
-        <div class="bg-white rounded-2xl p-5 mb-8 border border-slate-100 reveal reveal-delay-3">
-          <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> Active and aspiring investors who want a deliberate, numbers-driven plan — not a collection of one-off purchases.</p>
-          <p class="text-sm text-slate-700 mt-2"><span class="font-bold text-slate-900">Expected results:</span> A written portfolio roadmap, a clear acquisition order, and a system for evaluating every future deal against your actual goals.</p>
-        </div>
-        <a href="contact.html" class="btn-primary inline-flex items-center gap-2 bg-gradient-to-r from-blue-700 to-blue-800 text-white font-bold px-7 py-3.5 rounded-full hover:opacity-90 transition-opacity reveal reveal-delay-4">
-          Apply for Portfolio Strategy →
-        </a>
       </div>
-      <div class="order-1 lg:order-2 reveal">
-        <div class="img-reveal img-hover-zoom rounded-3xl overflow-hidden shadow-xl">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80" alt="Investment and portfolio strategy planning session" class="w-full h-[340px] md:h-[440px] object-cover" />
+
+      <div class="lg:col-span-5">
+        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
+          <p class="text-xs font-black tracking-widest uppercase text-blue-700 mb-5">What you walk away with</p>
+          <ul class="space-y-4 mb-7">
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A full walkthrough of how clients currently move through your business, stage by stage</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>The exact point (or points) where you're losing the most revenue — named plainly, not hinted at</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A written, prioritized breakdown of what to fix first</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Clarity on what kind of fix you actually need — sales process, positioning, or automation — so your next investment goes to the right problem</li>
+          </ul>
+
+          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
+            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You already have some clients. Growth just isn't predictable, and you can't fully explain why.</p>
+          </div>
+
+          <div class="flex items-end gap-3 mb-1">
+            <span class="text-xl text-slate-400 line-through font-semibold">$297</span>
+            <span class="text-5xl font-black text-slate-900 leading-none">$97</span>
+          </div>
+          <p class="text-sm font-bold text-blue-700 mb-6">Save $200 — Special launch price. Limited time.</p>
+
+          <!-- TODO: point this at the real checkout URL (Stripe / Gumroad / etc.) -->
+          <a href="contact.html" class="btn-primary w-full">
+            Get Started →
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- SERVICE 3: EXECUTIVE MENTORING & MARKET INSIGHTS (Image Left / Content Right) -->
-<section class="py-24 md:py-32 bg-white">
+<!-- OFFER 3: ESTAVIUM™ GROWTH SALES SYSTEM™ -->
+<section id="growth-sales-system" class="py-20 md:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <div class="reveal">
-        <div class="img-reveal img-hover-zoom rounded-3xl overflow-hidden shadow-xl">
-          <img src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=1200&q=80" alt="One-to-one executive mentoring session" class="w-full h-[340px] md:h-[440px] object-cover" />
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+      <div class="lg:col-span-7">
+        <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 reveal">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h6M4 12h10M4 18h16"/><circle cx="18" cy="6" r="2"/></svg>
+        </div>
+        <span class="eyebrow reveal reveal-delay-1">Built &amp; Installed With You</span>
+        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Sales System&trade;</h2>
+        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+          Stop closing deals based on your mood, memory, or how good you happen to be on the call.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+          We build and install a repeatable sales process — so converting leads into clients isn't a coin flip anymore.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
+        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
+          You already know how to close a client when everything lines up — the right mood, the right prep, a good day. The problem is what happens on the days it doesn't line up. Right now, your sales process lives in your head, which means it's inconsistent, hard to hand off, and impossible to improve on purpose.
+        </p>
+        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
+          The ESTAVIUM&trade; Growth Sales System&trade; replaces that with something built to run the same way every time. We map your actual client journey, install a repeatable sales process around it, and hand you a system that converts leads into clients whether you're having a great week or a rough one.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
+          <p class="text-xs font-black tracking-widest uppercase text-slate-800 mb-5">What you walk away with</p>
+          <ul class="space-y-4 mb-7">
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A documented, repeatable sales process — the exact steps from first conversation to closed client</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Scripts and structure for the calls or conversations that actually move people forward</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A system that doesn't depend on your energy, memory, or improvisation on the day</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>The ability to hand parts of the process to someone else on your team, because it's no longer just in your head</li>
+          </ul>
+
+          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
+            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You're closing some clients, but conversion feels unpredictable — great with the right prospect, inconsistent with everyone else — and you're ready to install a process instead of relying on instinct.</p>
+          </div>
+
+          <a href="contact.html" class="btn-primary w-full">
+            Book a Call →
+          </a>
         </div>
       </div>
-      <div>
-        <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 reveal">
+
+    </div>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="sweep-divider w-full mb-0"></div></div>
+
+<!-- OFFER 4: ESTAVIUM™ GROWTH AUTOMATION™ -->
+<section id="growth-automation" class="py-20 md:py-28 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+      <div class="lg:col-span-7">
+        <div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center mb-6 reveal">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>
+        </div>
+        <span class="eyebrow reveal reveal-delay-1">CRM · AI · Automation</span>
+        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Automation&trade;</h2>
+        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+          Stop doing the follow-up, tracking, and admin by hand.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+          We implement the CRM, AI, and automation tools that run the parts of your business that shouldn't need you.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
+        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
+          Every lead you don't follow up with on time is revenue you already paid to generate and then let go cold. Right now, that follow-up probably depends on you remembering — a sticky note, a mental list, a "I'll get to that reply tomorrow." At any real volume, that system breaks.
+        </p>
+        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
+          ESTAVIUM&trade; Growth Automation&trade; installs the infrastructure that catches what you'd otherwise drop: a CRM built around how your business actually works, automated follow-up sequences that fire on their own, and AI where it genuinely saves you hours — not gimmicks, just the admin work removed from your plate.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
+          <p class="text-xs font-black tracking-widest uppercase text-red-600 mb-5">What you walk away with</p>
+          <ul class="space-y-4 mb-7">
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A CRM structure built for your business, not a generic template you have to bend to fit</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Automated follow-up workflows so leads get nurtured whether or not you remember to do it</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>AI and automation tools handling tracking, reminders, and repetitive admin</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>More hours back for the work only you can actually do</li>
+          </ul>
+
+          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
+            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You have a working sales process now, but leads still slip through the cracks because tracking and follow-up live in your head or a messy spreadsheet instead of a system.</p>
+          </div>
+
+          <a href="contact.html" class="btn-primary w-full">
+            Book a Call →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OFFER 5: ESTAVIUM™ GROWTH ADVISORY™ -->
+<section id="growth-advisory" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+      <div class="lg:col-span-7">
+        <div class="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center mb-6 reveal">
           <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="9" cy="8" r="3"/><path stroke-linecap="round" d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><circle cx="17.5" cy="9" r="2.2"/><path stroke-linecap="round" d="M14.8 20c.3-2.6 1.9-4.4 4.2-4.4"/></svg>
         </div>
-        <span class="eyebrow reveal reveal-delay-1">One-on-One · Ongoing</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-5 reveal reveal-delay-1">Executive Mentoring &amp; Market Insights</h2>
-        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-1"></div>
+        <span class="eyebrow reveal reveal-delay-1">Ongoing · High-Touch · Application Only</span>
+        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Advisory&trade;</h2>
+        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+          For when you're past fixing pieces.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+          Ongoing, high-touch strategic advisory — for when you need someone helping you run the whole business at a higher level.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
         <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
-          For professionals and executives who want a trusted advisor in their corner — not just for one deal, but for every real estate decision they'll face over the years. Monthly sessions cover market shifts, opportunity review, and the strategic thinking that compounds into real wealth.
+          At a certain point, the problem isn't one leak, one process, or one system anymore. It's the whole business — pricing, positioning, team, offers, growth — and you need someone thinking alongside you at that level, not fixing one part in isolation.
         </p>
-        <p class="text-slate-600 leading-relaxed mb-7 reveal reveal-delay-2">
-          You bring the ambition and the questions. I bring the market intelligence, the frameworks, and the honesty to tell you when a deal isn't worth chasing.
+        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
+          ESTAVIUM&trade; Growth Advisory&trade; is ongoing, high-touch strategic partnership. Not a single audit, not a one-time build — a continued relationship where decisions get made together, before they become expensive mistakes, and where the strategy evolves as your business does.
         </p>
-        <div class="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-7 reveal reveal-delay-3">
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Monthly 1:1 strategy sessions</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Direct access between sessions</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Curated market &amp; opportunity briefings</p>
-          <p class="flex items-start gap-3 text-slate-600 text-sm"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">✓</span>Application required — limited spots</p>
-        </div>
-        <div class="bg-slate-50 rounded-2xl p-5 mb-8 reveal reveal-delay-3">
-          <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> Executives, founders, and high-performing professionals who want an ongoing strategic partner — not a transactional consultant.</p>
-          <p class="text-sm text-slate-700 mt-2"><span class="font-bold text-slate-900">Expected results:</span> Sharper decision-making, fewer costly mistakes, and a long-term thinking partner who knows your full financial picture.</p>
-        </div>
-        <a href="contact.html" class="btn-primary inline-flex items-center gap-2 bg-gradient-to-r from-slate-800 to-slate-900 text-white font-bold px-7 py-3.5 rounded-full hover:opacity-90 transition-opacity reveal reveal-delay-4">
-          Apply for Mentoring →
-        </a>
       </div>
+
+      <div class="lg:col-span-5">
+        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
+          <p class="text-xs font-black tracking-widest uppercase text-blue-700 mb-5">What you walk away with</p>
+          <ul class="space-y-4 mb-7">
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Direct, ongoing access to think through decisions before you make them</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Strategic guidance across every part of the business, not just one function</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Someone who already knows your business deeply, not someone starting from zero each time</li>
+            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A partner for the decisions that are too big to make alone</li>
+          </ul>
+
+          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
+            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You've already fixed the individual pieces — your offer, your sales process, your automation — and now you need someone helping you run and grow the whole business at a higher level.</p>
+          </div>
+
+          <a href="contact.html" class="btn-primary w-full">
+            Book a Call →
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- WHY WORK WITH JONATAS -->
-<section class="py-20 md:py-28 bg-slate-900">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="eyebrow !text-red-400 mb-3">Why Clients Choose Jonatas</p>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white">Built On Trust, Not Trends.</h2>
-      <div class="sweep-divider w-20 mx-auto mt-6"></div>
+<!-- ============================================================
+     WHY CHOOSE JONATAS
+============================================================ -->
+<section class="why-sec py-20 md:py-28">
+
+  <div class="why-sec-glow"></div>
+  <div class="why-sec-grid"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start mb-14 md:mb-16">
+      <div>
+        <p class="eyebrow mb-5 reveal" style="color:rgba(231,76,60,0.9);">Why Choose Jonatas</p>
+        <h2 class="serif text-white reveal reveal-delay-1" style="font-size:clamp(1.85rem,3.4vw,2.7rem);line-height:1.32;font-weight:400;">
+          Built on trust,<br class="hidden sm:block" />
+          <em class="italic" style="color:rgba(255,255,255,0.5);">not trends.</em>
+        </h2>
+      </div>
+      <div class="lg:pt-3">
+        <p class="reveal reveal-delay-2" style="font-size:1.12rem;line-height:1.85;color:rgba(255,255,255,0.55);font-weight:300;">
+          Five reasons the work holds up long after the first conversation — experience that transfers, diagnosis before advice, and systems that keep running once they're built.
+        </p>
+        <div class="sweep-divider w-16 mt-7 reveal reveal-delay-2"></div>
+      </div>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-lift reveal">
-        <div class="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mb-5">
-          <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>
+
+    <div class="why-grid">
+
+      <div class="why-item why-lead reveal">
+        <div>
+          <span class="why-num">01</span>
+          <h3 class="why-title">Two Careers, One Advantage</h3>
         </div>
-        <h3 class="text-white font-bold text-lg mb-2">Personalized Strategy</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">No templates, no copy-paste plans. Every recommendation is built around your numbers, your goals, and your risk appetite.</p>
+        <p class="why-body">
+          <strong>20+ years in Real Estate Sales and Business Growth</strong> as an agent, manager and director — plus a career as a <strong>TV Director</strong> developing communication, content and audience engagement strategies. Two disciplines that meet exactly where clients are won: how you sell, and how you're understood.
+        </p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-lift reveal reveal-delay-1">
-        <div class="w-12 h-12 bg-blue-700/20 rounded-xl flex items-center justify-center mb-5">
-          <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path stroke-linecap="round" d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></svg>
-        </div>
-        <h3 class="text-white font-bold text-lg mb-2">Industry Expertise</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Over a decade reading markets, structuring deals, and helping clients avoid the mistakes most people only learn the hard way.</p>
+
+      <div class="why-item reveal reveal-delay-1">
+        <span class="why-num">02</span>
+        <h3 class="why-title">Diagnosis Before Prescription</h3>
+        <p class="why-body">Every engagement starts with finding exactly where you're losing clients and revenue — not a generic playbook applied to every business the same way.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-lift reveal reveal-delay-2">
-        <div class="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mb-5">
-          <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12 11 15 16 9"/></svg>
-        </div>
-        <h3 class="text-white font-bold text-lg mb-2">Honest Advice</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">If a deal doesn't make sense, I'll say so — even if it means walking away from the conversation. Your outcome matters more than my fee.</p>
+
+      <div class="why-item reveal reveal-delay-2">
+        <span class="why-num">03</span>
+        <h3 class="why-title">Personalized, Not Templated</h3>
+        <p class="why-body">Your strategy is built around your actual business, your actual numbers, and your actual clients — not a one-size-fits-all course you're expected to make fit.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-lift reveal reveal-delay-3">
-        <div class="w-12 h-12 bg-blue-700/20 rounded-xl flex items-center justify-center mb-5">
-          <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path stroke-linecap="round" d="M3 19c0-3 2-5 5-5s5 2 5 5M11 19c0-3 2-5 5-5s5 2 5 5"/></svg>
-        </div>
-        <h3 class="text-white font-bold text-lg mb-2">Relationship Driven</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Most clients stay with me for years, not one transaction. I'm invested in where you're going, not just the deal in front of us.</p>
+
+      <div class="why-item reveal reveal-delay-3">
+        <span class="why-num">04</span>
+        <h3 class="why-title">Systems Over Hustle</h3>
+        <p class="why-body">Practical, repeatable systems for sales and follow-up — not more content to consume or motivation to summon. Once it's built, it keeps working without you.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-lift reveal reveal-delay-4">
-        <div class="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mb-5">
-          <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3 class="text-white font-bold text-lg mb-2">Long-Term Planning</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Real estate wealth is built over decades, not deals. Every recommendation is weighed against where you want to be in 10 years.</p>
+
+      <div class="why-item reveal reveal-delay-4">
+        <span class="why-num">05</span>
+        <h3 class="why-title">A Partner for the Long Game</h3>
+        <p class="why-body">Relationship-driven, not transactional. From your first small step to ongoing strategic advisory, the goal is a business that keeps growing with more clarity and less guesswork — not a single sale.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-lift reveal reveal-delay-5">
-        <div class="w-12 h-12 bg-blue-700/20 rounded-xl flex items-center justify-center mb-5">
-          <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
-        </div>
-        <h3 class="text-white font-bold text-lg mb-2">Practical Results</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Frameworks and action steps you can actually use this week — not theory that sounds good but goes nowhere.</p>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- HOW WE WORK -->
-<section class="py-20 md:py-28 bg-white overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 md:mb-20 reveal">
-      <p class="eyebrow mb-3">The Process</p>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900">How We Work Together</h2>
-      <div class="sweep-divider w-20 mx-auto mt-6"></div>
-    </div>
+<!-- ============================================================
+     THE PROCESS
+============================================================ -->
+<section class="py-20 md:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
 
-    <!-- Desktop: horizontal timeline -->
-    <div class="hidden md:grid grid-cols-4 gap-8 relative timeline-line-h">
-      <div class="relative reveal">
-        <div class="w-14 h-14 rounded-full bg-red-600 text-white font-black flex items-center justify-center mx-auto mb-6 relative z-10 shadow-lg">01</div>
-        <h3 class="text-lg font-bold text-slate-900 text-center mb-2">Discovery Call</h3>
-        <p class="text-slate-500 text-sm text-center leading-relaxed">A relaxed conversation about where you are, what you're trying to achieve, and whether we're the right fit.</p>
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start mb-14 md:mb-16">
+      <div>
+        <p class="eyebrow mb-5 reveal">The Process</p>
+        <h2 class="serif reveal reveal-delay-1" style="font-size:clamp(1.85rem,3.4vw,2.7rem);line-height:1.32;font-weight:400;color:var(--text-dark);">
+          How we work<br class="hidden sm:block" />
+          <em class="italic" style="color:rgba(26,26,26,0.55);">together.</em>
+        </h2>
       </div>
-      <div class="relative reveal reveal-delay-1">
-        <div class="w-14 h-14 rounded-full bg-blue-700 text-white font-black flex items-center justify-center mx-auto mb-6 relative z-10 shadow-lg">02</div>
-        <h3 class="text-lg font-bold text-slate-900 text-center mb-2">Strategy Session</h3>
-        <p class="text-slate-500 text-sm text-center leading-relaxed">We dig into the numbers, the market, and the options — and identify the path that actually fits your goals.</p>
-      </div>
-      <div class="relative reveal reveal-delay-2">
-        <div class="w-14 h-14 rounded-full bg-red-600 text-white font-black flex items-center justify-center mx-auto mb-6 relative z-10 shadow-lg">03</div>
-        <h3 class="text-lg font-bold text-slate-900 text-center mb-2">Personalized Action Plan</h3>
-        <p class="text-slate-500 text-sm text-center leading-relaxed">You leave with a written plan: clear next steps, timelines, and the reasoning behind every recommendation.</p>
-      </div>
-      <div class="relative reveal reveal-delay-3">
-        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-red-600 to-blue-700 text-white font-black flex items-center justify-center mx-auto mb-6 relative z-10 shadow-lg">04</div>
-        <h3 class="text-lg font-bold text-slate-900 text-center mb-2">Long-Term Success</h3>
-        <p class="text-slate-500 text-sm text-center leading-relaxed">We keep checking in as the market shifts, so today's decision keeps paying off years from now.</p>
+      <div class="lg:pt-3">
+        <p class="reveal reveal-delay-2" style="font-size:1.12rem;line-height:1.85;color:rgba(26,26,26,0.62);font-weight:300;">
+          Four stages, in order. Nothing gets built before we know what's actually broken, and nothing gets handed over and abandoned once it is.
+        </p>
+        <div class="sweep-divider w-16 mt-7 reveal reveal-delay-2"></div>
       </div>
     </div>
 
-    <!-- Mobile: vertical timeline -->
-    <div class="md:hidden timeline-line-v pl-10 space-y-10">
-      <div class="relative reveal">
-        <div class="absolute -left-10 top-1 w-5 h-5 rounded-full bg-red-600 border-4 border-white shadow"></div>
-        <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Step 01</span>
-        <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Discovery Call</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">A relaxed conversation about where you are, what you're trying to achieve, and whether we're the right fit.</p>
+    <div class="proc-grid">
+
+      <div class="proc-step reveal">
+        <span class="proc-num">01</span>
+        <h3 class="proc-title">Start Where You Are</h3>
+        <p class="proc-body">No assumption about what stage you're at. Whether you're testing the waters with a small first step or ready for a full audit, we start with your actual business — not a generic onboarding script.</p>
       </div>
-      <div class="relative reveal reveal-delay-1">
-        <div class="absolute -left-10 top-1 w-5 h-5 rounded-full bg-blue-700 border-4 border-white shadow"></div>
-        <span class="text-xs font-bold text-blue-700 tracking-wider uppercase">Step 02</span>
-        <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Strategy Session</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">We dig into the numbers, the market, and the options — and identify the path that actually fits your goals.</p>
+
+      <div class="proc-step reveal reveal-delay-1">
+        <span class="proc-num">02</span>
+        <h3 class="proc-title">Find What's Actually Happening</h3>
+        <p class="proc-body">Before anything gets fixed, we get clear on what's really going on — where things are working, and where they quietly aren't. No prescriptions before diagnosis.</p>
       </div>
-      <div class="relative reveal reveal-delay-2">
-        <div class="absolute -left-10 top-1 w-5 h-5 rounded-full bg-red-600 border-4 border-white shadow"></div>
-        <span class="text-xs font-bold text-red-600 tracking-wider uppercase">Step 03</span>
-        <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Personalized Action Plan</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">You leave with a written plan: clear next steps, timelines, and the reasoning behind every recommendation.</p>
+
+      <div class="proc-step reveal reveal-delay-2">
+        <span class="proc-num">03</span>
+        <h3 class="proc-title">Build What's Missing</h3>
+        <p class="proc-body">Whatever the gap turns out to be — a system, a process, or the automation to run it — we build it around your business, not a template stretched to fit.</p>
       </div>
-      <div class="relative reveal reveal-delay-3">
-        <div class="absolute -left-10 top-1 w-5 h-5 rounded-full bg-gradient-to-b from-red-600 to-blue-700 border-4 border-white shadow"></div>
-        <span class="text-xs font-bold tracking-wider uppercase gradient-text">Step 04</span>
-        <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Long-Term Success</h3>
-        <p class="text-slate-500 text-sm leading-relaxed">We keep checking in as the market shifts, so today's decision keeps paying off years from now.</p>
+
+      <div class="proc-step reveal reveal-delay-3">
+        <span class="proc-num">04</span>
+        <h3 class="proc-title">Grow With Ongoing Support</h3>
+        <p class="proc-body">The relationship doesn't end at delivery. As your business grows, so does the support — from a single fix to an ongoing partner in how the whole thing runs.</p>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="py-20 md:py-24 bg-slate-50">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14 reveal">
-      <p class="eyebrow mb-3" style="color:#0f172a;">Common Questions</p>
-      <h2 class="text-3xl md:text-4xl font-black text-slate-900">FAQ</h2>
-    </div>
-    <div class="space-y-4" id="faqContainer">
-      <div class="faq-item bg-white rounded-2xl border border-slate-100 overflow-hidden reveal">
-        <button class="faq-btn w-full text-left flex items-center justify-between p-6 hover:bg-slate-50 transition-colors" aria-expanded="false">
-          <span class="font-semibold text-slate-900 text-sm md:text-base">I'm new to real estate. Is coaching for me, or do I need experience first?</span>
-          <svg class="faq-icon w-5 h-5 text-red-600 flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-slate-500 text-sm leading-relaxed">No experience required. Most clients start exactly where you are — curious, a little overwhelmed, and unsure which decisions actually matter. We start with a discovery call and build from there.</p>
-        </div>
-      </div>
-      <div class="faq-item bg-white rounded-2xl border border-slate-100 overflow-hidden reveal reveal-delay-1">
-        <button class="faq-btn w-full text-left flex items-center justify-between p-6 hover:bg-slate-50 transition-colors" aria-expanded="false">
-          <span class="font-semibold text-slate-900 text-sm md:text-base">How is investment strategy different from just hiring a real estate agent?</span>
-          <svg class="faq-icon w-5 h-5 text-red-600 flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-slate-500 text-sm leading-relaxed">An agent helps you buy or sell one property. I help you decide whether that property even belongs in your plan — and how it fits with everything else you own or want to own. It's strategy first, transactions second.</p>
-        </div>
-      </div>
-      <div class="faq-item bg-white rounded-2xl border border-slate-100 overflow-hidden reveal reveal-delay-2">
-        <button class="faq-btn w-full text-left flex items-center justify-between p-6 hover:bg-slate-50 transition-colors" aria-expanded="false">
-          <span class="font-semibold text-slate-900 text-sm md:text-base">What does the mentoring relationship actually look like month to month?</span>
-          <svg class="faq-icon w-5 h-5 text-red-600 flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-slate-500 text-sm leading-relaxed">One structured strategy session a month, plus direct access in between for time-sensitive decisions. Sessions cover whatever is live for you — a deal under review, a market shift, or a longer-term planning question.</p>
-        </div>
-      </div>
-      <div class="faq-item bg-white rounded-2xl border border-slate-100 overflow-hidden reveal reveal-delay-3">
-        <button class="faq-btn w-full text-left flex items-center justify-between p-6 hover:bg-slate-50 transition-colors" aria-expanded="false">
-          <span class="font-semibold text-slate-900 text-sm md:text-base">Do I need to book a full consultation, or can we start smaller?</span>
-          <svg class="faq-icon w-5 h-5 text-red-600 flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-slate-500 text-sm leading-relaxed">Every relationship starts with a free discovery call — no commitment, no pressure. We figure out together whether a single strategy session, ongoing mentoring, or portfolio work makes the most sense for you.</p>
-        </div>
-      </div>
-      <div class="faq-item bg-white rounded-2xl border border-slate-100 overflow-hidden reveal reveal-delay-4">
-        <button class="faq-btn w-full text-left flex items-center justify-between p-6 hover:bg-slate-50 transition-colors" aria-expanded="false">
-          <span class="font-semibold text-slate-900 text-sm md:text-base">I already own a few properties. Can you help me plan what's next?</span>
-          <svg class="faq-icon w-5 h-5 text-red-600 flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-slate-500 text-sm leading-relaxed">Absolutely — that's exactly where Investment &amp; Portfolio Strategy is most powerful. We audit what you have, model your equity and cash flow, and sequence your next 2–3 moves so each one strengthens the whole picture.</p>
-        </div>
-      </div>
-      <div class="faq-item bg-white rounded-2xl border border-slate-100 overflow-hidden reveal reveal-delay-5">
-        <button class="faq-btn w-full text-left flex items-center justify-between p-6 hover:bg-slate-50 transition-colors" aria-expanded="false">
-          <span class="font-semibold text-slate-900 text-sm md:text-base">How does this actually help my business grow, not just my personal portfolio?</span>
-          <svg class="faq-icon w-5 h-5 text-red-600 flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-answer hidden px-6 pb-6">
-          <p class="text-slate-500 text-sm leading-relaxed">Real estate decisions ripple into your broader finances — capital you tie up, debt you take on, cash flow you free up. We look at the full picture, so the property strategy actually supports your business and income goals, not the other way around.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ============================================================
+     FAQ
+============================================================ -->
+<section class="py-20 md:py-28" style="background:#faf9f7;">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
 
-<!-- FINAL CTA -->
-<section class="py-20 md:py-24 bg-gradient-to-r from-red-600 to-blue-700">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6">Ready to Make Smarter<br />Real Estate Decisions?</h2>
-    <p class="text-white/80 text-lg mb-10 max-w-xl mx-auto">Book a free discovery call. No hard sell, no obligation — just an honest conversation about where you are and where you want to be.</p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="contact.html" class="inline-flex items-center gap-2 bg-white text-slate-900 font-black px-10 py-4 rounded-full text-base hover:bg-slate-100 transition-colors shadow-xl">
-        Book a Call →
-      </a>
-      <a href="https://wa.me/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white/10 border border-white/30 text-white font-bold px-10 py-4 rounded-full text-base hover:bg-white/20 transition-colors">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp
-      </a>
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start mb-12 md:mb-14">
+      <div>
+        <p class="eyebrow mb-5 reveal">Common Questions</p>
+        <h2 class="serif reveal reveal-delay-1" style="font-size:clamp(1.85rem,3.4vw,2.7rem);line-height:1.32;font-weight:400;color:var(--text-dark);">
+          Answers before<br class="hidden sm:block" />
+          <em class="italic" style="color:rgba(26,26,26,0.55);">you ask.</em>
+        </h2>
+      </div>
+      <div class="lg:pt-3">
+        <p class="reveal reveal-delay-2" style="font-size:1.12rem;line-height:1.85;color:rgba(26,26,26,0.62);font-weight:300;">
+          The questions that come up most often — about who this is for, what's built with you versus by you, and how to tell which offer fits where you are right now.
+        </p>
+        <div class="sweep-divider w-16 mt-7 reveal reveal-delay-2"></div>
+      </div>
+    </div>
+
+    <div class="faq-cols" id="faqContainer">
+
+      <!-- ── COLUMN 1 ── -->
+      <div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Who do you work with?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>I work with founders, consultants, coaches, real estate professionals, and other service providers who want to attract better-fit clients, create more predictable revenue, and build a stronger business for long-term growth.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>I'm just starting my business. Can you still help?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>Yes. Whether you're building from the ground up or looking to grow an established business, we'll focus on the stage you're in and the next step that will create the greatest impact.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Do I need to buy every offer?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>No. Every business is different. We'll identify the best starting point based on your goals, challenges, and stage of growth.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>What makes your approach different?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>I don't focus on quick tactics or short-term wins. My approach is centred on helping you build stronger business foundations, attract the right clients, and create more consistent, predictable growth.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Do you guarantee results?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>No. No one can ethically guarantee business results. Every business is different, and results depend on factors such as your market, your offer, and your implementation. What I do is to provide a structured approach, practical guidance, and clear priorities designed to help you make better growth decisions.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>What is done for me vs. done by me?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>It depends on the offer. ESTAVIUM&trade; Growth Builder&trade; is entirely DIY. ESTAVIUM&trade; The Growth Diagnostic&trade;, ESTAVIUM&trade; Growth Sales System&trade;, and ESTAVIUM&trade; Growth Automation&trade; are built and implemented together with you. ESTAVIUM&trade; Growth Advisory&trade; is ongoing strategic partnership, not a one-time build.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Is this only for one type of business?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>No — the process works for founders, coaches, consultants, and service-based businesses like real estate. What changes is the specific offer, message, and system; the underlying process stays the same.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── COLUMN 2 ── -->
+      <div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>What if I'm just starting out and don't have clients yet?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>Start with ESTAVIUM&trade; Growth Builder&trade;. It's built specifically to help you define your first offer and the foundation of a client-acquisition system, even from zero.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>How do we work together?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>Depending on your needs, we may work through a digital product, a focused diagnostic, implementation support, or strategic advisory. We'll choose the approach that best fits your current stage.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Is this only about getting more clients?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>No. More clients alone don't build a stronger business. The goal is to help you create a business that consistently attracts the right clients, converts more opportunities, and grows with greater predictability over time.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Why focus on systems instead of just more leads?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>Because more leads don't automatically create more revenue. A business grows more consistently when it has the right foundations, clear positioning, and repeatable systems that turn opportunities into long-term growth.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Do I need a big audience or following to start?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>No. Every offer here is built to work with a small, focused audience — the goal is depth of trust with the right people, not reach.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" aria-expanded="false">
+            <span>How do I know which offer is right for me?</span>
+            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer hidden">
+            <p>That's exactly why ESTAVIUM&trade; Growth Diagnostic&trade; exists. It identifies your highest-impact opportunities, helps prioritise what matters most for your business, and determines whether we're the right fit to work together.</p>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </section>
@@ -701,7 +1357,7 @@
       <!-- Headline -->
       <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:400;color:#1a1a1a;text-align:center;line-height:1.35;margin-bottom:1rem;">
         Ready to Attract Premium Clients?<br/>
-        <em style="color:rgba(0,0,0,0.65);font-weight:300;">Book Your Free Strategy Call Today.</em>
+        <em style="color:rgba(0,0,0,0.65);font-weight:300;">Book Your Strategy Call Today.</em>
       </h3>
 
       <!-- Subtext -->
@@ -710,13 +1366,13 @@
       </p>
 
       <!-- CTA buttons row -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
+      <div class="cta-btn-row" style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
         <a href="contact.html"
            style="display:inline-flex;align-items:center;gap:.55rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:2px solid #c0392b;transition:background .2s,transform .2s,box-shadow .2s;"
            onmouseover="this.style.background='#e74c3c';this.style.borderColor='#e74c3c';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(192,57,43,0.35)'"
            onmouseout="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.transform='';this.style.boxShadow=''">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
-          Book a Free Call
+          Book a Call
         </a>
         <a href="service.html"
            style="display:inline-flex;align-items:center;gap:.55rem;background:transparent;color:rgba(0,0,0,0.6);font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:1.5px solid rgba(0,0,0,0.2);transition:border-color .2s,color .2s,transform .2s;"
@@ -862,56 +1518,21 @@
       <div style="display:flex;align-items:center;gap:1.75rem;">
         <a href="privacy-policy.html" class="ft-bottom-link">Privacy Policy</a>
         <a href="terms-of-service.html" class="ft-bottom-link">Terms of Service</a>
-        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" aria-label="Back to top" style="display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,0.55);font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:.45rem .95rem;transition:border-color .25s ease,color .25s ease,transform .25s ease;" onmouseover="this.style.borderColor='#c0392b';this.style.color='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.55)';this.style.transform=''">
-          Top<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </a>
       </div>
+    </div>
+
+    <!-- Developer credit -->
+    <style>@media (max-width: 767px) { .dev-credit { justify-content: flex-start !important; } }</style>
+    <div class="dev-credit" style="display:flex;justify-content:flex-end;margin-top:1.15rem;position:relative;z-index:1;">
+      <a href="https://www.linkedin.com/in/tejasmehar/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,0.3);font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:.04em;text-decoration:none;transition:color .25s ease;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">
+        Developed &amp; Managed By Tejas Mehar
+      </a>
     </div>
     </div>
   </div>
 </footer>
 
-<button id="whatsappFloat" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform">
-  <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</button>
-
-<script src="assets/js/main.js"></script>
 <script>
-  // ---- Mobile menu ----
-  (function () {
-    var menuBtn = document.getElementById('menuBtn');
-    var menuClose = document.getElementById('menuClose');
-    var mobileMenu = document.getElementById('mobileMenu');
-    var overlay = document.getElementById('menuOverlay');
-    function openMenu () {
-      mobileMenu.classList.remove('translate-x-full');
-      overlay.classList.remove('opacity-0', 'pointer-events-none');
-      document.body.classList.add('overflow-hidden');
-    }
-    function closeMenu () {
-      mobileMenu.classList.add('translate-x-full');
-      overlay.classList.add('opacity-0', 'pointer-events-none');
-      document.body.classList.remove('overflow-hidden');
-    }
-    if (menuBtn) menuBtn.addEventListener('click', openMenu);
-    if (menuClose) menuClose.addEventListener('click', closeMenu);
-    if (overlay) overlay.addEventListener('click', closeMenu);
-  })();
-
-  // ---- Header shadow on scroll ----
-  (function () {
-    var header = document.getElementById('siteHeader');
-    function onScroll () {
-      if (window.scrollY > 8) {
-        header.classList.add('shadow-md');
-      } else {
-        header.classList.remove('shadow-md');
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  })();
-
   // ---- Scroll reveal (fade up / image reveal), staggered via CSS delay classes ----
   (function () {
     var targets = document.querySelectorAll('.reveal, .img-reveal');
@@ -984,6 +1605,8 @@
       }
     });
   });
+/* Body loaded — lifts the `body { opacity: 0 }` guard in assets/css/styles.css */
+document.body.classList.add('loaded');
 /* Unified Navbar */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
@@ -1061,5 +1684,31 @@ mobileMenu.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click'
 })();
 </script>
 
+<!-- Nav drawer: backdrop wiring, outside-click and Esc to close -->
+<script>
+(function () {
+  var menu = document.getElementById('mobile-menu');
+  var overlay = document.getElementById('nav-overlay');
+  if (!menu || !overlay) return;
+
+  function sync() { overlay.classList.toggle('show', menu.classList.contains('open')); }
+  new MutationObserver(sync).observe(menu, { attributes: true, attributeFilter: ['class'] });
+  sync();
+
+  function close() {
+    if (typeof window.closeMenu === 'function') { window.closeMenu(); return; }
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) close();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1023 && menu.classList.contains('open')) close();
+  });
+})();
+</script>
 </body>
 </html>
