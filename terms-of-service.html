@@ -307,30 +307,36 @@
 
 <!-- ============ LEGAL PAGE STYLES ============ -->
 <style>
-  .legal-hero{position:relative;overflow:hidden;background:#0a0a0f;padding:10rem 1.5rem 4.5rem;}
+  .legal-hero{position:relative;overflow:hidden;background:#0a0a0f;padding:clamp(8rem,14vw,10.5rem) 1.5rem clamp(3.5rem,6vw,5.5rem);}
   .legal-hero::before{content:'';position:absolute;top:-30%;right:-10%;width:55%;height:170%;background:radial-gradient(ellipse,rgba(192,57,43,0.14) 0%,transparent 62%);pointer-events:none;}
   .legal-hero::after{content:'';position:absolute;bottom:-40%;left:-8%;width:45%;height:170%;background:radial-gradient(ellipse,rgba(42,95,199,0.10) 0%,transparent 62%);pointer-events:none;}
-  .legal-wrap{max-width:880px;margin:0 auto;position:relative;z-index:1;}
+  .legal-wrap{max-width:1120px;margin:0 auto;position:relative;z-index:1;}
   .legal-eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);border-radius:999px;padding:.45rem 1.1rem;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e74c3c;margin-bottom:1.5rem;}
   .legal-eyebrow span{width:7px;height:7px;border-radius:50%;background:#c0392b;display:inline-block;}
   .legal-hero h1{font-family:'Playfair Display',serif;font-weight:700;color:#fff;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.15;margin:0 0 1rem;}
   .legal-hero .legal-updated{font-family:'Outfit',sans-serif;color:rgba(255,255,255,0.5);font-size:.98rem;letter-spacing:.02em;}
-  .legal-hero .legal-intro{color:rgba(255,255,255,0.62);font-size:1.12rem;line-height:1.75;margin-top:1.4rem;max-width:640px;}
+  .legal-hero .legal-intro{color:rgba(255,255,255,0.62);font-size:1.12rem;line-height:1.8;margin-top:1.4rem;max-width:none;}
 
-  .legal-body{background:#f4f3ef;padding:4.5rem 1.5rem 6rem;}
-  .legal-content{background:#fff;border:1px solid rgba(0,0,0,0.06);box-shadow:0 12px 50px rgba(0,0,0,0.05);border-radius:18px;padding:clamp(2rem,5vw,4rem);}
-  .legal-content h2{font-family:'Playfair Display',serif;font-weight:700;color:#1a1a1a;font-size:clamp(1.4rem,2.6vw,1.75rem);line-height:1.3;margin:2.75rem 0 .9rem;display:flex;align-items:flex-start;gap:.75rem;}
-  .legal-content h2:first-child{margin-top:0;}
+  .legal-body{background:#f4f3ef;padding:clamp(3.5rem,7vw,6rem) 1.5rem clamp(4.5rem,8vw,7rem);}
+  .legal-content{background:transparent;border:0;box-shadow:none;border-radius:0;padding:0;}
+  .legal-content h2{font-family:'Playfair Display',serif;font-weight:700;color:#1a1a1a;font-size:clamp(1.4rem,2.6vw,1.75rem);line-height:1.3;margin:0 0 1.1rem;padding-top:clamp(2.25rem,4vw,3rem);margin-top:clamp(2.25rem,4vw,3rem);border-top:1px solid rgba(0,0,0,0.09);display:flex;align-items:flex-start;gap:.85rem;}
+  .legal-content h2:first-child{margin-top:0;padding-top:0;border-top:0;}
   .legal-content h2 .n{flex-shrink:0;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;color:#c0392b;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:9px;min-width:2rem;height:2rem;display:inline-flex;align-items:center;justify-content:center;margin-top:.15rem;}
-  .legal-content p{font-family:'Inter',sans-serif;color:#4a4a4a;font-size:1.055rem;line-height:1.8;margin:0 0 1.1rem;}
+  .legal-content p{font-family:'Inter',sans-serif;color:#4a4a4a;font-size:1.055rem;line-height:1.85;margin:0 0 1.15rem;}
+  .legal-content p:last-child{margin-bottom:0;}
   .legal-content ul{margin:0 0 1.3rem;padding-left:0;list-style:none;}
   .legal-content li{position:relative;font-family:'Inter',sans-serif;color:#4a4a4a;font-size:1.055rem;line-height:1.75;padding-left:1.75rem;margin-bottom:.7rem;}
   .legal-content li::before{content:'';position:absolute;left:.35rem;top:.7rem;width:6px;height:6px;border-radius:50%;background:#c0392b;}
   .legal-content a{color:#c0392b;text-decoration:none;border-bottom:1px solid rgba(192,57,43,0.35);transition:color .2s,border-color .2s;}
   .legal-content a:hover{color:#e74c3c;border-color:#e74c3c;}
   .legal-content strong{color:#1a1a1a;}
-  .legal-note{background:rgba(192,57,43,0.04);border-left:3px solid #c0392b;border-radius:0 10px 10px 0;padding:1.25rem 1.5rem;margin:2.25rem 0 0;}
+  .legal-note{background:transparent;border-left:3px solid #c0392b;border-radius:0;padding:.35rem 0 .35rem 1.4rem;margin:clamp(2.75rem,5vw,3.5rem) 0 0;}
   .legal-note p{margin:0;color:#5a5a5a;font-size:.99rem;}
+  @media (max-width:639px){
+    .legal-content h2{gap:.65rem;font-size:1.3rem;}
+    .legal-content h2 .n{min-width:1.8rem;height:1.8rem;font-size:.85rem;}
+    .legal-content p,.legal-content li{font-size:1rem;}
+  }
 </style>
 
 <!-- ============ LEGAL HERO ============ -->
@@ -348,30 +354,35 @@
   <div class="legal-wrap">
     <div class="legal-content">
       <h2><span class="n">1</span>Acceptance of Terms</h2>
-      <p>By using this website or engaging our coaching and advisory services, you confirm that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree, please do not use the site or services.</p>
+      <p>By using this website or engaging our coaching and advisory services, you confirm that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy. You must be at least 18 years old to use these services. If you do not agree, please do not use the site or services.</p>
       <h2><span class="n">2</span>Services Provided</h2>
-      <p>Jonatas Baptista offers Client Acquisition coaching, strategic advisory, group mentorship, and related educational services. The specific scope, format, and deliverables of any engagement will be agreed upon before your session or program begins.</p>
+      <p>Jonatas Baptista offers Client Acquisition coaching, strategic advisory, group mentorship, self-guided digital products (including the ESTAVIUM™ Growth Builder™), and related educational services. The specific scope, format, and deliverables of any engagement will be agreed upon before your session or program begins.</p>
       <h2><span class="n">3</span>Bookings &amp; Payments</h2>
-      <p>Certain services require booking in advance and may involve fees. Where fees apply, payment terms will be communicated before your session is confirmed. All fees are stated in the applicable currency and are due as agreed.</p>
+      <p>The initial Strategy Call is offered free of charge and does not require payment to book. Paid programs and services require payment before the session or program is confirmed, processed through Topmate. Payment terms and pricing for any paid offer will be clearly communicated before you complete your booking. All prices are listed in US Dollars (USD).</p>
       <h2><span class="n">4</span>Cancellations &amp; Rescheduling</h2>
-      <p>If you need to cancel or reschedule a session, we ask that you provide reasonable advance notice. Specific cancellation and refund terms for paid programs will be shared at the time of booking.</p>
-      <h2><span class="n">5</span>No Guarantee of Results</h2>
+      <p>The Strategy Call is free. Scheduling for strategy calls and coaching sessions is handled via Calendly. Payments for programs and digital products are processed through Topmate, and are also subject to Topmate's own Terms of Use and Refund Policy. The Growth Builder™ is a self-guided digital product delivered upon purchase; it does not include a coaching session or follow-up booking. Where fees apply, payment terms will be communicated before your session or program is confirmed. All prices are listed in US Dollars (USD).</p>
+      <h2><span class="n">5</span>Refunds &amp; Withdrawal Rights</h2>
+      <p>The withdrawal right described below applies only to individual consumers acting outside their trade, business, or profession. If you purchase using a business tax/VAT number or as a registered company, this statutory withdrawal right does not apply, and refunds are governed solely by Topmate's Refund Policy and the terms below.</p>
+      <p>If you are an individual consumer located in the European Union or United Kingdom, you have the right to withdraw from this contract within 14 days without giving any reason, in accordance with applicable consumer protection law. This right may not apply once a service has been fully performed with your prior express consent, or once a digital product has been accessed or downloaded.</p>
+      <p>Beyond this, refund eligibility for sessions, programs, and digital products purchased through this site is determined in accordance with Topmate's Refund Policy, which governs all transactions processed on that platform. Digital products (such as the ESTAVIUM&trade; Growth Builder&trade;) are generally non-refundable once accessed or downloaded, except where the product is materially defective (e.g. corrupted files, missing content, or content that does not match its description) or as otherwise required by applicable law.</p>
+      <p>Notwithstanding the above, Jonatas Baptista may, at his sole discretion, choose to grant a refund even after the applicable refund window has expired.</p>
+      <h2><span class="n">6</span>No Guarantee of Results</h2>
       <p>Our coaching is designed to provide guidance, strategy, and support. However, individual results depend on many factors, including your own effort and market conditions. We do not guarantee any specific outcome, income, or level of success.</p>
-      <h2><span class="n">6</span>Intellectual Property</h2>
-      <p>All content on this website and within our programs &mdash; including text, graphics, frameworks, and materials &mdash; is the property of Jonatas Baptista and is protected by applicable intellectual property laws. You may not reproduce, distribute, or resell this content without prior written permission.</p>
-      <h2><span class="n">7</span>User Responsibilities</h2>
+      <h2><span class="n">7</span>Intellectual Property</h2>
+      <p>All content on this website and within our programs — including text, graphics, frameworks, and materials — is the property of Jonatas Baptista and is protected by applicable intellectual property laws. You may not reproduce, distribute, or resell this content without prior written permission. Purchase of digital products (such as the ESTAVIUM™ Growth Builder™) grants you a personal, non-transferable license to use the materials for your own business purposes; redistribution or resale of these materials is prohibited.</p>
+      <h2><span class="n">8</span>User Responsibilities</h2>
       <p>You agree to use the website and services lawfully and respectfully, to provide accurate information, and not to misuse, disrupt, or attempt to gain unauthorized access to any part of the site or its systems.</p>
-      <h2><span class="n">8</span>Limitation of Liability</h2>
+      <h2><span class="n">9</span>Limitation of Liability</h2>
       <p>To the fullest extent permitted by law, Jonatas Baptista shall not be liable for any indirect, incidental, or consequential damages arising from your use of the website or services. Our services are provided on an "as is" basis.</p>
-      <h2><span class="n">9</span>Third-Party Links</h2>
+      <h2><span class="n">10</span>Third-Party Links</h2>
       <p>Our website may link to third-party resources for your convenience. We are not responsible for the content, accuracy, or practices of any external websites.</p>
-      <h2><span class="n">10</span>Governing Law</h2>
-      <p>These Terms shall be governed by and interpreted in accordance with applicable law. Any disputes arising in connection with these Terms will be subject to the appropriate jurisdiction.</p>
-      <h2><span class="n">11</span>Changes to These Terms</h2>
+      <h2><span class="n">11</span>Governing Law</h2>
+      <p>These Terms are governed by the laws of Portugal. Any disputes arising in connection with these Terms will be subject to the exclusive jurisdiction of the courts of Lisbon, Portugal, without prejudice to any mandatory consumer protection rights you may have under the laws of your country of residence. Before pursuing any dispute, please contact us at jonatas@jonatasbaptista.com or call +351 910 083 701 (also available on WhatsApp).</p>
+      <h2><span class="n">12</span>Changes to These Terms</h2>
       <p>We may revise these Terms of Service from time to time. Updated versions will be posted on this page with a new revision date, and your continued use of the site constitutes acceptance of those changes.</p>
-      <h2><span class="n">12</span>Contact Us</h2>
+      <h2><span class="n">13</span>Contact Us</h2>
       <p>For any questions about these Terms of Service, please reach out at <a href="mailto:jonatas@jonatasbaptista.com">jonatas@jonatasbaptista.com</a> or call <a href="tel:+351910083701">+351 910 083 701</a>.</p>
-      <div class="legal-note"><p>These Terms of Service are provided for general informational purposes and should be reviewed by a qualified legal professional before use.</p></div>
+      <div class="legal-note"><p>These Terms of Service are provided for general informational purposes. We recommend consulting a qualified legal professional if you have specific questions about your rights or obligations.</p></div>
     </div>
   </div>
 </section>
@@ -407,7 +418,7 @@
       </p>
 
       <!-- CTA buttons row -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
+      <div class="cta-btn-row" style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
         <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener"
            style="display:inline-flex;align-items:center;gap:.55rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:2px solid #c0392b;transition:background .2s,transform .2s,box-shadow .2s;"
            onmouseover="this.style.background='#e74c3c';this.style.borderColor='#e74c3c';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(192,57,43,0.35)'"
@@ -419,7 +430,7 @@
            style="display:inline-flex;align-items:center;gap:.55rem;background:transparent;color:rgba(0,0,0,0.6);font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:1.5px solid rgba(0,0,0,0.2);transition:border-color .2s,color .2s,transform .2s;"
            onmouseover="this.style.borderColor='rgba(0,0,0,0.55)';this.style.color='#1a1a1a';this.style.transform='translateY(-2px)'"
            onmouseout="this.style.borderColor='rgba(0,0,0,0.2)';this.style.color='rgba(0,0,0,0.6)';this.style.transform=''">
-          Explore Services
+          Explore OFFERS
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -434,11 +445,6 @@
         <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Focused on your business
-        </span>
-        <span style="width:1px;height:16px;background:rgba(0,0,0,0.12);display:inline-block;"></span>
-        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          150 agents coached
         </span>
       </div>
 
