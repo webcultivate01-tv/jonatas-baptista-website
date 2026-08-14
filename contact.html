@@ -1311,6 +1311,19 @@
 
           <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
+            <!-- Hidden fields passed straight through to the EmailJS template.
+                 Use them in the template as {{to_email}} {{subject}} {{time}} {{page}}. -->
+            <input type="hidden" name="to_email" value="jonatas@jonatasbaptista.com" />
+            <input type="hidden" name="subject"  value="New enquiry from jonatasbaptista.com" />
+            <input type="hidden" name="time"     id="form-time" value="" />
+            <input type="hidden" name="page"     id="form-page" value="" />
+
+            <!-- Honeypot — real people never see or fill this; bots usually do. -->
+            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+              <label for="website">Leave this field empty</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div class="md:col-span-1 d1" data-reveal="up">
               <label for="fullName" class="block text-gray-700 font-medium mb-1" style="font-size:1.012rem;">First Name</label>
               <input type="text" id="fullName" name="fullName" required placeholder="John Carter"
@@ -1458,7 +1471,7 @@
 
       <!-- Subtext -->
       <p data-reveal="up" class="d3" style="font-family:'Outfit',sans-serif;font-size:1.063rem;color:#4a4a4a;text-align:center;max-width:540px;margin:0 auto 2.5rem;line-height:1.7;">
-        One focused conversation. Clear next steps. No obligation.
+        One focused conversation. Clear direction. No obligation.
       </p>
 
       <!-- CTA buttons row -->
@@ -1725,71 +1738,108 @@ document.querySelectorAll('.faq-trigger').forEach(btn => {
 });
 
 /* ===== CONTACT FORM ===== */
-/* ============================================================
-   EMAILJS — sends the contact form to the admin inbox
-   ------------------------------------------------------------
-   SETUP (one-time, at https://dashboard.emailjs.com):
-     1. Create an Email Service and copy its Service ID.
-     2. Create an Email Template. In the template body use these
-        variables: {{fullName}} {{email}} {{phone}} {{company}}
-        {{service}} {{message}}. Set the template "To email" to the
-        admin address (e.g. jonatas@jonatasbaptista.com) and the
-        "Reply To" to {{email}} so replies go back to the visitor.
-     3. Copy your Public Key (Account → General).
-     4. Paste the three values below.
-============================================================ */
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+/* ════════════════════════════════════════════════════════════
+   ✦✦✦  EMAILJS CONFIG — REPLACE THE THREE VALUES BELOW  ✦✦✦
+   ════════════════════════════════════════════════════════════
+   Everything else on this page is already wired up. Get the
+   three values from https://dashboard.emailjs.com and paste
+   them between the quotes — nothing else needs changing.
 
-if (window.emailjs) {
+     PUBLIC KEY   →  Account  →  General  →  "Public Key"
+     SERVICE ID   →  Email Services  →  your service  →  "Service ID"
+     TEMPLATE ID  →  Email Templates →  your template →  "Template ID"
+
+   ── TEMPLATE SETTINGS (in the EmailJS template's "Settings" tab) ──
+     To email    :  jonatas@jonatasbaptista.com
+     From name   :  {{fullName}}
+     Reply To    :  {{email}}          ← so replying goes to the visitor
+     Subject     :  {{subject}}
+
+   ── TEMPLATE BODY — these variables are sent by this form ──
+     {{fullName}}  {{email}}  {{phone}}  {{company}}  {{message}}
+     {{subject}}   {{time}}   {{page}}   {{to_email}}
+
+   Example body you can paste into the template:
+     New enquiry from the website
+     Name:    {{fullName}}
+     Email:   {{email}}
+     Phone:   {{phone}}
+     Company: {{company}}
+     Sent:    {{time}}
+     Page:    {{page}}
+     ---
+     {{message}}
+   ════════════════════════════════════════════════════════════ */
+
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';    // ← replace
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';    // ← replace
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';   // ← replace
+
+/* ─── nothing below this line needs editing ─────────────────── */
+
+const FALLBACK_EMAIL = 'jonatas@jonatasbaptista.com';
+
+if (window.emailjs && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 }
 
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
-  const submitBtn   = contactForm.querySelector('button[type="submit"]');
-  const successMsg  = document.getElementById('form-success');
-  const errorMsg    = document.getElementById('form-error');
-  const btnDefault  = submitBtn ? submitBtn.innerHTML : '';
+  const submitBtn  = contactForm.querySelector('button[type="submit"]');
+  const successMsg = document.getElementById('form-success');
+  const errorMsg   = document.getElementById('form-error');
+  const btnDefault = submitBtn ? submitBtn.innerHTML : '';
+
+  const setBusy = (busy) => {
+    if (!submitBtn) return;
+    submitBtn.disabled      = busy;
+    submitBtn.style.opacity = busy ? '0.7' : '';
+    submitBtn.style.cursor  = busy ? 'wait' : '';
+    submitBtn.innerHTML     = busy ? 'Sending…' : btnDefault;
+  };
+
+  const showError = (msg) => {
+    errorMsg.textContent = msg;
+    errorMsg.classList.remove('hidden');
+    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
 
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     successMsg.classList.add('hidden');
     errorMsg.classList.add('hidden');
 
-    // Guard against missing configuration
-    if (!window.emailjs || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-      errorMsg.textContent = 'Email service is not configured yet. Please email jonatas@jonatasbaptista.com directly.';
-      errorMsg.classList.remove('hidden');
+    // Silently drop bot submissions that filled the honeypot.
+    if (contactForm.website && contactForm.website.value) return;
+
+    // Config not filled in yet — tell the visitor how to reach Jonatas.
+    if (!window.emailjs || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'
+        || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+      showError('Email service is not configured yet. Please email ' + FALLBACK_EMAIL + ' directly.');
       return;
     }
 
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.7';
-      submitBtn.style.cursor = 'wait';
-      submitBtn.innerHTML = 'Sending…';
-    }
+    if (!contactForm.reportValidity()) return;
+
+    // Stamp the hidden context fields just before sending.
+    const timeField = document.getElementById('form-time');
+    const pageField = document.getElementById('form-page');
+    if (timeField) timeField.value = new Date().toLocaleString();
+    if (pageField) pageField.value = window.location.href;
+
+    setBusy(true);
 
     emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
       .then(() => {
         successMsg.classList.remove('hidden');
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         contactForm.reset();
       })
       .catch((err) => {
         console.error('EmailJS error:', err);
-        errorMsg.textContent = "Something went wrong sending your message. Please try again or email jonatas@jonatasbaptista.com directly.";
-        errorMsg.classList.remove('hidden');
+        showError('Something went wrong sending your message. Please try again or email ' + FALLBACK_EMAIL + ' directly.');
       })
-      .finally(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '';
-          submitBtn.style.cursor = '';
-          submitBtn.innerHTML = btnDefault;
-        }
-      });
+      .finally(() => setBusy(false));
   });
 }
 </script>
