@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work With Me | Jonatas Baptista — Client Acquisition Coach</title>
-  <meta name="description" content="Five ways to work with Jonatas Baptista: the ESTAVIUM Growth Builder blueprint, Growth Diagnostic audit, Growth Sales System, Growth Automation, and Growth Advisory — systems that attract premium clients and make revenue predictable." />
+  <meta name="description" content="Six ways to work with Jonatas Baptista: the ESTAVIUM Digital Products Partnership, Growth Builder blueprint, Growth Diagnostic audit, Growth Sales System, Growth Automation, and Growth Advisory — systems that attract premium clients and make revenue predictable." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -233,6 +233,19 @@
     .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
     .reveal-left.in-view, .reveal-right.in-view { opacity: 1; transform: translateX(0); }
 
+    /* Hero-only directional entrance — quicker, punchier easing for a premium first impression */
+    .svc-hero-in-left, .svc-hero-in-right {
+      opacity: 0;
+      transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1);
+      will-change: opacity, transform;
+    }
+    .svc-hero-in-left { transform: translateX(-64px); }
+    .svc-hero-in-right { transform: translateX(64px); }
+    .svc-hero-in-left.in-view, .svc-hero-in-right.in-view { opacity: 1; transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .svc-hero-in-left, .svc-hero-in-right { transition: none; transform: none; opacity: 1; }
+    }
+
     .img-hover-zoom { overflow: hidden; }
     .img-hover-zoom img { transition: transform .9s cubic-bezier(.22,.61,.36,1); }
     .img-hover-zoom:hover img { transform: scale(1.06); }
@@ -424,24 +437,47 @@
     /* ============================================================
        WORK WITH ME — offer index strip
     ============================================================ */
-    .wwm-index { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1px; background: rgba(0,0,0,0.09); border: 1px solid rgba(0,0,0,0.09); }
+    .wwm-index { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.1rem; }
     @media (max-width: 900px) { .wwm-index { grid-template-columns: repeat(2, minmax(0,1fr)); } }
     @media (max-width: 520px) { .wwm-index { grid-template-columns: 1fr; } }
     .wwm-card {
-      background: #fff; padding: 1.65rem 1.4rem; text-decoration: none; display: block;
-      transition: background .3s ease, transform .3s ease;
+      position: relative; overflow: hidden;
+      background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px;
+      padding: 1.9rem 1.6rem 1.75rem; text-decoration: none; display: flex; flex-direction: column;
+      box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+      transition: transform .45s cubic-bezier(.22,.61,.36,1), box-shadow .45s cubic-bezier(.22,.61,.36,1), border-color .35s ease;
     }
-    .wwm-card:hover { background: var(--off-white); }
+    .wwm-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--red), rgba(192,57,43,0));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .5s cubic-bezier(.22,.61,.36,1);
+    }
+    .wwm-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 52px -24px rgba(15,23,42,0.2);
+      border-color: rgba(192,57,43,0.3);
+    }
+    .wwm-card:hover::before { transform: scaleX(1); }
+    .wwm-card-arrow {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.04); color: rgba(26,26,26,0.35);
+      transition: background .35s ease, color .35s ease, transform .4s cubic-bezier(.22,.61,.36,1);
+    }
+    .wwm-card:hover .wwm-card-arrow { background: var(--red); color: #fff; transform: translate(2px,-2px); }
     .wwm-card-step {
       font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 700;
       letter-spacing: .18em; text-transform: uppercase; color: rgba(26,26,26,0.35);
-      display: block; margin-bottom: .7rem;
+      display: block; margin-bottom: 1.05rem; padding-right: 2.5rem;
+      transition: color .35s ease;
     }
     .wwm-card-name {
-      font-family: 'Playfair Display', serif; font-size: 1.06rem; font-weight: 600;
-      color: var(--text-dark); line-height: 1.35; margin-bottom: .45rem; display: block;
+      font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600;
+      color: var(--text-dark); line-height: 1.35; margin-bottom: .55rem; display: block;
     }
-    .wwm-card-note { font-size: 0.92rem; color: rgba(26,26,26,0.55); font-weight: 300; line-height: 1.55; display: block; }
+    .wwm-card-note { font-size: 0.92rem; color: rgba(26,26,26,0.55); font-weight: 300; line-height: 1.6; display: block; flex: 1; }
     .wwm-card:hover .wwm-card-step { color: var(--red); }
 
     /* ============================================================
@@ -496,6 +532,46 @@
     .why-body { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.5); font-weight: 300; }
     .why-lead .why-body { font-size: 1.08rem; }
     .why-lead .why-body strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    /* ============================================================
+       OFFER SECTIONS — unified editorial treatment (one accent color,
+       numbered like the rest of the page, instead of mixed icon-block colors)
+    ============================================================ */
+    .offer-num {
+      font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 500;
+      line-height: 1; color: rgba(192,57,43,0.22); display: block; margin-bottom: 1.15rem;
+    }
+    .offer-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px;
+      padding: 2.35rem 2rem 2.1rem;
+      box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+      transition: box-shadow .45s cubic-bezier(.22,.61,.36,1), border-color .4s ease, transform .45s cubic-bezier(.22,.61,.36,1);
+    }
+    .offer-card:hover { box-shadow: 0 28px 52px -26px rgba(15,23,42,0.2); border-color: rgba(192,57,43,0.26); transform: translateY(-4px); }
+    .offer-card-label {
+      font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 1.15rem; display: block;
+    }
+    .offer-check-list { list-style: none; margin: 0 0 1.85rem; padding: 0; display: flex; flex-direction: column; gap: 1.05rem; }
+    .offer-check-list li { display: flex; align-items: flex-start; gap: .8rem; font-size: 0.96rem; line-height: 1.65; color: rgba(26,26,26,0.62); font-weight: 300; }
+    .offer-check-list li strong { color: var(--text-dark); font-weight: 600; }
+    .offer-check-icon {
+      flex-shrink: 0; margin-top: .18rem; width: 1.2rem; height: 1.2rem; border-radius: 50%;
+      border: 1.5px solid var(--red); color: var(--red); display: flex; align-items: center; justify-content: center;
+    }
+    .offer-callout { background: var(--cream); border-radius: 14px; padding: 1.15rem 1.3rem; }
+    .offer-callout p { font-size: 0.94rem; line-height: 1.65; color: rgba(26,26,26,0.68); }
+    .offer-callout strong { color: var(--text-dark); font-weight: 600; }
+    .offer-note { background: rgba(42,95,199,0.06); border: 1px solid rgba(42,95,199,0.16); border-radius: 14px; padding: 1.15rem 1.3rem; }
+    .offer-note p { font-size: 0.93rem; line-height: 1.6; color: rgba(26,26,26,0.65); }
+    .offer-note-label { font-family: 'Outfit', sans-serif; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-acc); margin-bottom: .5rem; display: block; }
+    .offer-price-lede { font-size: 0.88rem; color: rgba(26,26,26,0.45); margin-bottom: .3rem; }
+    .offer-price-row { display: flex; align-items: flex-end; gap: .65rem; margin-bottom: .3rem; }
+    .offer-price-old { font-size: 1.2rem; color: rgba(26,26,26,0.32); text-decoration: line-through; font-weight: 500; }
+    .offer-price-new { font-family: 'Playfair Display', serif; font-size: 2.9rem; font-weight: 600; color: var(--text-dark); line-height: 1; }
+    .offer-price-tag { font-size: 0.87rem; font-weight: 600; color: var(--red); margin-bottom: 1.6rem; }
+    .offer-disclaimer { font-size: 0.78rem; line-height: 1.6; color: rgba(26,26,26,0.42); margin-bottom: 1.4rem; }
+    .offer-cta { width: 100%; }
   </style>
 <!-- ============================================================
      MOBILE REFINEMENTS — right-side nav drawer + one-row CTA pairs
@@ -663,7 +739,7 @@
     <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
 
       <!-- ── LEFT: copy ── -->
-      <div class="text-center lg:text-left">
+      <div class="text-center lg:text-left svc-hero-in-left">
 
         <p class="eyebrow mb-6 reveal" style="color:rgba(231,76,60,0.9);">Client Acquisition &amp; Growth Strategy</p>
 
@@ -675,7 +751,7 @@
         <div class="w-10 h-0.5 bg-red-600 mb-6 mx-auto lg:mx-0 reveal reveal-delay-1"></div>
 
         <p class="text-white/50 leading-relaxed max-w-xl mx-auto lg:mx-0 mb-9 reveal reveal-delay-2" style="font-size:1.12rem;">
-          Jonatas Baptista helps Founders, Coaches, Consultants &amp; Service Professionals Get More Clients, Increase Sales, Create Predictable Growth &amp; Build Systems.
+          Jonatas Baptista helps  Founders, Creators, Coaches, Consultants & Real Estate Agents Get More Clients, Increase Sales, Create Predictable Growth &amp; Build Systems.
         </p>
 
         <div class="cta-btn-row flex flex-wrap justify-center lg:justify-start gap-3 reveal reveal-delay-3">
@@ -683,13 +759,13 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
             Book a Call
           </a>
-          <a href="#work-with-me" class="btn-outline-white">Explore the Five Offers</a>
+          <a href="#work-with-me" class="btn-outline-white">EXPLORE THE OFFERS</a>
         </div>
 
       </div>
 
       <!-- ── RIGHT: image collage ── -->
-      <div class="flex justify-center reveal reveal-delay-2">
+      <div class="flex justify-center svc-hero-in-right">
         <div class="svc-collage">
 
           <figure class="svc-shot svc-shot-main">
@@ -729,7 +805,7 @@
       <div>
         <p class="eyebrow mb-5 reveal">Work With Me</p>
         <h2 class="serif reveal reveal-delay-1" style="font-size:clamp(1.85rem,3.4vw,2.7rem);line-height:1.32;font-weight:400;color:var(--text-dark);">
-          Five focused ways<br class="hidden sm:block" />
+          Six focused ways<br class="hidden sm:block" />
           <em class="italic" style="color:rgba(26,26,26,0.55);">to work together.</em>
         </h2>
       </div>
@@ -742,29 +818,40 @@
     </div>
 
     <!-- Offer index -->
-    <div class="wwm-index reveal reveal-delay-3">
-      <a href="#growth-builder" class="wwm-card">
-        <span class="wwm-card-step">01 · DIY</span>
+    <div class="wwm-index">
+      <a href="#digital-products" class="wwm-card reveal reveal-delay-1">
+        <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <span class="wwm-card-step">01 · Package</span>
+        <span class="wwm-card-name">Digital Products Partnership</span>
+        <span class="wwm-card-note">Turn your expertise into a sellable digital product.</span>
+      </a>
+      <a href="#growth-builder" class="wwm-card reveal reveal-delay-2">
+        <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <span class="wwm-card-step">02 · DIY</span>
         <span class="wwm-card-name">Growth Builder&trade;</span>
         <span class="wwm-card-note">Build the foundation yourself, in one weekend.</span>
       </a>
-      <a href="#growth-diagnostic" class="wwm-card">
-        <span class="wwm-card-step">02 · Audit</span>
+      <a href="#growth-diagnostic" class="wwm-card reveal reveal-delay-3">
+        <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <span class="wwm-card-step">03 · Audit</span>
         <span class="wwm-card-name">Growth Diagnostic&trade;</span>
         <span class="wwm-card-note">Find exactly where clients and revenue leak out.</span>
       </a>
-      <a href="#growth-sales-system" class="wwm-card">
-        <span class="wwm-card-step">03 · Build</span>
+      <a href="#growth-sales-system" class="wwm-card reveal reveal-delay-4">
+        <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <span class="wwm-card-step">04 · Build</span>
         <span class="wwm-card-name">Growth Sales System&trade;</span>
         <span class="wwm-card-note">Turn the process in your head into repeatable steps.</span>
       </a>
-      <a href="#growth-automation" class="wwm-card">
-        <span class="wwm-card-step">04 · Install</span>
+      <a href="#growth-automation" class="wwm-card reveal reveal-delay-5">
+        <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <span class="wwm-card-step">05 · Install</span>
         <span class="wwm-card-name">Growth Automation&trade;</span>
         <span class="wwm-card-note">Let the follow-up run without you remembering it.</span>
       </a>
-      <a href="#growth-advisory" class="wwm-card">
-        <span class="wwm-card-step">05 ·  PARTNER</span>
+      <a href="#growth-advisory" class="wwm-card reveal reveal-delay-6">
+        <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <span class="wwm-card-step">06 · PARTNER</span>
         <span class="wwm-card-name">Growth Advisory&trade;</span>
         <span class="wwm-card-note">Ongoing strategic guidance for clearer decisions and stronger growth.</span>
       </a>
@@ -773,61 +860,65 @@
   </div>
 </section>
 
-<!-- OFFER 1: ESTAVIUM™ GROWTH BUILDER™ -->
-<section id="growth-builder" class="py-20 md:py-28 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- OFFER 1: ESTAVIUM™ DIGITAL PRODUCTS PARTNERSHIP™ -->
+<section id="digital-products" class="offer-sec py-20 md:py-28" style="background:#faf9f7;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-      <!-- Copy -->
-      <div class="lg:col-span-7">
-        <div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center mb-6 reveal">
-          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v16H4z"/><path stroke-linecap="round" d="M4 9h16M9 9v11"/></svg>
-        </div>
-        <span class="eyebrow reveal reveal-delay-1">DIY Blueprint · Start Here</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Builder&trade;</h2>
-        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
-Build the foundations of a business designed to attract the right clients and create more predictable growth — in one weekend.
+      <div class="lg:col-span-7 reveal-left">
+        <span class="offer-num reveal">01</span>
+        <p class="eyebrow mb-4 reveal">Partnership · Application Only</p>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Digital Products Partnership</h2>
+        <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
+          What you know is worth more than your calendar.
         </p>
-        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
-          The $17 blueprint for founders, coaches, consultants, and agents who are ready to stop relying on luck for their next client.
+        <p class="mb-6 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          You've spent years building expertise nobody else has. Right now, most of it is trapped in your head, your DMs, your calls — sold one hour at a time. Somewhere in there is an asset that could sell itself while you sleep. It just hasn't been built yet.
         </p>
         <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
-        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
-          You already know how to do the work. What's missing is a system that brings clients to you predictably — instead of hoping the next one shows up.
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          Different rooms, same problem: real expertise, still unpackaged.
         </p>
-        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
-          ESTAVIUM&trade; Growth Builder&trade; is a 4-part DIY blueprint that walks you through building the foundation of that system yourself, over one weekend. Think of it like architectural drawings: you won't finish with four videos watched, you'll finish holding the actual documents your business runs on — the same ones built inside our higher-level programs, just built by your own hand first.
+        <div class="grid sm:grid-cols-2 gap-4 mb-7 reveal reveal-delay-2">
+          <div class="offer-callout"><p><strong>Founders —</strong> You're the bottleneck. Every sale, every onboarding, every "let me explain how this works" routes through you. Growth is capped by your calendar, not your vision.</p></div>
+          <div class="offer-callout"><p><strong>Creators —</strong> You have the audience, not the asset. Followers and views without a repeatable, sellable product behind them — so monetization stalls at brand deals and one-off gigs instead of compounding.</p></div>
+          <div class="offer-callout"><p><strong>Coaches —</strong> Your knowledge only scales one-to-one. Every new client starts the explanation from zero, because nothing you know has been turned into something they can buy before they ever book your time.</p></div>
+          <div class="offer-callout"><p><strong>Real Estate Agents —</strong> Your market knowledge dies in a notes app. You know the neighborhood, the pricing shifts, the buyer psychology better than any listing portal — and none of it is packaged into something that generates leads or income on its own.</p></div>
+        </div>
+        <p class="offer-card-label reveal reveal-delay-2">What we build together</p>
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          This isn't a course that teaches you how to package your own product. We build it with you — an eBook, a course, a template system, a guide, a toolkit, a challenge, a webinar, whatever format actually fits how your audience buys. You bring the expertise and your existing content; we bring the structure, positioning, design, and system that makes it sellable.
         </p>
-        <div class="bg-slate-50 rounded-2xl p-5 reveal reveal-delay-3">
-          <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">The important part:</span> This gets you the plans, not the finished house. Most people either build it themselves this weekend, or realize partway through they'd rather hand the blueprint to someone who builds these for a living — that's exactly what our ESTAVIUM&trade; Growth Diagnostic&trade; and ESTAVIUM&trade; Growth Sales System&trade; are for.</p>
+        <div class="offer-callout reveal reveal-delay-3">
+          <p>It's structured as a true partnership, not a project-for-hire: you keep full rights to your own original content, we retain rights to the structure and system we design, and instead of a flat fee, it's a shared revenue split in the product's performance.</p>
         </div>
       </div>
 
-      <!-- Deliverables + price -->
-      <div class="lg:col-span-5">
-        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
-          <p class="text-xs font-black tracking-widest uppercase text-red-600 mb-5">What you walk away with — four real assets, not theory</p>
-          <ul class="space-y-4 mb-7">
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">Offer Blueprint</span> — your micro-offer, target client, and price point, on one page</span></li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">Positioning Statement + Messaging Framework</span> — the exact line that makes a prospect say "tell me more," and where to use it</span></li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">Client Journey Map + Sales Process</span> — the steps a stranger takes to becoming a paying client, mapped out</span></li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span><span><span class="font-bold text-slate-900">CRM Structure + Follow-Up Workflow + Automation Map</span> — how leads get tracked and followed up with, without you having to remember</span></li>
+      <div class="lg:col-span-5 reveal-right">
+        <div class="offer-card reveal reveal-delay-2">
+          <p class="offer-card-label">What you walk away with</p>
+          <ul class="offer-check-list">
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A fully built digital product — eBook, course, template system, guide, toolkit, challenge, or webinar — matched to how your audience actually buys</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Structure, positioning, and design done for you, built around your existing expertise and content</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Full rights to your own original content, always</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A true partnership structure — a shared investment in the product's performance, not a flat project fee</li>
           </ul>
 
-          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
-            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You're doing good work but your client flow depends on referrals, luck, or bursts of effort. You want the blueprint in your hands this weekend — not a strategy call, not a course you'll watch someday.</p>
+          <div class="offer-callout mb-7">
+            <p><strong>Who it's for:</strong> Founders, creators, coaches, and real estate agents who've built real expertise but haven't packaged it into something that sells itself yet.</p>
           </div>
 
-          <p class="text-sm text-slate-500 mb-1">Start building it in one weekend.</p>
-          <div class="flex items-end gap-3 mb-1">
-            <span class="text-xl text-slate-400 line-through font-semibold">$147</span>
-            <span class="text-5xl font-black text-slate-900 leading-none">$17</span>
+          <p class="offer-price-lede">Every product is scoped and quoted individually.</p>
+          <div class="offer-price-row">
+            <span style="font-size:0.9rem;color:rgba(26,26,26,0.45);font-weight:600;">Starting at</span>
+            <span class="offer-price-new">$17</span>
           </div>
-          <p class="text-sm font-bold text-red-600 mb-6">Save $130 — Special launch price. Limited time.</p>
+          <p class="offer-price-tag">Final price depends on format, complexity, and partnership structure.</p>
 
-          <!-- TODO: point this at the real checkout URL (Stripe / Gumroad / etc.) -->
-          <a href="contact.html" class="btn-primary w-full">
-            Get Started →
+          <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider - our partner network. Revenue split and terms will be discussed together before booking.</p>
+
+          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary offer-cta">
+            Book a Scoping Call →
           </a>
         </div>
       </div>
@@ -836,62 +927,123 @@ Build the foundations of a business designed to attract the right clients and cr
   </div>
 </section>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="sweep-divider w-full mb-0"></div></div>
-
-<!-- OFFER 2: ESTAVIUM™ GROWTH DIAGNOSTIC™ -->
-<section id="growth-diagnostic" class="py-20 md:py-28 bg-slate-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- OFFER 2: ESTAVIUM™ GROWTH BUILDER™ -->
+<section id="growth-builder" class="offer-sec py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-      <div class="lg:col-span-7">
-        <div class="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center mb-6 reveal">
-          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.5-3.5"/></svg>
+      <!-- Deliverables + price -->
+      <div class="lg:col-span-5 lg:order-1 reveal-left">
+        <div class="offer-card reveal reveal-delay-2">
+          <p class="offer-card-label">What you walk away with — four real assets, not theory</p>
+          <ul class="offer-check-list">
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><strong>Offer Blueprint</strong> — your micro-offer, target client, and price point, on one page</span></li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><strong>Positioning Statement + Messaging Framework</strong> — the exact line that makes a prospect say "tell me more," and where to use it</span></li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><strong>Client Journey Map + Sales Process</strong> — the steps a stranger takes to becoming a paying client, mapped out</span></li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><strong>CRM Structure + Follow-Up Workflow + Automation Map</strong> — how leads get tracked and followed up with, without you having to remember</span></li>
+          </ul>
+
+          <div class="offer-callout mb-7">
+            <p><strong>Who it's for:</strong> You're doing good work but your client flow depends on referrals, luck, or bursts of effort. You want the blueprint in your hands this weekend — not a strategy call, not a course you'll watch someday.</p>
+          </div>
+
+          <p class="offer-price-lede">Start building it in one weekend.</p>
+          <div class="offer-price-row">
+            <span class="offer-price-old">$147</span>
+            <span class="offer-price-new">$17</span>
+          </div>
+          <p class="offer-price-tag">Save $130 — Special launch price. Limited time.</p>
+
+          <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider - our partner network. Pricing and terms will be confirmed before booking.</p>
+
+          <!-- TODO: point this at the real checkout URL (Stripe / Gumroad / etc.) -->
+          <a href="contact.html" class="btn-primary offer-cta">
+            Get Started →
+          </a>
         </div>
-        <span class="eyebrow reveal reveal-delay-1">One-on-One Audit</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Diagnostic&trade;</h2>
-        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+      </div>
+
+      <!-- Copy -->
+      <div class="lg:col-span-7 lg:order-2 reveal-right">
+        <span class="offer-num reveal">02</span>
+        <p class="eyebrow mb-4 reveal">DIY Blueprint · Start Here</p>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Builder&trade;</h2>
+        <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
+          Build the foundations of a business designed to attract the right clients and create more predictable growth — in one weekend.
+        </p>
+        <p class="mb-6 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          The $17 blueprint for Founders, Creators, Coaches, Consultants, and Agents who are ready to stop relying on luck for their next client.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          You already know how to do the work. What's missing is a system that brings clients to you predictably — instead of hoping the next one shows up.
+        </p>
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          ESTAVIUM&trade; Growth Builder&trade; is a 4-part DIY blueprint that walks you through building the foundation of that system yourself, over one weekend. Think of it like architectural drawings: you won't finish with four videos watched, you'll finish holding the actual documents your business runs on — the same ones built inside our higher-level programs, just built by your own hand first.
+        </p>
+        <div class="offer-callout reveal reveal-delay-3">
+          <p><strong>The important part:</strong> This gets you the plans, not the finished house. Most people either build it themselves this weekend, or realize partway through they'd rather hand the blueprint to someone who builds these for a living — that's exactly what our ESTAVIUM&trade; Growth Diagnostic&trade; and ESTAVIUM&trade; Growth Sales System&trade; are for.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OFFER 3: ESTAVIUM™ GROWTH DIAGNOSTIC™ -->
+<section id="growth-diagnostic" class="offer-sec py-20 md:py-28" style="background:#faf9f7;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+      <div class="lg:col-span-7 reveal-left">
+        <span class="offer-num reveal">03</span>
+        <p class="eyebrow mb-4 reveal">One-on-One Audit</p>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Diagnostic&trade;</h2>
+        <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           Stop guessing where you're losing clients.
         </p>
-        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+        <p class="mb-6 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           A clear-eyed audit of your business — we pinpoint exactly where you're losing clients and revenue, before you spend another euro trying to fix the wrong thing.
         </p>
         <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
-        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           Most founders, coaches, consultants, and agents don't have a lead problem — they have a leak problem. Somewhere between a stranger noticing you and a stranger paying you, prospects are quietly slipping away. Most people never find out where, so they keep buying ads, building content, or hiring help that fixes a problem they don't actually have.
         </p>
-        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
+        <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           The ESTAVIUM&trade; Growth Diagnostic&trade; is a one-on-one audit of your entire client-acquisition process — from first contact to closed client — mapped stage by stage so we can identify where the most significant opportunities are being lost. Not a generic checklist. Your actual numbers, your actual process, your actual leak.
         </p>
       </div>
 
-      <div class="lg:col-span-5">
-        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
-          <p class="text-xs font-black tracking-widest uppercase text-blue-700 mb-5">What you walk away with</p>
-          <ul class="space-y-4 mb-7">
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A full walkthrough of how clients currently move through your business, stage by stage</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>The exact point (or points) where you're losing the most revenue — named plainly, not hinted at</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A written, prioritized breakdown of what to fix first</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Clarity on what kind of fix you actually need — sales process, positioning, or automation — so your next investment goes to the right problem</li>
+      <div class="lg:col-span-5 reveal-right">
+        <div class="offer-card reveal reveal-delay-2">
+          <p class="offer-card-label">What you walk away with</p>
+          <ul class="offer-check-list">
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A full walkthrough of how clients currently move through your business, stage by stage</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>The exact point (or points) where you're losing the most revenue — named plainly, not hinted at</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A written, prioritized breakdown of what to fix first</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Clarity on what kind of fix you actually need — sales process, positioning, or automation — so your next investment goes to the right problem</li>
           </ul>
 
-          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
-            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You already have some clients. Growth just isn't predictable, and you can't fully explain why.</p>
+          <div class="offer-callout mb-7">
+            <p><strong>Who it's for:</strong> You already have some clients. Growth just isn't predictable, and you can't fully explain why.</p>
           </div>
 
-          <div class="bg-blue-50 border border-blue-100 rounded-2xl p-5 mb-7">
-            <p class="text-xs font-black tracking-widest uppercase text-blue-700 mb-2">Strategy Call or Growth Diagnostic&trade;?</p>
-            <p class="text-sm text-slate-700 mb-3">The free 30-minute Strategy Call is a conversation to understand your situation and determine whether we're a good fit to work together.</p>
-            <p class="text-sm text-slate-700">Growth Diagnostic&trade; goes deeper — analysing your client acquisition and sales process to identify where opportunities are being lost, what may be limiting growth, and where to focus first.</p>
+          <div class="offer-note mb-7">
+            <p class="offer-note-label">Strategy Call or Growth Diagnostic&trade;?</p>
+            <p class="mb-3">The free 30-minute Strategy Call is a conversation to understand your situation and determine whether we're a good fit to work together.</p>
+            <p>Growth Diagnostic&trade; goes deeper — analysing your client acquisition and sales process to identify where opportunities are being lost, what may be limiting growth, and where to focus first.</p>
           </div>
 
-          <div class="flex items-end gap-3 mb-1">
-            <span class="text-xl text-slate-400 line-through font-semibold">$297</span>
-            <span class="text-5xl font-black text-slate-900 leading-none">$97</span>
+          <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider. Terms will be confirmed before booking.</p>
+
+          <div class="offer-price-row">
+            <span class="offer-price-old">$297</span>
+            <span class="offer-price-new">$97</span>
           </div>
-          <p class="text-sm font-bold text-blue-700 mb-6">Save $200 — Special launch price. Limited time.</p>
+          <p class="offer-price-tag">Save $200 — Special launch price. Limited time.</p>
 
           <!-- TODO: point this at the real checkout URL (Stripe / Gumroad / etc.) -->
-          <a href="contact.html" class="btn-primary w-full">
+          <a href="contact.html" class="btn-primary offer-cta">
             Get Started →
           </a>
         </div>
@@ -901,99 +1053,97 @@ Build the foundations of a business designed to attract the right clients and cr
   </div>
 </section>
 
-<!-- OFFER 3: ESTAVIUM™ GROWTH SALES SYSTEM™ -->
-<section id="growth-sales-system" class="py-20 md:py-28 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- OFFER 4: ESTAVIUM™ GROWTH SALES SYSTEM™ -->
+<section id="growth-sales-system" class="offer-sec py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-      <div class="lg:col-span-7">
-        <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 reveal">
-          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h6M4 12h10M4 18h16"/><circle cx="18" cy="6" r="2"/></svg>
+      <div class="lg:col-span-5 lg:order-1 reveal-left">
+        <div class="offer-card reveal reveal-delay-2">
+          <p class="offer-card-label">What you walk away with</p>
+          <ul class="offer-check-list">
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A documented, repeatable sales process — the exact steps from first conversation to closed client</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Scripts and structure for the calls or conversations that actually move people forward</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A system that doesn't depend on your energy, memory, or improvisation on the day</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>The ability to hand parts of the process to someone else on your team, because it's no longer just in your head</li>
+          </ul>
+
+          <div class="offer-callout mb-7">
+            <p><strong>Who it's for:</strong> You're closing some clients, but conversion feels unpredictable — great with the right prospect, inconsistent with everyone else — and you're ready to install a process instead of relying on instinct.</p>
+          </div>
+
+          <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider - our partner network. Pricing and terms will be confirmed before booking.</p>
+
+          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary offer-cta">
+            Book a Call →
+          </a>
         </div>
-        <span class="eyebrow reveal reveal-delay-1">Built &amp; Installed With You</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Sales System&trade;</h2>
-        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+      </div>
+
+      <div class="lg:col-span-7 lg:order-2 reveal-right">
+        <span class="offer-num reveal">04</span>
+        <p class="eyebrow mb-4 reveal">Built &amp; Installed With You</p>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Sales System&trade;</h2>
+        <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           Stop closing deals based on your mood, memory, or how good you happen to be on the call.
         </p>
-        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+        <p class="mb-6 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           We build and install a repeatable sales process — so converting leads into clients isn't a coin flip anymore.
         </p>
         <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
-        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           You already know how to close a client when everything lines up — the right mood, the right prep, a good day. The problem is what happens on the days it doesn't line up. Right now, your sales process lives in your head, which means it's inconsistent, hard to hand off, and impossible to improve on purpose.
         </p>
-        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
+        <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           The ESTAVIUM&trade; Growth Sales System&trade; replaces that with something built to run the same way every time. We map your actual client journey, install a repeatable sales process around it, and hand you a system that converts leads into clients whether you're having a great week or a rough one.
         </p>
       </div>
 
-      <div class="lg:col-span-5">
-        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
-          <p class="text-xs font-black tracking-widest uppercase text-slate-800 mb-5">What you walk away with</p>
-          <ul class="space-y-4 mb-7">
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A documented, repeatable sales process — the exact steps from first conversation to closed client</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Scripts and structure for the calls or conversations that actually move people forward</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A system that doesn't depend on your energy, memory, or improvisation on the day</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>The ability to hand parts of the process to someone else on your team, because it's no longer just in your head</li>
-          </ul>
-
-          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
-            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You're closing some clients, but conversion feels unpredictable — great with the right prospect, inconsistent with everyone else — and you're ready to install a process instead of relying on instinct.</p>
-          </div>
-
-          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary w-full">
-            Book a Call →
-          </a>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="sweep-divider w-full mb-0"></div></div>
-
-<!-- OFFER 4: ESTAVIUM™ GROWTH AUTOMATION™ -->
-<section id="growth-automation" class="py-20 md:py-28 bg-slate-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- OFFER 5: ESTAVIUM™ GROWTH AUTOMATION™ -->
+<section id="growth-automation" class="offer-sec py-20 md:py-28" style="background:#faf9f7;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-      <div class="lg:col-span-7">
-        <div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center mb-6 reveal">
-          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>
-        </div>
-        <span class="eyebrow reveal reveal-delay-1">CRM · AI · Automation</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Automation&trade;</h2>
-        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
+      <div class="lg:col-span-7 reveal-left">
+        <span class="offer-num reveal">05</span>
+        <p class="eyebrow mb-4 reveal">CRM · AI · Automation</p>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Automation&trade;</h2>
+        <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           Stop doing the follow-up, tracking, and admin by hand.
         </p>
-        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
+        <p class="mb-6 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           We implement the CRM, AI, and automation tools that run the parts of your business that shouldn't need you.
         </p>
         <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
-        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           Every lead you don't follow up with on time is revenue you already paid to generate and then let go cold. Right now, that follow-up probably depends on you remembering — a sticky note, a mental list, a "I'll get to that reply tomorrow." At any real volume, that system breaks.
         </p>
-        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
+        <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
           ESTAVIUM&trade; Growth Automation&trade; installs the infrastructure that catches what you'd otherwise drop: a CRM built around how your business actually works, automated follow-up sequences that fire on their own, and AI where it genuinely saves you hours — not gimmicks, just the admin work removed from your plate.
         </p>
       </div>
 
-      <div class="lg:col-span-5">
-        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
-          <p class="text-xs font-black tracking-widest uppercase text-red-600 mb-5">What you walk away with</p>
-          <ul class="space-y-4 mb-7">
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A CRM structure built for your business, not a generic template you have to bend to fit</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Automated follow-up workflows so leads get nurtured whether or not you remember to do it</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>AI and automation tools handling tracking, reminders, and repetitive admin</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-600 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>More hours back for the work only you can actually do</li>
+      <div class="lg:col-span-5 reveal-right">
+        <div class="offer-card reveal reveal-delay-2">
+          <p class="offer-card-label">What you walk away with</p>
+          <ul class="offer-check-list">
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A CRM structure built for your business, not a generic template you have to bend to fit</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Automated follow-up workflows so leads get nurtured whether or not you remember to do it</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>AI and automation tools handling tracking, reminders, and repetitive admin</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>More hours back for the work only you can actually do</li>
           </ul>
 
-          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
-            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You have a working sales process now, but leads still slip through the cracks because tracking and follow-up live in your head or a messy spreadsheet instead of a system.</p>
+          <div class="offer-callout mb-7">
+            <p><strong>Who it's for:</strong> You have a working sales process now, but leads still slip through the cracks because tracking and follow-up live in your head or a messy spreadsheet instead of a system.</p>
           </div>
 
-          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary w-full">
+          <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider - our partner network. Pricing and terms will be confirmed before booking.</p>
+
+          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary offer-cta">
             Book a Call →
           </a>
         </div>
@@ -1003,50 +1153,50 @@ Build the foundations of a business designed to attract the right clients and cr
   </div>
 </section>
 
-<!-- OFFER 5: ESTAVIUM™ GROWTH ADVISORY™ -->
-<section id="growth-advisory" class="py-20 md:py-28 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- OFFER 6: ESTAVIUM™ GROWTH ADVISORY™ -->
+<section id="growth-advisory" class="offer-sec py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-      <div class="lg:col-span-7">
-        <div class="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center mb-6 reveal">
-          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="9" cy="8" r="3"/><path stroke-linecap="round" d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><circle cx="17.5" cy="9" r="2.2"/><path stroke-linecap="round" d="M14.8 20c.3-2.6 1.9-4.4 4.2-4.4"/></svg>
-        </div>
-        <span class="eyebrow reveal reveal-delay-1">Ongoing · High-Touch · Application Only</span>
-        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-3 mb-4 reveal reveal-delay-1">ESTAVIUM&trade; Growth Advisory&trade;</h2>
-        <p class="text-xl md:text-2xl font-bold text-slate-900 leading-snug mb-3 reveal reveal-delay-1">
-          For when you're past fixing pieces.
-        </p>
-        <p class="text-slate-600 leading-relaxed mb-6 reveal reveal-delay-2">
-          Ongoing, high-touch strategic advisory — for when you need someone helping you run the whole business at a higher level.
-        </p>
-        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
-        <p class="text-slate-600 leading-relaxed mb-5 reveal reveal-delay-2">
-          At a certain point, the problem isn't one leak, one process, or one system anymore. It's the whole business — pricing, positioning, team, offers, growth — and you need someone thinking alongside you at that level, not fixing one part in isolation.
-        </p>
-        <p class="text-slate-600 leading-relaxed reveal reveal-delay-2">
-          ESTAVIUM&trade; Growth Advisory&trade; is ongoing, high-touch strategic partnership. Not a single audit, not a one-time build — a continued relationship where decisions get made together, before they become expensive mistakes, and where the strategy evolves as your business does.
-        </p>
-      </div>
-
-      <div class="lg:col-span-5">
-        <div class="bg-white border border-slate-200 rounded-3xl p-7 md:p-8 shadow-xl reveal reveal-delay-2">
-          <p class="text-xs font-black tracking-widest uppercase text-blue-700 mb-5">What you walk away with</p>
-          <ul class="space-y-4 mb-7">
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Direct, ongoing access to think through decisions before you make them</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Strategic guidance across every part of the business, not just one function</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>Someone who already knows your business deeply, not someone starting from zero each time</li>
-            <li class="flex items-start gap-3 text-slate-600 text-sm leading-relaxed"><span class="mt-0.5 w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex-shrink-0 flex items-center justify-center text-xs">&#10003;</span>A partner for the decisions that are too big to make alone</li>
+      <div class="lg:col-span-5 lg:order-1 reveal-left">
+        <div class="offer-card reveal reveal-delay-2">
+          <p class="offer-card-label">What you walk away with</p>
+          <ul class="offer-check-list">
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Direct, ongoing access to think through decisions before you make them</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Strategic guidance across every part of the business, not just one function</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Someone who already knows your business deeply, not someone starting from zero each time</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A partner for the decisions that are too big to make alone</li>
           </ul>
 
-          <div class="bg-slate-50 rounded-2xl p-5 mb-7">
-            <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">Who it's for:</span> You've already fixed the individual pieces — your offer, your sales process, your automation — and now you need someone helping you run and grow the whole business at a higher level.</p>
+          <div class="offer-callout mb-7">
+            <p><strong>Who it's for:</strong> You've already fixed the individual pieces — your offer, your sales process, your automation — and now you need someone helping you run and grow the whole business at a higher level.</p>
           </div>
 
-          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary w-full">
+          <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider - our partner network. Pricing and terms will be confirmed before booking.</p>
+
+          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary offer-cta">
             Book a Call →
           </a>
         </div>
+      </div>
+
+      <div class="lg:col-span-7 lg:order-2 reveal-right">
+        <span class="offer-num reveal">06</span>
+        <p class="eyebrow mb-4 reveal">Ongoing · High-Touch · Application Only</p>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Advisory&trade;</h2>
+        <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
+          For when you're past fixing pieces.
+        </p>
+        <p class="mb-6 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          Ongoing, high-touch strategic advisory — for when you need someone helping you run the whole business at a higher level.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
+        <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          At a certain point, the problem isn't one leak, one process, or one system anymore. It's the whole business — pricing, positioning, team, offers, growth — and you need someone thinking alongside you at that level, not fixing one part in isolation.
+        </p>
+        <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          ESTAVIUM&trade; Growth Advisory&trade; is ongoing, high-touch strategic partnership. Not a single audit, not a one-time build — a continued relationship where decisions get made together, before they become expensive mistakes, and where the strategy evolves as your business does.
+        </p>
       </div>
 
     </div>
@@ -1528,19 +1678,14 @@ If you need a deeper analysis of where clients or opportunities are being lost, 
 
     <!-- Bottom bar -->
     <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:1.75rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;position:relative;z-index:1;">
-      <p style="color:rgba(255,255,255,0.3);font-size:0.9rem;margin:0;">© 2026 Jonatas Baptista. All rights reserved.</p>
-      <div style="display:flex;align-items:center;gap:1.75rem;">
+      <p style="color:rgba(255,255,255,0.3);font-size:0.9rem;margin:0;">© 2026 Jonatas Baptista. Operated by Petals Legacy Lda.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem;">
         <a href="privacy-policy.html" class="ft-bottom-link">Privacy Policy</a>
         <a href="terms-of-service.html" class="ft-bottom-link">Terms of Service</a>
+        <a href="https://www.linkedin.com/in/tejasmehar/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,0.3);font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:.04em;text-decoration:none;transition:color .25s ease;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">
+          Developed &amp; Managed By Tejas Mehar
+        </a>
       </div>
-    </div>
-
-    <!-- Developer credit -->
-    <style>@media (max-width: 767px) { .dev-credit { justify-content: flex-start !important; } }</style>
-    <div class="dev-credit" style="display:flex;justify-content:flex-end;margin-top:1.15rem;position:relative;z-index:1;">
-      <a href="https://www.linkedin.com/in/tejasmehar/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,0.3);font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:.04em;text-decoration:none;transition:color .25s ease;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">
-        Developed &amp; Managed By Tejas Mehar
-      </a>
     </div>
     </div>
   </div>
@@ -1549,7 +1694,7 @@ If you need a deeper analysis of where clients or opportunities are being lost, 
 <script>
   // ---- Scroll reveal (fade up / image reveal), staggered via CSS delay classes ----
   (function () {
-    var targets = document.querySelectorAll('.reveal, .img-reveal');
+    var targets = document.querySelectorAll('.reveal, .img-reveal, .svc-hero-in-left, .svc-hero-in-right, .reveal-left, .reveal-right');
     if (!('IntersectionObserver' in window)) {
       targets.forEach(function (el) { el.classList.add('in-view'); });
       return;
