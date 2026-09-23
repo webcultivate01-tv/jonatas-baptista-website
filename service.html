@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work With Me | Jonatas Baptista — Client Acquisition Coach</title>
-  <meta name="description" content="Seven ways to work with Jonatas Baptista: the ESTAVIUM™ Digital Products Partnership™, Growth Builder blueprint, Seller Lead Engine for real estate agents, Growth Diagnostic audit, Growth Sales System, Growth Automation, and Growth Advisory — systems that attract premium clients and make revenue predictable." />
+  <meta name="description" content="Eight ways to work with Jonatas Baptista: the ESTAVIUM™ Digital Products Partnership, Growth Builder blueprint, Seller Lead Engine for real estate agents, Growth Diagnostic audit, Growth Sales System, Growth Automation, Growth Advisory, and the Agent Growth Programme — systems that attract premium clients and make revenue predictable." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -572,6 +572,41 @@
     .offer-price-tag { font-size: 0.87rem; font-weight: 600; color: var(--red); margin-bottom: 1.6rem; }
     .offer-disclaimer { font-size: 0.78rem; line-height: 1.6; color: rgba(26,26,26,0.42); margin-bottom: 1.4rem; }
     .offer-cta { width: 100%; }
+
+    /* ============================================================
+       STAGE GRID — used by the Agent Growth Programme's 8 stages
+    ============================================================ */
+    .stage-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0;
+      border-top: 1px solid rgba(0,0,0,0.09);
+      border-left: 1px solid rgba(0,0,0,0.09);
+    }
+    @media (max-width: 767px) { .stage-grid { grid-template-columns: 1fr; } }
+    .stage-item {
+      position: relative;
+      padding: 2.3rem 2.1rem 2.1rem;
+      border-right: 1px solid rgba(0,0,0,0.09);
+      border-bottom: 1px solid rgba(0,0,0,0.09);
+      transition: background .35s ease;
+    }
+    .stage-item::before {
+      content: ''; position: absolute; top: -1px; left: -1px; width: 0; height: 2px;
+      background: var(--red); transition: width .5s cubic-bezier(.22,.61,.36,1);
+    }
+    .stage-item:hover { background: rgba(0,0,0,0.015); }
+    .stage-item:hover::before { width: calc(100% + 1px); }
+    .stage-num {
+      font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 500;
+      line-height: 1; color: rgba(26,26,26,0.13); display: block; margin-bottom: 1rem;
+      transition: color .35s ease;
+    }
+    .stage-item:hover .stage-num { color: rgba(192,57,43,0.55); }
+    .stage-title {
+      font-family: 'Playfair Display', serif; font-size: 1.22rem; font-weight: 600;
+      color: var(--text-dark); margin-bottom: .6rem; line-height: 1.35;
+    }
+    .stage-lede { font-size: 1rem; font-weight: 500; color: var(--text-dark); line-height: 1.6; margin-bottom: .7rem; }
+    .stage-body { font-size: 0.94rem; line-height: 1.75; color: rgba(26,26,26,0.6); font-weight: 300; }
   </style>
 <!-- ============================================================
      MOBILE REFINEMENTS — right-side nav drawer + one-row CTA pairs
@@ -805,7 +840,7 @@
       <div>
         <p class="eyebrow mb-5 reveal">Work With Me</p>
         <h2 class="serif reveal reveal-delay-1" style="font-size:clamp(1.85rem,3.4vw,2.7rem);line-height:1.32;font-weight:400;color:var(--text-dark);">
-          Seven focused ways<br class="hidden sm:block" />
+          Eight focused ways<br class="hidden sm:block" />
           <em class="italic" style="color:rgba(26,26,26,0.55);">to work together.</em>
         </h2>
       </div>
@@ -822,51 +857,57 @@
       <a href="#digital-products" class="wwm-card reveal reveal-delay-1">
         <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="wwm-card-step">01 · Package</span>
-        <span class="wwm-card-name">ESTAVIUM&trade; Digital Products Partnership&trade;</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Digital Products Partnership</span>
         <span class="wwm-card-note">Turn your expertise into a sellable digital product.</span>
       </a>
       <a href="#growth-builder" class="wwm-card reveal reveal-delay-2">
         <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="wwm-card-step">02 · DIY</span>
-        <span class="wwm-card-name">Growth Builder&trade;</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Growth Builder</span>
         <span class="wwm-card-note">Build the foundation yourself, in one weekend.</span>
       </a>
       <a href="#seller-lead-engine" class="wwm-card reveal reveal-delay-3">
         <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="wwm-card-step">03 · Real Estate</span>
-        <span class="wwm-card-name">Seller Lead Engine&trade;</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Seller Lead Engine</span>
         <span class="wwm-card-note">A repeatable system for turning homeowners into seller conversations.</span>
       </a>
       <a href="#growth-diagnostic" class="wwm-card reveal reveal-delay-4">
         <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="wwm-card-step">04 · Audit</span>
-        <span class="wwm-card-name">Growth Diagnostic&trade;</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Growth Diagnostic</span>
         <span class="wwm-card-note">Find exactly where clients and revenue leak out.</span>
       </a>
       <a href="#growth-sales-system" class="wwm-card reveal reveal-delay-5">
         <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="wwm-card-step">05 · Build</span>
-        <span class="wwm-card-name">Growth Sales System&trade;</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Growth Sales System</span>
         <span class="wwm-card-note">Turn the process in your head into repeatable steps.</span>
       </a>
       <a href="#growth-automation" class="wwm-card reveal reveal-delay-6">
         <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="wwm-card-step">06 · Install</span>
-        <span class="wwm-card-name">Growth Automation&trade;</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Growth Automation</span>
         <span class="wwm-card-note">Let the follow-up run without you remembering it.</span>
       </a>
       <a href="#growth-advisory" class="wwm-card reveal reveal-delay-6">
         <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="wwm-card-step">07 · PARTNER</span>
-        <span class="wwm-card-name">Growth Advisory&trade;</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Growth Advisory</span>
         <span class="wwm-card-note">Ongoing strategic guidance for clearer decisions and stronger growth.</span>
+      </a>
+      <a href="#agent-growth-programme" class="wwm-card reveal reveal-delay-6">
+        <span class="wwm-card-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <span class="wwm-card-step">08 · Real Estate</span>
+        <span class="wwm-card-name">ESTAVIUM&trade; Agent Growth Programme</span>
+        <span class="wwm-card-note">Coaching built around the eight stages of a growing agent business.</span>
       </a>
     </div>
 
   </div>
 </section>
 
-<!-- OFFER 1: ESTAVIUM™ DIGITAL PRODUCTS PARTNERSHIP™ -->
+<!-- OFFER 1: ESTAVIUM™ DIGITAL PRODUCTS PARTNERSHIP -->
 <section id="digital-products" class="offer-sec py-20 md:py-28" style="background:#faf9f7;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -874,7 +915,7 @@
       <div class="lg:col-span-7 reveal-left">
         <span class="offer-num reveal">01</span>
         <p class="eyebrow mb-4 reveal">Partnership · Application Only</p>
-        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Digital Products Partnership&trade;</h2>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Digital Products Partnership</h2>
         <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           What you know is worth more than your calendar.
         </p>
@@ -933,7 +974,7 @@
   </div>
 </section>
 
-<!-- OFFER 2: ESTAVIUM™ GROWTH BUILDER™ -->
+<!-- OFFER 2: ESTAVIUM™ GROWTH BUILDER -->
 <section id="growth-builder" class="offer-sec py-20 md:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -973,7 +1014,7 @@
       <div class="lg:col-span-7 lg:order-2 reveal-right">
         <span class="offer-num reveal">02</span>
         <p class="eyebrow mb-4 reveal">DIY Blueprint · Start Here</p>
-        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Builder&trade;</h2>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Builder</h2>
         <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           Build the foundations of a business designed to attract the right clients and create more predictable growth — in one weekend.
         </p>
@@ -985,10 +1026,10 @@
           You already know how to do the work. What's missing is a system that brings clients to you predictably — instead of hoping the next one shows up.
         </p>
         <p class="mb-5 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
-          ESTAVIUM&trade; Growth Builder&trade; is a 4-part DIY blueprint that walks you through building the foundation of that system yourself, over one weekend. Think of it like architectural drawings: you won't finish with four videos watched, you'll finish holding the actual documents your business runs on — the same ones built inside our higher-level programs, just built by your own hand first.
+          ESTAVIUM&trade; Growth Builder is a 4-part DIY blueprint that walks you through building the foundation of that system yourself, over one weekend. Think of it like architectural drawings: you won't finish with four videos watched, you'll finish holding the actual documents your business runs on — the same ones built inside our higher-level programs, just built by your own hand first.
         </p>
         <div class="offer-callout reveal reveal-delay-3">
-          <p><strong>The important part:</strong> This gets you the plans, not the finished house. Most people either build it themselves this weekend, or realize partway through they'd rather hand the blueprint to someone who builds these for a living — that's exactly what our ESTAVIUM&trade; Growth Diagnostic&trade; and ESTAVIUM&trade; Growth Sales System&trade; are for.</p>
+          <p><strong>The important part:</strong> This gets you the plans, not the finished house. Most people either build it themselves this weekend, or realize partway through they'd rather hand the blueprint to someone who builds these for a living — that's exactly what our ESTAVIUM&trade; Growth Diagnostic and ESTAVIUM&trade; Growth Sales System are for.</p>
         </div>
       </div>
 
@@ -996,7 +1037,7 @@
   </div>
 </section>
 
-<!-- OFFER 3: ESTAVIUM™ SELLER LEAD ENGINE™ -->
+<!-- OFFER 3: ESTAVIUM™ SELLER LEAD ENGINE -->
 <section id="seller-lead-engine" class="offer-sec py-20 md:py-28" style="background:#faf9f7;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -1004,7 +1045,7 @@
       <div class="lg:col-span-7 reveal-left">
         <span class="offer-num reveal">03</span>
         <p class="eyebrow mb-4 reveal">Digital Product · For Real Estate Agents</p>
-        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Seller Lead Engine&trade;</h2>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Seller Lead Engine</h2>
         <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           A repeatable system for turning homeowners into seller conversations — without buying more leads.
         </p>
@@ -1018,7 +1059,7 @@
           Licensed residential real estate agents who already have some base of past clients, sphere contacts, or a defined local market — but don't yet have a repeatable weekly system for turning that into qualified seller conversations. It's built for agents willing to do consistent, personal outreach, not agents looking to buy their way to leads: the plan explicitly rules out paid advertising for the first 30 days so you prove the system works before you spend on it.
         </p>
         <p class="mb-4 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
-          The ESTAVIUM&trade; Seller Lead Engine&trade; is designed for residential real estate agents who:
+          The ESTAVIUM&trade; Seller Lead Engine is designed for residential real estate agents who:
         </p>
         <ul class="offer-check-list mb-6 reveal reveal-delay-2">
           <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Need more conversations with potential sellers</li>
@@ -1037,7 +1078,7 @@
 
         <p class="offer-card-label reveal reveal-delay-2">What makes this different</p>
         <p class="mb-4 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
-          Most lead-generation products give you more tactics. The ESTAVIUM&trade; Seller Lead Engine&trade; helps you build an operating system. It connects your target seller, your message, your outreach channels, your qualification process, your follow-up, your weekly activity, and your pipeline measurements.
+          Most lead-generation products give you more tactics. The ESTAVIUM&trade; Seller Lead Engine helps you build an operating system. It connects your target seller, your message, your outreach channels, your qualification process, your follow-up, your weekly activity, and your pipeline measurements.
         </p>
         <div class="offer-callout reveal reveal-delay-3">
           <p>Instead of asking, &ldquo;Where can I find another lead?&rdquo; every morning, you will have a structured process showing what to do next.</p>
@@ -1063,7 +1104,7 @@
               <li>Instant results without daily implementation</li>
               <li>A replacement for local legal, brokerage or compliance advice</li>
             </ul>
-            <p class="mt-3">The ESTAVIUM&trade; Seller Lead Engine&trade; provides the strategy, tools and implementation structure. You still need to adapt the system to your market, follow local regulations and complete the work.</p>
+            <p class="mt-3">The ESTAVIUM&trade; Seller Lead Engine provides the strategy, tools and implementation structure. You still need to adapt the system to your market, follow local regulations and complete the work.</p>
           </div>
 
           <div class="offer-callout mb-7">
@@ -1090,7 +1131,7 @@
   </div>
 </section>
 
-<!-- OFFER 4: ESTAVIUM™ GROWTH DIAGNOSTIC™ -->
+<!-- OFFER 4: ESTAVIUM™ GROWTH DIAGNOSTIC -->
 <section id="growth-diagnostic" class="offer-sec py-20 md:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -1098,7 +1139,7 @@
       <div class="lg:col-span-7 lg:order-2 reveal-right">
         <span class="offer-num reveal">04</span>
         <p class="eyebrow mb-4 reveal">One-on-One Audit</p>
-        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Diagnostic&trade;</h2>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Diagnostic</h2>
         <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           Stop guessing where you're losing clients.
         </p>
@@ -1110,7 +1151,7 @@
           Most founders, coaches, consultants, and agents don't have a lead problem — they have a leak problem. Somewhere between a stranger noticing you and a stranger paying you, prospects are quietly slipping away. Most people never find out where, so they keep buying ads, building content, or hiring help that fixes a problem they don't actually have.
         </p>
         <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
-          The ESTAVIUM&trade; Growth Diagnostic&trade; is a one-on-one audit of your entire client-acquisition process — from first contact to closed client — mapped stage by stage so we can identify where the most significant opportunities are being lost. Not a generic checklist. Your actual numbers, your actual process, your actual leak.
+          The ESTAVIUM&trade; Growth Diagnostic is a one-on-one audit of your entire client-acquisition process — from first contact to closed client — mapped stage by stage so we can identify where the most significant opportunities are being lost. Not a generic checklist. Your actual numbers, your actual process, your actual leak.
         </p>
       </div>
 
@@ -1129,9 +1170,9 @@
           </div>
 
           <div class="offer-note mb-7">
-            <p class="offer-note-label">Strategy Call or Growth Diagnostic&trade;?</p>
+            <p class="offer-note-label">Strategy Call or Growth Diagnostic?</p>
             <p class="mb-3">The free 30-minute Strategy Call is a conversation to understand your situation and determine whether we're a good fit to work together.</p>
-            <p>Growth Diagnostic&trade; goes deeper — analysing your client acquisition and sales process to identify where opportunities are being lost, what may be limiting growth, and where to focus first.</p>
+            <p>Growth Diagnostic goes deeper — analysing your client acquisition and sales process to identify where opportunities are being lost, what may be limiting growth, and where to focus first.</p>
           </div>
 
           <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider - our partner network. Terms will be confirmed before booking.</p>
@@ -1153,7 +1194,7 @@
   </div>
 </section>
 
-<!-- OFFER 5: ESTAVIUM™ GROWTH SALES SYSTEM™ -->
+<!-- OFFER 5: ESTAVIUM™ GROWTH SALES SYSTEM -->
 <section id="growth-sales-system" class="offer-sec py-20 md:py-28" style="background:#faf9f7;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -1183,7 +1224,7 @@
       <div class="lg:col-span-7 lg:order-1 reveal-left">
         <span class="offer-num reveal">05</span>
         <p class="eyebrow mb-4 reveal">Built &amp; Installed With You</p>
-        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Sales System&trade;</h2>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Sales System</h2>
         <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           Stop closing deals based on your mood, memory, or how good you happen to be on the call.
         </p>
@@ -1195,7 +1236,7 @@
           You already know how to close a client when everything lines up — the right mood, the right prep, a good day. The problem is what happens on the days it doesn't line up. Right now, your sales process lives in your head, which means it's inconsistent, hard to hand off, and impossible to improve on purpose.
         </p>
         <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
-          The ESTAVIUM&trade; Growth Sales System&trade; replaces that with something built to run the same way every time. We map your actual client journey, install a repeatable sales process around it, and hand you a system that converts leads into clients whether you're having a great week or a rough one.
+          The ESTAVIUM&trade; Growth Sales System replaces that with something built to run the same way every time. We map your actual client journey, install a repeatable sales process around it, and hand you a system that converts leads into clients whether you're having a great week or a rough one.
         </p>
       </div>
 
@@ -1203,7 +1244,7 @@
   </div>
 </section>
 
-<!-- OFFER 6: ESTAVIUM™ GROWTH AUTOMATION™ -->
+<!-- OFFER 6: ESTAVIUM™ GROWTH AUTOMATION -->
 <section id="growth-automation" class="offer-sec py-20 md:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -1211,7 +1252,7 @@
       <div class="lg:col-span-7 lg:order-2 reveal-right">
         <span class="offer-num reveal">06</span>
         <p class="eyebrow mb-4 reveal">CRM · AI · Automation</p>
-        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Automation&trade;</h2>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Automation</h2>
         <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           Stop doing the follow-up, tracking, and admin by hand.
         </p>
@@ -1223,7 +1264,7 @@
           Every lead you don't follow up with on time is revenue you already paid to generate and then let go cold. Right now, that follow-up probably depends on you remembering — a sticky note, a mental list, a "I'll get to that reply tomorrow." At any real volume, that system breaks.
         </p>
         <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
-          ESTAVIUM&trade; Growth Automation&trade; installs the infrastructure that catches what you'd otherwise drop: a CRM built around how your business actually works, automated follow-up sequences that fire on their own, and AI where it genuinely saves you hours — not gimmicks, just the admin work removed from your plate.
+          ESTAVIUM&trade; Growth Automation installs the infrastructure that catches what you'd otherwise drop: a CRM built around how your business actually works, automated follow-up sequences that fire on their own, and AI where it genuinely saves you hours — not gimmicks, just the admin work removed from your plate.
         </p>
       </div>
 
@@ -1253,7 +1294,7 @@
   </div>
 </section>
 
-<!-- OFFER 7: ESTAVIUM™ GROWTH ADVISORY™ -->
+<!-- OFFER 7: ESTAVIUM™ GROWTH ADVISORY -->
 <section id="growth-advisory" class="offer-sec py-20 md:py-28" style="background:#faf9f7;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -1283,7 +1324,7 @@
       <div class="lg:col-span-7 lg:order-1 reveal-left">
         <span class="offer-num reveal">07</span>
         <p class="eyebrow mb-4 reveal">Ongoing · High-Touch · Application Only</p>
-        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Advisory&trade;</h2>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Growth Advisory</h2>
         <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
           For when you're past fixing pieces.
         </p>
@@ -1295,11 +1336,121 @@
           At a certain point, the problem isn't one leak, one process, or one system anymore. It's the whole business — pricing, positioning, team, offers, growth — and you need someone thinking alongside you at that level, not fixing one part in isolation.
         </p>
         <p class="reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
-          ESTAVIUM&trade; Growth Advisory&trade; is ongoing, high-touch strategic partnership. Not a single audit, not a one-time build — a continued relationship where decisions get made together, before they become expensive mistakes, and where the strategy evolves as your business does.
+          ESTAVIUM&trade; Growth Advisory is ongoing, high-touch strategic partnership. Not a single audit, not a one-time build — a continued relationship where decisions get made together, before they become expensive mistakes, and where the strategy evolves as your business does.
         </p>
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- OFFER 8: ESTAVIUM™ AGENT GROWTH PROGRAMME -->
+<section id="agent-growth-programme" class="offer-sec py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-14 md:mb-16">
+
+      <div class="lg:col-span-7 reveal-left">
+        <span class="offer-num reveal">08</span>
+        <p class="eyebrow mb-4 reveal">Coaching Programme · Real Estate Agents</p>
+        <h2 class="serif mb-4 reveal reveal-delay-1" style="font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.32;font-weight:500;color:var(--text-dark);">ESTAVIUM&trade; Agent Growth Programme</h2>
+        <p class="mb-4 reveal reveal-delay-1" style="font-size:1.28rem;font-weight:500;color:var(--text-dark);line-height:1.4;">
+          Coaching built around the eight stages every growing agent business actually moves through.
+        </p>
+        <p class="mb-6 reveal reveal-delay-2" style="font-size:1.02rem;line-height:1.8;color:rgba(26,26,26,0.62);font-weight:300;">
+          Most coaching treats every agent the same, whether they closed their first deal last month or already lead a ten-person team. The ESTAVIUM&trade; Agent Growth Programme maps eight distinct stages of an agent's business — each with its own bottleneck, its own priorities, and its own definition of progress — so the coaching matches the stage you're actually in, not a generic curriculum everyone works through in the same order.
+        </p>
+        <div class="sweep-divider w-14 mb-7 reveal reveal-delay-2"></div>
+      </div>
+
+      <div class="lg:col-span-5 reveal-right">
+        <div class="offer-card reveal reveal-delay-2">
+          <p class="offer-card-label">What you walk away with</p>
+          <ul class="offer-check-list">
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A clear read on which of the eight stages your business is in right now, and what's actually capping your growth</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A coaching plan built around that stage — not a generic program every agent works through from the beginning</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Systems and habits appropriate to where you are — a prospecting routine at Stage 1, a hiring framework at Stage 5, an exit strategy at Stage 8</li>
+            <li><span class="offer-check-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>A coach who grows with you as you move through stages, instead of starting over with someone new each time</li>
+          </ul>
+
+          <div class="offer-callout mb-7">
+            <p><strong>Who it's for:</strong> Real estate agents at any stage — from closing your first deals to already leading a team — who want coaching built around where your business actually stands today.</p>
+          </div>
+
+          <p class="offer-disclaimer">This service may be delivered in partnership with a trusted third-party provider - our partner network. Pricing and terms will be confirmed before booking.</p>
+
+          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary offer-cta">
+            Book a Call →
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="offer-card-label reveal mb-6">The eight stages</p>
+    <div class="stage-grid mb-12 reveal">
+
+      <div class="stage-item">
+        <span class="stage-num">01</span>
+        <h3 class="stage-title">First Sale</h3>
+        <p class="stage-lede">You're closing your first deals, but everything still feels reactive. The goal here isn't volume — it's building the habits and systems that make your second, third, and tenth sale easier than the first.</p>
+        <p class="stage-body">At this stage, most of your time goes into things that don't scale — chasing leads one by one, reinventing your process with every new client, second-guessing your pricing and positioning. The work here is to turn those early wins into a repeatable process: a simple prospecting routine, a basic follow-up system, and enough clarity on your numbers to know what's actually working versus what just feels productive.</p>
+      </div>
+
+      <div class="stage-item">
+        <span class="stage-num">02</span>
+        <h3 class="stage-title">Consistent Pipeline</h3>
+        <p class="stage-lede">You've proven you can sell. Now the focus shifts to predictability — building a steady flow of leads and appointments so your growth stops depending on luck or referrals alone.</p>
+        <p class="stage-body">This is where most agents plateau, because what got you your first sales (hustle, personal charm, word of mouth) doesn't scale into a full calendar. The work here is building lead sources you control — not just ones that happen to you — and tightening your follow-up so fewer opportunities fall through the cracks. Success at this stage looks like knowing, with reasonable confidence, how many appointments next month will bring, instead of hoping.</p>
+      </div>
+
+      <div class="stage-item">
+        <span class="stage-num">03</span>
+        <h3 class="stage-title">Premium Positioning</h3>
+        <p class="stage-lede">You have consistent volume, but margins and client quality are inconsistent. This stage is about attracting the clients who value your expertise — and stop competing on price.</p>
+        <p class="stage-body">Volume without quality is exhausting — you're busy, but every deal feels harder to close and less profitable than it should be. This stage is about repositioning how you're perceived: sharper messaging, a stronger presence in your target market, and the confidence to say no to price-driven clients who don't match how you want to work. The shift isn't about doing more — it's about being chosen for the right reasons.</p>
+      </div>
+
+      <div class="stage-item">
+        <span class="stage-num">04</span>
+        <h3 class="stage-title">Operational Leverage</h3>
+        <p class="stage-lede">Your calendar is full, but you're the bottleneck. Here, we install the systems and delegation that let your business grow without demanding more of your personal time.</p>
+        <p class="stage-body">At this point, the ceiling on your growth isn't demand — it's you. Every extra client means extra hours, and something eventually breaks: response times slip, follow-up gets sloppy, or you simply run out of hours in the day. This stage focuses on identifying what only you should be doing, and building the systems, tools, or support (even part-time) to handle everything else.</p>
+      </div>
+
+      <div class="stage-item">
+        <span class="stage-num">05</span>
+        <h3 class="stage-title">Team Foundations</h3>
+        <p class="stage-lede">You're ready to stop being a solo producer and start building a team. This stage covers hiring your first support roles and establishing the structure that lets others plug into your system.</p>
+        <p class="stage-body">Bringing on your first hire — whether an assistant, a junior agent, or a transaction coordinator — is one of the highest-risk, highest-leverage decisions in your business. This stage is about making sure your systems are documented and repeatable enough that someone else can actually follow them, so growth doesn't depend entirely on cloning yourself.</p>
+      </div>
+
+      <div class="stage-item">
+        <span class="stage-num">06</span>
+        <h3 class="stage-title">Team Growth</h3>
+        <p class="stage-lede">Your team is in place, but production isn't scaling proportionally. The focus moves to coaching your team, refining your systems, and increasing team-wide conversion.</p>
+        <p class="stage-body">A team that isn't growing production as fast as headcount is a common (and costly) trap. This stage shifts your role from producer to coach and operator — refining how leads are distributed, how performance is tracked, and how you develop each team member so the business's output starts to reflect the size of the team, not just your own effort.</p>
+      </div>
+
+      <div class="stage-item">
+        <span class="stage-num">07</span>
+        <h3 class="stage-title">Business Ownership</h3>
+        <p class="stage-lede">Your business runs on systems, not just your personal effort. This stage is about strengthening the structure so the business has real value — and could run, in large part, without you day-to-day.</p>
+        <p class="stage-body">This is the shift from "I own a job" to "I own a business." The focus here is building the kind of operational and growth structure that would make your business attractive to a buyer, a partner, or simply resilient enough to survive an extended absence from you personally — even if you have no plans to sell.</p>
+      </div>
+
+      <div class="stage-item">
+        <span class="stage-num">08</span>
+        <h3 class="stage-title">Strategic Exit or Scale</h3>
+        <p class="stage-lede">You're in a position to choose your next move — grow into new markets, acquire other businesses, or structure a successful exit. Your coach's role shifts to long-term strategy and asset planning.</p>
+        <p class="stage-body">At this stage, the conversation moves beyond day-to-day operations into long-term asset and legacy planning — whether that's expanding into new markets or business lines, acquiring other agents' books of business, or preparing a clean, well-valued exit on your own terms and timeline.</p>
+      </div>
+
+    </div>
+
+    <div class="offer-callout reveal" style="max-width:56rem;">
+      <p><strong>Wherever you are, that's where we start.</strong> You don't need to begin at Stage 1. The Performance Accelerator meets you at your current stage — whether you're closing your first deals or already leading a team — and builds your coaching plan around where your business actually stands today, not a generic starting point.</p>
+    </div>
+
   </div>
 </section>
 
@@ -1385,7 +1536,7 @@
       </div>
       <div class="lg:pt-3">
         <p class="reveal reveal-delay-2" style="font-size:1.12rem;line-height:1.85;color:rgba(26,26,26,0.62);font-weight:300;">
-          Four stages, in order. Nothing gets built before we know what's actually broken, and nothing gets handed over and abandoned once it is.
+          Four stages, in order. Nothing gets built before we know what's actually broken, and nothing gets handed over and abandoned once it is. We are of course open to go further with other products after you purchase the mentioned Digital Products. This not applies for Digital Products as ESTAVIUM&trade; Growth Builder and ESTAVIUM&trade; Seller Lead Engine.
         </p>
         <div class="sweep-divider w-16 mt-7 reveal reveal-delay-2"></div>
       </div>
@@ -1504,7 +1655,7 @@
             <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer hidden">
-            <p>It depends on the offer. ESTAVIUM&trade; Growth Builder&trade; is entirely DIY. ESTAVIUM&trade; Growth Diagnostic&trade;, ESTAVIUM&trade; Growth Sales System&trade;, and ESTAVIUM&trade; Growth Automation&trade; are built and implemented together with you. ESTAVIUM&trade; Growth Advisory&trade; is ongoing strategic partnership, not a one-time build.</p>
+            <p>It depends on the offer. ESTAVIUM&trade; Growth Builder is entirely DIY. ESTAVIUM&trade; Growth Diagnostic, ESTAVIUM&trade; Growth Sales System, and ESTAVIUM&trade; Growth Automation are built and implemented together with you. ESTAVIUM&trade; Growth Advisory is ongoing strategic partnership, not a one-time build.</p>
           </div>
         </div>
 
@@ -1529,7 +1680,7 @@
             <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="faq-answer hidden">
-            <p>Start with ESTAVIUM&trade; Growth Builder&trade;. It's built specifically to help you define your first offer and the foundation of a client-acquisition system, even from zero.</p>
+            <p>Start with ESTAVIUM&trade; Growth Builder. It's built specifically to help you define your first offer and the foundation of a client-acquisition system, even from zero.</p>
           </div>
         </div>
 
@@ -1581,7 +1732,7 @@
           <div class="faq-answer hidden">
             <p>We'll discuss your current situation and determine which option, if any, makes sense for you.
 
-If you need a deeper analysis of where clients or opportunities are being lost, that's where ESTAVIUM™ Growth Diagnostic™ comes in</p>
+If you need a deeper analysis of where clients or opportunities are being lost, that's where ESTAVIUM™ Growth Diagnostic comes in</p>
           </div>
         </div>
 
@@ -1682,10 +1833,10 @@ If you need a deeper analysis of where clients or opportunities are being lost, 
       .ft-head{display:flex;align-items:center;gap:.65rem;color:#fff;font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;}
       .ft-head::before{content:'';width:1.4rem;height:2px;background:#c0392b;border-radius:2px;flex-shrink:0;}
 
-      .ft-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1.02rem;line-height:1.4;white-space:nowrap;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
-      .ft-link svg{opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease;color:#c0392b;}
+      .ft-link{display:inline-flex;align-items:center;gap:.6rem;color:var(--muted);font-size:1.02rem;line-height:1.4;white-space:nowrap;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
+      .ft-link .ft-arrow{opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease;color:#c0392b;flex-shrink:0;}
       .ft-link:hover{color:#fff;transform:translateX(4px);}
-      .ft-link:hover svg{opacity:1;transform:translateX(0);}
+      .ft-link:hover .ft-arrow{opacity:1;transform:translateX(0);}
 
       .ft-social{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.55);text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
       .ft-social:hover{transform:translateY(-3px);}
@@ -1734,12 +1885,12 @@ If you need a deeper analysis of where clients or opportunities are being lost, 
 
       <!-- Navigation -->
       <div>
-        <div class="ft-head">Navigate</div>
+        <div class="ft-head">Quick Links</div>
         <div style="display:flex;flex-direction:column;gap:.9rem;">
-          <a href="index.html" class="ft-link">Overview<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="about.html" class="ft-link">My Story<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">Work With Me<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="contact.html" class="ft-link">Let's Connect<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="index.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Overview</a>
+          <a href="about.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>My Story</a>
+          <a href="service.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Work With Me</a>
+          <a href="contact.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Let's Connect</a>
         </div>
       </div>
 
@@ -1747,13 +1898,15 @@ If you need a deeper analysis of where clients or opportunities are being lost, 
       <div>
         <div class="ft-head">WORK WITH ME</div>
         <div style="display:flex;flex-direction:column;gap:.9rem;">
-          <a href="service.html#digital-products" class="ft-link">ESTAVIUM™ Digital Products Partnership™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">ESTAVIUM™ Growth Builder™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html#seller-lead-engine" class="ft-link">ESTAVIUM™ Seller Lead Engine™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">ESTAVIUM™ Growth Diagnostic™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">ESTAVIUM™ Growth Sales System™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">ESTAVIUM™ Growth Automation™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">ESTAVIUM™ Growth Advisory™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html#digital-products" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Digital Products Partnership</a>
+          <a href="service.html#growth-builder" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Builder</a>
+          <a href="service.html#seller-lead-engine" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Seller Lead Engine</a>
+          <a href="service.html#growth-diagnostic" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Diagnostic</a>
+          <a href="service.html#growth-sales-system" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Sales System</a>
+          <a href="service.html#growth-automation" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Automation</a>
+          <a href="service.html#growth-advisory" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Advisory</a>
+
+          <a href="service.html#agent-growth-programme" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Agent Growth Programme</a>
         </div>
       </div>
 

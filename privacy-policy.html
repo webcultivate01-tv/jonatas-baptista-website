@@ -375,7 +375,8 @@
       <h2><span class="n">9</span>Data Retention</h2>
       <p>We retain your personal data for as long as necessary to provide our services and maintain the client relationship. Marketing data is retained until you withdraw consent.</p>
       <h2><span class="n">10</span>Data Security</h2>
-      <p>We take reasonable technical and organizational measures to protect your personal information against unauthorized access, loss, or misuse. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security.</p>
+      <p>We take reasonable technical and organizational measures to protect your personal information against unauthorized access, loss, or misuse. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security. We are not responsible for circumvention of any privacy settings or security measures
+contained on the Website.</p>
       <h2><span class="n">11</span>Your Rights (GDPR)</h2>
       <p>If you are located in the European Economic Area or United Kingdom, you have the right, subject to applicable law, to access, correct, delete, or restrict the processing of your personal information, to object to certain processing, to request data portability, and to withdraw consent at any time where processing is based on consent. Data subjects have the right to lodge a complaint with a data protection authority. If you are located elsewhere, you may have similar rights under the laws of your country of residence. To exercise any of these rights, please contact us using the details below.</p>
       <h2><span class="n">12</span>Third-Party Links</h2>
@@ -467,10 +468,10 @@
       .ft-head{display:flex;align-items:center;gap:.65rem;color:#fff;font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;}
       .ft-head::before{content:'';width:1.4rem;height:2px;background:#c0392b;border-radius:2px;flex-shrink:0;}
 
-      .ft-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1.02rem;line-height:1.4;white-space:nowrap;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
-      .ft-link svg{opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease;color:#c0392b;}
+      .ft-link{display:inline-flex;align-items:center;gap:.6rem;color:var(--muted);font-size:1.02rem;line-height:1.4;white-space:nowrap;text-decoration:none;transition:color .25s ease,transform .25s ease;width:fit-content;}
+      .ft-link .ft-arrow{opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease;color:#c0392b;flex-shrink:0;}
       .ft-link:hover{color:#fff;transform:translateX(4px);}
-      .ft-link:hover svg{opacity:1;transform:translateX(0);}
+      .ft-link:hover .ft-arrow{opacity:1;transform:translateX(0);}
 
       .ft-social{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.55);text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
       .ft-social:hover{transform:translateY(-3px);}
@@ -519,12 +520,12 @@
 
       <!-- Navigation -->
       <div>
-        <div class="ft-head">Navigate</div>
+        <div class="ft-head">Quick Links</div>
         <div style="display:flex;flex-direction:column;gap:.9rem;">
-          <a href="index.html" class="ft-link">Overview<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="about.html" class="ft-link">My Story<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html" class="ft-link">Work With Me<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="contact.html" class="ft-link">Let's Connect<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="index.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Overview</a>
+          <a href="about.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>My Story</a>
+          <a href="service.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Work With Me</a>
+          <a href="contact.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Let's Connect</a>
         </div>
       </div>
 
@@ -532,13 +533,15 @@
       <div>
         <div class="ft-head">WORK WITH ME</div>
         <div style="display:flex;flex-direction:column;gap:.9rem;">
-          <a href="service.html#digital-products" class="ft-link">ESTAVIUM™ Digital Products Partnership™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html#growth-builder" class="ft-link">ESTAVIUM™ Growth Builder™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html#seller-lead-engine" class="ft-link">ESTAVIUM™ Seller Lead Engine™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html#growth-diagnostic" class="ft-link">ESTAVIUM™ Growth Diagnostic™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html#growth-sales-system" class="ft-link">ESTAVIUM™ Growth Sales System™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html#growth-automation" class="ft-link">ESTAVIUM™ Growth Automation™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="service.html#growth-advisory" class="ft-link">ESTAVIUM™ Growth Advisory™<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="service.html#digital-products" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Digital Products Partnership</a>
+          <a href="service.html#growth-builder" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Builder</a>
+          <a href="service.html#seller-lead-engine" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Seller Lead Engine</a>
+          <a href="service.html#growth-diagnostic" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Diagnostic</a>
+          <a href="service.html#growth-sales-system" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Sales System</a>
+          <a href="service.html#growth-automation" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Automation</a>
+          <a href="service.html#growth-advisory" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Advisory</a>
+
+          <a href="service.html#agent-growth-programme" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Agent Growth Programme</a>
         </div>
       </div>
 
