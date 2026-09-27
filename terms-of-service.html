@@ -649,23 +649,33 @@ revealEls.forEach(el => revealObs.observe(el));
     </div>
     <div style="display:flex;gap:0.6rem;flex-shrink:0;">
       <button id="cookie-accept" style="min-width:110px;background:#c0392b;color:#fff;border:2px solid #c0392b;border-radius:0.4rem;padding:0.55rem 1rem;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,border-color .2s;white-space:nowrap;">Accept All</button>
-      <button id="cookie-decline" style="min-width:110px;background:transparent;color:rgba(26,26,26,0.7);border:1.5px solid rgba(0,0,0,0.2);border-radius:0.4rem;padding:0.55rem 1rem;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;white-space:nowrap;">Decline</button>
+      <button id="cookie-decline" style="min-width:110px;background:transparent;color:rgba(26,26,26,0.7);border:1.5px solid rgba(0,0,0,0.2);border-radius:0.4rem;padding:0.55rem 1rem;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;white-space:nowrap;">Reject All</button>
     </div>
   </div>
 </div>
 <script>
 (function(){
   var KEY = 'cookie-consent';
+  var EXPIRY_MS = 1000 * 60 * 60 * 24 * 182; // 6 months: re-ask for consent periodically per GDPR
   var banner = document.getElementById('cookie-consent');
   if (!banner) return;
+
+  function consentExpired(){
+    var raw = localStorage.getItem(KEY);
+    if (!raw) return true;
+    var data;
+    try { data = JSON.parse(raw); } catch(e) { return true; }
+    return !data || !data.ts || (Date.now() - data.ts) > EXPIRY_MS;
+  }
+
   try {
-    if (!localStorage.getItem(KEY)) {
+    if (consentExpired()) {
       setTimeout(function(){ banner.style.display = 'block'; }, 600);
     }
   } catch(e) { banner.style.display = 'block'; }
 
   function choose(value){
-    try { localStorage.setItem(KEY, value); } catch(e){}
+    try { localStorage.setItem(KEY, JSON.stringify({ choice: value, ts: Date.now() })); } catch(e){}
     banner.style.display = 'none';
   }
   var accept  = document.getElementById('cookie-accept');
