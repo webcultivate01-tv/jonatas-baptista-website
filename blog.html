@@ -11,8 +11,8 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Insights — Jonatas Baptista | Real Estate Coach & Investment Strategist</title>
-  <meta name="description" content="Practical real estate insights, investment strategies, market analysis, and expert guidance from Jonatas Baptista." />
+  <title>Blog — Jonatas Baptista | Client Acquisition</title>
+  <meta name="description" content="Practical insights on client acquisition, sales, and business growth to help you attract better clients and build a more sustainable business." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,6 +53,7 @@
     /* ===== NAVBAR ===== */
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      padding: 0;
       transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
     }
     #navbar .nav-inner {
@@ -71,20 +72,36 @@
     .nav-brand img { height: 60px; width: auto; display: block; }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
-      font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.202rem; font-weight: 600;
       color: #fff; letter-spacing: 0.02em; white-space: nowrap;
     }
     .nav-brand-subtitle {
-      font-family: 'Outfit', sans-serif; font-size: 0.65rem; font-weight: 400;
-      color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.822rem; font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
-    @media (max-width: 1023px) { .nav-brand-text { display: none; } }
+    @media (max-width: 639px) {
+      .nav-brand { gap: 0.4rem; }
+      .nav-brand-text { display: flex !important; }
+      .nav-brand img { height: 52px; }
+      .nav-brand-name { font-size: 1rem; }
+      .nav-brand-subtitle { font-size: 0.7rem; }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .nav-brand-text { display: flex; }
+    }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
     .nav-link {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.949rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: rgba(255,255,255,0.7);
-      text-decoration: none; position: relative;
+      text-decoration: none;
+      position: relative;
       transition: color 0.2s;
     }
     .nav-link::after {
@@ -99,7 +116,7 @@
     .nav-link.active { color: #fff; }
     .btn-nav {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.72rem; font-weight: 600;
+      font-size: 0.911rem; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
       background: var(--red); color: #fff;
       padding: 0.65rem 1.6rem;
@@ -110,10 +127,25 @@
     .btn-nav:hover { background: var(--red-h); transform: translateY(-1px); }
 
     /* Hamburger */
-    #hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .hline { display: block; width: 24px; height: 1.5px; background: #fff; transition: all 0.3s; }
+    #hamburger {
+      display: none; flex-direction: column; gap: 4px; cursor: pointer;
+      padding: 6px; background: transparent; border: none;
+      transition: all 0.3s; position: relative; align-items: flex-end;
+    }
     @media (max-width: 1023px) {
       #hamburger { display: flex; }
+    }
+    #hamburger:hover .hline {
+      background: #c0392b;
+    }
+    .hline {
+      display: block; height: 2px; background: #fff;
+      transition: all 0.3s; border-radius: 2px;
+    }
+    .hline:nth-child(1) { width: 28px; }
+    .hline:nth-child(2) { width: 22px; }
+    .hline:nth-child(3) { width: 16px; }
+    @media (max-width: 1023px) {
       .nav-links { display: none; }
       .btn-nav-wrap { display: none; }
     }
@@ -121,8 +153,9 @@
     /* Mobile menu */
     #mobile-menu {
       display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--dark); z-index: 998;
-      flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+      background: #fff; z-index: 1000;
+      flex-direction: column; padding: 2rem 1.5rem;
+      overflow-y: auto;
       opacity: 0; visibility: hidden; transform: translateY(-12px);
       pointer-events: none;
       transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.35s;
@@ -132,30 +165,102 @@
       pointer-events: auto;
       transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;
     }
+
+    /* Mobile menu header */
+    .mob-header {
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .mob-logo-section {
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+
+    .mob-logo-section img {
+      height: 70px; width: auto;
+      filter: brightness(0);
+    }
+
+    .mob-brand-text {
+      display: flex; flex-direction: column; line-height: 1.2;
+    }
+
+    .mob-brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: #1a1a1a; letter-spacing: 0.02em;
+    }
+
+    .mob-brand-subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem; font-weight: 400;
+      color: rgba(0,0,0,0.5);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
     .mob-link {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; color: #fff; text-decoration: none;
+      display: flex; align-items: center; gap: 1rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem; font-weight: 500;
+      color: #4a4a4a; text-decoration: none;
+      padding: 1rem 1.25rem;
+      background: #f8f6f3;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      transition: all 0.3s;
       opacity: 0; transform: translateY(20px);
-      transition: color 0.2s;
     }
-    #mobile-menu.open .mob-link { animation: mob-in 0.4s forwards; }
-    #mobile-menu.open .mob-link:nth-child(1) { animation-delay: 0.05s; }
-    #mobile-menu.open .mob-link:nth-child(2) { animation-delay: 0.10s; }
-    #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.15s; }
-    #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.20s; }
-    #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.25s; }
-    #mobile-menu.open .mob-link:nth-child(6) { animation-delay: 0.30s; }
-    @keyframes mob-in { to { opacity:1; transform:translateY(0); } }
-    .mob-link:hover { color: var(--red); }
+    #mobile-menu.open .mob-link {
+      animation: mob-in 0.4s forwards;
+    }
+    #mobile-menu.open .mob-link:nth-child(2) { animation-delay: 0.05s; }
+    #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.1s; }
+    #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.15s; }
+    #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.2s; }
+    #mobile-menu.open .mob-link:nth-child(6) { animation-delay: 0.25s; }
+    @keyframes mob-in {
+      to { opacity:1; transform:translateY(0); }
+    }
+    .mob-link:active {
+      background: #e8e6e3;
+      transform: scale(0.98);
+    }
+    .mob-link-icon {
+      width: 40px; height: 40px;
+      background: rgba(192,57,43,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .mob-cta-btn {
+      margin-top: auto;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: #c0392b; color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .mob-cta-btn:active {
+      background: #a0301f;
+      transform: scale(0.98);
+    }
     #mob-close {
-      position: absolute; top: 1.5rem; right: 1.5rem;
-      background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;
+      background: none; border: none;
+      color: #1a1a1a; font-size: 1.8rem;
+      cursor: pointer; padding: 0.5rem;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      transition: background 0.3s;
     }
-    .mob-logo-section { display: flex; align-items: center; gap: 0.55rem; }
-    .mob-logo-section img { height: 58px; width: auto; display: block; }
-    .mob-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
-    .mob-brand-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
-    .mob-brand-subtitle { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
+    #mob-close:active {
+      background: rgba(0,0,0,0.05);
+    }
 
     /* ===== BUTTONS ===== */
     .btn-primary {
@@ -215,51 +320,155 @@
     .d5 { transition-delay: 0.36s !important; }
     .d6 { transition-delay: 0.44s !important; }
 
-    /* ===== INSIGHT HERO ===== */
-    .insight-hero {
-      min-height: 92vh;
+    /* ===== BLOG HERO ===== */
+    .blog-hero {
+      min-height: 90vh;
       background: linear-gradient(135deg, #080b12 0%, #0e1117 50%, #121826 100%);
       position: relative; overflow: hidden;
       display: flex; align-items: center;
     }
-    .insight-hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80&auto=format&fit=crop');
-      background-size: cover; background-position: center 30%;
-      opacity: 0.13;
-    }
-    .insight-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(110deg,
-        rgba(8,11,18,0.97) 0%,
-        rgba(8,11,18,0.88) 45%,
-        rgba(8,11,18,0.55) 80%,
-        rgba(8,11,18,0.25) 100%);
-    }
-    .insight-hero-glow {
+    .blog-hero-glow {
       position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse 60% 55% at 75% 60%, rgba(42,95,199,0.13) 0%, transparent 65%),
-        radial-gradient(ellipse 35% 35% at 20% 20%, rgba(192,57,43,0.07) 0%, transparent 60%);
+        radial-gradient(ellipse 55% 55% at 84% 42%, rgba(192,57,43,0.16) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 40% at 12% 78%, rgba(42,95,199,0.10) 0%, transparent 60%);
+    }
+
+    /* Category pills */
+    .blog-pill {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 999px;
+      padding: 0.5rem 1.15rem 0.5rem 0.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.78);
+    }
+    .blog-pill-icon {
+      width: 1.9rem; height: 1.9rem; flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(192,57,43,0.14);
+      border: 1px solid rgba(192,57,43,0.3);
+      color: #e74c3c;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Right-side image collage */
+    .blog-hero-media-wrap { position: relative; }
+    .blog-hero-media {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 35px 90px rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .blog-hero-media img { display: block; width: 100%; height: auto; }
+
+    /* Desktop three-card collage cropped from the same source photo */
+    .blog-collage { display: none; position: relative; width: 100%; height: 459px; z-index: 1; }
+    .collage-card {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+      background-image: url('image/blog-hero.png');
+      background-repeat: no-repeat;
+      background-size: 705px 470px;
+    }
+    .collage-center {
+      width: 266px; height: 382px;
+      left: 96px; top: 11px;
+      background-position: -198px -42px;
+      z-index: 3;
+    }
+    .collage-left {
+      width: 185px; height: 215px;
+      left: 0; top: 222px;
+      background-position: -23px -161px;
+      z-index: 2;
+      transform: rotate(-3deg);
+    }
+    .collage-right {
+      width: 215px; height: 200px;
+      right: 0; top: 8px;
+      background-position: -468px -83px;
+      z-index: 2;
+      transform: rotate(3deg);
+    }
+    /* Single clean image on all screens (collage + floating cards overlapped) */
+    .blog-collage { display: none !important; }
+    .blog-hero-media { display: block; border: 0; box-shadow: none; border-radius: 20px; background: transparent; }
+
+    .blog-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+      font-weight: 500; line-height: 1.3; letter-spacing: 0.01em;
+    }
+    .blog-browse-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
+      white-space: nowrap; border-radius: 999px;
+    }
+    .blog-browse-btn svg { flex-shrink: 0; }
+    @media (max-width: 640px) {
+      .blog-hero { min-height: auto; }
+      .blog-hero-title { font-size: 1.85rem; }
+      .blog-browse-btn { width: 100%; padding: 0.95rem 1.5rem; }
+      .blog-hero-media-wrap { max-width: 480px; margin: 0 auto; }
+    }
+
+    .blog-float-card {
+      position: absolute;
+      display: flex; flex-direction: column; gap: 0.6rem;
+      min-width: 172px;
+      background: rgba(18,22,32,0.88);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      box-shadow: 0 22px 50px rgba(0,0,0,0.5);
+    }
+    .blog-float-card .fc-label {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.86rem; font-weight: 600;
+      color: #fff; white-space: nowrap;
+    }
+    .blog-float-card .fc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+    .blog-float-card .fc-bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.14); }
+    .blog-float-card .fc-bar.short { width: 62%; }
+
+    @media (max-width: 1023px) {
+      .blog-float-card { display: none; }
     }
 
     /* ===== CARD STYLES ===== */
     .card-dark {
-      background: var(--dark-card);
-      border: 1px solid rgba(255,255,255,0.07);
-      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
-                  border-color 0.35s, box-shadow 0.35s;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 10px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s;
       position: relative; overflow: hidden;
     }
-    .card-dark::before {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--red), var(--blue-acc));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    .card-dark:hover { transform: scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+
+    /* ===== FILTER TRANSITION (WordPress-style smooth filter) ===== */
+    .card-dark.filter-out {
+      opacity: 0;
+      transform: scale(0.92) translateY(10px) !important;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+      pointer-events: none;
     }
-    .card-dark:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.14); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-    .card-dark:hover::before { transform: scaleX(1); }
+    .card-dark.filter-in {
+      opacity: 0;
+      transform: scale(0.92) translateY(10px);
+      transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .card-dark.filter-in.filter-in-active {
+      opacity: 1;
+      transform: none;
+    }
 
     /* ===== ARTICLE IMAGE ZOOM ===== */
     .article-img { overflow: hidden; }
@@ -282,6 +491,39 @@
     .featured-img { overflow: hidden; }
     .featured-img img { transition: transform 0.8s cubic-bezier(0.4,0,0.2,1); }
     .featured-wrap:hover .featured-img img { transform: scale(1.04); }
+
+    /* ===== CATEGORY FILTER ROW ===== */
+    .cat-filter-row {
+      display: flex; flex-wrap: nowrap; gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      -ms-overflow-style: none; scrollbar-width: none;
+    }
+    .cat-filter-row::-webkit-scrollbar { display: none; }
+    .cat-filter-pill {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 999px;
+      padding: 0.65rem 1.35rem;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+    .cat-filter-pill:hover {
+      color: var(--red);
+      border-color: rgba(192,57,43,0.4);
+      background: rgba(192,57,43,0.08);
+    }
+    .cat-filter-pill.active {
+      color: #fff;
+      background: var(--red);
+      border-color: var(--red);
+    }
 
     /* ===== TOPIC CARD ===== */
     .topic-card {
@@ -396,27 +638,17 @@
 
     /* Responsive nav */
     @media (max-width: 767px) {
-      .nav-inner { padding: 1.1rem 1.25rem !important; }
-      #navbar.scrolled .nav-inner { padding: 0.8rem 1.25rem !important; }
+      .nav-inner { padding: 1rem 1rem !important; }
+      #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
     }
 
     /* Read time icon */
     .read-time {
       display: inline-flex; align-items: center; gap: 0.4rem;
       font-size: 0.72rem; font-weight: 400;
-      color: rgba(255,255,255,0.35);
+      color: rgba(0,0,0,0.4);
       letter-spacing: 0.04em;
     }
-
-    /* Article link hover underline */
-    .article-title-link {
-      background-image: linear-gradient(var(--red), var(--red));
-      background-size: 0 1px;
-      background-repeat: no-repeat;
-      background-position: 0 100%;
-      transition: background-size 0.3s ease;
-    }
-    .card-dark:hover .article-title-link { background-size: 100% 1px; }
 
     /* Scroll mouse */
     .scroll-mouse {
@@ -527,12 +759,11 @@
       </div>
     </a>
     <div class="nav-links">
-      <a href="index.html#overview"     class="nav-link">Overview</a>
-      <a href="about.html"              class="nav-link">My Story</a>
-      <a href="service.html"            class="nav-link">Work With Me</a>
-      <a href="stories.html"            class="nav-link">Success Stories</a>
-      <a href="insight.html"            class="nav-link active">Insights</a>
-      <a href="contact.html"            class="nav-link">Let's Connect</a>
+      <a href="index.html" class="nav-link">Overview</a>
+      <a href="about.html" class="nav-link">My Story</a>
+      <a href="service.html" class="nav-link">Work With Me</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
+      <a href="contact.html" class="nav-link">Let's Connect</a>
     </div>
     <div class="btn-nav-wrap">
       <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-nav">Book a Call</a>
@@ -545,556 +776,164 @@
   </div>
 </nav>
 
-<!-- Mobile Menu -->
+<!-- Mobile Full-Screen Menu -->
 <!-- Drawer backdrop -->
 <div id="nav-overlay" aria-hidden="true"></div>
 
 <div id="mobile-menu">
-  <button id="mob-close" aria-label="Close">✕</button>
-  <div class="mob-logo-section">
-    <img src="image/jb-logo.png" alt="Jonatas Baptista" />
-    <div class="mob-brand-text">
-      <span class="mob-brand-name">Jonatas Baptista</span>
-      <span class="mob-brand-subtitle">CLIENT ACQUISITION</span>
-    </div>
+  <div class="mob-header">
+    <button id="mob-close" aria-label="Close">✕</button>
   </div>
-  <a href="index.html"    class="mob-link">Overview</a>
-  <a href="about.html"    class="mob-link">My Story</a>
-  <a href="service.html"  class="mob-link">Work With Me</a>
-  <a href="stories.html"  class="mob-link">Success Stories</a>
-  <a href="insight.html"  class="mob-link">Insights</a>
-  <a href="contact.html"  class="mob-link">Let's Connect</a>
+
+  <a href="index.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <span>Overview</span>
+  </a>
+
+  <a href="about.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <span>My Story</span>
+  </a>
+
+  <a href="service.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+    </div>
+    <span>Work With Me</span>
+  </a>
+
+  <a href="blog.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    </div>
+    <span>Blog</span>
+  </a>
+
+  <a href="contact.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </div>
+    <span>Let's Connect</span>
+  </a>
+
+  <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="mob-cta-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.13 12 19.79 19.79 0 011.09 3.45 2 2 0 013.07 1h3a2 2 0 012 1.72c.12.96.36 1.9.71 2.81a2 2 0 01-.45 2.11L7.09 8.91A16 16 0 0015.1 16.9l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.71A2 2 0 0122 16.92z"/></svg>
+    Book a Call
+  </a>
 </div>
 
 <!-- ============================================================
      HERO
 ============================================================ -->
-<section class="insight-hero" id="hero">
-  <div class="insight-hero-bg"></div>
-  <div class="insight-hero-overlay"></div>
-  <div class="insight-hero-glow"></div>
+<section class="blog-hero" id="hero">
+  <div class="blog-hero-glow"></div>
 
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-28 pb-20">
-    <div class="max-w-3xl">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20">
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-16 items-center">
 
-      <div class="eyebrow mb-6" data-reveal="up">Insights</div>
+      <!-- LEFT: copy -->
+      <div>
+        <div class="eyebrow mb-6" data-reveal="up">Blog</div>
 
-      <h1 class="serif text-white mb-8 leading-tight" style="font-size:clamp(2.8rem,6vw,5.2rem); font-weight:400;" data-reveal="up" style="transition-delay:0.08s">
-        Knowledge That Helps You Make <em>Smarter</em><br class="hidden lg:block" />
-        Real Estate Decisions
-      </h1>
+        <h1 id="hero-title" class="blog-hero-title text-white mb-6" data-reveal="up">Ideas, Strategies &amp; Real Lessons from the Field.</h1>
 
-      <p class="text-white/55 text-base md:text-lg leading-relaxed mb-10 max-w-xl" data-reveal="up" style="transition-delay:0.16s">
-        Jonatas shares practical insights on investment strategy, market dynamics, and the principles that separate disciplined investors from the rest. No theory — just what actually works in the field.
-      </p>
+        <p id="hero-description" class="text-white/55 text-base md:text-lg leading-relaxed mb-9 max-w-lg d2" data-reveal="up">
+          Practical insights on client acquisition, sales, and business growth to help you attract better clients and build a more sustainable business.
+        </p>
 
-      <div class="flex flex-wrap gap-4 mb-16" data-reveal="up" style="transition-delay:0.24s">
-        <a href="#articles" class="btn-primary">Explore Articles</a>
-        <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-outline-white">Book a Strategy Call</a>
-      </div>
-
-      <!-- Scroll hint -->
-      <div class="hidden md:flex items-center gap-4" data-reveal="fade" style="transition-delay:0.36s">
-        <div class="scroll-mouse"></div>
-        <span class="text-white/30 text-xs tracking-widest uppercase">Scroll</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FEATURED INSIGHT
-============================================================ -->
-<section class="section-dark py-20 md:py-28" id="featured">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-
-    <div class="mb-12" data-reveal="up">
-      <div class="eyebrow mb-4">Featured Insight</div>
-      <h2 class="serif text-white text-3xl md:text-4xl font-light">The Article Worth Reading First</h2>
-    </div>
-
-    <div class="featured-wrap group cursor-pointer" data-reveal="up" style="transition-delay:0.08s">
-      <div class="grid lg:grid-cols-2 gap-0 border border-white/08 overflow-hidden" style="border-color:rgba(255,255,255,0.08)">
-
-        <!-- Image -->
-        <div class="featured-img relative" style="min-height:420px;">
-          <img
-            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80&auto=format&fit=crop"
-            alt="Why Most Real Estate Investors Stall Before They Scale"
-            class="w-full h-full object-cover absolute inset-0"
-            style="transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);"
-          />
-          <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(14,17,23,0) 60%, rgba(14,17,23,0.6) 100%);"></div>
-          <!-- Overlay badge -->
-          <div class="absolute top-6 left-6">
-            <span class="cat-badge">Investment Strategy</span>
-          </div>
+        <div class="flex flex-wrap gap-3 mb-10 d3" data-reveal="up">
+          <span class="blog-pill">
+            <span class="blog-pill-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            </span>
+            Strategies
+          </span>
+          <span class="blog-pill">
+            <span class="blog-pill-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            Case Studies
+          </span>
+          <span class="blog-pill">
+            <span class="blog-pill-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.6.4 1 1.2 1 2.3h6c0-1 .4-1.9 1-2.3A7 7 0 0012 2z"/></svg>
+            </span>
+            Lessons Learned
+          </span>
         </div>
 
-        <!-- Content -->
-        <div class="bg-dark-card p-10 md:p-14 flex flex-col justify-center" style="background:var(--dark-card);">
-          <div class="trust-border mb-8">
-            <p class="text-white/40 text-xs tracking-widest uppercase mb-1">Featured Article</p>
-            <p class="text-white/40 text-xs">14 min read</p>
+        <a href="#articles" class="btn-primary blog-browse-btn d4" data-reveal="up">
+          <span>Browse All Posts</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- RIGHT: hero image with floating badges -->
+      <div class="blog-hero-media-wrap" data-reveal="right">
+        <!-- Mobile/tablet fallback: single image -->
+        <div class="blog-hero-media">
+          <img id="hero-image" src="image/blog-hero.png" alt="Desk with laptop, notebook and books representing ideas, strategies and real lessons from the field" />
+        </div>
+
+        <!-- Desktop: three-card collage cropped from the same photo -->
+        <div class="blog-collage">
+          <div class="collage-card collage-left" role="img" aria-label="Notebook reading Ideas, Strategies, Growth"></div>
+          <div class="collage-card collage-center" role="img" aria-label="Desk with laptop, coffee, plant and notebook"></div>
+          <div class="collage-card collage-right" role="img" aria-label="Stack of books: Better Clients, Stronger Systems, Bigger Opportunities"></div>
+
+          <div class="blog-float-card" style="top:2%; left:-8%;">
+            <span class="fc-label"><span class="fc-dot"></span>Business Growth</span>
+            <span class="fc-bar"></span>
+            <span class="fc-bar short"></span>
           </div>
 
-          <h3 class="serif text-white text-2xl md:text-3xl lg:text-4xl font-light leading-tight mb-6">
-            Why Most Real Estate Investors Stall Before They Scale — and What to Do About It
-          </h3>
-
-          <p class="text-white/50 text-sm md:text-base leading-relaxed mb-8">
-            Acquiring your first property feels like a milestone. The second usually follows within a year. But somewhere between two and five properties, something breaks down — not the market, not the financing, but the investor's decision-making framework. This article unpacks the precise patterns that cause growth to plateau and the strategic adjustments that unlock scale.
-          </p>
-
-          <div class="flex items-center gap-4">
-            <a href="#" class="btn-primary text-sm">Read Full Article</a>
-            <span class="text-white/30 text-xs tracking-wide">October 2024</span>
+          <div class="blog-float-card" style="bottom:4%; right:-9%;">
+            <span class="fc-label"><span class="fc-dot"></span>Client Acquisition</span>
+            <span class="fc-bar"></span>
+            <span class="fc-bar short"></span>
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
 <!-- ============================================================
      LATEST ARTICLES GRID
 ============================================================ -->
-<section class="section-dark-mid py-20 md:py-28" id="articles">
+<section class="section-cream py-20 md:py-28" id="articles">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14" data-reveal="up">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10" data-reveal="up">
       <div>
         <div class="eyebrow mb-4">Latest Articles</div>
-        <h2 class="serif text-white text-3xl md:text-4xl font-light leading-tight">
+        <h2 class="serif text-gray-900 text-3xl md:text-4xl font-light leading-tight">
           Practical Thinking for<br class="hidden md:block" />Serious Investors
         </h2>
       </div>
-      <p class="text-white/40 text-sm leading-relaxed max-w-xs">
+      <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
         Each piece is written to answer the questions clients bring into their first strategy session.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Card 1 -->
-      <div class="card-dark" data-reveal="up">
-        <div class="article-img" style="height:220px;">
-          <img
-            src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=700&q=80&auto=format&fit=crop"
-            alt="Real Estate Investment Strategies"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-7">
-          <div class="flex items-center justify-between mb-4">
-            <span class="cat-badge">Investment Strategy</span>
-            <span class="read-time">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              8 min
-            </span>
-          </div>
-          <h3 class="serif text-white text-xl font-light leading-snug mb-3 article-title-link">
-            The Three-Property Framework: How to Build a Real Estate Portfolio That Actually Works
-          </h3>
-          <p class="text-white/40 text-sm leading-relaxed mb-6">
-            Most investors buy properties reactively — something comes up, the numbers look acceptable, and they move forward. A portfolio built without a clear framework is harder to finance, harder to manage, and far harder to exit. Here's how to approach it intentionally.
-          </p>
-          <a href="#" class="text-red-400 text-xs font-semibold tracking-widest uppercase hover:text-red-300 transition-colors inline-flex items-center gap-2">
-            Read Article
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="card-dark d2" data-reveal="up">
-        <div class="article-img" style="height:220px;">
-          <img
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80&auto=format&fit=crop"
-            alt="How to Evaluate Property Opportunities"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-7">
-          <div class="flex items-center justify-between mb-4">
-            <span class="cat-badge">Property Analysis</span>
-            <span class="read-time">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              10 min
-            </span>
-          </div>
-          <h3 class="serif text-white text-xl font-light leading-snug mb-3 article-title-link">
-            How to Evaluate a Property Opportunity Before You Fall in Love With It
-          </h3>
-          <p class="text-white/40 text-sm leading-relaxed mb-6">
-            Emotional attachment is the silent killer of investment returns. This guide walks through the due diligence checklist Jonatas applies to every opportunity — separating the numbers that matter from the ones that distract.
-          </p>
-          <a href="#" class="text-red-400 text-xs font-semibold tracking-widest uppercase hover:text-red-300 transition-colors inline-flex items-center gap-2">
-            Read Article
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="card-dark d3" data-reveal="up">
-        <div class="article-img" style="height:220px;">
-          <img
-            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700&q=80&auto=format&fit=crop"
-            alt="Common Investment Mistakes"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-7">
-          <div class="flex items-center justify-between mb-4">
-            <span class="cat-badge cat-badge-blue">Market Insights</span>
-            <span class="read-time">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              7 min
-            </span>
-          </div>
-          <h3 class="serif text-white text-xl font-light leading-snug mb-3 article-title-link">
-            The Five Mistakes That Cost New Investors Their First Deal — And Their Confidence
-          </h3>
-          <p class="text-white/40 text-sm leading-relaxed mb-6">
-            Experience is an excellent teacher, but borrowed experience is even better. After hundreds of advisory sessions, these are the avoidable errors that appear consistently — and how to sidestep each one before it costs you.
-          </p>
-          <a href="#" class="text-red-400 text-xs font-semibold tracking-widest uppercase hover:text-red-300 transition-colors inline-flex items-center gap-2">
-            Read Article
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="card-dark" data-reveal="up">
-        <div class="article-img" style="height:220px;">
-          <img
-            src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=700&q=80&auto=format&fit=crop"
-            alt="Building Long-Term Wealth Through Real Estate"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-7">
-          <div class="flex items-center justify-between mb-4">
-            <span class="cat-badge">Wealth Building</span>
-            <span class="read-time">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              12 min
-            </span>
-          </div>
-          <h3 class="serif text-white text-xl font-light leading-snug mb-3 article-title-link">
-            Building Generational Wealth Through Real Estate: The Long Game Nobody Talks About
-          </h3>
-          <p class="text-white/40 text-sm leading-relaxed mb-6">
-            Short-term gains get the headlines. But the investors who quietly build lasting wealth operate with a completely different time horizon. This piece explores the compounding principles behind durable real estate wealth.
-          </p>
-          <a href="#" class="text-red-400 text-xs font-semibold tracking-widest uppercase hover:text-red-300 transition-colors inline-flex items-center gap-2">
-            Read Article
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="card-dark d2" data-reveal="up">
-        <div class="article-img" style="height:220px;">
-          <img
-            src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=700&q=80&auto=format&fit=crop"
-            alt="Understanding Market Trends"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-7">
-          <div class="flex items-center justify-between mb-4">
-            <span class="cat-badge cat-badge-blue">Market Insights</span>
-            <span class="read-time">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              9 min
-            </span>
-          </div>
-          <h3 class="serif text-white text-xl font-light leading-snug mb-3 article-title-link">
-            Reading the Market Without Getting Distracted by the Noise
-          </h3>
-          <p class="text-white/40 text-sm leading-relaxed mb-6">
-            Headlines are designed to create urgency. Market fundamentals move slowly and reward those who can separate signal from noise. Here's the framework Jonatas uses to interpret market data and make decisions with conviction.
-          </p>
-          <a href="#" class="text-red-400 text-xs font-semibold tracking-widest uppercase hover:text-red-300 transition-colors inline-flex items-center gap-2">
-            Read Article
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="card-dark d3" data-reveal="up">
-        <div class="article-img" style="height:220px;">
-          <img
-            src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=700&q=80&auto=format&fit=crop"
-            alt="Smart Decision-Making for Investors"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-7">
-          <div class="flex items-center justify-between mb-4">
-            <span class="cat-badge">Decision-Making</span>
-            <span class="read-time">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              11 min
-            </span>
-          </div>
-          <h3 class="serif text-white text-xl font-light leading-snug mb-3 article-title-link">
-            The Investor's Decision Framework: How to Choose Confidently When the Stakes Are High
-          </h3>
-          <p class="text-white/40 text-sm leading-relaxed mb-6">
-            Indecision is expensive. So is the wrong decision made too quickly. This article breaks down the structured thinking process Jonatas guides clients through before any significant investment commitment is made.
-          </p>
-          <a href="#" class="text-red-400 text-xs font-semibold tracking-widest uppercase hover:text-red-300 transition-colors inline-flex items-center gap-2">
-            Read Article
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     EXPLORE BY TOPIC
-============================================================ -->
-<section class="section-dark py-20 md:py-28" id="topics">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-
-    <div class="text-center mb-14" data-reveal="up">
-      <div class="eyebrow mb-4 justify-center">Explore by Topic</div>
-      <h2 class="serif text-white text-3xl md:text-4xl font-light">
-        Find What's Relevant to<br class="hidden md:block" /> Where You Are Right Now
-      </h2>
+    <!-- Category filter row -->
+    <div class="cat-filter-row mb-10" data-reveal="up" id="cat-filter-row">
+      <button class="cat-filter-pill active" data-filter="all">All</button>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid"></div>
 
-      <!-- Topic 1 -->
-      <div class="topic-card p-6 md:p-8" data-reveal="up">
-        <div class="topic-icon mb-5">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <h3 class="serif text-white text-lg font-light mb-2">Investment Strategy</h3>
-        <p class="text-white/35 text-sm leading-relaxed">Frameworks for building and growing a portfolio with intention and discipline.</p>
-        <div class="mt-5 flex items-center gap-1.5 text-red-500/70 text-xs font-semibold tracking-widest uppercase">
-          Browse
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </div>
-
-      <!-- Topic 2 -->
-      <div class="topic-card p-6 md:p-8 d1" data-reveal="up">
-        <div class="topic-icon mb-5">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3 class="serif text-white text-lg font-light mb-2">Market Insights</h3>
-        <p class="text-white/35 text-sm leading-relaxed">How to read the market, interpret cycles, and time decisions with clarity.</p>
-        <div class="mt-5 flex items-center gap-1.5 text-red-500/70 text-xs font-semibold tracking-widest uppercase">
-          Browse
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </div>
-
-      <!-- Topic 3 -->
-      <div class="topic-card p-6 md:p-8 d2" data-reveal="up">
-        <div class="topic-icon mb-5">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h3 class="serif text-white text-lg font-light mb-2">Property Analysis</h3>
-        <p class="text-white/35 text-sm leading-relaxed">Due diligence, valuation thinking, and evaluating opportunities objectively.</p>
-        <div class="mt-5 flex items-center gap-1.5 text-red-500/70 text-xs font-semibold tracking-widest uppercase">
-          Browse
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </div>
-
-      <!-- Topic 4 -->
-      <div class="topic-card p-6 md:p-8 d3" data-reveal="up">
-        <div class="topic-icon mb-5">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <h3 class="serif text-white text-lg font-light mb-2">Wealth Building</h3>
-        <p class="text-white/35 text-sm leading-relaxed">Long-term thinking, compounding principles, and sustainable financial growth.</p>
-        <div class="mt-5 flex items-center gap-1.5 text-red-500/70 text-xs font-semibold tracking-widest uppercase">
-          Browse
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </div>
-
-      <!-- Topic 5 -->
-      <div class="topic-card p-6 md:p-8 d4" data-reveal="up">
-        <div class="topic-icon mb-5">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <h3 class="serif text-white text-lg font-light mb-2">Leadership</h3>
-        <p class="text-white/35 text-sm leading-relaxed">Mindset, decision-making, and the qualities that define elite investors.</p>
-        <div class="mt-5 flex items-center gap-1.5 text-red-500/70 text-xs font-semibold tracking-widest uppercase">
-          Browse
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </div>
-
-      <!-- Topic 6 -->
-      <div class="topic-card p-6 md:p-8 d5" data-reveal="up">
-        <div class="topic-icon mb-5">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <h3 class="serif text-white text-lg font-light mb-2">Business Growth</h3>
-        <p class="text-white/35 text-sm leading-relaxed">Scaling operations, building systems, and structuring your investment business.</p>
-        <div class="mt-5 flex items-center gap-1.5 text-red-500/70 text-xs font-semibold tracking-widest uppercase">
-          Browse
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     OFF-WHITE PRINCIPLES SECTION (matches index/other pages)
-============================================================ -->
-<section style="background:#f4f3ef; color:#1a1a1a;" class="py-20 md:py-28" id="principles">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-
-    <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
-      <div data-reveal="left">
-        <div class="eyebrow mb-6" style="color:#c0392b;">
-          <span style="display:inline-block;width:2rem;height:1.5px;background:#c0392b;margin-right:0.75rem;vertical-align:middle;"></span>
-          The Jonatas Approach
-        </div>
-        <h2 class="serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-6" style="font-family:'Playfair Display',serif;">
-          Insights Built on<br /><em>Real Experience,<br />Not Theory</em>
-        </h2>
-        <p style="color:#4a4a4a;" class="text-base leading-relaxed mb-6 max-w-xl">
-          Every article Jonatas publishes is drawn from hundreds of client conversations, market cycles witnessed first-hand, and deals evaluated — and sometimes walked away from. No recycled advice. No generic frameworks borrowed from other industries.
-        </p>
-        <p style="color:#7a7a7a;" class="text-sm leading-relaxed max-w-xl">
-          Real estate rewards disciplined thinking. These insights exist to sharpen yours — whether you're evaluating your first acquisition or restructuring a multi-property portfolio.
-        </p>
-      </div>
-      <div class="grid grid-cols-2 gap-5" data-reveal="right">
-        <!-- Principle 1 -->
-        <div style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:1.75rem;" class="hover:-translate-y-1 transition-transform duration-300">
-          <div style="width:2.5rem;height:2.5rem;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-          </div>
-          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1a1a1a;margin-bottom:0.5rem;">Evidence-Based</h4>
-          <p style="color:#7a7a7a;font-size:0.82rem;line-height:1.6;">Every claim backed by market data, case studies, and real outcomes.</p>
-        </div>
-        <!-- Principle 2 -->
-        <div style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:1.75rem;" class="hover:-translate-y-1 transition-transform duration-300">
-          <div style="width:2.5rem;height:2.5rem;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          </div>
-          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1a1a1a;margin-bottom:0.5rem;">Directly Actionable</h4>
-          <p style="color:#7a7a7a;font-size:0.82rem;line-height:1.6;">Written so you can apply the ideas immediately, not just think about them.</p>
-        </div>
-        <!-- Principle 3 -->
-        <div style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:1.75rem;" class="hover:-translate-y-1 transition-transform duration-300">
-          <div style="width:2.5rem;height:2.5rem;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1a1a1a;margin-bottom:0.5rem;">Market-Aware</h4>
-          <p style="color:#7a7a7a;font-size:0.82rem;line-height:1.6;">Tied to real cycles, not abstract investment theory from textbooks.</p>
-        </div>
-        <!-- Principle 4 -->
-        <div style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:1.75rem;" class="hover:-translate-y-1 transition-transform duration-300">
-          <div style="width:2.5rem;height:2.5rem;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <h4 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1a1a1a;margin-bottom:0.5rem;">Coach-Tested</h4>
-          <p style="color:#7a7a7a;font-size:0.82rem;line-height:1.6;">Refined through 500+ investor conversations across multiple markets.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats bar -->
-    <div style="border-top:1px solid rgba(0,0,0,0.09);padding-top:2.5rem;" class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" data-reveal="up">
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;color:#1a1a1a;line-height:1;">40+</div>
-        <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7a7a7a;margin-top:0.4rem;">Articles Published</div>
-      </div>
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;color:#1a1a1a;line-height:1;">6</div>
-        <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7a7a7a;margin-top:0.4rem;">Core Topic Areas</div>
-      </div>
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;color:#1a1a1a;line-height:1;">500+</div>
-        <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7a7a7a;margin-top:0.4rem;">Investors Coached</div>
-      </div>
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;color:#1a1a1a;line-height:1;">12+</div>
-        <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7a7a7a;margin-top:0.4rem;">Years in Real Estate</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================
-     NEWSLETTER CTA
-============================================================ -->
-<section class="newsletter-section py-20 md:py-28" id="newsletter">
-  <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 text-center">
-
-    <div class="eyebrow mb-6 justify-center" data-reveal="up">Stay Informed</div>
-
-    <h2 class="serif text-white text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-6" data-reveal="up" style="transition-delay:0.08s">
-      Stay Ahead of the<br /><em>Real Estate Market</em>
-    </h2>
-
-    <p class="text-white/45 text-sm md:text-base leading-relaxed mb-10 max-w-lg mx-auto" data-reveal="up" style="transition-delay:0.16s">
-      Receive Jonatas's latest market analysis, investment frameworks, and strategic insights delivered to your inbox. Practical, direct, and worth your time.
-    </p>
-
-    <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" data-reveal="up" style="transition-delay:0.24s" onsubmit="return false;">
-      <input
-        type="email"
-        placeholder="Your email address"
-        class="newsletter-input flex-1"
-        required
-      />
-      <button type="submit" class="btn-primary whitespace-nowrap" style="font-size:0.72rem;">
-        Subscribe
+    <div id="articles-more-wrap" style="display:none;justify-content:center;margin-top:3rem;">
+      <button id="articles-more-btn" class="cat-filter-pill" style="padding:0.9rem 2.4rem;font-size:0.8rem;">
+        More Articles
       </button>
-    </form>
-
-    <p class="text-white/25 text-xs mt-5" data-reveal="fade" style="transition-delay:0.32s">
-      No spam. Unsubscribe at any time. Your privacy is respected.
-    </p>
-
-  </div>
-</section>
-
-<!-- ============================================================
-     FINAL CTA
-============================================================ -->
-<section class="section-dark py-20 md:py-28">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="cta-banner p-12 md:p-16 lg:p-20 text-center">
-      <div class="relative z-10">
-        <div class="eyebrow mb-6 justify-center" data-reveal="up">Ready to Move Forward?</div>
-        <h2 class="serif text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-6" data-reveal="up" style="transition-delay:0.08s">
-          Ready to Make Smarter<br /><em>Real Estate Decisions?</em>
-        </h2>
-        <p class="text-white/55 text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-10" data-reveal="up" style="transition-delay:0.16s">
-          Reading about strategy is a strong start. Working through it with someone who has navigated hundreds of transactions is what changes outcomes. Jonatas works with a select number of clients — if you're serious, the conversation starts here.
-        </p>
-        <div class="flex flex-wrap gap-4 justify-center" data-reveal="up" style="transition-delay:0.24s">
-          <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener" class="btn-primary">Book a Strategy Call</a>
-          <a href="contact.html" class="btn-outline-white">Contact Jonatas</a>
-        </div>
-      </div>
     </div>
+
   </div>
 </section>
 
@@ -1242,6 +1081,7 @@
           <a href="index.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Overview</a>
           <a href="about.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>My Story</a>
           <a href="service.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Work With Me</a>
+          <a href="blog.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Blog</a>
           <a href="contact.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Let's Connect</a>
         </div>
       </div>
@@ -1347,6 +1187,175 @@ const revealObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObs.observe(el));
+
+/* ===== DYNAMIC BLOG DATA (categories + posts from the admin panel) ===== */
+const API_BASE = (['localhost', '127.0.0.1'].includes(location.hostname) && location.port !== '8000')
+  ? 'http://localhost:8000'
+  : '';
+
+function escHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str == null ? '' : str;
+  return div.innerHTML;
+}
+
+function resolveImage(src) {
+  return /^https?:\/\//.test(src) ? src : API_BASE + src;
+}
+
+function categoryBadgeClass(categoryId) {
+  return categoryId % 2 === 0 ? 'cat-badge-blue' : '';
+}
+
+function renderArticleCard(post) {
+  return `
+    <div class="card-dark" data-category="${escHtml(post.category_slug)}">
+      <div class="article-img" style="height:180px;">
+        <img src="${resolveImage(post.image)}" alt="${escHtml(post.title)}" class="w-full h-full object-cover" />
+      </div>
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="cat-badge ${categoryBadgeClass(post.category_id)}">${escHtml(post.category_name)}</span>
+          <span class="read-time">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${escHtml(post.read_minutes)} min
+          </span>
+        </div>
+        <h3 class="serif text-gray-900 text-xl font-light leading-snug mb-3 article-title-link">
+          <a href="blog-post.html?post=${encodeURIComponent(post.slug)}" style="color:inherit;text-decoration:none;">${escHtml(post.title)}</a>
+        </h3>
+        <p class="text-gray-700 text-base leading-relaxed mb-5" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">${escHtml(post.excerpt)}</p>
+        <a href="blog-post.html?post=${encodeURIComponent(post.slug)}" class="text-red-400 text-xs font-semibold tracking-widest uppercase hover:text-red-300 transition-colors inline-flex items-center gap-2">
+          Read Blog
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+async function loadHero() {
+  try {
+    const res = await fetch(API_BASE + '/api/hero');
+    if (!res.ok) return;
+    const hero = await res.json();
+    document.getElementById('hero-title').textContent = hero.title;
+    document.getElementById('hero-description').textContent = hero.description;
+    document.getElementById('hero-image').src = resolveImage(hero.image);
+  } catch (err) {
+    console.error('Failed to load hero content', err);
+  }
+}
+
+async function loadBlogContent() {
+  loadHero();
+  try {
+    const [categoriesRes, postsRes] = await Promise.all([
+      fetch(API_BASE + '/api/categories'),
+      fetch(API_BASE + '/api/posts'),
+    ]);
+    const categories = await categoriesRes.json();
+    const posts = await postsRes.json();
+
+    const pillsRow = document.getElementById('cat-filter-row');
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'cat-filter-pill';
+      btn.dataset.filter = cat.slug;
+      btn.textContent = cat.name;
+      pillsRow.appendChild(btn);
+    });
+
+    document.getElementById('articles-grid').innerHTML = posts.map(renderArticleCard).join('');
+  } catch (err) {
+    console.error('Failed to load blog content', err);
+  }
+
+  initArticleFilter();
+}
+
+/* ===== CATEGORY FILTER + "MORE ARTICLES" PAGINATION ===== */
+let catPills = [];
+let articleCards = [];
+const moreWrap = document.getElementById('articles-more-wrap');
+const moreBtn = document.getElementById('articles-more-btn');
+const CARDS_PER_PAGE = 9; // 3 rows x 3 columns max before "More Articles"
+let filterBusy = false;
+let currentFilter = 'all';
+let visibleCount = CARDS_PER_PAGE;
+
+function updateArticles() {
+  const matching = articleCards.filter(card => currentFilter === 'all' || card.dataset.category === currentFilter);
+  const toHide = [];
+  const toShow = [];
+
+  articleCards.forEach(card => {
+    const shouldShow = matching.includes(card) && matching.indexOf(card) < visibleCount;
+    const isHidden = card.style.display === 'none';
+    if (shouldShow && isHidden) toShow.push(card);
+    else if (!shouldShow && !isHidden) toHide.push(card);
+  });
+
+  toHide.forEach(card => card.classList.add('filter-out'));
+
+  setTimeout(() => {
+    toHide.forEach(card => {
+      card.style.display = 'none';
+      card.classList.remove('filter-out');
+    });
+
+    toShow.forEach(card => {
+      card.style.display = '';
+      card.classList.add('filter-in');
+    });
+    void document.body.offsetHeight;
+
+    toShow.forEach((card, i) => {
+      setTimeout(() => {
+        card.classList.add('filter-in-active');
+      }, i * 55);
+    });
+
+    setTimeout(() => {
+      toShow.forEach(card => card.classList.remove('filter-in', 'filter-in-active'));
+      filterBusy = false;
+    }, toShow.length * 55 + 420);
+  }, toHide.length ? 280 : 0);
+
+  moreWrap.style.display = matching.length > visibleCount ? 'flex' : 'none';
+}
+
+function initArticleFilter() {
+  catPills = Array.from(document.querySelectorAll('.cat-filter-pill'));
+  articleCards = Array.from(document.querySelectorAll('#articles-grid .card-dark'));
+  currentFilter = 'all';
+  visibleCount = CARDS_PER_PAGE;
+
+  catPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (filterBusy) return;
+      catPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentFilter = pill.dataset.filter;
+      visibleCount = CARDS_PER_PAGE;
+      filterBusy = true;
+      updateArticles();
+    });
+  });
+
+  if (moreBtn) {
+    moreBtn.addEventListener('click', () => {
+      if (filterBusy) return;
+      filterBusy = true;
+      visibleCount += CARDS_PER_PAGE;
+      updateArticles();
+    });
+  }
+
+  updateArticles();
+}
+
+loadBlogContent();
 
 /* ===== SMOOTH SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(a => {

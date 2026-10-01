@@ -170,35 +170,34 @@
     
     /* Mobile menu header */
     .mob-header {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: flex-end;
       padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1);
       margin-bottom: 2rem;
     }
     
     .mob-logo-section {
-      display: flex; align-items: center; gap: 0.45rem;
+      display: flex; align-items: center; gap: 0.5rem;
     }
-    
+
     .mob-logo-section img {
-      height: 54px; width: auto;
-      filter: brightness(0);
+      height: 52px; width: auto; display: block;
     }
-    
+
     .mob-brand-text {
-      display: flex; flex-direction: column; line-height: 1.2;
+      display: flex; flex-direction: column; line-height: 1.2; gap: 0.2rem;
     }
-    
+
     .mob-brand-name {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem; font-weight: 600;
-      color: #1a1a1a; letter-spacing: 0.02em;
+      font-size: 1.15rem; font-weight: 600;
+      color: #fff; letter-spacing: 0.02em; white-space: nowrap;
     }
-    
+
     .mob-brand-subtitle {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.7rem; font-weight: 400;
-      color: rgba(0,0,0,0.5);
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.75rem; font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
     
     .mob-link {
@@ -253,7 +252,7 @@
     }
     #mob-close {
       background: none; border: none; 
-      color: #1a1a1a; font-size: 1.8rem; 
+      color: #1a1a1a; font-size: 1.8rem;
       cursor: pointer; padding: 0.5rem;
       width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
@@ -723,7 +722,7 @@
          viewport so the combined phrase keeps fitting on one line across
          common phone widths. */
       .hero-left-col h1 {
-        font-size: clamp(1.05rem, 4.8vw, 1.4rem) !important;
+        font-size: clamp(1.1rem, 5vw, 1.5rem) !important;
         line-height: 1.4 !important;
         margin-bottom: 0.8rem !important;
       }
@@ -1137,8 +1136,7 @@
       <a href="index.html" class="nav-link">Overview</a>
       <a href="about.html" class="nav-link">My Story</a>
       <a href="service.html" class="nav-link">Work With Me</a>
-      <!-- <a href="stories.html" class="nav-link">Success Stories</a>
-      <a href="insight.html" class="nav-link">Insights</a> -->
+      <a href="blog.html" class="nav-link">Blog</a>
       <a href="contact.html" class="nav-link">Let's Connect</a>
     </div>
     <div class="btn-nav-wrap">
@@ -1158,13 +1156,6 @@
 
 <div id="mobile-menu">
   <div class="mob-header">
-    <div class="mob-logo-section">
-      <img src="image/jb-logo.png" alt="Jonatas Baptista" />
-      <div class="mob-brand-text">
-        <span class="mob-brand-name">Jonatas Baptista</span>
-        <span class="mob-brand-subtitle">CLIENT ACQUISITION</span>
-      </div>
-    </div>
     <button id="mob-close" aria-label="Close">✕</button>
   </div>
   
@@ -1189,6 +1180,13 @@
     <span>Work With Me</span>
   </a>
   
+  <a href="blog.html" class="mob-link">
+    <div class="mob-link-icon">
+      <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    </div>
+    <span>Blog</span>
+  </a>
+
   <a href="contact.html" class="mob-link">
     <div class="mob-link-icon">
       <svg width="20" height="20" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -1232,7 +1230,7 @@
         </div> -->
 
         <!-- headline -->
-        <h1 class="serif mb-4 hero-anim-2" style="font-size:clamp(2rem,4.5vw,3.163rem);line-height:1.35;font-weight:500;letter-spacing:0.01em;">
+        <h1 class="serif mb-4 hero-anim-2" style="font-size:clamp(2.15rem,4.8vw,3.4rem);line-height:1.35;font-weight:500;letter-spacing:0.01em;">
           <span class="block hero-h1-a" style="color:rgba(255,255,255,0.5);font-weight:300;">Stop Chasing Leads.</span>
           <em class="block italic hero-h1-a" style="color:rgba(255,255,255,0.75);font-weight:400;">Build a Business</em>
           <br class="hero-h1-br" />
@@ -2073,6 +2071,7 @@
           <a href="index.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Overview</a>
           <a href="about.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>My Story</a>
           <a href="service.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Work With Me</a>
+          <a href="blog.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Blog</a>
           <a href="contact.html" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Let's Connect</a>
         </div>
       </div>

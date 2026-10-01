@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CDRPL0L80S"></script>
@@ -11,15 +11,46 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy | Jonatas Baptista</title>
-  <meta name="description" content="How Jonatas Baptista collects, uses, and protects your personal information." />
+  <title id="page-title">Blog Article — Jonatas Baptista | Client Acquisition</title>
+  <meta id="page-description" name="description" content="Practical insights on client acquisition, sales, and business growth to help you attract better clients and build a more sustainable business." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Inter', sans-serif; } h1,h2,h3 { font-family: 'Playfair Display', serif; }
+    /* ===== DESIGN TOKENS (identical to blog.html) ===== */
+    :root {
+      --dark:      #0e1117;
+      --dark-mid:  #161b25;
+      --dark-card: #1c2232;
+      --blue-deep: #0f2d5e;
+      --blue-mid:  #1a4080;
+      --blue-acc:  #2a5fc7;
+      --blue-light:#3b76e8;
+      --red:       #c0392b;
+      --red-h:     #e74c3c;
+      --off-white: #f4f3ef;
+      --cream:     #ede9e0;
+      --cream-dark:#d8d3c8;
+      --text-dark: #1a1a1a;
+      --text-mid:  #4a4a4a;
+      --text-muted:#7a7a7a;
+      --white:     #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+    .serif    { font-family: 'Playfair Display', serif; }
+    .serif-dm { font-family: 'DM Serif Display', serif; }
+
     /* ===== NAVBAR ===== */
-    :root { --red: #c0392b; --red-h: #e74c3c; --dark: #0e1117; }
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
       padding: 0;
@@ -33,20 +64,23 @@
     }
     #navbar.scrolled .nav-inner {
       padding: 0.9rem 3rem;
-      background: rgba(14,17,23,0.97);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35);
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.1);
       backdrop-filter: blur(12px);
     }
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
-    .nav-brand img { height: 60px; width: auto; display: block; }
+    .nav-brand img { height: 60px; width: auto; display: block; filter: brightness(0); }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
-      font-family: 'Outfit', sans-serif; font-size: 1.201rem; font-weight: 600;
-      color: #fff; letter-spacing: 0.02em; white-space: nowrap;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.202rem; font-weight: 600;
+      color: #1a1a1a; letter-spacing: 0.02em; white-space: nowrap;
     }
     .nav-brand-subtitle {
-      font-family: 'Outfit', sans-serif; font-size: 0.822rem; font-weight: 400;
-      color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.822rem; font-weight: 400;
+      color: rgba(0,0,0,0.5);
+      letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
     }
     @media (max-width: 639px) {
       .nav-brand { gap: 0.4rem; }
@@ -55,49 +89,89 @@
       .nav-brand-name { font-size: 1rem; }
       .nav-brand-subtitle { font-size: 0.7rem; }
     }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .nav-brand-text { display: flex; }
+    }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; }
-    @media (max-width: 1023px) { .nav-links { display: none !important; } }
     .nav-link {
-      font-family: 'Outfit', sans-serif; font-size: 0.948rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.7); text-decoration: none; position: relative; transition: color 0.2s;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.949rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.6);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s;
     }
     .nav-link::after {
-      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      content: '';
+      position: absolute; bottom: -3px; left: 0; right: 0;
       height: 1px; background: var(--red);
       transform: scaleX(0); transform-origin: left;
       transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
     }
-    .nav-link:hover { color: #fff; }
+    .nav-link:hover { color: #000; }
     .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
-    .nav-link.active { color: #fff; }
+    .nav-link.active { color: #000; }
+
+    /* Navbar matches the main pages (always dark) */
+    #navbar .nav-inner,
+    #navbar.scrolled .nav-inner {
+      background: rgba(14,17,23,0.97);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    #navbar .nav-brand img { filter: none; }
+    #navbar .nav-brand-name { color: #fff; }
+    #navbar .nav-brand-subtitle { color: rgba(255,255,255,0.45); }
+    #navbar .nav-link { color: rgba(255,255,255,0.7); }
+    #navbar .nav-link:hover, #navbar .nav-link.active { color: #fff; }
+    #navbar .hline { background: #fff; }
+    #navbar #hamburger:hover .hline { background: #c0392b; }
     .btn-nav {
-      font-family: 'Outfit', sans-serif; font-size: 0.911rem; font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.911rem; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
-      background: var(--red); color: #fff; padding: 0.65rem 1.6rem;
-      text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block;
+      background: var(--red); color: #fff;
+      padding: 0.65rem 1.6rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
     }
     .btn-nav:hover { background: var(--red-h); transform: translateY(-1px); }
+
+    /* Hamburger */
     #hamburger {
       display: none; flex-direction: column; gap: 4px; cursor: pointer;
       padding: 6px; background: transparent; border: none;
       transition: all 0.3s; position: relative; align-items: flex-end;
     }
-    @media (max-width: 1023px) { #hamburger { display: flex; } }
-    #hamburger:hover .hline { background: #c0392b; }
-    .hline { display: block; height: 2px; background: #fff; transition: all 0.3s; border-radius: 2px; }
+    @media (max-width: 1023px) {
+      #hamburger { display: flex; }
+    }
+    #hamburger:hover .hline {
+      background: #c0392b;
+    }
+    .hline {
+      display: block; height: 2px; background: #1a1a1a;
+      transition: all 0.3s; border-radius: 2px;
+    }
     .hline:nth-child(1) { width: 28px; }
     .hline:nth-child(2) { width: 22px; }
     .hline:nth-child(3) { width: 16px; }
     @media (max-width: 1023px) {
-      .nav-links { display: none; } .btn-nav-wrap { display: none; }
-      .nav-inner { padding: 1rem 1rem !important; }
-      #navbar.scrolled .nav-inner { padding: 0.75rem 1rem !important; }
+      .nav-links { display: none; }
+      .btn-nav-wrap { display: none; }
     }
+
+    /* Mobile menu */
     #mobile-menu {
       display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: #fff; z-index: 1000;
-      flex-direction: column; padding: 2rem 1.5rem; overflow-y: auto;
+      flex-direction: column; padding: 2rem 1.5rem;
+      overflow-y: auto;
       opacity: 0; visibility: hidden; transform: translateY(-12px);
       pointer-events: none;
       transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.35s;
@@ -107,66 +181,386 @@
       pointer-events: auto;
       transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;
     }
+
+    /* Mobile menu header */
     .mob-header {
       display: flex; align-items: center; justify-content: flex-end;
-      padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 2rem;
+      padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
     }
-    .mob-logo-section { display: flex; align-items: center; gap: 0.45rem; }
-    .mob-logo-section img { height: 70px; width: auto; filter: brightness(0); }
-    .mob-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
-    .mob-brand-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1a1a1a; letter-spacing: 0.02em; }
-    .mob-brand-subtitle { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 400; color: rgba(0,0,0,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .mob-logo-section {
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+
+    .mob-logo-section img {
+      height: 70px; width: auto;
+      filter: brightness(0);
+    }
+
+    .mob-brand-text {
+      display: flex; flex-direction: column; line-height: 1.2;
+    }
+
+    .mob-brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: #1a1a1a; letter-spacing: 0.02em;
+    }
+
+    .mob-brand-subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem; font-weight: 400;
+      color: rgba(0,0,0,0.5);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
     .mob-link {
       display: flex; align-items: center; gap: 1rem;
-      font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 500;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem; font-weight: 500;
       color: #4a4a4a; text-decoration: none;
-      padding: 1rem 1.25rem; background: #f8f6f3; border-radius: 8px; margin-bottom: 0.75rem;
-      transition: all 0.3s; opacity: 0; transform: translateY(20px);
+      padding: 1rem 1.25rem;
+      background: #f8f6f3;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      transition: all 0.3s;
+      opacity: 0; transform: translateY(20px);
     }
-    #mobile-menu.open .mob-link { animation: mob-in 0.4s forwards; }
+    #mobile-menu.open .mob-link {
+      animation: mob-in 0.4s forwards;
+    }
     #mobile-menu.open .mob-link:nth-child(2) { animation-delay: 0.05s; }
     #mobile-menu.open .mob-link:nth-child(3) { animation-delay: 0.1s; }
     #mobile-menu.open .mob-link:nth-child(4) { animation-delay: 0.15s; }
     #mobile-menu.open .mob-link:nth-child(5) { animation-delay: 0.2s; }
-    @keyframes mob-in { to { opacity:1; transform:translateY(0); } }
-    .mob-link:active { background: #e8e6e3; transform: scale(0.98); }
+    #mobile-menu.open .mob-link:nth-child(6) { animation-delay: 0.25s; }
+    @keyframes mob-in {
+      to { opacity:1; transform:translateY(0); }
+    }
+    .mob-link:active {
+      background: #e8e6e3;
+      transform: scale(0.98);
+    }
     .mob-link-icon {
-      width: 40px; height: 40px; background: rgba(192,57,43,0.1); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      width: 40px; height: 40px;
+      background: rgba(192,57,43,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
     .mob-cta-btn {
-      margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      background: #c0392b; color: #fff; padding: 1rem 1.5rem; border-radius: 8px;
-      text-decoration: none; font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s;
+      margin-top: auto;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: #c0392b; color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.3s;
     }
-    .mob-cta-btn:active { background: #a0301f; transform: scale(0.98); }
+    .mob-cta-btn:active {
+      background: #a0301f;
+      transform: scale(0.98);
+    }
     #mob-close {
-      background: none; border: none; color: #1a1a1a; font-size: 1.8rem; cursor: pointer;
-      padding: 0.5rem; width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.3s;
+      background: none; border: none;
+      color: #1a1a1a; font-size: 1.8rem;
+      cursor: pointer; padding: 0.5rem;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      transition: background 0.3s;
     }
-    #mob-close:active { background: rgba(0,0,0,0.05); }
-    /* WhatsApp */
+    #mob-close:active {
+      background: rgba(0,0,0,0.05);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.74rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--red); color: #fff;
+      padding: 0.9rem 2.2rem; border: 2px solid var(--red);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { background: var(--red-h); border-color: var(--red-h); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,57,43,0.35); }
+    .btn-outline-white {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.74rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background: transparent; color: rgba(255,255,255,0.8);
+      padding: 0.9rem 2.2rem;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline-white:hover { border-color: #fff; color: #fff; transform: translateY(-2px); }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.74rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: transparent; color: #111;
+      padding: 0.85rem 1.8rem;
+      border: 1.5px solid rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline-dark:hover:not(:disabled) { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+    .btn-outline-dark:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* ===== EYEBROW LABEL ===== */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--red);
+    }
+    .eyebrow::before {
+      content: ''; display: block;
+      width: 2rem; height: 1.5px; background: var(--red); flex-shrink: 0;
+    }
+    .eyebrow-blue { color: var(--blue-light); }
+    .eyebrow-blue::before { background: var(--blue-light); }
+
+    /* ===== SCROLL REVEAL ===== */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.75s cubic-bezier(0.4,0,0.2,1),
+                  transform 0.75s cubic-bezier(0.4,0,0.2,1);
+    }
+    [data-reveal="up"]    { transform: translateY(40px); }
+    [data-reveal="left"]  { transform: translateX(-40px); }
+    [data-reveal="right"] { transform: translateX(40px); }
+    [data-reveal="scale"] { transform: scale(0.94); }
+    [data-reveal="fade"]  { transform: none; }
+    [data-reveal].revealed { opacity: 1; transform: none !important; }
+    .d1 { transition-delay: 0.05s !important; }
+    .d2 { transition-delay: 0.12s !important; }
+    .d3 { transition-delay: 0.20s !important; }
+    .d4 { transition-delay: 0.28s !important; }
+    .d5 { transition-delay: 0.36s !important; }
+    .d6 { transition-delay: 0.44s !important; }
+
+    /* ===== CATEGORY BADGE ===== */
+    .cat-badge {
+      display: inline-block;
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--red); border: 1px solid rgba(192,57,43,0.35);
+      padding: 0.25rem 0.75rem;
+    }
+    .cat-badge-blue {
+      color: var(--blue-light); border-color: rgba(59,118,232,0.35);
+    }
+
+    /* ===== CARD STYLES (related articles) ===== */
+    .card-dark {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      transition: box-shadow 0.35s;
+      position: relative; overflow: hidden;
+    }
+    .card-dark:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+    .article-img { overflow: hidden; }
+    .article-img img { transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+    .card-dark:hover .article-img img { transform: scale(1.06); }
+    .read-blog-link {
+      color: var(--red); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none; transition: gap 0.25s ease, opacity 0.25s ease;
+    }
+    .read-blog-link:hover { gap: 0.75rem; opacity: 0.8; }
+    .read-time {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 400;
+      color: rgba(0,0,0,0.4);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== ARTICLE HERO ===== */
+    .post-hero {
+      background: linear-gradient(150deg, #faf9f6 0%, #f4f3ef 55%, #ede9e0 100%);
+      position: relative; overflow: hidden;
+      padding-top: 9.5rem; padding-bottom: 4.5rem;
+    }
+    .post-hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 55% at 88% 10%, rgba(192,57,43,0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 45% at 4% 92%, rgba(42,95,199,0.06) 0%, transparent 60%);
+    }
+    .post-breadcrumb {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem; font-weight: 400;
+      color: rgba(0,0,0,0.38);
+    }
+    .post-breadcrumb a { color: rgba(0,0,0,0.55); text-decoration: none; transition: color 0.2s; }
+    .post-breadcrumb a:hover { color: #000; }
+    .post-meta-row {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+      color: rgba(0,0,0,0.5); font-size: 0.88rem;
+    }
+    .post-meta-item { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .post-author-avatar {
+      width: 2.4rem; height: 2.4rem; border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--red-h));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600;
+      color: #fff; flex-shrink: 0;
+    }
+
+    .post-hero-img-wrap {
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 25px 60px -10px rgba(20,18,10,0.16);
+      border: 1px solid rgba(0,0,0,0.06);
+      aspect-ratio: 4 / 5;
+    }
+    .post-hero-img-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 1023px) {
+      .post-hero-img-wrap { aspect-ratio: 16 / 9; max-width: 30rem; margin: 0 auto; }
+    }
+
+    /* ===== ARTICLE BODY ===== */
+    .post-body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--text-mid);
+    }
+    .post-body p { margin-bottom: 1.5rem; }
+    .post-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      color: var(--text-dark);
+      margin: 2.75rem 0 1.25rem;
+      line-height: 1.3;
+    }
+    .post-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      color: var(--text-dark);
+      margin: 2rem 0 1rem;
+      line-height: 1.35;
+    }
+    .post-body ul, .post-body ol { margin: 0 0 1.5rem 1.35rem; }
+    .post-body li { margin-bottom: 0.65rem; }
+    .post-body blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      color: var(--text-dark);
+      border-left: 3px solid var(--red);
+      padding: 0.25rem 0 0.25rem 1.75rem;
+      margin: 2.25rem 0;
+      line-height: 1.55;
+    }
+    .post-body strong { color: var(--text-dark); font-weight: 500; }
+
+    .post-share-rail {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      position: sticky; top: 7rem;
+    }
+    .share-btn {
+      width: 2.6rem; height: 2.6rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08);
+      color: rgba(0,0,0,0.55); text-decoration: none;
+      transition: all 0.25s;
+    }
+    .share-btn:hover { background: var(--red); border-color: var(--red); color: #fff; transform: translateY(-2px); }
+
+    .post-tag {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--text-mid);
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 999px;
+      padding: 0.45rem 1.1rem;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .post-tag:hover { color: var(--red); border-color: rgba(192,57,43,0.35); background: rgba(192,57,43,0.06); }
+
+    .author-card {
+      background: var(--off-white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 14px;
+      padding: 2rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      background: linear-gradient(125deg, var(--dark-mid) 0%, #1a2540 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: -40%; right: -15%;
+      width: 55%; height: 180%;
+      background: radial-gradient(ellipse, rgba(192,57,43,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute; bottom: -40%; left: -10%;
+      width: 45%; height: 180%;
+      background: radial-gradient(ellipse, rgba(42,95,199,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-dark-mid { background: var(--dark-mid); color: #fff; }
+    .section-dark { background: var(--dark); color: #fff; }
+    .section-cream { background: var(--off-white); color: var(--text-dark); }
+    .hr-subtle { border: none; border-top: 1px solid rgba(255,255,255,0.06); }
+
+    /* ===== WHATSAPP ===== */
     .wa-float {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 998;
-      width: 54px; height: 54px; border-radius: 50%; background: #25D366;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #25D366;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.3); text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      text-decoration: none;
       animation: wa-pulse 2.8s ease infinite;
     }
     @keyframes wa-pulse {
       0%,100% { box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 0 rgba(37,211,102,0.45); }
       55%      { box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 12px rgba(37,211,102,0); }
     }
-    body { padding-top: 0; }
+
+    /* Responsive nav */
+    @media (max-width: 767px) {
+      .nav-inner { padding: 1.1rem 1.25rem !important; }
+      #navbar.scrolled .nav-inner { padding: 0.8rem 1.25rem !important; }
+    }
+    @media (max-width: 1023px) {
+      .post-share-rail { flex-direction: row; position: static; }
+    }
   </style>
 <!-- ============================================================
      MOBILE REFINEMENTS — right-side nav drawer + one-row CTA pairs
      Loaded last so it overrides the page styles above.
 ============================================================ -->
 <style>
-  /* ---------- Navigation: slide-in drawer from the right ---------- */
   #nav-overlay {
     position: fixed; inset: 0; z-index: 999;
     background: rgba(7,10,16,0.55);
@@ -198,15 +592,12 @@
     transform: translateX(0);
     transition: transform .46s cubic-bezier(.22,.61,.36,1), visibility 0s linear 0s;
   }
-  /* links now drift in from the right, matching the drawer's direction */
   .mob-link { transform: translateX(18px); }
   @keyframes mob-in { to { opacity: 1; transform: translateX(0); } }
   @media (prefers-reduced-motion: reduce) {
     #mobile-menu, #nav-overlay { transition-duration: .01ms; }
     #mobile-menu .mob-link { animation: none !important; opacity: 1; transform: none; }
   }
-
-  /* ---------- Hero / CTA button pairs stay on one row on phones ---------- */
   @media (max-width: 640px) {
     .cta-btn-row {
       display: flex !important;
@@ -233,10 +624,10 @@
   }
 </style>
 </head>
-<body class="bg-white text-slate-900 antialiased">
+<body>
 
 <!-- ============================================================
-     NAVIGATION (UNIFIED)
+     NAVIGATION
 ============================================================ -->
 <nav id="navbar">
   <div class="nav-inner">
@@ -249,9 +640,9 @@
     </a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Overview</a>
-      <a href="about.html" class="nav-link active">My Story</a>
+      <a href="about.html" class="nav-link">My Story</a>
       <a href="service.html" class="nav-link">Work With Me</a>
-      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
       <a href="contact.html" class="nav-link">Let's Connect</a>
     </div>
     <div class="btn-nav-wrap">
@@ -260,12 +651,12 @@
     <button id="hamburger" aria-label="Open menu">
       <span class="hline"></span>
       <span class="hline"></span>
-      <span class="hline"></span>
+      <span class="hline" style="width:16px"></span>
     </button>
   </div>
 </nav>
 
-<!-- Drawer backdrop -->
+<!-- Mobile Full-Screen Menu -->
 <div id="nav-overlay" aria-hidden="true"></div>
 
 <div id="mobile-menu">
@@ -314,101 +705,137 @@
   </a>
 </div>
 
-<!-- ============ LEGAL PAGE STYLES ============ -->
-<style>
-  .legal-hero{position:relative;overflow:hidden;background:#0a0a0f;padding:clamp(8rem,14vw,10.5rem) 1.5rem clamp(3.5rem,6vw,5.5rem);}
-  .legal-hero::before{content:'';position:absolute;top:-30%;right:-10%;width:55%;height:170%;background:radial-gradient(ellipse,rgba(192,57,43,0.14) 0%,transparent 62%);pointer-events:none;}
-  .legal-hero::after{content:'';position:absolute;bottom:-40%;left:-8%;width:45%;height:170%;background:radial-gradient(ellipse,rgba(42,95,199,0.10) 0%,transparent 62%);pointer-events:none;}
-  .legal-wrap{max-width:1120px;margin:0 auto;position:relative;z-index:1;}
-  .legal-eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);border-radius:999px;padding:.45rem 1.1rem;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e74c3c;margin-bottom:1.5rem;}
-  .legal-eyebrow span{width:7px;height:7px;border-radius:50%;background:#c0392b;display:inline-block;}
-  .legal-hero h1{font-family:'Playfair Display',serif;font-weight:700;color:#fff;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.15;margin:0 0 1rem;}
-  .legal-hero .legal-updated{font-family:'Outfit',sans-serif;color:rgba(255,255,255,0.5);font-size:.98rem;letter-spacing:.02em;}
-  .legal-hero .legal-intro{color:rgba(255,255,255,0.62);font-size:1.12rem;line-height:1.8;margin-top:1.4rem;max-width:none;}
+<!-- ============================================================
+     ARTICLE HERO
+============================================================ -->
+<section class="post-hero">
+  <div class="post-hero-glow"></div>
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-8">
 
-  .legal-body{background:#f4f3ef;padding:clamp(3.5rem,7vw,6rem) 1.5rem clamp(4.5rem,8vw,7rem);}
-  .legal-content{background:transparent;border:0;box-shadow:none;border-radius:0;padding:0;}
-  .legal-content h2{font-family:'Playfair Display',serif;font-weight:700;color:#1a1a1a;font-size:clamp(1.4rem,2.6vw,1.75rem);line-height:1.3;margin:0 0 1.1rem;padding-top:clamp(2.25rem,4vw,3rem);margin-top:clamp(2.25rem,4vw,3rem);border-top:1px solid rgba(0,0,0,0.09);display:flex;align-items:flex-start;gap:.85rem;}
-  .legal-content h2:first-child{margin-top:0;padding-top:0;border-top:0;}
-  .legal-content h2 .n{flex-shrink:0;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;color:#c0392b;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:9px;min-width:2rem;height:2rem;display:inline-flex;align-items:center;justify-content:center;margin-top:.15rem;}
-  .legal-content p{font-family:'Inter',sans-serif;color:#4a4a4a;font-size:1.055rem;line-height:1.85;margin:0 0 1.15rem;}
-  .legal-content p:last-child{margin-bottom:0;}
-  .legal-content ul{margin:0 0 1.3rem;padding-left:0;list-style:none;}
-  .legal-content li{position:relative;font-family:'Inter',sans-serif;color:#4a4a4a;font-size:1.055rem;line-height:1.75;padding-left:1.75rem;margin-bottom:.7rem;}
-  .legal-content li::before{content:'';position:absolute;left:.35rem;top:.7rem;width:6px;height:6px;border-radius:50%;background:#c0392b;}
-  .legal-content a{color:#c0392b;text-decoration:none;border-bottom:1px solid rgba(192,57,43,0.35);transition:color .2s,border-color .2s;}
-  .legal-content a:hover{color:#e74c3c;border-color:#e74c3c;}
-  .legal-content strong{color:#1a1a1a;}
-  .legal-note{background:transparent;border-left:3px solid #c0392b;border-radius:0;padding:.35rem 0 .35rem 1.4rem;margin:clamp(2.75rem,5vw,3.5rem) 0 0;}
-  .legal-note p{margin:0;color:#5a5a5a;font-size:.99rem;}
-  @media (max-width:639px){
-    .legal-content h2{gap:.65rem;font-size:1.3rem;}
-    .legal-content h2 .n{min-width:1.8rem;height:1.8rem;font-size:.85rem;}
-    .legal-content p,.legal-content li{font-size:1rem;}
-  }
-</style>
+    <nav class="post-breadcrumb mb-8" data-reveal="up" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="blog.html">Blog</a>
+      <span>/</span>
+      <span id="crumb-category" style="color:rgba(0,0,0,0.6);">Article</span>
+    </nav>
 
-<!-- ============ LEGAL HERO ============ -->
-<section class="legal-hero">
-  <div class="legal-wrap">
-    <div class="legal-eyebrow"><span></span>Legal</div>
-    <h1>Privacy Policy</h1>
-    <div class="legal-updated">Last updated: July 3, 2026</div>
-    <p class="legal-intro">This Privacy Policy explains how Jonatas Baptista (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) collects, uses, and protects your personal information when you visit our website or engage our coaching services, in compliance with the General Data Protection Regulation (GDPR) and other applicable data protection laws.</p>
-  </div>
-</section>
+    <div class="grid lg:grid-cols-[1fr_300px] gap-10 lg:gap-14 items-center">
 
-<!-- ============ LEGAL BODY ============ -->
-<section class="legal-body">
-  <div class="legal-wrap">
-    <div class="legal-content">
-      <h2><span class="n">1</span>Data Controller</h2>
-      <p>Petals Legacy Lda, operating under the brand Jonatas Baptista, is the data controller responsible for your personal information under this Privacy Policy. You can reach us at <a href="mailto:support@jonatasbaptista.com ">support@jonatasbaptista.com </a> or <a href="tel:+351910083701">+351 910 083 701</a>.</p>
-      <h2><span class="n">2</span>Information We Collect</h2>
-      <p>We collect information you provide directly to us &mdash; such as your name, email address, phone number, and any details you share when booking a strategy call, filling out a contact form, or subscribing to updates.</p>
-      <p>We also automatically collect certain technical data when you visit the site, including your IP address, browser type, device information, and pages viewed, through cookies and similar technologies.</p>
-      <h2><span class="n">3</span>How We Use Your Information</h2>
-      <p>We use the information we collect to:</p>
-      <ul><li>Respond to your inquiries and schedule coaching sessions.</li><li>Deliver and improve our services and website experience.</li><li>Send relevant updates, resources, or offers where you have consented.</li><li>Comply with legal obligations and protect against fraud or misuse.</li></ul>
-      <h2><span class="n">4</span>Legal Basis for Processing</h2>
-      <p>We process your personal data based on:</p>
-      <ul><li><strong>Performance of a contract</strong> &mdash; to deliver booked sessions and digital products.</li><li><strong>Your consent</strong> &mdash; for marketing communications you opt into.</li><li><strong>Legal obligation</strong> &mdash; such as invoicing and tax records.</li><li><strong>Legitimate interests</strong> &mdash; such as improving our services and preventing misuse, where these do not override your rights.</li></ul>
-      <h2><span class="n">5</span>Cookies &amp; Tracking Technologies</h2>
-      <p>Our website uses cookies and similar tracking technologies, such as Google Analytics, to remember your preferences and understand how visitors interact with our content. Strictly necessary cookies, which are required for the website to function, are always active and do not require your consent. When you first visit our website, you can choose to Accept All or Reject All other (non-essential) cookies through the cookie banner. Your choice will be remembered for approximately 6 months, after which you will be asked to confirm your preferences again. You may also manage or disable cookies at any time through your browser settings. Rejecting or disabling non-essential cookies may affect certain features or personalization on the website, though core functionality will remain available.</p>
-      <h2><span class="n">6</span>How We Share Your Information</h2>
-      <p>We do not sell your personal information. We may share it only with trusted service providers who help us operate our business (such as scheduling, payment, or analytics tools), and only to the extent necessary for them to perform those services, or where required by law.</p>
-      <h2><span class="n">7</span>International Data Transfers</h2>
-      <p>Some of our service providers may process your data outside the European Economic Area. Where this occurs, we rely on appropriate safeguards, such as standard contractual clauses approved by the European Commission or the provider&rsquo;s own compliance with applicable data protection frameworks.</p>
-      <h2><span class="n">8</span>Data Retention</h2>
-      <p>We retain your personal data for as long as necessary to provide our services and maintain the client relationship. Marketing data is retained until you withdraw consent.</p>
-      <h2><span class="n">9</span>Data Security</h2>
-      <p>We take reasonable technical and organizational measures to protect your personal information against unauthorized access, loss, or misuse. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security. We are not responsible for circumvention of any privacy settings or security measures
-contained on the Website.</p>
-      <h2><span class="n">10</span>Your Rights (GDPR)</h2>
-      <p>If you are located in the European Economic Area or United Kingdom, you have the right, subject to applicable law, to access, correct, delete, or restrict the processing of your personal information, to object to certain processing, to request data portability, and to withdraw consent at any time where processing is based on consent. Data subjects have the right to lodge a complaint with a data protection authority. If you are located elsewhere, you may have similar rights under the laws of your country of residence. To exercise any of these rights, please contact us using the details below.</p>
-      <h2><span class="n">11</span>Third-Party Links</h2>
-      <p>Our website may contain links to third-party sites. We are not responsible for the privacy practices or content of those websites and encourage you to review their policies.</p>
-      <h2><span class="n">12</span>Changes to This Policy</h2>
-      <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date. We encourage you to review it periodically.</p>
-      <h2><span class="n">13</span>Contact Us</h2>
-      <p>If you have questions about this Privacy Policy or how your information is handled, contact us at <a href="mailto:support@jonatasbaptista.com">support@jonatasbaptista.com</a> or call <a href="tel:+351910083701">+351 910 083 701</a>.</p>
-      <div class="legal-note"><p>This Privacy Policy is provided for general informational purposes and should be reviewed by a qualified legal professional to ensure it meets the requirements applicable to your jurisdiction.</p></div>
+      <!-- Text -->
+      <div>
+        <div class="mb-6" data-reveal="up">
+          <span id="post-cat-badge" class="cat-badge">Category</span>
+        </div>
+
+        <h1 id="post-title" class="serif mb-8 leading-tight" style="font-size:clamp(2rem,4vw,2.9rem); font-weight:400; color:var(--text-dark);" data-reveal="up">
+          Loading article…
+        </h1>
+
+        <div class="post-meta-row d2" data-reveal="up">
+          <span class="post-meta-item">
+            <span class="post-author-avatar">JB</span>
+            <span>By <strong style="color:var(--text-dark);font-weight:500;">Jonatas Baptista</strong></span>
+          </span>
+          <span class="post-meta-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span id="post-date">—</span>
+          </span>
+          <span class="post-meta-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="post-read-time">—</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Supporting image (secondary — text carries the article) -->
+      <div class="post-hero-img-wrap d2" data-reveal="scale">
+        <img id="post-hero-img" src="" alt="" />
+      </div>
     </div>
   </div>
 </section>
+
+<!-- ============================================================
+     ARTICLE BODY
+============================================================ -->
+<section class="section-cream pb-20 md:pb-28" style="padding-top:1rem;">
+  <div class="max-w-5xl mx-auto px-6 lg:px-0">
+    <hr class="hr-subtle" style="border-top-color:rgba(0,0,0,0.08); margin-bottom:2.75rem;" />
+    <div class="grid lg:grid-cols-[3.5rem_1fr] gap-10">
+
+      <!-- Share rail -->
+      <div class="hidden lg:block">
+        <div class="post-share-rail">
+          <a class="share-btn" id="share-linkedin" href="#" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <button class="share-btn" id="share-copy" aria-label="Copy link">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div>
+        <article id="post-body" class="post-body" data-reveal="up">
+          <!-- injected by JS -->
+        </article>
+
+        <!-- Tags -->
+        <div id="post-tags" class="flex flex-wrap gap-2 mt-4 mb-12"></div>
+
+        <hr class="hr-subtle" style="border-top-color:rgba(0,0,0,0.08); margin-bottom:2.5rem;" />
+
+        <!-- Author card -->
+        <div class="author-card" data-reveal="up">
+          <div class="post-author-avatar" style="width:3.4rem;height:3.4rem;font-size:1.3rem;">JB</div>
+          <div>
+            <div class="serif" style="font-size:1.15rem;color:var(--text-dark);margin-bottom:0.4rem;">Jonatas Baptista</div>
+            <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;margin-bottom:1rem;">
+              20+ years of experience in sales, leadership, and business development, helping founders, creators, coaches, consultants and real estate agents build predictable, sustainable growth.
+            </p>
+            <a href="about.html" style="color:var(--red);font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;">Read My Story →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RELATED ARTICLES
+============================================================ -->
+<section class="section-cream py-20 md:py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="mb-10" data-reveal="up">
+      <div class="eyebrow mb-4">Keep Reading</div>
+      <h2 class="serif text-gray-900 text-2xl md:text-3xl font-light leading-tight">Related Blog</h2>
+    </div>
+    <div id="related-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="related-nav" class="hidden items-center justify-center gap-4 mt-10">
+      <button id="related-back" class="btn-outline-dark" type="button">← Back</button>
+      <button id="related-next" class="btn-outline-dark" type="button">Next →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
 <footer style="background:#060910;border-top:1px solid rgba(255,255,255,0.06);">
 
   <!-- Pre-footer CTA strip -->
   <div style="background:linear-gradient(135deg,#f4f3ef 0%,#ede9e0 100%);padding:4.5rem 2rem;position:relative;overflow:hidden;">
-    <!-- subtle decorative glow blobs -->
     <div style="position:absolute;top:-30%;right:-10%;width:45%;height:180%;background:radial-gradient(ellipse,rgba(192,57,43,0.06) 0%,transparent 65%);pointer-events:none;"></div>
     <div style="position:absolute;bottom:-30%;left:-8%;width:40%;height:180%;background:radial-gradient(ellipse,rgba(42,95,199,0.05) 0%,transparent 65%);pointer-events:none;"></div>
     <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
 
-      <!-- Top divider line -->
       <div style="width:3rem;height:2px;background:linear-gradient(90deg,#c0392b,transparent);margin:0 auto 2rem;"></div>
 
-      <!-- Eyebrow pill -->
       <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
         <span style="display:inline-flex;align-items:center;gap:0.55rem;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:999px;padding:0.45rem 1.1rem;font-family:'Outfit',sans-serif;font-size:0.836rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(192,57,43,0.9);">
           <span style="width:7px;height:7px;border-radius:50%;background:#c0392b;display:inline-block;"></span>
@@ -416,18 +843,15 @@ contained on the Website.</p>
         </span>
       </div>
 
-      <!-- Headline -->
       <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:400;color:#1a1a1a;text-align:center;line-height:1.35;margin-bottom:1rem;">
         Ready to Attract Premium Clients?<br/>
         <em style="color:rgba(0,0,0,0.65);font-weight:300;">Book Your Strategy Call Today.</em>
       </h3>
 
-      <!-- Subtext -->
       <p style="font-family:'Outfit',sans-serif;font-size:1.063rem;color:#4a4a4a;text-align:center;max-width:540px;margin:0 auto 2.5rem;line-height:1.7;">
         One focused conversation. Clear direction. No obligation.
       </p>
 
-      <!-- CTA buttons row -->
       <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
         <a href="https://calendly.com/jonatas-jonatasbaptista/30min" target="_blank" rel="noopener"
            style="display:inline-flex;align-items:center;gap:.55rem;background:#c0392b;color:#fff;font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:2px solid #c0392b;transition:background .2s,transform .2s,box-shadow .2s;"
@@ -440,12 +864,11 @@ contained on the Website.</p>
            style="display:inline-flex;align-items:center;gap:.55rem;background:transparent;color:rgba(0,0,0,0.6);font-family:'Outfit',sans-serif;font-size:0.886rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border:1.5px solid rgba(0,0,0,0.2);transition:border-color .2s,color .2s,transform .2s;"
            onmouseover="this.style.borderColor='rgba(0,0,0,0.55)';this.style.color='#1a1a1a';this.style.transform='translateY(-2px)'"
            onmouseout="this.style.borderColor='rgba(0,0,0,0.2)';this.style.color='rgba(0,0,0,0.6)';this.style.transform=''">
-          Explore OFFERS
+          Explore Services
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <!-- Trust micro-line -->
       <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
         <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -456,6 +879,11 @@ contained on the Website.</p>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Focused on your business
         </span>
+        <span style="width:1px;height:16px;background:rgba(0,0,0,0.12);display:inline-block;"></span>
+        <span style="display:flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.836rem;color:rgba(0,0,0,0.65);letter-spacing:0.05em;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          150 agents coached
+        </span>
       </div>
 
     </div>
@@ -463,7 +891,6 @@ contained on the Website.</p>
 
   <!-- Main footer body -->
   <div class="ft-body" style="position:relative;overflow:hidden;">
-    <!-- ambient brand glow -->
     <div aria-hidden="true" style="position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:70%;height:120%;background:radial-gradient(ellipse at top,rgba(192,57,43,0.07) 0%,transparent 60%);pointer-events:none;"></div>
 
     <style>
@@ -508,7 +935,6 @@ contained on the Website.</p>
           </div>
         </div>
         <p style="color:rgba(255,255,255,0.42);font-size:1.02rem;line-height:1.75;max-width:340px;margin:0 0 1.75rem;">Helping Founders, Creators, Coaches, Consultants & Real Estate Agents Get More Clients, Increase Sales, Create Predictable Growth & Build Better Systems. Built on 20 years of experience in Sales, Leadership, and Business Development.</p>
-        <!-- Social icons -->
         <div style="display:flex;gap:.65rem;">
           <a href="https://www.linkedin.com/in/jonatas-baptista-42992113/" aria-label="LinkedIn" class="ft-social" onmouseover="this.style.background='#c0392b';this.style.borderColor='#c0392b';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.02)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.55)'">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -548,7 +974,6 @@ contained on the Website.</p>
           <a href="service.html#growth-sales-system" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Sales System</a>
           <a href="service.html#growth-automation" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Automation</a>
           <a href="service.html#growth-advisory" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Growth Advisory</a>
-
           <a href="service.html#agent-growth-programme" class="ft-link"><svg class="ft-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>ESTAVIUM™ Agent Growth Programme</a>
         </div>
       </div>
@@ -581,48 +1006,227 @@ contained on the Website.</p>
         <a href="privacy-policy.html" class="ft-bottom-link">Privacy Policy</a>
         <a href="terms-of-service.html" class="ft-bottom-link">Terms of Service</a>
         <a href="https://www.linkedin.com/in/tejasmehar/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,0.3);font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:.04em;text-decoration:none;transition:color .25s ease;" onmouseover="this.style.color='rgba(255,255,255,0.75)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">
-          Developed &amp; Managed By Tejas Mehar
-        </a>
+        Developed &amp; Managed By Tejas Mehar
+      </a>
       </div>
     </div>
     </div>
   </div>
 </footer>
 
-<!-- WhatsApp Float -->
+<!-- WhatsApp -->
 <a href="https://wa.me/351910083701" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+
+<!-- ============================================================
+     ARTICLE DATA + RENDERER
+============================================================ -->
 <script>
-/* Body loaded */
-document.body.classList.add('loaded');
-/* Unified Navbar */
+const API_BASE = (['localhost', '127.0.0.1'].includes(location.hostname) && location.port !== '8000')
+  ? 'http://localhost:8000'
+  : '';
+
+function resolveImage(src) {
+  return /^https?:\/\//.test(src) ? src : API_BASE + src;
+}
+
+function categoryBadgeClass(categoryId) {
+  return categoryId % 2 === 0 ? 'cat-badge-blue' : '';
+}
+
+let ALL_POSTS = [];
+
+
+function esc(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.textContent;
+}
+
+async function renderPost() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('post');
+
+  let post = null;
+  try {
+    const [postRes, listRes] = await Promise.all([
+      slug ? fetch(`${API_BASE}/api/posts/show?slug=${encodeURIComponent(slug)}`) : Promise.resolve(null),
+      fetch(`${API_BASE}/api/posts`),
+    ]);
+    ALL_POSTS = listRes && listRes.ok ? await listRes.json() : [];
+    if (postRes && postRes.ok) {
+      post = await postRes.json();
+    }
+  } catch (err) {
+    console.error('Failed to load post', err);
+  }
+
+  if (!post) {
+    document.getElementById('post-title').textContent = 'Article Not Found';
+    document.getElementById('post-body').innerHTML =
+      "<p>Sorry, we couldn't find the article you were looking for. It may have been moved or the link is out of date.</p>" +
+      '<p><a href="blog.html" style="color:var(--red);font-weight:600;">← Back to the Blog</a></p>';
+    document.getElementById('crumb-category').textContent = 'Not Found';
+    document.getElementById('post-cat-badge').style.display = 'none';
+    document.querySelector('.post-meta-row').style.display = 'none';
+    document.querySelector('.post-hero-img-wrap').style.display = 'none';
+    renderRelated(null);
+    return;
+  }
+
+  document.title = post.title + ' — Jonatas Baptista | Blog';
+  document.getElementById('page-title').textContent = post.title + ' — Jonatas Baptista | Blog';
+  document.getElementById('page-description').setAttribute('content', post.excerpt);
+
+  document.getElementById('crumb-category').textContent = post.category_name;
+  const badge = document.getElementById('post-cat-badge');
+  badge.textContent = post.category_name;
+  badge.className = 'cat-badge ' + categoryBadgeClass(post.category_id);
+
+  document.getElementById('post-title').textContent = post.title;
+  document.getElementById('post-date').textContent = post.published_at;
+  document.getElementById('post-read-time').textContent = post.read_minutes + ' min read';
+
+  const img = document.getElementById('post-hero-img');
+  img.src = resolveImage(post.image);
+  img.alt = post.title;
+
+  document.getElementById('post-body').innerHTML = post.body;
+
+  const tagsWrap = document.getElementById('post-tags');
+  tagsWrap.innerHTML = post.tags.map(t => `<span class="post-tag">${esc(t)}</span>`).join('');
+
+  const pageUrl = window.location.href;
+  document.getElementById('share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(pageUrl);
+  document.getElementById('share-whatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(post.title + ' — ' + pageUrl);
+  const copyBtn = document.getElementById('share-copy');
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(pageUrl).then(() => {
+      copyBtn.innerHTML = '<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"/></svg>';
+      }, 2000);
+    }).catch(() => {});
+  });
+
+  renderRelated(slug);
+
+  document.querySelectorAll('[data-reveal]').forEach(el => el.classList.remove('revealed'));
+  initReveal();
+}
+
+const RELATED_PAGE_SIZE = 3;
+let relatedPosts = [];
+let relatedPage = 0;
+
+function renderRelated(currentSlug) {
+  relatedPosts = ALL_POSTS.filter(p => p.slug !== currentSlug);
+  relatedPage = 0;
+  renderRelatedPage();
+
+  const nav = document.getElementById('related-nav');
+  const backBtn = document.getElementById('related-back');
+  const nextBtn = document.getElementById('related-next');
+  if (relatedPosts.length > RELATED_PAGE_SIZE) {
+    nav.classList.remove('hidden');
+    nav.classList.add('flex');
+  } else {
+    nav.classList.add('hidden');
+    nav.classList.remove('flex');
+  }
+  backBtn.onclick = () => { relatedPage--; renderRelatedPage(); };
+  nextBtn.onclick = () => { relatedPage++; renderRelatedPage(); };
+}
+
+function renderRelatedPage() {
+  const totalPages = Math.ceil(relatedPosts.length / RELATED_PAGE_SIZE) || 1;
+  const start = relatedPage * RELATED_PAGE_SIZE;
+  const pagePosts = relatedPosts.slice(start, start + RELATED_PAGE_SIZE);
+
+  const grid = document.getElementById('related-grid');
+  grid.innerHTML = pagePosts.map(p => {
+    return `
+      <div class="card-dark d2" data-reveal="up">
+        <a href="blog-post.html?post=${encodeURIComponent(p.slug)}" class="article-img" style="height:200px;display:block;">
+          <img src="${resolveImage(p.image).replace('w=1400', 'w=700')}" alt="${esc(p.title)}" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="cat-badge ${categoryBadgeClass(p.category_id)}">${esc(p.category_name)}</span>
+            <span class="read-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ${esc(p.read_minutes)} min
+            </span>
+          </div>
+          <h3 class="serif text-gray-900 text-lg font-light leading-snug mb-4" style="color:#111;">
+            <a href="blog-post.html?post=${encodeURIComponent(p.slug)}" style="color:inherit;text-decoration:none;">${esc(p.title)}</a>
+          </h3>
+          <a href="blog-post.html?post=${encodeURIComponent(p.slug)}" class="read-blog-link">
+            Read Blog
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.querySelectorAll('#related-grid [data-reveal]').forEach(el => el.classList.add('revealed'));
+
+  const backBtn = document.getElementById('related-back');
+  const nextBtn = document.getElementById('related-next');
+  backBtn.disabled = relatedPage === 0;
+  nextBtn.disabled = relatedPage >= totalPages - 1;
+}
+
+function initReveal() {
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObs.observe(el));
+}
+
+renderPost();
+</script>
+
+<script>
+/* ===== NAVBAR ===== */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+/* ===== MOBILE MENU ===== */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
-const mobClose = document.getElementById('mob-close');
-const hlines = hamburger.querySelectorAll('.hline');
+const mobClose   = document.getElementById('mob-close');
+const hlines     = hamburger.querySelectorAll('.hline');
+
 function openMenu() {
   mobileMenu.classList.add('open');
-  hlines[0].style.transform='rotate(45deg) translate(5px,5px)'; hlines[1].style.opacity='0';
-  hlines[2].style.transform='rotate(-45deg) translate(4px,-4px)'; hlines[2].style.width='24px';
-  document.body.style.overflow='hidden';
+  hlines[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+  hlines[1].style.opacity   = '0';
+  hlines[2].style.transform = 'rotate(-45deg) translate(4px,-4px)';
+  hlines[2].style.width     = '24px';
+  document.body.style.overflow = 'hidden';
 }
 function closeMenu() {
   mobileMenu.classList.remove('open');
-  hlines[0].style.transform=''; hlines[1].style.opacity=''; hlines[2].style.transform=''; hlines[2].style.width='';
-  document.body.style.overflow='';
+  hlines[0].style.transform = '';
+  hlines[1].style.opacity   = '';
+  hlines[2].style.transform = '';
+  hlines[2].style.width     = '';
+  document.body.style.overflow = '';
 }
 hamburger.addEventListener('click', openMenu);
 mobClose.addEventListener('click', closeMenu);
 mobileMenu.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', closeMenu));
-/* Scroll reveal */
-const revealEls = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => revealObs.observe(el));
 </script>
 
 <!-- ============================================================
@@ -647,7 +1251,7 @@ revealEls.forEach(el => revealObs.observe(el));
 <script>
 (function(){
   var KEY = 'cookie-consent';
-  var EXPIRY_MS = 1000 * 60 * 60 * 24 * 182; // 6 months: re-ask for consent periodically per GDPR
+  var EXPIRY_MS = 1000 * 60 * 60 * 24 * 182;
   var banner = document.getElementById('cookie-consent');
   if (!banner) return;
 
