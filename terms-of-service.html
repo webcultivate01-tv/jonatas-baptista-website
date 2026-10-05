@@ -656,7 +656,7 @@ revealEls.forEach(el => revealObs.observe(el));
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="10" r="1"/><circle cx="10" cy="14" r="1"/><circle cx="14.5" cy="14.5" r="1"/></svg>
       </span>
       <p style="font-size:0.86rem;line-height:1.5;color:rgba(26,26,26,0.7);margin:0;">
-        <span style="font-weight:600;color:#1a1a1a;">We value your privacy.</span> We use cookies to enhance your browsing experience and analyse traffic. Read our <a href="privacy-policy.html" style="color:#c0392b;text-decoration:underline;">Privacy Policy</a> and <a href="terms-of-service.html" style="color:#c0392b;text-decoration:underline;">Terms of Service</a>.
+        <span style="font-weight:600;color:#1a1a1a;">We value your privacy.</span> We use cookies to enhance your browsing experience and analyse traffic.
       </p>
     </div>
     <div style="display:flex;gap:0.6rem;flex-shrink:0;">
@@ -672,6 +672,10 @@ revealEls.forEach(el => revealObs.observe(el));
   var banner = document.getElementById('cookie-consent');
   if (!banner) return;
 
+  // Reserve space under the page while the banner is visible so footer links (Privacy Policy / Terms of Service) are never covered
+  function reserveSpace(){ document.body.style.paddingBottom = (banner.style.display === 'none' ? '' : (banner.offsetHeight + 40) + 'px'); }
+  window.addEventListener('resize', reserveSpace);
+
   function consentExpired(){
     var raw = localStorage.getItem(KEY);
     if (!raw) return true;
@@ -682,13 +686,14 @@ revealEls.forEach(el => revealObs.observe(el));
 
   try {
     if (consentExpired()) {
-      setTimeout(function(){ banner.style.display = 'block'; }, 600);
+      setTimeout(function(){ banner.style.display = 'block'; reserveSpace(); }, 600);
     }
-  } catch(e) { banner.style.display = 'block'; }
+  } catch(e) { banner.style.display = 'block'; reserveSpace(); }
 
   function choose(value){
     try { localStorage.setItem(KEY, JSON.stringify({ choice: value, ts: Date.now() })); } catch(e){}
     banner.style.display = 'none';
+    reserveSpace();
   }
   var accept  = document.getElementById('cookie-accept');
   var decline = document.getElementById('cookie-decline');
